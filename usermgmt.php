@@ -58,9 +58,17 @@
         $query->execute();
         $query->close();
         break;
+      
+      case 'LOGOUT':
+        $query = $con->prepare("DELETE FROM sessions WHERE session_id=?");
+        $query->bind_param("s", session_id());
+        $query->execute();
+        $query->close();
+        header("Location: login.php");
+        break;
 
       default:
-        # code...
+        die("Something went wrong");
         break;
     }
     header("Location: usermgmt.php");
@@ -222,7 +230,7 @@
       </div>
       -->
 
-      <form class="form-inline">
+      <form class="form-inline" style="float:left;">
         <div class="form-group" style="display:inline;">
           <div class="input-group">
             <input type="text" class="form-control" name="" id="search_query"/>
@@ -232,7 +240,11 @@
           </div>
           <button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='add' data-target='#userEditModal'>Add new User</button>
         </div>
-      </form>    
+      </form>
+      <form method="POST" style="float:right;">
+        <input type="hidden" name="action" value="LOGOUT"/>
+        <input type='submit' class='btn btn-primary' value="Log Out" />
+      </form>
       
       <table id="table_of_users" class="table table-hover">
         <thead>
