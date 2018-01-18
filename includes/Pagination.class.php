@@ -9,6 +9,8 @@ class Pagination {
 	protected $firstAndBackLinks;
 	protected $nextAndLastLinks;
 	protected $currentPage;
+	protected $beforeLinks;
+	protected $afterLinks;
 
 	// The query and the parameters needed for the prepared statement
 	protected $query;
@@ -18,6 +20,10 @@ class Pagination {
 		$this->db = $db;
 		$this->query = $query;
 		$this->params = $params;
+
+		// So we can concatenate later on
+		$this->beforeLinks = '';
+		$this->afterLinks = '';
 	}
 
 	public function totalRecords() {
@@ -63,20 +69,48 @@ class Pagination {
 			$pageNum = 1;
 		}
 
-		// Generate links to page 1 and the previous page
+		// Generate links to the previous page
 		if ($pageNum > 1) {
 			$prevPage = $pageNum - 1;
 
-			$this->firstAndBackLinks = "<div class='first-last'><a href='" . $fileAndParams . "page=1'>First</a> <a href='". $fileAndParams . "page=$prevPage'>Back</a></div>";
+			$this->firstAndBackLinks = "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$prevPage'>Previous</a></li>";
+		} else {
+			$this->firstAndBackLinks = "<li class='page-item disabled'><a class='page-link' href='" . $fileAndParams . "page=$prevPage'>Previous</a></li>";
 		}
 
-		$this->currentPage = "<div class='page-count'>(Page $pageNum of $this->totalNumPages)</div>";
+		// Get the surrounding couple of page numbers as well, if possible
 
-		// Generate links to the last page and the next page
+		if ($this->totalNumPages > 1) {
+			// Get (up to) two page numbers < the current page
+			$i = $pageNum;
+			$j = 0;
+
+			while ($i > 1 && $j < 2) {
+				$i--;
+				$this->beforeLinks .= "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$i'>$i</a></li>";
+				$j++;
+			}
+
+			// Get (up to) two page numbers > the current page
+			$i = $pageNum;
+			$j = 0;
+
+			while ($i < $this->totalNumPages && $j < 2) {
+				$i++;
+				$this->afterLinks .= "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$i'>$i</a></li>";
+				$j++;
+			}
+		}
+
+		$this->currentPage = "<li class='page-item active'><a class='page-link' href='#'>$pageNum <span class='sr-only'>(current)</span></a></li>";
+
+		// Generate links to the next page
 		if ($pageNum < $this->totalNumPages) {
 			$nextPage = $pageNum + 1;
 
-			$this->nextAndLastLinks = "<div class='next-last'><a href='" . $fileAndParams . "page=$nextPage'>Next</a> <a href='" . $fileAndParams . "page=$this->totalNumPages'>Last</a></div>";
+			$this->nextAndLastLinks = "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$nextPage'>Next</a></li>";
+		} else {
+			$this->nextAndLastLinks = "<li class='page-item disabled'><a class='page-link' href='" . $fileAndParams . "page=$nextPage'>Next</a></li>";
 		}
 
 		return $pageNum;
@@ -93,6 +127,14 @@ class Pagination {
 
 	public function getNextAndLastLinks() {
 		return $this->nextAndLastLinks;
+	}
+
+	public function getBeforeLinks() {
+		return $this->beforeLinks;
+	}
+
+	public function getAfterLinks() {
+		return $this->afterLinks;
 	}
 }
 
