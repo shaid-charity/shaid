@@ -1,6 +1,7 @@
 <?php
 require_once '../includes/settings.php';
 require_once '../includes/config.php';
+require_once 'header.php';
 
 if (isset($_GET['action']) && $_GET['action'] == 'write') {
 	// This will eventually allow you to select emails from this screen too
