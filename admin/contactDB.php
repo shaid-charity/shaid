@@ -22,6 +22,28 @@ require_once 'header.php';
 </head>
 
 <body>
+	<!-- Top navbar -->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="#">SHAID Admin Panel</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="usermgmt.php">User Management</a>
+	      </li>
+	    </ul>
+
+	    <form class="form-inline my-2 my-lg-0" method="POST" style="float:right;">
+        	<input type="hidden" name="action" value="LOGOUT"/>
+        	<input type='submit' class='btn btn-outline-danger my-2 my-sm-0' value="Log Out" />
+      	</form>
+	  </div>
+	</nav>
 
 <?php
 
@@ -59,6 +81,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 ?>
 <div class="container">
+
 	<form class="form-inline" action="contactDB.php" method="get">
 		<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php echo $searchText; ?>">
 		<input class="btn btn-primary" type="submit" value="Search">
@@ -106,7 +129,7 @@ echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagi
 	$friend = new Friend($db, $_GET['id']);
 	$friend->deleteFromDB();
 ?>
-	<p>Friend delete successfully. <a href="contactDB.php">Go back to contact DB.</a></p>
+	<div class="alert alert-success" role="alert">Friend delete successfully. <a href="contactDB.php">Go back to contact DB.</a></div>
 </div>
 <?php
 } 

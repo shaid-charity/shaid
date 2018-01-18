@@ -125,6 +125,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   </script>
 </head>
 <body>
+  <!-- Top navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">SHAID Admin Panel</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="usermgmt.php">User Management<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+      <form class="form-inline my-2 my-lg-0" method="POST" style="float:right;">
+        <input type="hidden" name="action" value="LOGOUT"/>
+        <input type='submit' class='btn btn-outline-danger my-2 my-sm-0' value="Log Out" />
+      </form>
+    </div>
+  </nav>
+
   <div class="container">
     <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -207,10 +230,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='add' data-target='#userEditModal'>Add new User</button>
       </div>
-    </form>
-    <form method="POST" style="float:right;">
-      <input type="hidden" name="action" value="LOGOUT"/>
-      <input type='submit' class='btn btn-primary' value="Log Out" />
     </form>
     
     <table id="table_of_users" class="table table-hover">
