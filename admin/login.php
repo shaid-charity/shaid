@@ -1,6 +1,6 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  require_once('db.php');
+  require_once('../includes/db.php');
   if(!empty($_POST['user'])){
     $user = $_POST['user'];
     $pass = $_POST['pass'];

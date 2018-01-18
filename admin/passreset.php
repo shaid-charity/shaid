@@ -1,7 +1,7 @@
 <?php
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-  require_once("functions.php");
-  require_once("db.php");
+  require_once("../includes/functions.php");
+  require_once("../includes/db.php");
   $query = $con->prepare("SELECT user_id FROM users WHERE user_id=?");
   $query->bind_param("s", getValidData($_POST["user_id"]));
   $query->execute();
