@@ -15,7 +15,7 @@ $query->close();
 
 if(empty($session_number)){
   header("Location: login.php");
-  die();
+  die('no session number');
     //return;
 } else {
     //check if user has permission to access user management

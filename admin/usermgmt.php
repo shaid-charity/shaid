@@ -55,7 +55,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
   <script>
     $(document).ready(function(){
       function updatePermissionGui(permissions){
@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
   <!-- Top navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
     <a class="navbar-brand" href="#">SHAID Admin Panel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -153,6 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add/Edit User</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -207,6 +208,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
     </div>
     
+    <div class="page-header">
+      <h1>User Management</h1>
+    </div>
+    <br />
+
     <!--
       <div id="addUser">
         <form method="POST">
@@ -221,11 +227,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     -->
 
     <form class="form-inline" style="float:left;">
-      <div class="form-group" style="display:inline;">
+      <div class="form-group">
         <div class="input-group">
           <input type="text" class="form-control" name="" id="search_query"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-primary" id="search_button">Search</button>
+          <span class="input-group-append">
+            <button type="button" class="btn btn-primary mr-2" id="search_button">Search</button>
           </span>
         </div>
         <button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='add' data-target='#userEditModal'>Add new User</button>

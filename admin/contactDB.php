@@ -23,7 +23,7 @@ require_once 'header.php';
 
 <body>
 	<!-- Top navbar -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
 	  <a class="navbar-brand" href="#">SHAID Admin Panel</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -81,10 +81,18 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 ?>
 <div class="container">
+	<div class="page-header">
+		<h1>Contact DB</h1>
+	</div>
+	<br />
 
 	<form class="form-inline" action="contactDB.php" method="get">
-		<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php echo $searchText; ?>">
-		<input class="btn btn-primary" type="submit" value="Search">
+		<div class="input-group">
+			<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php echo $searchText; ?>">
+			<div class="input-group-append">
+				<input class="btn btn-primary" type="submit" value="Search">
+			</div>
+		</div>
 	</form>
 	<form action="sendEmail.php?action=write" method="post">
 		<table class="table table-hover table-striped" id="contactDB">
@@ -115,10 +123,10 @@ echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagi
 
 			</ul>
 		</nav>
-		<input class="btn btn-primary" type="submit" value="Send email to selected" name="sendEmail"> <label for="sendEmail" id="numChecked">0</label> <label>currently selected emails</label>
+		<button class="btn btn-primary" type="submit" name="sendEmail">Send email to selected</button> <label for="sendEmail" id="numChecked">0</label> <label>currently selected emails</label>
 	</form>
 	<form action="sendEmail.php?action=write" method="post">
-		<input type="hidden" name="all" value="yes">
+		<input type="hidden" name="type" value="all">
 		<input class="btn btn-primary" type="submit" value="Send email to all contacts">
 	</form>
 
