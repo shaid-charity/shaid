@@ -10,11 +10,12 @@ class Friend extends DBRecord {
 	private $email;
 	private $fname;
 	private $sname;
+	private $type;
 
 	/* We want two different ways of creating a Friend object: from an existin record in the DB, or a new record to be added to the DB.
 	This means we need two different constructors; however, PHP does not allow this. Instead we use non-required parameters for the 
 	actual constructor, and decide ourselves which method we should call. */
-	public function __construct(PDO $db, $id =  null, $email = null, $fname = null, $sname = null) {
+	public function __construct(PDO $db, $id =  null, $email = null, $fname = null, $sname = null, $type = null) {
 		$this->db = $db;
 
 		// For sanity, we will check for both the set and unset values
@@ -24,9 +25,9 @@ class Friend extends DBRecord {
 		} else if (is_null($id) && !is_null($email) && is_null($fname) && is_null($sname)) {
 			$this->getByEmail($email);
 		}
-		else if (is_null($id) && !(is_null($email) && is_null($fname) && is_null($sname))) {
+		else if (is_null($id) && !(is_null($email) && is_null($fname) && is_null($sname) && is_null($type))) {
 			// We need to create a record in the DB
-			$this->createConstructor($email, $fname, $sname);
+			$this->createConstructor($email, $fname, $sname, $type);
 		} else {
 			// The constructor cannot be used in this way
 			throw new Exception('The Friend class cannot be initiated like that.');
@@ -47,6 +48,7 @@ class Friend extends DBRecord {
 		$this->email = $result['email'];
 		$this->fname = $result['fname'];
 		$this->sname = $result['sname'];
+		$this->type = $result['type'];
 	}
 
 	private function getByEmail($email) {
@@ -63,9 +65,10 @@ class Friend extends DBRecord {
 		$this->email = $result['email'];
 		$this->fname = $result['fname'];
 		$this->sname = $result['sname'];
+		$this->type = $result['type'];
 	}
 
-	private function createConstructor($email, $fname, $sname) {
+	private function createConstructor($email, $fname, $sname, $type) {
 		// Add a record to the DB and set the objects properties
 
 		$alreadyExists = true;
@@ -84,8 +87,8 @@ class Friend extends DBRecord {
 			}
 
 			try {
-				$stmt = $this->db->prepare("INSERT INTO `gp_friends`(email, fname, sname) VALUES (?, ?, ?)");
-				$stmt->execute([$email, $fname, $sname]);
+				$stmt = $this->db->prepare("INSERT INTO `gp_friends`(email, fname, sname, type) VALUES (?, ?, ?, ?)");
+				$stmt->execute([$email, $fname, $sname, $type]);
 			} catch (PDOException $e) {
 				echo 'Friend.class.php createConstructor() error: <br />';
 				throw new Exception($e->getMessage());
@@ -95,6 +98,7 @@ class Friend extends DBRecord {
 			$this->email = $email;
 			$this->fname = $fname;
 			$this->sname = $sname;
+			$this->type = $type;
 		} else {
 			// Throw an error saying the contact already exists
 			throw new Exception('A contact already exists with the email ' . $email);
@@ -124,6 +128,10 @@ class Friend extends DBRecord {
 
 	public function getSurname() {
 		return $this->sname;
+	}
+
+	public function getType() {
+		return $this->type;
 	}
 
 	// Set methods
