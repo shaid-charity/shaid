@@ -2,43 +2,8 @@
 require_once '../includes/settings.php';
 require_once '../includes/config.php';
 require_once 'header.php';
-
-if (isset($_GET['action']) && $_GET['action'] == 'write') {
-	// This will eventually allow you to select emails from this screen too
-	// For now though, just ensure the emails have been sent via the form
-	if (empty($_POST)) {
-		throw new Exception('No contacts were selected!');
-	}
-
-	$toText = '';
-	if (isset($_POST['type'])) {
-		if ($_POST['type'] == 'all') {
-			$stmt = $db->query("SELECT `email` FROM `gp_friends`");
-		}
-		
-		$emails = [];
-		foreach ($stmt as $row) {
-			$emails[] = $row['email'];
-		}
-		$toText = 'All contacts';
-
-		$_SESSION['emails'] = $emails;
-	} else {
-		// Save the emails in a session variable so we can access them again
-		$emails = [];
-
-		foreach ($_POST as $email) {
-			if (!empty($email)) {
-				$emails[] = $email;
-				$toText .= $email . '; ';
-			}
-		}
-
-		$_SESSION['emails'] = $emails;
-	}
-
 ?>
-<html>
+
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -80,36 +45,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 			<h1>Send Email</h1>
 		</div>
 		<br />
-		<form action="sendEmail.php?action=send" method="post">
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label" for="subject">Subject:</label> 
-				<div class="col-sm-10">
-					<input class="form-control" placeholder="Subject" type="text" name="subject">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label" for="to">To:</label> 
-				<div class="col-sm-10">
-					<input type="text" readonly class="form-control-plaintext" value="<?php echo $toText; ?>">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label" for="message">Message:</label>
-				<div class="col-sm-10">
-					<textarea class="form-control" rows="15" name="message"></textarea>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label"></label>
-				<input class="btn btn-primary ml-3" type="submit" value="Send email">
-			</div>
-		</form>
-
-	</div>
 
 <?php
-
-} else if (isset($_GET['action']) && $_GET['action'] == 'send') {
+if ($_GET['action'] == 'send') {
 	// Create the Transport
 	$transport = (new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, 'tls'))
 		->setUsername(EMAIL_ADDRESS)
@@ -138,9 +76,67 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 		$numSent += $mailer->send($message, $failed);
 	}
 
-	echo 'Sent ' . $numSent . ' messages!';
-	
+	echo '<div class="alert alert-success">Sent ' . $numSent . ' messages!</div>';
+
 	if (!empty($failed)) {
 		echo 'Failed to send to: ' . print_r($array);
 	}
 }
+?>
+
+<?php
+if (isset($_GET['action']) && $_GET['action'] == 'write') {
+	$toText = '';
+	if (isset($_POST['type'])) {
+		if ($_POST['type'] == 'all') {
+			$stmt = $db->query("SELECT `email` FROM `gp_friends`");
+		}
+		
+		$emails = [];
+		foreach ($stmt as $row) {
+			$emails[] = $row['email'];
+		}
+		$toText = 'All contacts';
+
+		$_SESSION['emails'] = $emails;
+	} else {
+		// Save the emails in a session variable so we can access them again
+		$emails = [];
+
+		foreach ($_POST as $email) {
+			if (!empty($email)) {
+				$emails[] = $email;
+				$toText .= $email . '; ';
+			}
+		}
+
+		$_SESSION['emails'] = $emails;
+	}
+}
+?>
+		<form action="sendEmail.php?action=send" method="post">
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="subject">Subject:</label> 
+				<div class="col-sm-10">
+					<input class="form-control" placeholder="Subject" type="text" name="subject">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="to">To:</label> 
+				<div class="col-sm-10">
+					<input type="text" readonly class="form-control-plaintext" value="<?php echo $toText; ?>">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label" for="message">Message:</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" rows="15" name="message"></textarea>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2 col-form-label"></label>
+				<input class="btn btn-primary ml-3" type="submit" value="Send email">
+			</div>
+		</form>
+
+	</div>

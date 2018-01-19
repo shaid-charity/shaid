@@ -59,7 +59,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 
 	// Set up the pagination
-	$pagination = new Pagination($db, "SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ?", [$searchTerm, $searchTerm, $searchTerm]);
+	$pagination = new Pagination($db, "SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ?", [$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
 	$pagination->totalRecords();
 	$pagination->setLimitPerPage(10);
 	$currentPage = $pagination->getPage();
@@ -72,8 +72,8 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 
 	// Get all records from the DB
-	$stmt = $db->prepare("SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? LIMIT $startFrom,10");
-	$stmt->execute([$searchTerm, $searchTerm, $searchTerm]);
+	$stmt = $db->prepare("SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ? LIMIT $startFrom,10");
+	$stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
 
 	$friends = Array();
 	foreach ($stmt as $row) {
@@ -100,6 +100,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 				<th>Email</th>
 				<th>Forename</th>
 				<th>Surname</th>
+				<th>Type</th>
 				<th>Delete Email</th>
 				<th>Select</th> <!-- TODO: Not happy with name of column -->
 			</tr>
@@ -107,7 +108,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 <?php
 
 	foreach ($friends as $f) {
-		echo '<tr><td>' . $f->getEmail() . '</td><td>' . $f->getForename() . '</td><td>' . $f->getSurname() . '</td><td><a class="delete" href="contactDB.php?action=delete&id=' . $f->getID() . '">Delete</a></td><td><input class="checkbox" type="checkbox" name="' . $f->getEmail() . '" value="' . $f->getEmail() . '"></tr>';
+		echo '<tr><td>' . $f->getEmail() . '</td><td>' . $f->getForename() . '</td><td>' . $f->getSurname() . '</td><td>' . $f->getType() . '<td><a class="delete" href="contactDB.php?action=delete&id=' . $f->getID() . '">Delete</a></td><td><input class="checkbox" type="checkbox" name="' . $f->getEmail() . '" value="' . $f->getEmail() . '"></tr>';
 	}
 
 ?>
