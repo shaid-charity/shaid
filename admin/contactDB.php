@@ -59,7 +59,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 
 	// Set up the pagination
-	$pagination = new Pagination($db, "SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ?", [$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+	$pagination = new Pagination($db, "SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ?", array($searchTerm, $searchTerm, $searchTerm, $searchTerm));
 	$pagination->totalRecords();
 	$pagination->setLimitPerPage(10);
 	$currentPage = $pagination->getPage();
@@ -73,7 +73,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 
 	// Get all records from the DB
 	$stmt = $db->prepare("SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ? LIMIT $startFrom,10");
-	$stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
+	$stmt->execute(array($searchTerm, $searchTerm, $searchTerm, $searchTerm));
 
 	$friends = Array();
 	foreach ($stmt as $row) {

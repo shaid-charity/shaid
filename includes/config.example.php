@@ -1,5 +1,8 @@
 <?php
-define( "APP_ROOT", realpath( dirname( __FILE__ ) ).'/../');
+// This is Matthew's DB file.
+// TODO: Set up everything to use one DB connection
+
+define( "APP_ROOT", realpath(dirname( __FILE__ ) ) . '/../');
 
 require_once 'autoload.php';
 require_once APP_ROOT . 'vendor/autoload.php';// Autoloads the packages installed via Composer that we use
@@ -14,11 +17,11 @@ if (!defined('IN_APP')) {
 // Databse constants that will be defined throughout the application
 // TODO: We are opening two connections to the DB so that both my code and Dmytro's will work.
 // This needs fixing ASAP
-define('DB_HOST', 'localhost');
-define('DB_PORT', '8889');
-define('DB_NAME', 'gp');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
+define('DB_HOST', 'host');
+define('DB_PORT', 'port');
+define('DB_NAME', 'database');
+define('DB_USER', 'user');
+define('DB_PASS', 'password');
 
 // Create a connection to the DB
 
@@ -33,8 +36,8 @@ try {
 }
 
 // Settings for sending emails via SwiftMailer
-define('EMAIL_ADDRESS', 'matthew.accounts@gmx.com');
-define('EMAIL_NAME', 'Matthew Watson');
-define('EMAIL_PASSWORD', 'AbCd@0123');
-define('EMAIL_SERVER', 'mail.gmx.com');
+define('EMAIL_ADDRESS', 'email');
+define('EMAIL_NAME', 'Sender Name');
+define('EMAIL_PASSWORD', 'password');
+define('EMAIL_SERVER', 'SMTP.Server.com');
 define('EMAIL_PORT', 587);

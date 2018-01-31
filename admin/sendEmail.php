@@ -49,9 +49,9 @@ require_once 'header.php';
 <?php
 if ($_GET['action'] == 'send') {
 	// Create the Transport
-	$transport = (new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, 'tls'))
-		->setUsername(EMAIL_ADDRESS)
-		->setPassword(EMAIL_PASSWORD);
+	$transport = new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, 'tls');
+	$transport->setUsername(EMAIL_ADDRESS);
+	$transport->setPassword(EMAIL_PASSWORD);
 
 	// Create a mailer
 	$mailer = new Swift_Mailer($transport);
@@ -61,13 +61,13 @@ if ($_GET['action'] == 'send') {
 	$messageNoHTML = strip_tags($_POST['message']);
 
 	// Create the message - recipient will be set later
-	$message = (new Swift_Message($_POST['subject']))
-		->setFrom([EMAIL_ADDRESS => EMAIL_NAME])
-		->setBody($messageNoHTML)
-		->addPart($_POST['message'], 'text/html');
+	$message = new Swift_Message($_POST['subject']);
+	$message->setFrom(array(EMAIL_ADDRESS => EMAIL_NAME));
+	$message->setBody($messageNoHTML);
+	$message->addPart($_POST['message'], 'text/html');
 
 	// Send
-	$failed = [];
+	$failed = array();
 	$numSent = 0;
 
 	foreach ($_SESSION['emails'] as $email) {
@@ -75,7 +75,9 @@ if ($_GET['action'] == 'send') {
 
 		$numSent += $mailer->send($message, $failed);
 	}
-
+	print_r($numSent);
+	print_r($failed);
+	print_r($_SESSION['emails']);
 	echo '<div class="alert alert-success">Sent ' . $numSent . ' messages!</div>';
 
 	if (!empty($failed)) {
@@ -92,7 +94,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 			$stmt = $db->query("SELECT `email` FROM `gp_friends`");
 		}
 		
-		$emails = [];
+		$emails = array();
 		foreach ($stmt as $row) {
 			$emails[] = $row['email'];
 		}
@@ -101,7 +103,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 		$_SESSION['emails'] = $emails;
 	} else {
 		// Save the emails in a session variable so we can access them again
-		$emails = [];
+		$emails = array();
 
 		foreach ($_POST as $email) {
 			if (!empty($email)) {
@@ -111,6 +113,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 		}
 
 		$_SESSION['emails'] = $emails;
+		print_r(session_save_path());
 	}
 }
 ?>
