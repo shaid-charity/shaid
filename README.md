@@ -1,2 +1,2 @@
-# shaid
-Shaid's website
+# SHAID
+[Contents to be discussed]
