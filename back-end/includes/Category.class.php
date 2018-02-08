@@ -54,7 +54,7 @@ class Category extends DBRecord {
 
 	private function createConstructor($name) {
 		try {
-			$stmt = $this->db->prepare('INSERT INTO `gp_categories`(name) VALUES (?, ?)');
+			$stmt = $this->db->prepare('INSERT INTO `gp_categories`(name) VALUES (?)');
 			$stmt->execute([$name, $slug]);
 		} catch (PDOException $e) {
 			// Hopefully this will catch any DB errors (e.g. slug is not unique)
