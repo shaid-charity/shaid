@@ -16,6 +16,8 @@ abstract class Content extends DBRecord {
 	private $category;
 	private $user;
 	private $keywords;
+	private $approved;
+	private $published;
 
 	// TODO: Add author user - need to see Dmytro's code
 	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $categoryID = null, $author = null, $keywords = null) {
@@ -116,6 +118,14 @@ abstract class Content extends DBRecord {
 		}
 
 		return $words;
+	}
+
+	public function isApproved() {
+		return $this->approved;
+	}
+
+	public function isPublished() {
+		return $this->published;
 	}
 
 	public function setName($name) {
