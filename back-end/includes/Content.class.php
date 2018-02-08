@@ -123,7 +123,7 @@ abstract class Content extends DBRecord {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `name` = ? WHERE `id` = ?");
 			$stmt->execute([$name, $this->id]);
 		} catch (PDOException $e) {
-			echo 'Post.class.php setName() error: <br />';
+			echo 'Content.class.php setName() error: <br />';
 			throw new Exception($e->getMessage());
 		}
 
@@ -135,7 +135,7 @@ abstract class Content extends DBRecord {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `slug` = ? WHERE `id` = ?");
 			$stmt->execute([$slug, $this->id]);
 		} catch (PDOException $e) {
-			echo 'Post.class.php setSlug() error: <br />';
+			echo 'Content.class.php setSlug() error: <br />';
 			throw new Exception($e->getMessage());
 		}
 
@@ -147,7 +147,7 @@ abstract class Content extends DBRecord {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `content` = ? WHERE `id` = ?");
 			$stmt->execute([$content, $this->id]);
 		} catch (PDOException $e) {
-			echo 'Post.class.php setContent() error: <br />';
+			echo 'Content.class.php setContent() error: <br />';
 			throw new Exception($e->getMessage());
 		}
 
@@ -159,7 +159,7 @@ abstract class Content extends DBRecord {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `image` = ? WHERE `id` = ?");
 			$stmt->execute([$image, $this->id]);
 		} catch (PDOException $e) {
-			echo 'Post.class.php setImage() error: <br />';
+			echo 'Content.class.php setImage() error: <br />';
 			throw new Exception($e->getMessage());
 		}
 
@@ -171,7 +171,7 @@ abstract class Content extends DBRecord {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `category` = ? WHERE `id` = ?");
 			$stmt->execute([$categoryID, $this->id]);
 		} catch (PDOException $e) {
-			echo 'Post.class.php setCategory() error: <br />';
+			echo 'Content.class.php setCategory() error: <br />';
 			throw new Exception($e->getMessage());
 		}
 
