@@ -1,10 +1,11 @@
 <?php
-require_once 'header.php';
+require_once('header.php');
+require_once('../includes/db.php');
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
     case 'ADD':
-    $permissions = getPermissionString($_POST["user_perm"]);
+    $permissions = getPermissionString($_POST["role"]);
     $query = $con->prepare("INSERT INTO users VALUES(?,?,?,?,?,?);");
     $query->bind_param("ssssss", getValidData($_POST["user_id"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($permissions), $salt = "--------------------", $hash = "undefined");
     $query->execute();
@@ -12,8 +13,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     break;
 
     case 'UPDATE':
-    $permissions = getPermissionString($_POST["user_perm"]);
-    $query = $con->prepare("UPDATE users SET user_id=?, first_name=?, last_name=?, user_perm=? WHERE user_id=?");
+    $permissions = getPermissionString($_POST["role"]);
+    $query = $con->prepare("UPDATE users SET user_id=?, first_name=?, last_name=?, role=? WHERE user_id=?");
     $query->bind_param("sssss", getValidData($_POST["user_id"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($permissions), getValidData($_POST["old_id"]));
     $query->execute();
     $query->close();
@@ -59,22 +60,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <script>
     $(document).ready(function(){
       function updatePermissionGui(permissions){
-        $("#user_perm_mgmt").prop('checked', false);
-        $("#user_perm_blog").prop('checked', false);
-        $("#user_perm_events").prop('checked', false);
-        $("#user_perm_shop").prop('checked', false);
+        $("#role_mgmt").prop('checked', false);
+        $("#role_blog").prop('checked', false);
+        $("#role_events").prop('checked', false);
+        $("#role_shop").prop('checked', false);
 
         if(permissions.includes("U")){
-          $("#user_perm_mgmt").prop('checked', true); 
+          $("#role_mgmt").prop('checked', true); 
         }
         if(permissions.includes("B")){
-          $("#user_perm_blog").prop('checked', true);
+          $("#role_blog").prop('checked', true);
         }
         if(permissions.includes("E")){
-          $("#user_perm_events").prop('checked', true); 
+          $("#role_events").prop('checked', true); 
         }
         if(permissions.includes("S")){
-          $("#user_perm_shop").prop('checked', true); 
+          $("#role_shop").prop('checked', true); 
         }
       }
 
@@ -181,20 +182,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <div class="form-group">
                 <label class="form-control-label">Permissions:</label>
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="user_perm[]" id="user_perm_mgmt" value="U">
-                  <label class="form-check-label" for="user_perm_mgmt">User Management</label>
+                  <input type="checkbox" class="form-check-input" name="role[]" id="role_mgmt" value="U">
+                  <label class="form-check-label" for="role_mgmt">User Management</label>
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="user_perm[]" id="user_perm_blog" value="B">
-                  <label class="form-check-label" for="user_perm_blog">Blog</label>
+                  <input type="checkbox" class="form-check-input" name="role[]" id="role_blog" value="B">
+                  <label class="form-check-label" for="role_blog">Blog</label>
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="user_perm[]" id="user_perm_events" value="E">
-                  <label class="form-check-label" for="user_perm_events">Events</label>
+                  <input type="checkbox" class="form-check-input" name="role[]" id="role_events" value="E">
+                  <label class="form-check-label" for="role_events">Events</label>
                 </div>
                 <div class="form-check">
-                  <input type="checkbox" class="form-check-input" name="user_perm[]" id="user_perm_shop" value="S">
-                  <label class="form-check-label" for="user_perm_shop">Shop</label>
+                  <input type="checkbox" class="form-check-input" name="role[]" id="role_shop" value="S">
+                  <label class="form-check-label" for="role_shop">Shop</label>
                 </div>
               </div>
             </form>
@@ -241,40 +242,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <table id="table_of_users" class="table table-hover">
       <thead>
         <tr>
-          <th>User ID</th>
+          <th>Email</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Permissions</th>
+          <th>Role</th>
         </tr>
       </thead>
       <tbody>
         <?php
-            //display users based on search query; if empty search or initial load of page -> show all users
-        $sql = "SELECT user_id, first_name, last_name, user_perm FROM users";
-        $query = null;
-        if(!empty($_GET["search_query"])){
-          $sql .= " WHERE (user_id LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?)";
-          $search_query = "%" . getValidData($_GET["search_query"]) . "%";
-          $query = $con->prepare($sql);
-          $query->bind_param("sss", $search_query, $search_query, $search_query);
-        } else {
-          $query = $con->prepare($sql);
-        }
-        $query->execute();
-        $query->bind_result($user_id, $first_name, $last_name, $user_perm);
+              //display users based on search query; if empty search or initial load of page -> show all users
+          $sql = "SELECT email, first_name, last_name, roles.name FROM users, roles WHERE roles.id = users.role_id";
+          $query = null;
+          if(!empty($_GET["search_query"])){
+            $sql .= " WHERE (user_id LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?)";
+            $search_query = "%" . getValidData($_GET["search_query"]) . "%";
+            $query = $con->prepare($sql);
+            $query->bind_param("sss", $search_query, $search_query, $search_query);
+          } else {
+            $query = $con->prepare($sql);
+          }
+          $query->execute();
+          $query->bind_result($user_email, $first_name, $last_name, $role);
 
-        $user_count = 0;
-        while($query->fetch()){
-          echo "<tr>";
-          echo "<td>$user_id</td>";
-          echo "<td>$first_name</td>";
-          echo "<td>$last_name</td>";
-          echo "<td>$user_perm</td>";
-          echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='" . $user_id . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $user_perm . "'>Edit User</button></td></tr>";
-          $user_count += 1;
-        }
-        $user_count = 0;
-        $query->close();
+          $user_count = 0;
+          while($query->fetch()){
+            echo "<tr>";
+            echo "<td>$user_email</td>";
+            echo "<td>$first_name</td>";
+            echo "<td>$last_name</td>";
+            echo "<td>$role</td>";
+            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "'>Edit User</button></td></tr>";
+            $user_count += 1;
+          }
+          $user_count = 0;
+          $query->close();
         ?>
       </tbody>
     </table>

@@ -2,27 +2,31 @@
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   require_once('../includes/db.php');
   if(!empty($_POST['user'])){
-    $user = $_POST['user'];
+    $user_email = $_POST['user'];
     $pass = $_POST['pass'];
-    $query = $con->prepare("SELECT first_name, last_name, pass_salt, pass_hash FROM users WHERE user_id=?");
-    $query->bind_param("s", $user);
+    $query = $con->prepare("SELECT user_id, first_name, last_name, pass_salt, pass_hash FROM users WHERE email=?");
+    $query->bind_param("s", $user_email);
     $query->execute();
-    $query->bind_result($first_name, $last_name, $salt, $hash);
+    $query->bind_result($user_id, $first_name, $last_name, $salt, $hash);
     $query->fetch();
     $query->close();
 
     if(!empty($hash)){
       if($hash == "undefined") {
-        header("Location: passreset.php?user_id=" . $user);
+        //password has not been set yet
+        header("Location: passreset.php?user_email=" . $user_email);
         die();
       } else {
+        //check if password is correct
         if(hash("sha256", $pass . $salt) == $hash){
           session_start();
+          //possible session variables to use as a greeting in the future
           $_SESSION["first_name"] = $first_name;
           $_SESSION["last_name"] = $last_name;
 
+          //add login record into sessions table with 4 hour expiry timer
           $query = $con->prepare("INSERT INTO sessions (session_id, user_id, session_ip, session_expiration) VALUES(?, ?, ?, DATE_ADD(NOW(), INTERVAL 4 HOUR));");
-          $query->bind_param("sss", session_id(), $user, $_SERVER['REMOTE_ADDR']);
+          $query->bind_param("sss", session_id(), $user_id, $_SERVER['REMOTE_ADDR']);
           $query->execute();
           $query->close();
           header("Location: usermgmt.php");

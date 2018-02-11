@@ -2,8 +2,8 @@
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   require_once("../includes/functions.php");
   require_once("../includes/db.php");
-  $query = $con->prepare("SELECT user_id FROM users WHERE user_id=?");
-  $query->bind_param("s", getValidData($_POST["user_id"]));
+  $query = $con->prepare("SELECT user_id FROM users WHERE email=?");
+  $query->bind_param("s", getValidData($_POST["user_email"]));
   $query->execute();
   $query->bind_result($user_id);
   $query->fetch();
@@ -31,13 +31,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
+
   <script>
     $(document).ready(function(){
       $("#password_reset_button").click(function(){
@@ -55,7 +55,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <div id="login" class="container col-md-4 col-md-offset-4">
     <div class="panel panel-default" style="border-radius:18px; overflow:hidden; padding:15px">
       <form method="POST" id="password_reset_form">  
-        <input type="hidden" name="user_id" value="<?php require_once('functions.php'); echo getValidData($_GET["user_id"]); ?>">
+        <input type="hidden" name="user_email" value="<?php require_once("../includes/functions.php"); echo getValidData($_GET["user_email"]); ?>">
+        <?php
+          echo getValidData($_GET["user_email"]);
+        ?>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></div>
             <input class="form-control" type="password" name="new_password" id="new_password" placeholder="New Password"></br>
@@ -70,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <button type="button" id="password_reset_button" class="btn btn-primary btn-block">Reset Password</button>
       </form>
-      <div>
-      </div>
-    </body>
-    </html>
+    <div>
+    </div>
+</body>
+</html>

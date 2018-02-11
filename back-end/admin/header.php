@@ -19,14 +19,15 @@ if(empty($session_number)){
     //return;
 } else {
     //check if user has permission to access user management
-  $query = $con->prepare("SELECT user_perm FROM users, sessions WHERE users.user_id = sessions.user_id AND session_number=?");
+  $query = $con->prepare("SELECT role_id FROM users, sessions WHERE users.user_id = sessions.user_id AND session_number=?");
   $query->bind_param("s", $session_number);
   $query->execute();
-  $query->bind_result($user_perm);
+  $query->bind_result($role_id);
   $query->fetch();
   $query->close();
 
-  if(!(strpos($user_perm, "U") !== false)){
+  //$role_id 1 is super admin
+  if($role_id != 1){
     die("You don't have permission to access this page");
     header("Location: login.php");
       //return;
