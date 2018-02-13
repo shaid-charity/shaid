@@ -54,11 +54,59 @@ require_once 'header.php';
       	</form>
 	  </div>
 	</nav>
+
+	<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteMOdal" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="deleteModallLabel">Delete Category</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        Are you sure you want to delete the category <span id="categoryName"></span>?
+	      </div>
+	      <div class="modal-footer">
+	        <form action="viewCategories.php?action=delete" method="post">
+	        	<input type="hidden" name="categoryID" value="" id="modalID">
+	        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	        	<input type="submit" class="btn btn-danger" value="Delete">
+	        </form>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<div class="container">
 		<div class="page-header">
 			<h1>View Categories</h1>
 		</div>
 		<br />
+
+<?php
+		// Delete the category if we have been asked
+		if (isset($_GET['action']) && $_GET['action'] == "delete") {
+			$error = false;
+			try {
+				$c = new Category($db, $_POST['categoryID']);
+				$c->delete();
+			} catch (Exception $e) {
+				$error = true;
+				echo $e->getMessage();
+			}
+
+			if ($error) {
+?>
+			<div class="alert alert-danger">The category could not be deleted. Check there are no posts in the category.</div>
+<?php
+			} else {
+?>
+			<div class="alert alert-success">The category was successfully deleted!</div>
+<?php
+			}
+		}
+?>
 
 		<form action="createCategory.php?action=edit" method="post">
 			<table class="table table-hover table-striped" id="categoryList">
@@ -78,7 +126,7 @@ foreach ($stmt as $row) {
 	$c = new Category($db, $row['id']);
 ?>
 
-				<tr><td><?php echo $c->getName(); ?></td><td><button class="btn btn-primary btn-sm" value=<?php echo $c->getID(); ?> name="categoryID">Edit</button></td><td><button class="btn btn-danger btn-sm">Delete</button></td></tr>
+				<tr><td><?php echo $c->getName(); ?></td><td><button class="btn btn-primary btn-sm" value=<?php echo $c->getID(); ?> name="categoryID">Edit</button></td><td><button onclick="setModalNameAndID('<?php echo $c->getName(); ?>', '<?php echo $c->getID(); ?>');" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button></td></tr>
 
 <?php
 
@@ -90,4 +138,11 @@ foreach ($stmt as $row) {
 		</form>
 	</div>
 </body>
+
+<script>
+function setModalNameAndID(name, id) {
+	$('#categoryName').text(name);
+	$('#modalID').val(id);
+}
+</script>
 </html>

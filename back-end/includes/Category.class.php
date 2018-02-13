@@ -83,4 +83,18 @@ class Category extends DBRecord {
 
 		$this->name = $name;
 	}
+
+	public function delete() {
+		try {
+			$stmt = $this->db->prepare("DELETE FROM `categories` WHERE `id` = ?");
+			$stmt->execute([$this->id]);
+		} catch (PDOException $e) {
+			echo 'Category.class.php delete() error: <br />';
+			echo $e->getMessage();
+		}
+
+		// Get rid of all the properties of the object just in case someone tries to access it
+		$this->id = null;
+		$this->name = null;
+	}
 }
