@@ -4,15 +4,6 @@ require_once '../includes/settings.php';
 require_once '../includes/config.php';
 require_once 'header.php';
 
-if (!isset($_GET['action'])) {
-
-	// Get an array of all categories
-	$stmt = $db->query("SELECT `id` FROM `categories`");
-	
-	$categories = Array();
-	foreach ($stmt as $row) {
-		$categories[] = new Category($db, $row['id']);
-	}
 ?>
 
 <html>
@@ -45,8 +36,8 @@ if (!isset($_GET['action'])) {
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="createCategory.php">Create Category</a>
-	          <a class="dropdown-item" href="viewCategories.php">View Categories</a>
-	          <a class="dropdown-item active" href="post.php">Create Post <span class="sr-only">(current)</span></a>
+	          <a class="dropdown-item active" href="viewCategories.php">View Categories <span class="sr-only">(current)</span></a>
+	          <a class="dropdown-item" href="post.php">Create Post</a>
 	        </div>
 	      </li>
 	      <li class="nav-item">
@@ -65,45 +56,38 @@ if (!isset($_GET['action'])) {
 	</nav>
 	<div class="container">
 		<div class="page-header">
-			<h1>Create Blog Post</h1>
+			<h1>View Categories</h1>
 		</div>
 		<br />
 
-<form action="post.php?action=submit" method="post">
-	<input class="form-control" type="text" name="title" id="titleInput" placeholder="Title"><br />
-	<select class="form-control form-control-sm" name="category">
-		<?php
-		foreach ($categories as $cat) {
-			echo '<option value="' . $cat->getID() . '">' . $cat->getName() . '</option>';
-		}
-		?>
-	</select><br />
-	<textarea class="form-control" name="content" rows="10"></textarea><br />
-	<input class="btn btn-primary" name="saveType" type="submit" value="Publish">
-	<input class="btn btn-secondary" name="saveType" type="submit" value="Save draft">
-</form>
+		<form action="createCategory.php?action=edit" method="post">
+			<table class="table table-hover table-striped" id="categoryList">
+				<tr>
+					<th>Category Name</th>
+					<th>Edit</th>
+					<th>Delete</th>
+				</tr>
 
 <?php
-} else if ($_GET['action'] == 'submit') {
-	// Create the blog post
-	$name = $_POST['title'];
-	$categoryID = $_POST['category'];
-	$content = $_POST['content'];
 
-	if ($_POST['saveType'] == "Publish") {
-		$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, '', 1, '', $categoryID);
-		echo 'Blog post published.';
-
-		$post->setPublished(1);
-	} else if ($_POST['saveType'] == "Save draft") {
-		$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, '', 1, '', $categoryID);
-		echo 'Blog post draft saved.';
-
-		$post->setPublished(0);
-	}
-}
+// Get all categories
+$stmt = $db->query("SELECT `id` FROM `categories`");
+	
+$categories = Array();
+foreach ($stmt as $row) {
+	$c = new Category($db, $row['id']);
 ?>
 
-</div>
+				<tr><td><?php echo $c->getName(); ?></td><td><button class="btn btn-primary btn-sm" value=<?php echo $c->getID(); ?> name="categoryID">Edit</button></td><td><button class="btn btn-danger btn-sm">Delete</button></td></tr>
+
+<?php
+
+}
+
+?>
+
+			</table>
+		</form>
+	</div>
 </body>
 </html>
