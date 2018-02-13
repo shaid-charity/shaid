@@ -15,8 +15,8 @@ class Post extends Content {
 	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null, $categoryID = null, $datePublished = null, $campaignID = null, $eventID = null, $approved = null, $published = null) {
 		parent::__construct($db, $id, $name, $slug, $content, $image, $author, $keywords);
 
-
-
+		// Set the other properties
+		$this->setCategory($categoryID);
 	}
 
 	public function getDatePublished() {
@@ -41,5 +41,17 @@ class Post extends Content {
 
 	public function isPublished() {
 		return $this->published;
+	}
+
+	public function setCategory($categoryID) {
+		try {
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `category_id` = ? WHERE `id` = ?");
+			$stmt->execute([(int) $categoryID, $this->getID()]);
+		} catch (PDOException $e) {
+			echo 'Post.class.php setCategory() error: <br />';
+			throw new Exception($e->getMessage());
+		}
+		
+		$this->category = new Category($this->db, $categoryID);
 	}
 }

@@ -77,7 +77,7 @@ abstract class Content extends DBRecord {
 
 	// Get and set methods
 	public function getID() {
-		return $this->id;
+		return (int) $this->id;
 	}
 	
 	public function getName() {
