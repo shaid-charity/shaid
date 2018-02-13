@@ -30,6 +30,16 @@ require_once 'header.php';
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNav">
 	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Content
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="createCategory.php">Create Category</a>
+	          <a class="dropdown-itm" href="viewCategories.php">View Categories</a>
+	          <a class="dropdown-item" href="post.php">Create Post</a>
+	        </div>
+	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
 	      </li>
@@ -59,7 +69,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 
 	// Set up the pagination
-	$pagination = new Pagination($db, "SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ?", array($searchTerm, $searchTerm, $searchTerm, $searchTerm));
+	$pagination = new Pagination($db, "SELECT * FROM `friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ?", array($searchTerm, $searchTerm, $searchTerm, $searchTerm));
 	$pagination->totalRecords();
 	$pagination->setLimitPerPage(10);
 	$currentPage = $pagination->getPage();
@@ -72,7 +82,7 @@ if (!isset($_GET['action']) || isset($_GET['term'])) {
 	}
 
 	// Get all records from the DB
-	$stmt = $db->prepare("SELECT * FROM `gp_friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ? LIMIT $startFrom,10");
+	$stmt = $db->prepare("SELECT * FROM `friends` WHERE `email` LIKE ? OR `fname` LIKE ? OR `sname` LIKE ? OR `type` LIKE ? LIMIT $startFrom,10");
 	$stmt->execute(array($searchTerm, $searchTerm, $searchTerm, $searchTerm));
 
 	$friends = Array();

@@ -36,7 +36,7 @@ class Friend extends DBRecord {
 
 	private function idConstructor($id) {
 		// Get the friend from the DB
-		$stmt = $this->db->prepare("SELECT * FROM `gp_friends` WHERE `id` = ?");
+		$stmt = $this->db->prepare("SELECT * FROM `friends` WHERE `id` = ?");
 		$stmt->execute(array($id));
 		$result = $stmt->fetch();
 
@@ -53,7 +53,7 @@ class Friend extends DBRecord {
 
 	private function getByEmail($email) {
 		// Get the friend from the DB via email
-		$stmt = $this->db->prepare("SELECT * FROM `gp_friends` WHERE `email` = ?");
+		$stmt = $this->db->prepare("SELECT * FROM `friends` WHERE `email` = ?");
 		$stmt->execute(array($email));
 		$result = $stmt->fetch();
 
@@ -87,7 +87,7 @@ class Friend extends DBRecord {
 			}
 
 			try {
-				$stmt = $this->db->prepare("INSERT INTO `gp_friends`(email, fname, sname, type) VALUES (?, ?, ?, ?)");
+				$stmt = $this->db->prepare("INSERT INTO `friends`(email, fname, sname, type) VALUES (?, ?, ?, ?)");
 				$stmt->execute(array($email, $fname, $sname, $type));
 			} catch (PDOException $e) {
 				echo 'Friend.class.php createConstructor() error: <br />';
@@ -141,7 +141,7 @@ class Friend extends DBRecord {
 		}
 		
 		try {
-			$stmt = $this->db->prepare("UPDATE `gp_friends` SET `email` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `friends` SET `email` = ? WHERE `id` = ?");
 			$stmt->execute(array($email, $this->id));
 		} catch (PDOException $e) {
 			echo 'Friend.class.php setEmail() error: <br />';
@@ -153,7 +153,7 @@ class Friend extends DBRecord {
 
 	public function setForename($fname) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `gp_friends` SET `fname` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `friends` SET `fname` = ? WHERE `id` = ?");
 			$stmt->execute(array($fname, $this->id));
 		} catch (PDOException $e) {
 			echo 'Friend.class.php setForename() error: <br />';
@@ -165,7 +165,7 @@ class Friend extends DBRecord {
 
 	public function setSurname($sname) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `gp_friends` SET `sname` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `friends` SET `sname` = ? WHERE `id` = ?");
 			$stmt->execute(array($sname, $this->id));
 		} catch (PDOException $e) {
 			echo 'Friend.class.php setSurname() error: <br />';
@@ -178,7 +178,7 @@ class Friend extends DBRecord {
 	public function deleteFromDB() {
 		// Note that the object will still exist until the page has been served
 		try {
-			$stmt = $this->db->prepare("DELETE FROM `gp_friends` WHERE `id` = ?");
+			$stmt = $this->db->prepare("DELETE FROM `friends` WHERE `id` = ?");
 			$stmt->execute(array($this->id));
 		} catch (PDOException $e) {
 			echo 'Friend.class.php deleteFromDB() error: <br />';
