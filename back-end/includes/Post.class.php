@@ -43,6 +43,44 @@ class Post extends Content {
 		return $this->published;
 	}
 
+	// This function is private as we will never need the user to manually update the last modified datetime
+	private function setLastModifiedDateTime() {
+		try {
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `datetime-last-modified` = NOW() WHERE `id` = ?");
+			$stmt->execute([$this->getID()]);
+		} catch (PDOException $e) {
+			echo 'Post.class.php setLastModifiedDateTime() error: <br />';
+			throw new Exception($e->getMessage());
+		}
+
+		// Because we set the datetime from MySQL, we can't use PHP's datetime function to get the time as it may be slightly different
+		$stmt = $this->db->prepare("SELECT `datetime-last-modified` FROM `$this->table` WHERE `id` = ?");
+		$stmt->execute([$this->getID()]);
+
+		foreach ($stmt as $row) {
+			$this->lastModifiedDate = $row['datetime-last-modified'];
+		}
+	}
+
+	// For now, we don't need the user to manually set the published datetime. This might change if we want to include that ability
+	private function setPublishedDateTime() {
+		try {
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `datetime-published` = NOW() WHERE `id` = ?");
+			$stmt->execute([$this->getID()]);
+		} catch (PDOException $e) {
+			echo 'Post.class.php setPublishedDateTime() error: <br />';
+			throw new Exception($e->getMessage());
+		}
+
+		// Because we set the datetime from MySQL, we can't use PHP's datetime function to get the time as it may be slightly different
+		$stmt = $this->db->prepare("SELECT `datetime-published` FROM `$this->table` WHERE `id` = ?");
+		$stmt->execute([$this->getID()]);
+
+		foreach ($stmt as $row) {
+			$this->datePublished = $row['datetime-published'];
+		}
+	}
+
 	public function setCategory($categoryID) {
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `category_id` = ? WHERE `id` = ?");
@@ -66,6 +104,8 @@ class Post extends Content {
 			}
 
 			$this->published = 1;
+
+			$this->setPublishedDateTime();
 		} else {
 			try {
 				$stmt = $this->db->prepare("UPDATE `$this->table` SET `published` = ? WHERE `id` = ?");
@@ -77,5 +117,7 @@ class Post extends Content {
 
 			$this->published = 0;
 		}
+
+		$this->setLastModifiedDateTime();
 	}
 }
