@@ -8,4 +8,5 @@
 	- [ ] User profile
 	- [ ] **Shop** (could take a long time)
 	- [ ] Admin interfaces (lower priority)
-- [ ] ...
+- [ ] Add EU cookie warning
+- [ ] Add newsletter subscription box to home page footer
