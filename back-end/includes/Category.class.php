@@ -16,8 +16,6 @@ class Category extends DBRecord {
 		if (!is_null($id) && is_null($name)) {
 			$this->getByID($id);
 		} else if (is_null($id) && !is_null($name)) {
-			$this->getByName($name);
-		} else if (is_null($id) && !is_null($name)) {
 			$this->createConstructor($name);
 		} else {
 			throw new Exception('Incorrect parameters');
@@ -25,7 +23,7 @@ class Category extends DBRecord {
 	}
 
 	private function getByID($id) {
-		$stmt = $this->db->prepare('SELECT * FROM `gp_categories` WHERE `id` = ?');
+		$stmt = $this->db->prepare('SELECT * FROM `categories` WHERE `id` = ?');
 		$stmt->execute([$id]);
 		$result = $stmt->fetch();
 
@@ -38,8 +36,8 @@ class Category extends DBRecord {
 		$this->name = $result['name'];
 	}
 
-	private function getByName($name) {
-		$stmt = $this->db->prepare('SELECT * FROM `gp_categories` WHERE `name` = ?');
+	private static function getByName($name) {
+		$stmt = $this->db->prepare('SELECT * FROM `categories` WHERE `name` = ?');
 		$stmt->execute([$name]);
 		$result = $stmt->fetch();
 
@@ -54,12 +52,11 @@ class Category extends DBRecord {
 
 	private function createConstructor($name) {
 		try {
-			$stmt = $this->db->prepare('INSERT INTO `gp_categories`(name) VALUES (?)');
-			$stmt->execute([$name, $slug]);
+			$stmt = $this->db->prepare('INSERT INTO `categories`(name) VALUES (?)');
+			$stmt->execute([$name]);
 		} catch (PDOException $e) {
 			// Hopefully this will catch any DB errors (e.g. slug is not unique)
-			echo 'Category.class.php createConstructor() error: <br />';
-			throw new Exception($e->getMessage());
+			throw new $e;
 		}
 
 		$this->id = $this->db->lastInsertId();
@@ -77,7 +74,7 @@ class Category extends DBRecord {
 
 	public function setName($name) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `gp_categories` SET `name` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `categories` SET `name` = ? WHERE `id` = ?");
 			$stmt->execute([$name, $this->id]);
 		} catch (PDOException $e) {
 			echo 'Category.class.php setName() error: <br />';
