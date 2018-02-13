@@ -13,23 +13,19 @@ abstract class Content extends DBRecord {
 	private $slug;
 	private $content;
 	private $image;
-	private $category;
 	private $user;
 	private $keywords;
-	private $approved;
-	private $published;
 
 	// TODO: Add author user - need to see Dmytro's code
-	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $categoryID = null, $author = null, $keywords = null) {
+	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null) {
 		$this->db = $db;
 
-		if (!is_null($id) && is_null($name) && is_null($slug) && is_null($content) && is_null($image) && is_null($categoryID) && is_null($author) && is_null($keywords)) {
+		if (!is_null($id) && is_null($name) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
 			$this->getByID($id);
-		} else if (is_null($id) && is_null($name) && !is_null($slug) && is_null($content) && is_null($image) && is_null($categoryID) && is_null($author) && is_null($keywords)) {
+		} else if (is_null($id) && is_null($name) && !is_null($slug) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
 			$this->getBySlug($slug);
-		} else if (is_null($id) && !is_null($name) && !is_null($slug) && !is_null($content) && !is_null($image) && !is_null($categoryID) && !is_null($keywords)) {
-			// TODO: ADD AUTHOR!!!!
-			$this->createConstructor($name, $slug, $content, $image, $categoryID, $keywords);
+		} else if (is_null($id) && !is_null($name) && !is_null($slug) && !is_null($content) && !is_null($image) && !is_null($keywords) && !is_null($author)) {
+			$this->createConstructor($name, $content, $image, $keywords, $slug, $author);
 		} else {
 			throw new Exception('Incorrect parameters set!');
 		}
@@ -41,14 +37,14 @@ abstract class Content extends DBRecord {
 		$result = $stmt->fetch();
 
 		$this->id = $id;
-		$this->name = $result['name'];
+		$this->name = $result['title'];
 		$this->slug = $result['slug'];
 		$this->content = $result['content'];
 		$this->image = $result['image'];
 		$this->category = new Category($this->db, $result['category']);
 	}
 
-	private function getBySlug($slug) {
+	/*private function getBySlug($slug) {
 		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `slug` = ?");
 		$stmt->execute([$slug]);
 		$result = $stmt->fetch();
@@ -59,14 +55,15 @@ abstract class Content extends DBRecord {
 		$this->content = $result['content'];
 		$this->image = $result['image'];
 		$this->category = new Category($this->db, $result['category']);
-	}
+	}*/
 
-	private function createConstructor($name, $slug, $content, $image, $categoryID, $keywords) {
+	private function createConstructor($name, $content, $image, $keywords, $slug, $userID) {
 		try {
-			$stmt = $this->db->prepare("INSERT INTO `$this->table`(name, slug, content, image, category, keywords) VALUES (?, ?, ?, ?, ?, ?)");
-			$stmt->execute([$name, $slug, $content, $image, $categoryID, $keywords]);
+			$stmt = $this->db->prepare("INSERT INTO `$this->table`(title, content, image, user_id) VALUES (?, ?, ?, ?)");
+			$stmt->execute([$name, $content, $image, $userID]);
 		} catch (PDOException $e) {
 			echo 'Content.class.php createConstructor() error: <br />';
+			echo "Title: $name <br />Slug: $slug <br />Content: $content <br />Image: $image <br />Keywords: $keywords <br />Author: $userID";
 			throw new Exception($e->getMessage());
 		}
 
@@ -75,7 +72,6 @@ abstract class Content extends DBRecord {
 		$this->slug = $slug;
 		$this->content = $content;
 		$this->image = $image;
-		$this->category = new Category($this->db, $categoryID);
 		$this->keywords = $keywords;
 	}
 
@@ -100,14 +96,6 @@ abstract class Content extends DBRecord {
 		return APP_ROOT . 'images/' . $this->image;
 	}
 
-	public function getCategoryName() {
-		return $this->category->getName();
-	}
-
-	public function getCategorySlug() {
-		return $this->category->getSlug();
-	}
-
 	public function getKeywords() {
 		// Return the keywords in array form so they're easier to handle
 		// Clean up the keywords as well, so that they're all in the same format
@@ -118,14 +106,6 @@ abstract class Content extends DBRecord {
 		}
 
 		return $words;
-	}
-
-	public function isApproved() {
-		return $this->approved;
-	}
-
-	public function isPublished() {
-		return $this->published;
 	}
 
 	public function setName($name) {

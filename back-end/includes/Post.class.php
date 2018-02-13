@@ -2,15 +2,19 @@
 
 class Post extends Content {
 	// Name of the table the content resides in
-	protected $table = 'gp_posts';
+	protected $table = 'posts';
 
 	private $datePublished;
 	private $lastModifiedDate;
-	private $campaignID; // campaign?
-	private $eventID; // event?
+	private $campaignID;
+	private $eventID;
+	private $category;
+	private $approved;
+	private $published;
 
-	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $categoryID = null, $author = null, $keywords = null) {
-		parent::__construct($db, $id, $name, $slug, $content, $image, $categoryID, $author, $keywords);
+	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null, $categoryID = null, $datePublished = null, $campaignID = null, $eventID = null, $approved = null, $published = null) {
+		parent::__construct($db, $id, $name, $slug, $content, $image, $author, $keywords);
+
 
 
 	}
@@ -29,5 +33,13 @@ class Post extends Content {
 
 	public function getEvent() {
 		// TODO: Finish, returning event object
+	}
+
+	public function isApproved() {
+		return $this->approved;
+	}
+
+	public function isPublished() {
+		return $this->published;
 	}
 }

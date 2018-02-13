@@ -24,15 +24,13 @@ define('DB_USER', 'user');
 define('DB_PASS', 'password');
 
 // Create a connection to the DB
+if(isset($con))
+	return;
 
-try {
-	$db = new PDO("mysql:host=" . DB_HOST . ";dbport=" . DB_PORT . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
-	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-	$db->setAttribute( PDO::ATTR_EMULATE_PREPARES, false);
-} catch (PDOException $e) {
-	echo 'Error from config.php: <br />';
-	echo $e->getMessage();
+$con = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+if(mysqli_connect_error()) {
+	die("Database connection failed: " . mysqli_connect_error());
 }
 
 // Settings for sending emails via SwiftMailer
