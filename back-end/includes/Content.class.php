@@ -58,6 +58,8 @@ abstract class Content extends DBRecord {
 	}*/
 
 	private function createConstructor($name, $content, $image, $keywords, $slug, $userID) {
+
+		
 		try {
 			$stmt = $this->db->prepare("INSERT INTO `$this->table`(title, content, image, user_id) VALUES (?, ?, ?, ?)");
 			$stmt->execute([$name, $content, $image, $userID]);

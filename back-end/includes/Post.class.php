@@ -51,7 +51,31 @@ class Post extends Content {
 			echo 'Post.class.php setCategory() error: <br />';
 			throw new Exception($e->getMessage());
 		}
-		
+
 		$this->category = new Category($this->db, $categoryID);
+	}
+
+	public function setPublished($published) {
+		if ($published) {
+			try {
+				$stmt = $this->db->prepare("UPDATE `$this->table` SET `published` = ? WHERE `id` = ?");
+				$stmt->execute([1, $this->getID()]);
+			} catch (PDOException $e) {
+				echo 'Post.class.php setPublished() error: <br />';
+				echo $e->getMessage();
+			}
+
+			$this->published = 1;
+		} else {
+			try {
+				$stmt = $this->db->prepare("UPDATE `$this->table` SET `published` = ? WHERE `id` = ?");
+				$stmt->execute([0, $this->getID()]);
+			} catch (PDOException $e) {
+				echo 'Post.class.php setPublished() error: <br />';
+				echo $e->getMessage();
+			}
+
+			$this->published = 0;
+		}
 	}
 }
