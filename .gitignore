@@ -1,4 +1,7 @@
+# front-end
 front-end/style/.sass-cache/*
+
+# back-end
 back-end/includes/config.php
 back-end/includes/db.php
 phpmyadmin/
