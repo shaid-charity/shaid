@@ -14,7 +14,7 @@ $query->fetch();
 $query->close();
 
 if(empty($session_number)){
-  header("Location: login.php");
+  header("Location: login.php?back=" . $_SERVER['PHP_SELF']);
   die('no session number');
     //return;
 } else {
@@ -29,7 +29,7 @@ if(empty($session_number)){
   //$role_id 1 is super admin
   if($role_id != 1){
     die("You don't have permission to access this page");
-    header("Location: login.php");
+    header("Location: login.php?back=" . $_SERVER['PHP_SELF']);
       //return;
   }
   

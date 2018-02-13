@@ -29,8 +29,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           $query->bind_param("sss", session_id(), $user_id, $_SERVER['REMOTE_ADDR']);
           $query->execute();
           $query->close();
-          header("Location: usermgmt.php");
-          die();
+
+          // Decide where to go back to
+          if (!isset($_GET['back'])) {
+            header("Location: usermgmt.php");
+            die();
+          } else {
+            header("Location: " . $_GET['back']);
+            die();
+          }
         }
       }
     } else {
