@@ -13,10 +13,32 @@ class Post extends Content {
 	private $published;
 
 	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null, $categoryID = null, $datePublished = null, $campaignID = null, $eventID = null, $approved = null, $published = null) {
+		$this->db = $db;
+
+		// Get by slug
+		if (is_null($id) && is_null($name) && !is_null($slug) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
+			$this->getBySlug($slug);
+			return;
+		}
+
 		parent::__construct($db, $id, $name, $slug, $content, $image, $author, $keywords);
 
 		// Set the other properties
 		$this->setCategory($categoryID);
+	}
+
+	public function getBySlug($slug) {
+		$title = str_replace("-", " ", $slug);
+		parent::getBySlug($slug);
+
+		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `title` = ?");
+		$stmt->execute([$title]);
+		$result = $stmt->fetch();
+
+		$this->datePublished = $result['datetime-published'];
+		$this->lastModifiedDate = $result['datetime-last-modified'];
+		$this->category = new Category($this->db, $result['category_id']);
+		$this->published = $result['published'];
 	}
 
 	public function getDatePublished() {

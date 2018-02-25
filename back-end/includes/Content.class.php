@@ -44,18 +44,19 @@ abstract class Content extends DBRecord {
 		$this->category = new Category($this->db, $result['category']);
 	}
 
-	/*private function getBySlug($slug) {
-		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `slug` = ?");
-		$stmt->execute([$slug]);
+	protected function getBySlug($slug) {
+		$title = str_replace("-", " ", $slug);
+
+		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `title` = ?");
+		$stmt->execute([$title]);
 		$result = $stmt->fetch();
 
 		$this->id = $result['id'];
-		$this->name = $result['name'];
-		$this->slug = $result['slug'];
+		$this->name = $result['title'];
+		$this->slug = $slug;
 		$this->content = $result['content'];
 		$this->image = $result['image'];
-		$this->category = new Category($this->db, $result['category']);
-	}*/
+	}
 
 	private function createConstructor($name, $content, $image, $keywords, $slug, $userID) {
 
@@ -82,7 +83,7 @@ abstract class Content extends DBRecord {
 		return (int) $this->id;
 	}
 	
-	public function getName() {
+	public function getTitle() {
 		return $this->name;
 	}
 
