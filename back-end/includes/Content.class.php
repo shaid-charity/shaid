@@ -31,7 +31,7 @@ abstract class Content extends DBRecord {
 		}
 	}
 
-	private function getByID($id) {
+	protected function getByID($id) {
 		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `id` = ?");
 		$stmt->execute([$id]);
 		$result = $stmt->fetch();
@@ -41,7 +41,6 @@ abstract class Content extends DBRecord {
 		$this->slug = $result['slug'];
 		$this->content = $result['content'];
 		$this->image = $result['image'];
-		$this->category = new Category($this->db, $result['category']);
 	}
 
 	protected function getBySlug($slug) {
@@ -113,7 +112,7 @@ abstract class Content extends DBRecord {
 
 	public function setName($name) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `name` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `title` = ? WHERE `id` = ?");
 			$stmt->execute([$name, $this->id]);
 		} catch (PDOException $e) {
 			echo 'Content.class.php setName() error: <br />';

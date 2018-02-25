@@ -19,12 +19,28 @@ class Post extends Content {
 		if (is_null($id) && is_null($name) && !is_null($slug) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
 			$this->getBySlug($slug);
 			return;
+		} else if (!is_null($id) && is_null($name) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
+			$this->getByID($id);
+			return;
 		}
 
 		parent::__construct($db, $id, $name, $slug, $content, $image, $author, $keywords);
 
 		// Set the other properties
 		$this->setCategory($categoryID);
+	}
+
+	public function getByID($id) {
+		parent::getByID($id);
+
+		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `id` = ?");
+		$stmt->execute([$id]);
+		$result = $stmt->fetch();
+
+		$this->datePublished = $result['datetime-published'];
+		$this->lastModifiedDate = $result['datetime-last-modified'];
+		$this->category = new Category($this->db, $result['category_id']);
+		$this->published = $result['published'];
 	}
 
 	public function getBySlug($slug) {
@@ -65,6 +81,14 @@ class Post extends Content {
 		return $this->published;
 	}
 
+	public function getCategoryName() {
+		return $this->category->getName();
+	}
+
+	public function getCategoryID() {
+		return $this->category->getID();
+	}
+
 	// This function is private as we will never need the user to manually update the last modified datetime
 	private function setLastModifiedDateTime() {
 		try {
@@ -101,6 +125,9 @@ class Post extends Content {
 		foreach ($stmt as $row) {
 			$this->datePublished = $row['datetime-published'];
 		}
+
+		// Also set the last modified datetime
+		$this->setLastModifiedDateTime();
 	}
 
 	public function setCategory($categoryID) {
@@ -113,6 +140,9 @@ class Post extends Content {
 		}
 
 		$this->category = new Category($this->db, $categoryID);
+
+		// Also set the last modified datetime
+		$this->setLastModifiedDateTime();
 	}
 
 	public function setPublished($published) {
@@ -140,6 +170,9 @@ class Post extends Content {
 			$this->published = 0;
 		}
 
+		$this->setLastModifiedDateTime();
+
+		// Also set the last modified datetime
 		$this->setLastModifiedDateTime();
 	}
 }

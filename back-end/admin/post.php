@@ -4,15 +4,6 @@ require_once '../includes/settings.php';
 require_once '../includes/config.php';
 require_once 'header.php';
 
-if (!isset($_GET['action'])) {
-
-	// Get an array of all categories
-	$stmt = $db->query("SELECT `id` FROM `categories`");
-	
-	$categories = Array();
-	foreach ($stmt as $row) {
-		$categories[] = new Category($db, $row['id']);
-	}
 ?>
 
 <html>
@@ -47,6 +38,7 @@ if (!isset($_GET['action'])) {
 	          <a class="dropdown-item" href="createCategory.php">Create Category</a>
 	          <a class="dropdown-item" href="viewCategories.php">View Categories</a>
 	          <a class="dropdown-item active" href="post.php">Create Post <span class="sr-only">(current)</span></a>
+	          <a class="dropdown-item" href="viewPosts.php">View Posts</a>
 	        </div>
 	      </li>
 	      <li class="nav-item">
@@ -63,6 +55,21 @@ if (!isset($_GET['action'])) {
       	</form>
 	  </div>
 	</nav>
+
+<?php
+
+if (!isset($_GET['action'])) {
+
+	// Get an array of all categories
+	$stmt = $db->query("SELECT `id` FROM `categories`");
+	
+	$categories = Array();
+	foreach ($stmt as $row) {
+		$categories[] = new Category($db, $row['id']);
+	}
+?>
+
+
 	<div class="container">
 		<div class="page-header">
 			<h1>Create Blog Post</h1>
@@ -100,6 +107,57 @@ if (!isset($_GET['action'])) {
 		echo 'Blog post draft saved.';
 
 		$post->setPublished(0);
+	}
+} else if ($_GET['action'] == 'edit') {
+	// Get an array of all categories
+	$stmt = $db->query("SELECT `id` FROM `categories`");
+	
+	$categories = Array();
+	foreach ($stmt as $row) {
+		$categories[] = new Category($db, $row['id']);
+	}
+
+	$post = new Post($db, $_POST['postID']);
+?>
+
+	<div class="container">
+		<div class="page-header">
+			<h1>Update Blog Post</h1>
+		</div>
+		<br />
+
+		<form action="post.php?action=update" method="post">
+			<input class="form-control" type="text" name="title" id="titleInput" placeholder="Title" value="<?php echo $post->getTitle(); ?>"><br />
+			<select class="form-control form-control-sm" name="category">
+				<?php
+				foreach ($categories as $cat) {
+					if ($cat->getID() == $post->getCategoryID){
+						echo '<option value="' . $cat->getID() . '" selected>' . $cat->getName() . '</option>';
+					} else {
+						echo '<option value="' . $cat->getID() . '">' . $cat->getName() . '</option>';
+					}
+				}
+				?>
+			</select><br />
+			<textarea class="form-control" name="content" rows="10"><?php echo $post->getContent(); ?></textarea><br />
+			<input name="id" type="hidden" value="<?php echo $post->getID(); ?>">
+			<input class="btn btn-primary" name="saveType" type="submit" value="Publish">
+			<input class="btn btn-secondary" name="saveType" type="submit" value="Save draft">
+		</form>
+
+<?php
+} else if ($_GET['action'] == 'update') {
+	$post = new Post($db, $_POST['id']);
+	$post->setName($_POST['title']);
+	$post->setCategory($_POST['category']);
+	$post->setContent($_POST['content']);
+
+	if ($_POST['saveType'] == "Publish") {
+		$post->setPublished(1);
+		echo "Blog post updated and published!";
+	} else {
+		$post->setPublished(0);
+		echo "Blog post updated and draft saved!";
 	}
 }
 ?>
