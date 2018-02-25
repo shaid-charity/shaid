@@ -15,13 +15,11 @@ function getValidData($input){
 }
 
   //get values of checkboxes into a string to put into a database
-function getPermissionString($checkboxes){
-  $permissions = "";
-  if(empty($checkboxes)){
-    return $permissions;
+function getRepresenting($input){
+  if(isset($input)){
+    return "1";
+  } else{
+    return "0";
   }
-
-  $permissions = implode("", $checkboxes);
-  return $permissions;
 }
 ?>
