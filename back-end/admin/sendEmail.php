@@ -14,6 +14,9 @@ require_once 'header.php';
 	<!-- Latest compiled and minified JavaScript -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
+
+	<!-- Include the TinyMCE WYSIWYG editor -->
+	<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
 </head>
 
 <body>
@@ -75,9 +78,7 @@ if ($_GET['action'] == 'send') {
 
 		$numSent += $mailer->send($message, $failed);
 	}
-	print_r($numSent);
-	print_r($failed);
-	print_r($_SESSION['emails']);
+
 	echo '<div class="alert alert-success">Sent ' . $numSent . ' messages!</div>';
 
 	if (!empty($failed)) {
@@ -113,7 +114,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 		}
 
 		$_SESSION['emails'] = $emails;
-		print_r(session_save_path());
 	}
 }
 ?>
@@ -133,7 +133,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="message">Message:</label>
 				<div class="col-sm-10">
-					<textarea class="form-control" rows="15" name="message"></textarea>
+					<textarea class="form-control" rows="15" name="message" id="tinymceLoc"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -143,3 +143,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'write') {
 		</form>
 
 	</div>
+
+<script>
+// Load the TinyMCE editor to the appropriate text area
+tinymce.init({
+    selector: '#tinymceLoc',
+    plugins: "image link autolink lists preview",
+    menubar: "file edit format insert view",
+    toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
+});
+</script>
+
+</body>
