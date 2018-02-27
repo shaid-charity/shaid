@@ -28,6 +28,17 @@ require_once 'header.php';
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNav">
 	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Content
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" href="createCategory.php">Create Category</a>
+	          <a class="dropdown-item" href="viewCategories.php">View Categories</a>
+	          <a class="dropdown-item" href="post.php">Create Post</a>
+	          <a class="dropdown-item" href="viewPosts.php">View Posts</a>
+	        </div>
+	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
 	      </li>

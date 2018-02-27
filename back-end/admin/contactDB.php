@@ -36,8 +36,9 @@ require_once 'header.php';
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 	          <a class="dropdown-item" href="createCategory.php">Create Category</a>
-	          <a class="dropdown-itm" href="viewCategories.php">View Categories</a>
+	          <a class="dropdown-item" href="viewCategories.php">View Categories</a>
 	          <a class="dropdown-item" href="post.php">Create Post</a>
+	          <a class="dropdown-item" href="viewPosts.php">View Posts</a>
 	        </div>
 	      </li>
 	      <li class="nav-item active">
