@@ -154,10 +154,18 @@ if (!isset($_GET['action'])) {
 
 	if ($_POST['saveType'] == "Publish") {
 		$post->setPublished(1);
-		echo "Blog post updated and published!";
+?>
+
+		<div class="alert alert-success">Blog post updated and published! <a href="viewPosts.php">Go Back.</a></div>
+
+<?php
 	} else {
 		$post->setPublished(0);
-		echo "Blog post updated and draft saved!";
+?>
+
+		<div class="alert alert-success">Blog post updated and draft saved! <a href="viewPosts.php">Go Back.</a></div>
+
+<?php
 	}
 }
 ?>

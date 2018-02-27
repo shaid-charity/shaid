@@ -38,6 +38,7 @@ require_once 'header.php';
 	          <a class="dropdown-item active" href="createCategory.php">Create Category <span class="sr-only">(current)</span></a>
 	          <a class="dropdown-item" href="viewCategories.php">View Categories</a>
 	          <a class="dropdown-item" href="post.php">Create Post</a>
+	          <a class="dropdown-item" href="viewPosts.php">View Posts</a>
 	        </div>
 	      </li>
 	      <li class="nav-item">
