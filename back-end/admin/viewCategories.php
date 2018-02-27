@@ -135,7 +135,6 @@ if (isset($_GET['page'])) {
 // Get all categories
 $stmt = $db->query("SELECT `id` FROM `categories` LIMIT $startFrom, 10");
 	
-$categories = Array();
 foreach ($stmt as $row) {
 	$c = new Category($db, $row['id']);
 ?>

@@ -73,10 +73,22 @@ require_once 'header.php';
 
 <?php
 
+// Set up the pagination
+$pagination = new Pagination($db, "SELECT id FROM `posts`", array());
+$pagination->totalRecords();
+$pagination->setLimitPerPage(10);
+$currentPage = $pagination->getPage();
+
+// Select the correct number of records from the DB
+if (isset($_GET['page'])) {
+	$startFrom = ($_GET['page'] - 1) * 10;
+} else {
+	$startFrom = 0;
+}
+
 // Get all categories
-$stmt = $db->query("SELECT `id` FROM `posts`");
+$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
 	
-$categories = Array();
 foreach ($stmt as $row) {
 	$p = new Post($db, $row['id']);
 ?>
@@ -90,6 +102,18 @@ foreach ($stmt as $row) {
 ?>
 
 			</table>
+
+			<nav>
+			<ul class="pagination justify-content-center">
+<?php
+
+echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagination->getCurrentPageLinks() . $pagination->getAfterLinks() . $pagination->getNextAndLastLinks();
+
+?>
+
+			</ul>
+		</nav>
+		
 		</form>
 	</div>
 </body>
