@@ -18,6 +18,9 @@ require_once 'header.php';
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.7/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
 
+	<!-- Include the TinyMCE WYSIWYG editor -->
+	<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
@@ -171,5 +174,15 @@ if (!isset($_GET['action'])) {
 ?>
 
 </div>
+
+<script>
+// Load the TinyMCE editor to the appropriate text area
+tinymce.init({
+    selector: 'textarea',
+    plugins: "image link autolink lists preview",
+    menubar: "file edit format insert view",
+    toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
+});
+</script>
 </body>
 </html>
