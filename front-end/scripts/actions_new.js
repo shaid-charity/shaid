@@ -3,24 +3,24 @@
 var navMenuIsExpanded = false
 var navbarIsSticky = false
 
-var headerHeight = $('.header').outerHeight()
-var navbarHeight = $('.navbar').outerHeight()
+var headerHeight = $('#header').outerHeight()
+var navbarHeight = $('#navbar').outerHeight()
 
 function setMenuState() {
 	if( $(this).scrollTop() > headerHeight) {
-		$(".navbar").addClass('sticky-top')
+		$("#navbar").addClass('sticky-top')
 		$('#nav-padding').css('height', navbarHeight)
 		navbarIsSticky = true
 	} else {
 		$('#nav-padding').css('height', '0')
-		$(".navbar").removeClass('sticky-top')
+		$("#navbar").removeClass('sticky-top')
 		navbarIsSticky = false
 	}
 }
 
 function recalculateHeights() {
-	headerHeight = $('.header').outerHeight()
-	navbarHeight = $('.navbar').outerHeight()
+	headerHeight = $('#header').outerHeight()
+	navbarHeight = $('#navbar').outerHeight()
 }
 
 window.addEventListener('touchmove', setMenuState)
