@@ -1,22 +1,23 @@
 // actions.js
 
 var navMenuIsExpanded = false
-var navbarIsSticky = false
+
+var header = document.getElementById('header')
+var navBar = document.getElementById('navbar')
+var navItems = document.getElementById('nav-items')
 
 function setMenuState() {
-	if( $(this).scrollTop() > $('.header').outerHeight() ) {
-		$('#nav-padding').css('height', $('.navbar').outerHeight())
-		$(".navbar").addClass('sticky-top')
-		navbarIsSticky = true
+	if($(this).scrollTop() > header.offsetHeight) {
+		navbar.classList.add('sticky-top')
+		document.getElementById('nav-padding').style.height = navbar.offsetHeight
 	} else {
-		$('#nav-padding').css('height', '0')
-		$(".navbar").removeClass('sticky-top')
-		navbarIsSticky = false
+		document.getElementById('nav-padding').style.height = '0'
+		navbar.classList.remove('sticky-top')
 	}
 }
 
-window.addEventListener('touchmove', setMenuState, false)
-window.addEventListener('scroll', setMenuState, false)
+window.addEventListener('touchmove', setMenuState)
+window.addEventListener('scroll', setMenuState)
 
 $('#nav-button').click(function() {
 	if (navMenuIsExpanded === false) {
