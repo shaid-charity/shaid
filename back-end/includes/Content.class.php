@@ -94,8 +94,12 @@ abstract class Content extends DBRecord {
 		return $this->content;
 	}
 
-	public function getImage() {
-		return APP_ROOT . 'images/' . $this->image;
+	public function getImagePath() {
+		return $this->image;
+	}
+
+	public function getImageName() {
+		return basename($this->image);
 	}
 
 	public function getKeywords() {
