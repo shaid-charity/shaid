@@ -10,4 +10,4 @@ abstract class DBRecord {
 
 		return false;
 	}
-}	
+}

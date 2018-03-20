@@ -61,6 +61,11 @@ require_once 'header.php';
 
 <?php
 
+// Get the user ID
+$stmt = $db->prepare("SELECT users.user_id FROM users, sessions WHERE users.user_id = sessions.user_id AND session_number=?");
+$stmt->execute(array($session_number));
+$userID = $stmt->fetch()['user_id'];
+
 if (!isset($_GET['action'])) {
 
 	// Get an array of all categories
@@ -116,7 +121,7 @@ if (!isset($_GET['action'])) {
 	}
 
 	if ($_POST['saveType'] == "Publish") {
-		$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, 1, '', $categoryID);
+		$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 		echo 'Blog post published.';
 
 		$post->setPublished(1);
@@ -125,7 +130,7 @@ if (!isset($_GET['action'])) {
 			$uploadManager->upload($file);
 		}
 	} else if ($_POST['saveType'] == "Save draft") {
-		$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, 1, '', $categoryID);
+		$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 		echo 'Blog post draft saved.';
 
 		$post->setPublished(0);
