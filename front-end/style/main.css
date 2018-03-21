@@ -419,7 +419,7 @@ footer {
   color: #FFFFFF;
   text-decoration: none;
   border-bottom: 1px dotted #999999;
-  transition: all 0.15s ease 0s; }
+  transition: all 0.05 ease 0s; }
 
 .footer-section a:hover,
 .footer-section a:focus {
@@ -431,7 +431,7 @@ footer {
 
 .footer-social-button i {
   font-size: 2.5rem;
-  transition: all 0.15s ease 0s; }
+  transition: all 0.05 ease 0s; }
 
 .footer-social-button a {
   display: flex;
