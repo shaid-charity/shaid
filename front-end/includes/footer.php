@@ -1,6 +1,7 @@
 <?php
     /*
-        This ...
+        Website footer - contains important links and information.
+        * All pages should contain this.
     */
 ?>	
 	<footer>

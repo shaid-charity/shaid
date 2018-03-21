@@ -1,22 +1,25 @@
 <?php
     /*
-        This ...
+        Website header - contains logo, search bar and navigation.
+        * All pages should contain this.
     */
 ?>
 	<header id="header">
-		<div class="header-logo">
-			<a href="#">
-				<!-- ORIGINAL FROM SHAID SITE: <img src="assets/logo-small.png" alt="SHAID" /> -->
-				<!-- NEWER "DIFFERENT" VERSION: <img src="assets/logos/header-logo.png" alt="SHAID" /> -->
-				<img src="/assets/logos/header-logo-old.jpg" alt="SHAID" />
-			</a>
-		</div>
-		<span class="header-text">Single Homeless Action Initiative in Durham</span>
-		<div class="header-right">
-			<form action="" class="search header-search">
-				<input type="text" placeholder="Search" />
-				<button><i type="submit" class="material-icons">search</i></button>
-			</form>
+		<div class="header-content">
+			<div class="header-logo">
+				<a href="#">
+					<!-- ORIGINAL FROM SHAID SITE: <img src="assets/logo-small.png" alt="SHAID" /> -->
+					<!-- NEWER "DIFFERENT" VERSION: <img src="assets/logos/header-logo.png" alt="SHAID" /> -->
+					<img src="/assets/logos/header-logo-old.jpg" alt="SHAID" />
+				</a>
+			</div>
+			<span class="header-text">Single Homeless Action Initiative in Durham</span>
+			<div class="header-right">
+				<form action="" class="search header-search">
+					<input type="text" placeholder="Search" />
+					<button><i type="submit" class="material-icons">search</i></button>
+				</form>
+			</div>
 		</div>
 	</header>
 	<nav role="navigation" id="navbar">

@@ -1,6 +1,7 @@
 <?php
     /*
-        This ...
+        Scripts that all pages should contain before their closing body tag.
+        * All pages should contain this.
     */
 ?>
 	<!-- External scripts -->

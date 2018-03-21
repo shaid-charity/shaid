@@ -1,6 +1,8 @@
 <?php
     /*
-        This ...
+        Tags that all pages should have in their <head> tag. Will be used for
+        global meta and stylesheet/link tags.
+        * All pages should contain this.
     */
 ?>
 	<!-- Meta -->
