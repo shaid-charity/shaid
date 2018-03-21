@@ -41,6 +41,7 @@ abstract class Content extends DBRecord {
 		$this->slug = $result['slug'];
 		$this->content = $result['content'];
 		$this->image = $result['image'];
+		$this->user = new User($this->db, $result['user_id']);
 	}
 
 	protected function getBySlug($slug) {
@@ -55,6 +56,7 @@ abstract class Content extends DBRecord {
 		$this->slug = $slug;
 		$this->content = $result['content'];
 		$this->image = $result['image'];
+		$this->user = new User($this->db, $result['user_id']);
 	}
 
 	private function createConstructor($name, $content, $image, $keywords, $slug, $userID) {
@@ -75,6 +77,7 @@ abstract class Content extends DBRecord {
 		$this->content = $content;
 		$this->image = $image;
 		$this->keywords = $keywords;
+		$this->user = new User($this->db, $userID);
 	}
 
 	// Get and set methods
@@ -94,8 +97,12 @@ abstract class Content extends DBRecord {
 		return $this->content;
 	}
 
-	public function getImage() {
-		return APP_ROOT . 'images/' . $this->image;
+	public function getImagePath() {
+		return $this->image;
+	}
+
+	public function getImageName() {
+		return basename($this->image);
 	}
 
 	public function getKeywords() {
@@ -108,6 +115,10 @@ abstract class Content extends DBRecord {
 		}
 
 		return $words;
+	}
+
+	public function getAuthor() {
+		return $this->user;
 	}
 
 	public function setName($name) {

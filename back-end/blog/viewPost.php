@@ -22,6 +22,7 @@ if (!$post->isPublished()) {
 
 <br />
 <strong>Published date: </strong><?php echo $post->getDatePublished(); ?><br />
+<strong>Author: </strong><?php echo $post->getAuthor()->getFullName(); ?><br />
 <br />
 
 <?php echo $post->getContent(); ?>

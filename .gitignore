@@ -5,3 +5,5 @@ front-end/style/.sass-cache/*
 back-end/includes/config.php
 back-end/includes/db.php
 phpmyadmin/
+back-end/images/*
+!back-end/images/.htaccess
