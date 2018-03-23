@@ -31,7 +31,7 @@
 			</button>
 			<div class="navigation-items" id="nav-items">
 				<ul>
-					<li><a href="#">Home</a></li>
+					<li><a href="index.php">Home</a></li>
 					<li><a href="#">About</a></li>
 					<li><a href="#">News</a></li>
 					<li><a href="#">Events</a></li>
