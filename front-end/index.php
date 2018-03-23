@@ -21,6 +21,11 @@
 			<div class="hero-container">
 				<div class="hero-text">
 					<h1>Who are we?</h1>
+					<!--
+					<h2>heading2</h2>
+					<h3>heading3</h3>
+					<h4>heading4</h4>
+					-->
 					<p>SHAID provides a range of housing advice, support and related services to help young people make the difficult transition to living independently in the community.</p>
 					<a href="#" class="button-light">I want to hear more</a>
 				</div>
