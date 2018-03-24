@@ -10,7 +10,7 @@
 				<a href="#">
 					<!-- ORIGINAL FROM SHAID SITE: <img src="assets/logo-small.png" alt="SHAID" /> -->
 					<!-- NEWER "DIFFERENT" VERSION: <img src="assets/logos/header-logo.png" alt="SHAID" /> -->
-					<img src="/assets/logos/header-logo-old.jpg" alt="SHAID" />
+					<img src="/assets/logos/header-logo-old.jpg" alt="SHAID">
 				</a>
 			</div>
 			<span class="header-text">Single Homeless Action Initiative in Durham</span>

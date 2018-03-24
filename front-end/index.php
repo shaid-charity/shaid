@@ -75,7 +75,7 @@
 					<h2>National Citizen Service Student Group Fundraise for SHAID</h2>
 					<div class="newspreview-item-content">
 						<div class="newspreview-item-content-img">
-							<img src="assets/home/news-img-1.png" />
+							<img src="assets/home/news-img-1.png" alt="title here">
 						</div>
 						<div class="newspreview-item-content-text">
 							<p>SHAID were approached by the NCS student group known the 'Little Guardians of the Unfortunate'. As part of the NCS National Week of Social Action, the group wished to carry out...</p>
