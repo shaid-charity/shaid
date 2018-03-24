@@ -1,0 +1,203 @@
+.content-grid {
+  display: grid;
+  grid-template-columns: 7.5fr 4fr;
+  grid-column-gap: 2rem;
+  grid-row-gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 2rem; }
+
+.content-grid #main {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+  margin-bottom: 2rem; }
+
+.content-grid #main article {
+  padding: 1rem;
+  margin-bottom: 1rem; }
+
+.content-grid #sidebar {
+  display: flex;
+  flex-direction: column; }
+
+.content-grid #sidebar section {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: #F2F2F2;
+  margin-top: 1rem; }
+
+.content-grid #sidebar section:not(:last-child) {
+  margin-bottom: 0.5rem; }
+
+.content-grid #sidebar h1 {
+  padding-top: 0;
+  font-size: 1.8rem; }
+
+.content-grid #recent-posts ul {
+  margin: 0;
+  margin-top: 0.5rem;
+  padding: 0;
+  list-style-type: none; }
+
+.content-grid #recent-posts ul li {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: row; }
+
+.recent-posts-thumbnail {
+  margin-right: 0.65rem;
+  width: 5rem;
+  flex-shrink: 0; }
+
+.recent-posts-thumbnail img {
+  width: 100%; }
+
+.content-grid #recent-posts ul li a {
+  color: inherit;
+  text-decoration: none;
+  font-family: "PT Sans", sans-serif;
+  text-transform: uppercase; }
+
+.content-grid #recent-posts ul li a:hover,
+.content-grid #recent-posts ul li a:active {
+  color: #4E3D42; }
+
+.content-grid #article-category {
+  padding-bottom: 0; }
+
+.content-grid #article-category span {
+  color: #4E3D42; }
+
+.content-grid #article-category span a {
+  color: #4E3D42;
+  border-bottom: 1px solid transparent;
+  text-decoration: none; }
+
+.content-grid #article-category span a:hover,
+.content-grid #article-category span a:active {
+  color: #1C0B19;
+  border-bottom: 1px dotted #1C0B19; }
+
+.content-grid #article-category i {
+  padding-top: 0;
+  padding-right: 0.2rem;
+  padding-bottom: 0;
+  padding-left: 0.3rem; }
+
+.content-grid #article-title {
+  margin: 0;
+  padding: 0.6rem 0; }
+
+.content-grid #article-info {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+  flex-wrap: wrap; }
+
+.content-grid #article-date {
+  flex-shrink: 0;
+  padding: 0.4rem 0; }
+
+.content-grid #article-date span {
+  color: #4E3D42;
+  font-size: 1rem; }
+
+.content-grid #article-date span i {
+  margin-right: 0.25rem; }
+
+.content-grid #article-author {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-bottom: 1.5rem;
+  padding-right: 1rem; }
+
+.content-grid #article-author a {
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+  color: inherit; }
+
+.content-grid #article-author a:hover,
+.content-grid #article-author a:active {
+  border-bottom: 1px dotted #1C0B19; }
+
+.content-grid #article-author-photo {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 1rem;
+  flex-shrink: 0; }
+
+.content-grid #article-author-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; }
+
+.content-grid #article-author-text {
+  display: flex;
+  flex-direction: column; }
+
+.content-grid #article-author-text-name {
+  font-weight: bold;
+  padding: 0.4rem 0; }
+
+.content-grid #article-author-text-about {
+  color: #4E3D42;
+  font-size: 1.0rem;
+  display: inline; }
+
+.content-grid #article-image {
+  width: 100%;
+  margin: 0;
+  padding: 1.5rem 0; }
+
+.content-grid #article-image img {
+  width: 100%; }
+
+.content-grid #article-image figcaption {
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: 1rem;
+  color: #4E3D42; }
+
+.content-grid #article-footer {
+  padding: 1rem; }
+
+.short-separator {
+  width: 10rem;
+  max-width: 100%;
+  height: 2px;
+  display: block;
+  background-color: #EAEAEA;
+  margin-left: 1rem;
+  margin-bottom: 1rem; }
+
+@media only screen and (max-width: 991px) {
+  .content-grid {
+    grid-template-columns: 1fr; }
+
+  .content-grid #main {
+    margin-bottom: 0rem; } }
+@media only screen and (max-width: 767px) {
+  .content-grid #sidebar h1 {
+    font-size: 1.4rem; } }
+@media only screen and (max-width: 480px) {
+  .content-grid #article-title {
+    text-align: center; }
+
+  .content-grid #article-author {
+    text-align: center;
+    padding-right: 0;
+    flex-wrap: wrap; }
+
+  .content-grid #article-author-photo {
+    margin: auto;
+    margin-bottom: 0.4rem; }
+
+  .content-grid #article-author-text {
+    width: 100%; }
+
+  .content-grid #article-date {
+    width: 100%;
+    text-align: center; } }

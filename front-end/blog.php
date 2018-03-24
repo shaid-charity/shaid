@@ -10,6 +10,7 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 	?>
+	<link href="/style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -37,9 +38,9 @@
 								</div>
 							</section>
 							<section id="article-date">
-								<span><i class="zmdi zmdi-calendar"></i> 23rd March '18</span>
+								<span><i class="zmdi zmdi-calendar"></i> 23rd March, 2018</span>
 							</section>
-							</section>
+						</section>
 						<figure id="article-image">
 							<img src="/assets/img/placeholder/blog_image.jpg">
 							<figcaption>Above: Official figures show that 1 in 2 people are homeless.</figcaption>
@@ -55,23 +56,46 @@
 							<p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</p>
 						</section>
 					</article>
+					<div class="short-separator">
+					</div>
 					<section id="article-footer">
-						Below article
+						Below post
 					</section>
 				</section>
 				<aside id="sidebar">
 					<section>
-						<h3>Campaign</h3>
+						<h1>Campaign</h1>
 						<p>A brief description of what this campaign is all about...</p>
 						<a href="#" class="button-dark">More info</a>
 						<a href="#" class="button-dark">Donate</a>
 					</section>
-					<section>
-						<h3>Recent posts</h3>
+					<section id="recent-posts">
+						<h1>Recent posts</h1>
 						<ul>
-							<li>Recent post number 1</li>
-							<li>Recent post number 2 with a slightly longer title</li>
-							<li>Recent post number 3</li>
+							<li>
+								<div class="recent-posts-thumbnail">
+									<img src="http://via.placeholder.com/80x65" />
+								</div>
+								<span><a href="#">Recent post number 1</a></span>
+							</li>
+							<li>
+								<div class="recent-posts-thumbnail">
+									<img src="http://via.placeholder.com/80x65" />
+								</div>
+								<span><a href="#">Recent post number 2 with a slightly longer title</a></span>
+							</li>
+							<li>
+								<div class="recent-posts-thumbnail">
+									<img src="http://via.placeholder.com/80x65" />
+								</div>
+								<span><a href="#">Recent post number 3</a></span>
+							</li>
+							<li>
+								<div class="recent-posts-thumbnail">
+									<img src="http://via.placeholder.com/80x65" />
+								</div>
+								<span><a href="#">Recent post number 3 with a very long title that spans multiple lines and just keeps going</a></span>
+							</li>
 						</ul>
 					</section>
 				</aside>

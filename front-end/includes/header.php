@@ -31,9 +31,9 @@
 			</button>
 			<div class="navigation-items" id="nav-items">
 				<ul>
-					<li><a href="#">Home</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="blog.php">News &amp; Blog</a></li>
 					<li><a href="#">About</a></li>
-					<li><a href="#">News</a></li>
 					<li><a href="#">Events</a></li>
 					<li><a href="#">Services</a></li>
 					<li><a href="#">Online Referrals</a></li>

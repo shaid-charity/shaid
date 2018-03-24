@@ -1,0 +1,68 @@
+// Font variables
+
+$heading-fonts: 'PT Sans', sans-serif;
+$body-fonts: 'Open Sans', sans-serif;
+$button-fonts: 'PT Sans', sans-serif;
+$body-fontsize: 1.1rem;
+$body-fontsize-smaller: 1.0rem;
+
+
+// Colour variables
+
+$color-white: #FFFFFF;
+$color-lightblack: #1C0B19;
+$color-lightgrey: #F2F2F2;
+$color-grey: #EAEAEA;
+$color-grey-select: #E0E0E0;
+$color-mediumgrey: #999999;
+$color-darkgrey: #4E3D42;
+$color-brandgreen: #008194;
+
+$color-social-email: $color-mediumgrey;
+$color-social-facebook: #3b5998;
+$color-social-twitter: #1da1f2;
+$color-social-youtube: #FF0000;
+
+
+// Size variables
+
+$max-container-width: 1200px;
+$side-padding: 1.2rem;
+$component-inner-padding: 1.8rem;
+$navigation-item-padding: 1.6rem 1.2rem;
+$navigation-item-padding-smaller: 1.4rem 1.0rem;
+$navigation-item-padding-smallest: 1.1rem 0.8rem;
+
+
+// Transition variables
+
+$transition-ease: all 0.15s ease 0s;
+$transition-ease-text: all 0.05 ease 0s;
+
+
+// Mixins
+
+@mixin heading {
+	margin: 0;
+	font-weight: 700;
+	font-family: $heading-fonts;
+}
+
+@mixin button {
+	display: inline-block;
+	padding: 0.8rem 1rem;
+	margin: 0.6rem 0;
+	background-color: transparent;
+	border: 2px solid;
+	font-size: $body-fontsize;
+	font-family: $button-fonts;
+	text-decoration: none;
+	text-transform: uppercase;
+	line-height: 1;
+	transition: $transition-ease;
+}
+
+@mixin container {
+	margin: 0 auto !important;
+	max-width: $max-container-width !important;
+}
