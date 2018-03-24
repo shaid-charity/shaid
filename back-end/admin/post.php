@@ -166,6 +166,8 @@ if (!isset($_GET['action'])) {
 
 </div>
 
+<!-- Include the TinyMCE WYSIWYG editor -->
+<script src="../vendor/tinymce/tinymce/tinymce.min.js"></script>
 <script>
 // Load the TinyMCE editor to the appropriate text area
 tinymce.init({
