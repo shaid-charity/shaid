@@ -74,6 +74,7 @@ input[type="text"]:focus {
   border: 2px solid;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1;
@@ -95,6 +96,7 @@ input[type="text"]:focus {
   border: 2px solid;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1;
@@ -116,6 +118,7 @@ input[type="text"]:focus {
   border: 2px solid;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
+  text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   line-height: 1;
@@ -486,7 +489,8 @@ footer {
 
 .footer-charityinfo {
   text-align: center;
-  padding-bottom: 1rem; }
+  padding-bottom: 1rem;
+  padding-top: 2rem; }
 
 .footer-charityinfo p {
   font-size: 0.8rem;

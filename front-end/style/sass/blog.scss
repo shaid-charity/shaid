@@ -1,6 +1,10 @@
 // Import master
 @import "_master.scss";
 
+// Variables
+$rule-line-color: $color-grey;
+$rule-line-thickness: 4px;
+
 // Begin styles
 
 .content-grid {
@@ -47,6 +51,35 @@
 .content-grid #sidebar h1 {
 	padding-top: 0;
 	font-size: 1.8rem;
+}
+
+.content-grid #sidebar h2 {
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	font-size: 1.5rem;
+}
+
+.content-grid #sidebar p {
+	padding: 0.8rem 0;
+}
+
+.sidebar-large-image {
+	width: 100%;
+	margin: 1rem 0 0.5rem 0;
+}
+
+.content-grid #post-associated {
+}
+
+.content-grid #post-associated-actions {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 0.2rem;
+}
+
+.content-grid #post-associated-actions a {
+	flex-grow: 0;
+	width: 48%;
 }
 
 .content-grid #recent-posts {
@@ -213,11 +246,47 @@
 .short-separator {
 	width: 10rem;
 	max-width: 100%;
-	height: 2px;
+	height: $rule-line-thickness;
 	display: block;
-	background-color: $color-grey;
+	background-color: $rule-line-color;
 	margin-left: 1rem;
 	margin-bottom: 1rem;
+}
+
+.content-grid #article-footer h2 {
+	padding-top: 0;
+}
+
+.content-grid #social-icons {
+	padding: 0;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+}
+
+.content-grid #social-icons a {
+	text-decoration: none;
+	border: none;
+	display: inline-block;
+	width: 4rem;
+	margin-right: 0.5rem;
+}
+
+.content-grid #social-icons a:hover,
+.content-grid #social-icons a:active {
+	opacity: 0.9;
+}
+
+.content-grid #social-icons img {
+	width: 100%;
+}
+
+.article-formatting-blockquote {
+	padding-left: 1rem;
+	margin-left: 0rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+	border-left: $rule-line-thickness solid $rule-line-color;
+	font-style: italic;
 }
 
 
