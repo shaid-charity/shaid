@@ -13,4 +13,4 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 	<!-- Internal stylesheets -->
-	<link href="/style/main.css" rel="stylesheet">
+	<link href="./style/main.css" rel="stylesheet">

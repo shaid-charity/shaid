@@ -242,7 +242,7 @@
   flex-shrink: 0;
   flex-grow: 0;
   margin-right: 1rem;
-  background-image: url("/assets/img/placeholder/blog_image.jpg");
+  background-image: url("../assets/img/placeholder/blog_image.jpg");
   background-size: cover;
   background-color: #F2F2F2;
   background-position: 50% 50%; }

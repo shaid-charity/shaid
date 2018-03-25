@@ -10,7 +10,7 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 	?>
-	<link href="/style/blog.css" rel="stylesheet">
+	<link href="./style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -22,7 +22,7 @@
 				<section id="main">
 					<article id="article">
 						<section id="article-category">
-							<span><a href="/blog.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="#">Category</a></span>
+							<span><a href="./blog.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="#">Category</a></span>
 						</section>
 						<section id="article-title">
 							<h1>Important Blog Post About Homelessness</h1>
@@ -30,7 +30,7 @@
 						<section id="article-info">
 							<section id="article-author">
 								<div id="article-author-photo">
-									<img src="/assets/img/placeholder/profile_photo.jpg" alt="Jenny Smith">
+									<img src="./assets/img/placeholder/profile_photo.jpg" alt="Jenny Smith">
 								</div>
 								<div id="article-author-text">
 									<span id="article-author-text-name"><a href="">Jenny Smith</a></span>
@@ -42,7 +42,7 @@
 							</section>
 						</section>
 						<figure id="article-image">
-							<img src="/assets/img/placeholder/blog_image.jpg" alt="Above: Official figures show that 1 in 2 people are homeless.">
+							<img src="./assets/img/placeholder/blog_image.jpg" alt="Above: Official figures show that 1 in 2 people are homeless.">
 							<figcaption>Above: Official figures show that 1 in 2 people are homeless.</figcaption>
 						</figure>
 						<section id="article-content">
@@ -69,19 +69,19 @@
 						<h2>Share this article</h2>
 						<section id="social-icons">
 							<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
-								<img src="/assets/social/svg/facebook (3).svg" alt="Share on Facebook">
+								<img src="./assets/social/svg/facebook (3).svg" alt="Share on Facebook">
 							</a>
 							<a href="http://www.twitter.com/share?url=https://example.org/&hashtags=shaid" target="_blank">
-								<img src="/assets/social/svg/twitter (3).svg" alt="Share on Twitter">
+								<img src="./assets/social/svg/twitter (3).svg" alt="Share on Twitter">
 							</a>
 							<a href="https://www.linkedin.com/shareArticle?mini=true&url=http://developer.linkedin.com&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn" target="_blank">
-								<img src="/assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
+								<img src="./assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
 							</a>
 							<a href="http://www.reddit.com/submit?url=http://shaid.org.uk&title=Shaid%20New%20Blog%20Post" target="_blank">
-								<img src="/assets/social/svg/reddit (3).svg" alt="Share on Reddit">
+								<img src="./assets/social/svg/reddit (3).svg" alt="Share on Reddit">
 							</a>
 							<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}&title={title}&caption={desc}&tags={hash_tags}" target="_blank">
-								<img src="/assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
+								<img src="./assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
 							</a>
 						</section>
 					</section>

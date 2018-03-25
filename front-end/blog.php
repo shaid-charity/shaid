@@ -10,7 +10,7 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 	?>
-	<link href="/style/blog.css" rel="stylesheet">
+	<link href="./style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
