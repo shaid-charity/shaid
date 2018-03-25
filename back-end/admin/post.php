@@ -86,6 +86,12 @@ if (!isset($_GET['action'])) {
 		}
 	}
 } else if ($_GET['action'] == 'edit') {
+	// Make sure a post has been selected to edit
+	if (!isset($_GET['id'])) {
+		echo '<div class="alert alert-danger">No post selected!</div>';
+		return;
+	}
+	
 	// Get an array of all categories
 	$stmt = $db->query("SELECT `id` FROM `categories`");
 	
@@ -94,7 +100,7 @@ if (!isset($_GET['action'])) {
 		$categories[] = new Category($db, $row['id']);
 	}
 
-	$post = new Post($db, $_POST['postID']);
+	$post = new Post($db, $_GET['id']);
 ?>
 
 	<div class="container">

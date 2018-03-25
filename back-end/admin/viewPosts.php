@@ -15,14 +15,13 @@ require_once 'header.php';
 		</div>
 		<br />
 
-		<form action="post.php?action=edit" method="post">
-			<table class="table table-hover table-striped" id="categoryList">
-				<tr>
-					<th>Post Name</th>
-					<th>Post Category</th>
-					<th>Last Edited Time</th>
-					<th>Edit</th>
-				</tr>
+		<table class="table table-hover table-striped" id="categoryList">
+			<tr>
+				<th>Post Name</th>
+				<th>Post Category</th>
+				<th>Last Edited Time</th>
+				<th>Edit</th>
+			</tr>
 
 <?php
 
@@ -39,14 +38,14 @@ if (isset($_GET['page'])) {
 	$startFrom = 0;
 }
 
-// Get all categories
+// Get all posts
 $stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
 	
 foreach ($stmt as $row) {
 	$p = new Post($db, $row['id']);
 ?>
 
-				<tr><td><?php echo $p->getTitle(); ?></td><td><?php echo $p->getCategoryName(); ?></td><td><?php echo $p->getLastModifiedDate(); ?></td><td><button class="btn btn-primary btn-sm" value=<?php echo $p->getID(); ?> name="postID">Edit</button></td></tr>
+			<tr><td><?php echo $p->getTitle(); ?></td><td><?php echo $p->getCategoryName(); ?></td><td><?php echo $p->getLastModifiedDate(); ?></td><td><a class="btn btn-primary btn-sm" href="post.php?action=edit&id=<?php echo $p->getID(); ?>" name="postID">Edit</a></td></tr>
 
 <?php
 
@@ -66,8 +65,6 @@ echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagi
 
 			</ul>
 		</nav>
-		
-		</form>
 	</div>
 </body>
 </html>
