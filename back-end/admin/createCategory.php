@@ -59,7 +59,7 @@ if ($_GET['action'] == 'submit') {
 } else if ($_GET['action'] == 'edit') {
 	// Make sure a category has been selected to edit
 	if (!isset($_GET['id'])) {
-		echo '<div class="alert alert-danger">No post selected!</div>';
+		echo '<div class="alert alert-danger">No category selected!</div>';
 		return;
 	}
 
