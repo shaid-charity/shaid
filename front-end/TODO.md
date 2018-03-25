@@ -5,7 +5,7 @@
 - [ ] Add EU cookie warning
 - [ ] Add newsletter subscription box to home page footer
 
-##Pages:
+## Pages:
 - [ ] Blog
 	- [ ] Main blog page
 	- [ ] View post
