@@ -237,7 +237,6 @@ nav {
 .navigation {
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -619,6 +618,16 @@ footer {
 	.navigation-menu-button {
 		font-size: 1.1rem;
 		padding-left: 0;
+	}
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1080px) {
+	.navigation ul {
+		padding-left: 0.25rem;
+	}
+	
+	.navigation ul li a {
+		padding: $navigation-item-padding-smaller-squashed;
 	}
 }
 
