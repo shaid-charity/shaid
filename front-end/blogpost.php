@@ -61,7 +61,9 @@
 							<p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</p>
 						</section>
 					</article>
-					<div class="short-separator">
+					<div class="short-separator-container">
+						<div class="short-separator-line">
+						</div>
 					</div>
 					<section id="article-footer">
 						<h2>Share this article</h2>
@@ -90,7 +92,7 @@
 						<h2>Name Of This Campaign</h2>
 						<img src="http://via.placeholder.com/350x150" class="sidebar-large-image">
 						<p>A brief description of what this campaign is all about...</p>
-						<div id="post-associated-actions">
+						<div class="sidebar-actions">
 							<a href="#" class="button-dark">More info</a>
 							<a href="#" class="button-dark">Donate</a>
 						</div>

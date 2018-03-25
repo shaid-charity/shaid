@@ -583,6 +583,18 @@ footer {
 		font-size: $body-fontsize-smaller;
 	}
 
+	h1 {
+		@include heading;
+		font-size: 2.2rem;
+		padding: 0.9rem 0 0.6rem 0;
+	}
+
+	h2 {
+		@include heading;
+		font-size: 1.9rem;
+		padding: 0.8rem 0 0.4rem 0;
+	}
+
 	p {
 		line-height: 1.9rem;
 	}
@@ -643,6 +655,12 @@ footer {
 	h1 {
 		font-size: 2.2rem;
 		padding: 0.7rem 0 0.3rem 0;
+	}
+	
+	h2 {
+		@include heading;
+		font-size: 1.8rem;
+		padding: 0.8rem 0 0.4rem 0;
 	}
 
 	p {
