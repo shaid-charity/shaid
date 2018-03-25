@@ -83,7 +83,7 @@ if(empty($session_number)){
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item <?php if (CURRENT_PAGE == 'campaignsCreate') echo 'active'; ?>" href="campaign.php">Create Campaign</a>
-            <a class="dropdown-item <?php if (CURRENT_PAGE == 'campaignsView') echo 'active'; ?>" href="#">View Campaigns</a>
+            <a class="dropdown-item <?php if (CURRENT_PAGE == 'campaignsView') echo 'active'; ?>" href="viewCampaigns.php">View Campaigns</a>
           </div>
         </li>
         <li class="nav-item <?php if (CURRENT_PAGE == 'contactDB') echo 'active'; ?>">

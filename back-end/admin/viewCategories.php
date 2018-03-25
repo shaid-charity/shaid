@@ -39,13 +39,12 @@ require_once 'header.php';
 		}
 ?>
 
-		<form action="createCategory.php?action=edit" method="post">
-			<table class="table table-hover table-striped" id="categoryList">
-				<tr>
-					<th>Category Name</th>
-					<th>Edit</th>
-					<th>Delete</th>
-				</tr>
+		<table class="table table-hover table-striped" id="categoryList">
+			<tr>
+				<th>Category Name</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
 
 <?php
 
@@ -69,7 +68,7 @@ foreach ($stmt as $row) {
 	$c = new Category($db, $row['id']);
 ?>
 
-				<tr><td><?php echo $c->getName(); ?></td><td><button class="btn btn-primary btn-sm" value=<?php echo $c->getID(); ?> name="categoryID">Edit</button></td><td><button onclick="setModalNameAndID('<?php echo $c->getName(); ?>', '<?php echo $c->getID(); ?>');" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button></td></tr>
+			<tr><td><?php echo $c->getName(); ?></td><td><a class="btn btn-primary btn-sm" href="createCategory.php?action=edit&id=<?php echo $c->getID(); ?>" name="categoryID">Edit</a></td><td><button onclick="setModalNameAndID('<?php echo $c->getName(); ?>', '<?php echo $c->getID(); ?>');" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Delete</button></td></tr>
 
 <?php
 
@@ -77,9 +76,9 @@ foreach ($stmt as $row) {
 
 ?>
 
-			</table>
+		</table>
 
-			<nav>
+		<nav>
 			<ul class="pagination justify-content-center">
 <?php
 
@@ -89,8 +88,6 @@ echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagi
 
 			</ul>
 		</nav>
-
-		</form>
 	</div>
 </body>
 

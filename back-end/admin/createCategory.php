@@ -57,8 +57,14 @@ if ($_GET['action'] == 'submit') {
 
 <?php
 } else if ($_GET['action'] == 'edit') {
+	// Make sure a category has been selected to edit
+	if (!isset($_GET['id'])) {
+		echo '<div class="alert alert-danger">No category selected!</div>';
+		return;
+	}
+
 	// Get the category we want to edit
-	$c = new Category($db, $_POST['categoryID']);
+	$c = new Category($db, $_GET['id']);
 ?>
 
 		<form action="createCategory.php?action=submitEdit" method="post">

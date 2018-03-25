@@ -1,7 +1,7 @@
 <?php
 
 // Define a constant to be used in header.php
-define('CURRENT_PAGE', 'contentViewPosts');
+define('CURRENT_PAGE', 'campaignsView');
 
 require_once '../includes/settings.php';
 require_once '../includes/config.php';
@@ -11,22 +11,22 @@ require_once 'header.php';
 
 	<div class="container">
 		<div class="page-header">
-			<h1>View Posts</h1>
+			<h1>View Campaigns</h1>
 		</div>
 		<br />
 
 		<table class="table table-hover table-striped" id="categoryList">
 			<tr>
-				<th>Post Name</th>
-				<th>Post Category</th>
-				<th>Last Edited Time</th>
+				<th>Campaign Name</th>
+				<th>Start Date & Time</th>
+				<th>End Date & Time</th>
 				<th>Edit</th>
 			</tr>
 
 <?php
 
 // Set up the pagination
-$pagination = new Pagination($db, "SELECT id FROM `posts`", array());
+$pagination = new Pagination($db, "SELECT id FROM `campaigns`", array());
 $pagination->totalRecords();
 $pagination->setLimitPerPage(10);
 $currentPage = $pagination->getPage();
@@ -38,14 +38,14 @@ if (isset($_GET['page'])) {
 	$startFrom = 0;
 }
 
-// Get all posts
-$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
+// Get all campaigns
+$stmt = $db->query("SELECT `id` FROM `campaigns` LIMIT $startFrom, 10");
 	
 foreach ($stmt as $row) {
-	$p = new Post($db, $row['id']);
+	$c = new Campaign($db, $row['id']);
 ?>
 
-			<tr><td><?php echo $p->getTitle(); ?></td><td><?php echo $p->getCategoryName(); ?></td><td><?php echo $p->getLastModifiedDate(); ?></td><td><a class="btn btn-primary btn-sm" href="post.php?action=edit&id=<?php echo $p->getID(); ?>" name="postID">Edit</a></td></tr>
+			<tr><td><?php echo $c->getTitle(); ?></td><td><?php echo $c->getStartDatetime(); ?></td><td><?php echo $c->getEndDatetime(); ?></td><td><a class="btn btn-primary btn-sm" href="campaign.php?action=edit&id=<?php echo $c->getID(); ?>" name="campaignID">Edit</a></td></tr>
 
 <?php
 
@@ -53,9 +53,9 @@ foreach ($stmt as $row) {
 
 ?>
 
-			</table>
+		</table>
 
-			<nav>
+		<nav>
 			<ul class="pagination justify-content-center">
 <?php
 
