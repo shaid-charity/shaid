@@ -4,6 +4,9 @@
 *:focus {
   outline: none; }
 
+html {
+  background-color: #1C0B19; }
+
 body {
   margin: 0;
   padding: 0;

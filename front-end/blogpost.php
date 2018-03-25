@@ -21,10 +21,10 @@
 			<div class="content-grid">
 				<section id="main">
 					<article id="article">
-						<section id="article-category">
-							<span><a href="./blog.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="#">Category</a></span>
+						<section class="page-path">
+							<span><a href="./blog.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="./category.php">Category</a></span>
 						</section>
-						<section id="article-title">
+						<section id="article-title" class="page-title">
 							<h1>Important Blog Post About Homelessness</h1>
 						</section>
 						<section id="article-info">

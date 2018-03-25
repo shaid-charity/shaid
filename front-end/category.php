@@ -20,8 +20,11 @@
 		<div class="inner-container">
 			<div class="content-grid">
 				<section id="main">
-					<div class="content-grid-title">
-						<h1>SHAID Blog</h1>
+					<section class="page-path">
+						<span><a href="./blog.php">Blog</a></span>
+					</section>
+					<div class="page-title">
+						<h1>Category Name</h1>
 					</div>
 					<section id="articles-list">
 						<div class="articles-list-entry">
@@ -39,26 +42,6 @@
 							<div class="articles-list-entry-info">
 								<a href="blogpost.php"><h2>Another Blog Post About Homelessness</h2></a>
 								<p>A shorter description about this post.</p>
-								<div class="articles-list-entry-actions">
-									<a href="category.php">Category Name</a>
-								</div>
-							</div>
-						</div>
-						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="blogpost.php"></a>
-							<div class="articles-list-entry-info">
-								<a href="blogpost.php"><h2>Rough Sleeping Up UK-Wide</h2></a>
-								<p>What does this tell us about the UK's welfare system?</p>
-								<div class="articles-list-entry-actions">
-									<a href="category.php">Category Name</a>
-								</div>
-							</div>
-						</div>
-						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="blogpost.php"></a>
-							<div class="articles-list-entry-info">
-								<a href="blogpost.php"><h2>Official Homelessness Statistics Released</h2></a>
-								<p>Big news today as the official figures for homelessness have been released&mdash;see our analysis in this in-depth blog post.</p>
 								<div class="articles-list-entry-actions">
 									<a href="category.php">Category Name</a>
 								</div>

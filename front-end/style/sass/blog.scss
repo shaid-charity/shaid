@@ -123,34 +123,34 @@ $rule-line-thickness: 4px;
 	color: $color-darkgrey;
 }
 
-.content-grid #article-category {
+.content-grid .page-path {
 	padding-bottom: 0;
 }
 
-.content-grid #article-category span {
+.content-grid .page-path span {
 	color: $color-darkgrey;
 }
 
-.content-grid #article-category span a {
+.content-grid .page-path span a {
 	color: $color-darkgrey;
 	border-bottom: 1px solid transparent;
 	text-decoration: none;
 }
 
-.content-grid #article-category span a:hover,
-.content-grid #article-category span a:active {
+.content-grid .page-path span a:hover,
+.content-grid .page-path span a:active {
 	color: $color-lightblack;
 	border-bottom: 1px dotted $color-lightblack;
 }
 
-.content-grid #article-category i {
+.content-grid .page-path i {
 	padding-top: 0;
 	padding-right: 0.2rem;
 	padding-bottom: 0;
 	padding-left: 0.3rem;
 }
 
-.content-grid #article-title {
+.content-grid .page-title {
 	margin: 0;
 	padding: 0.6rem 0;
 }
@@ -266,6 +266,9 @@ $rule-line-thickness: 4px;
 	padding: 0;
 	padding-top: 1rem;
 	padding-bottom: 0.5rem;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
 .content-grid #social-icons a {
@@ -274,6 +277,7 @@ $rule-line-thickness: 4px;
 	display: inline-block;
 	width: 4rem;
 	margin-right: 0.5rem;
+	margin-bottom: 0.5rem;
 }
 
 .content-grid #social-icons a:hover,
@@ -333,7 +337,9 @@ $rule-line-thickness: 4px;
 }
 
 .content-grid .articles-list-entry-info p {
-	color: $color-darkgrey;
+	color: $color-lightblack;
+	padding-top: 0;
+	flex-grow: 1;
 }
 
 .content-grid .articles-list-entry-info a {
@@ -344,6 +350,27 @@ $rule-line-thickness: 4px;
 .content-grid .articles-list-entry-info a:hover,
 .content-grid .articles-list-entry-info a:active {
 	color: $color-darkgrey;
+}
+
+.content-grid .articles-list-entry-actions {
+	color: $color-darkgrey;
+	font-size: 1rem;
+}
+
+.content-grid .articles-list-entry-actions span {
+}
+
+.content-grid .articles-list-entry-actions a {
+	color: inherit;
+	text-decoration: none;
+	font-weight: bold;
+	border-bottom: 1px solid transparent;
+}
+
+.content-grid .articles-list-entry-actions a:hover,
+.content-grid .articles-list-entry-actions a:active {
+	color: $color-darkgrey;
+	border-bottom: 1px dotted $color-darkgrey;
 }
 
 
@@ -370,10 +397,14 @@ $rule-line-thickness: 4px;
 	.content-grid #sidebar h1 {
 		font-size: 1.4rem;
 	}
+
+	.content-grid #social-icons a {
+		width: 3.5rem;
+	}
 }
 
 @media only screen and (max-width: 480px) {
-	.content-grid #article-title {
+	.content-grid .page-title {
 		text-align: center;
 	}
 
@@ -395,6 +426,10 @@ $rule-line-thickness: 4px;
 	.content-grid #article-date {
 		width: 100%;
 		text-align: center;
+	}
+
+	.content-grid #social-icons a {
+		width: 3rem;
 	}
 
 	.content-grid #articles-list {
