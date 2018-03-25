@@ -38,7 +38,7 @@
 								</div>
 							</section>
 							<section id="article-date">
-								<span><i class="zmdi zmdi-calendar"></i> 23rd March, 2018</span>
+								<span><i class="zmdi zmdi-calendar"></i> <time datetime="2018-03-23T19:00">23rd March, 2018</time></span>
 							</section>
 						</section>
 						<figure id="article-image">

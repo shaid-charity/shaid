@@ -13,6 +13,7 @@
 	- [ ] Edit post
 	- [ ] Create post
 - [ ] Accounts
+	- [ ] Log in
 	- [ ] View account
 	- [ ] Manage account
 - [ ] Events

@@ -375,6 +375,20 @@ $rule-line-thickness: 4px;
 }
 
 
+// Create and modify blog posts
+
+.content-grid #post-editor .post-input {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 1rem;
+}
+
+.content-grid #post-editor .post-controls {
+	display: flex;
+	flex-direction: row;
+}
+
+
 // Media queries
 
 

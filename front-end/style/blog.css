@@ -288,6 +288,15 @@
   color: #1C0B19;
   border-bottom: 1px dotted #1C0B19; }
 
+.content-grid #post-editor .post-input {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem; }
+
+.content-grid #post-editor .post-controls {
+  display: flex;
+  flex-direction: row; }
+
 @media only screen and (max-width: 1199px) {
   .content-grid #sidebar h1 {
     font-size: 1.7rem; } }
