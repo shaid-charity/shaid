@@ -7,9 +7,7 @@
 	<header id="header">
 		<div class="header-content">
 			<div class="header-logo">
-				<a href="#">
-					<!-- ORIGINAL FROM SHAID SITE: <img src="assets/logo-small.png" alt="SHAID" /> -->
-					<!-- NEWER "DIFFERENT" VERSION: <img src="assets/logos/header-logo.png" alt="SHAID" /> -->
+				<a href="index.php">
 					<img src="./assets/logos/header-logo-old.jpg" alt="SHAID">
 				</a>
 			</div>
