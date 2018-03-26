@@ -262,7 +262,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $user_count = 0;
           while($query->fetch()){
             echo "<tr>";
-            echo "<td></td>"; //will come in very near future
+            //find if user has any unreviwed posts
+            echo "<td></td>"; //glyphs for unreviewed posts will come in enar future
             echo "<td>$user_email</td>";
             echo "<td>$first_name</td>";
             echo "<td>$last_name</td>";
