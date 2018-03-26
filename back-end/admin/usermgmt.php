@@ -107,6 +107,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $("#search_button").click(function(){
         window.location.replace("usermgmt.php?search_query=" + $("#search_query").val());
       });
+
+      $(".view_posts_button").on("click", function(event){
+        var userID = $(this).data("userid");
+        alert("display posts for user id: " + userID);
+        //window.location.replace("viewPosts.php?user=" + userID);
+      });
     });
   </script>
 </head>
@@ -228,10 +234,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <table id="table_of_users" class="table table-hover">
       <thead>
         <tr>
+          <th>New</th>
           <th>Email</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Role</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -253,11 +262,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $user_count = 0;
           while($query->fetch()){
             echo "<tr>";
+            echo "<td></td>"; //will come in very near future
             echo "<td>$user_email</td>";
             echo "<td>$first_name</td>";
             echo "<td>$last_name</td>";
             echo "<td>$role</td>";
-            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='".$user_id."' data-useremail='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "' data-roleid='".$role_id."' data-companyid='".$company_id."' data-representative='".$can_represent_company."' data-biography='".$biography."'>Edit User</button></td></tr>";
+            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='".$user_id."' data-useremail='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "' data-roleid='".$role_id."' data-companyid='".$company_id."' data-representative='".$can_represent_company."' data-biography='".$biography."'>Edit User</button></td>";
+            echo "<td><button type='button' class='btn btn-primary view_posts_button' data-userid='".$user_id."'>Posts</button></td>";
+            echo "</tr>";
             $user_count += 1;
           }
           $user_count = 0;
