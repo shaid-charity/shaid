@@ -13,14 +13,6 @@ $stmt->execute(array($session_number));
 $userID = $stmt->fetch()['user_id'];
 
 if (!isset($_GET['action'])) {
-
-	// Get an array of all categories
-	$stmt = $db->query("SELECT `id` FROM `categories`");
-	
-	$categories = Array();
-	foreach ($stmt as $row) {
-		$categories[] = new Category($db, $row['id']);
-	}
 ?>
 
 
