@@ -56,7 +56,7 @@ CREATE TABLE `companies` (
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `campaign_id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL,
+  `title` varchar(150) NOT NULL,
   `start_datetime` datetime NOT NULL,
   `end_datetime` datetime NOT NULL,
   `closing_datetime` datetime NOT NULL,
@@ -65,8 +65,9 @@ CREATE TABLE `events` (
   `ticket_price` decimal(10,2) NOT NULL,
   `location` varchar(100) NOT NULL,
   `company` int(11) NOT NULL,
-  `description` varchar(1500) NOT NULL,
-  `image` varchar(150) NOT NULL
+  `content` varchar(1500) NOT NULL,
+  `image` varchar(150) NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -269,7 +270,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -311,7 +312,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `session_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `session_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `ticket_sales`
