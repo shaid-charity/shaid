@@ -6,16 +6,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
     case 'ADD':
     $representing = getRepresenting($_POST["representative"]);
-    $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company) VALUES(?,?,?,?,?,?,?,?,?);");
-    $query->bind_param("sssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "--------------------", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing));
-    $query->execute();;
+    $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography) VALUES(?,?,?,?,?,?,?,?,?,?);");
+    $query->bind_param("ssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "--------------------", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]));
+    $query->execute();
     $query->close();
     break;
 
     case 'UPDATE':
     $representing = getRepresenting($_POST["representative"]);
-    $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=? WHERE user_id=?;");
-    $query->bind_param("sssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["user_id"]));
+    $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
+    $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
     $query->execute();
     $query->close();
     break;
@@ -73,6 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           modal.find("#user_details_form_action").val("UPDATE");
           modal.find("#userperm").val(user.data("roleid"));
           modal.find("#company").val(user.data("companyid"));
+          modal.find("#biography").val(user.data("biography"));
           if(user.data("representative") === 1){
             $("#representative").prop("checked", true);
           }
@@ -85,12 +86,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           modal.find("#last_name").val("");
           modal.find("#userperm").val(5);
           modal.find("#company").val(1);
+          modal.find("#biography").val("");
           $("#representative").prop("checked", false);
           modal.find("#user_details_form_action").val("ADD");
           $("#submit_user_details").html("Add user");
           $("#delete_user").hide();
         }
-
       });
 
       $("#submit_user_details").click(function(event){
@@ -106,44 +107,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $("#search_button").click(function(){
         window.location.replace("usermgmt.php?search_query=" + $("#search_query").val());
       });
+
+      $(".view_posts_button").on("click", function(event){
+        var userID = $(this).data("userid");
+        alert("display posts for user id: " + userID);
+        //window.location.replace("viewPosts.php?user=" + userID);
+      });
     });
   </script>
 </head>
 <body>
-  <!-- Top navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
-    <a class="navbar-brand" href="#">SHAID Admin Panel</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Content
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="createCategory.php">Create Category</a>
-            <a class="dropdown-item" href="viewCategories.php">View Categories</a>
-            <a class="dropdown-item" href="post.php">Create Post</a>
-            <a class="dropdown-item" href="viewPosts.php">View Posts</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="usermgmt.php">User Management<span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-
-      <form class="form-inline my-2 my-lg-0" method="POST" style="float:right;">
-        <input type="hidden" name="action" value="LOGOUT"/>
-        <input type='submit' class='btn btn-outline-danger my-2 my-sm-0' value="Log Out" />
-      </form>
-    </div>
-  </nav>
-
   <div class="container">
     <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -208,6 +181,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   <label class="form-check-label" for="representative">Represents Company</label>
                 </div>
               </div>
+              <div class="custom-file">
+  		          <input type="file" class="custom-file-input" id="avatar" name="avatar">
+  		          <label class="custom-file-label" for="avatar" id="avatar">Choose profile picture</label>
+	            </div>
+              <div class="form-group">
+                </br>
+                <label class="form-control-label" for="biography">Biography:</label>
+                <textarea class="form-control" id="biography" name="biography" rows="6"></textarea>
+              </div>
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger mr-auto" id="delete_user">Delete User</button>
@@ -252,16 +234,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <table id="table_of_users" class="table table-hover">
       <thead>
         <tr>
+          <th>New</th>
           <th>Email</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Role</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <?php
               //display users based on search query; if empty search or initial load of page -> show all users
-          $sql = "SELECT user_id, email, first_name, last_name, roles.name, role_id, company_id, can_represent_company FROM users, roles WHERE roles.id = users.role_id";
+          $sql = "SELECT user_id, email, first_name, last_name, roles.name, role_id, company_id, can_represent_company, biography FROM users, roles WHERE roles.id = users.role_id";
           $query = null;
           if(!empty($_GET["search_query"])){
             $sql .= " AND ((user_id LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?));";
@@ -272,16 +257,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $query = $con->prepare($sql);
           }
           $query->execute();
-          $query->bind_result($user_id, $user_email, $first_name, $last_name, $role, $role_id, $company_id, $can_represent_company);
+          $query->bind_result($user_id, $user_email, $first_name, $last_name, $role, $role_id, $company_id, $can_represent_company, $biography);
 
           $user_count = 0;
           while($query->fetch()){
             echo "<tr>";
+            //find if user has any unreviwed posts
+            echo "<td></td>"; //glyphs for unreviewed posts will come in enar future
             echo "<td>$user_email</td>";
             echo "<td>$first_name</td>";
             echo "<td>$last_name</td>";
             echo "<td>$role</td>";
-            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='".$user_id."' data-useremail='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "' data-roleid='".$role_id."' data-companyid='".$company_id."' data-representative='".$can_represent_company."'>Edit User</button></td></tr>";
+            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='".$user_id."' data-useremail='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "' data-roleid='".$role_id."' data-companyid='".$company_id."' data-representative='".$can_represent_company."' data-biography='".$biography."'>Edit User</button></td>";
+            echo "<td><button type='button' class='btn btn-primary view_posts_button' data-userid='".$user_id."'>Posts</button></td>";
+            echo "</tr>";
             $user_count += 1;
           }
           $user_count = 0;
