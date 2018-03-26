@@ -29,11 +29,11 @@
 					<section id="post-editor">
 						<form action="">
 							<div class="post-input">
-								<label for="post-title">Title</label>
+								<label for="post-title" class="section-label">Title</label>
 								<input type="text" name="title" id="post-title">
 							</div>
 							<div class="post-input">
-								<label for="post-category">Category</label>
+								<label for="post-category" class="section-label">Category</label>
 								<select name="category" id="post-category">
 									<option value=""></option>
 									<option value="id1">Category 1</option>
@@ -42,15 +42,20 @@
 								</select>
 							</div>
 							<div class="post-input">
-								<label for="post-featured-image">Featured image</label>
-								<input type="file" name="featured-image" id="post-featured-image">
+								<span class="section-label">Featured image</span>
+								<div class="post-input-row">
+									<div class="post-input">
+										<label for="post-featured-image">Image file</label>
+										<input type="file" name="featured-image" id="post-featured-image">
+									</div>
+									<div class="post-input">
+										<label for="post-featured-image-caption">Featured image caption</label>
+										<input type="text" name="featured-image-caption" id="post-featured-image-caption">
+									</div>
+								</div>
 							</div>
 							<div class="post-input">
-								<label for="post-featured-image-caption">Featured image caption</label>
-								<input type="text" name="featured-image-caption" id="post-featured-image-caption">
-							</div>
-							<div class="post-input">
-								<label for="post-content">Post content</label>
+								<label for="post-content" class="section-label">Post content</label>
 								<textarea name="content" id="post-content"></textarea>
 							</div>
 						</button>
@@ -68,11 +73,9 @@
 					</section>
 					<section id="post-actions">
 						<h1>Actions</h1>
-						<div class="post-controls">
-							<button type="button" class="button-dark button-smaller">Save as Draft</button>
+						<div class="sidebar-actions">
+							<button type="button" class="button-dark button-smaller">Save Draft</button>
 							<button type="button" class="button-dark button-smaller">Preview</button>
-						</div>
-						<div class="post-controls">
 							<button type="submit" class="button-green button-smaller">Publish</button>
 						</div>
 					</section>

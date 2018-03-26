@@ -56,17 +56,27 @@ img {
   height: auto;
   vertical-align: middle; }
 
-input[type="text"] {
+textarea,
+input[type="text"],
+select {
   border-radius: 0px;
   padding: 0.6rem;
   font-size: inherit;
+  font-family: "Open Sans", sans-serif;
   color: #1C0B19;
   background-color: #FFFFFF;
   border: 2px solid #999999;
   outline: none; }
 
-input[type="text"]:focus {
+textarea:focus,
+input[type="text"]:focus,
+select:focus {
   border-color: #1C0B19; }
+
+textarea {
+  min-height: 25rem;
+  min-width: 100%;
+  max-width: 100%; }
 
 /* Classes */
 .button-smaller {

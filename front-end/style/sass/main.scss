@@ -65,18 +65,29 @@ img {
 	vertical-align: middle;
 }
 
-input[type="text"] {
+textarea,
+input[type="text"],
+select {
 	border-radius: 0px;
 	padding: 0.6rem;
 	font-size: inherit;
+	font-family: $body-fonts;
 	color: $color-lightblack;
 	background-color: $color-white;
 	border: 2px solid $color-mediumgrey;
 	outline: none;
 }
 
-input[type="text"]:focus {
+textarea:focus,
+input[type="text"]:focus,
+select:focus {
 	border-color: $color-lightblack;
+}
+
+textarea {
+	min-height: 25rem;
+	min-width: 100%;
+	max-width: 100%;
 }
 
 

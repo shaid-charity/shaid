@@ -78,9 +78,11 @@ $rule-line-thickness: 4px;
 	display: flex;
 	justify-content: space-between;
 	padding-top: 0.2rem;
+	flex-wrap: wrap;
 }
 
-.content-grid .sidebar-actions a {
+.content-grid .sidebar-actions a,
+.content-grid .sidebar-actions button {
 	flex-grow: 0;
 	width: 48%;
 }
@@ -375,7 +377,7 @@ $rule-line-thickness: 4px;
 }
 
 
-// Create and modify blog posts
+// Blog post editor
 
 .content-grid #post-editor .post-input {
 	display: flex;
@@ -383,9 +385,28 @@ $rule-line-thickness: 4px;
 	padding-bottom: 1rem;
 }
 
-.content-grid #post-actions .post-controls {
+.content-grid #post-editor .post-input-row {
 	display: flex;
 	flex-direction: row;
+}
+
+.content-grid #post-editor .post-input-row .post-input:last-child {
+	flex-grow: 1;
+}
+
+.content-grid #post-editor input[type="file"] {
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.content-grid #post-editor label {
+	padding: 0.5rem 0;
+	font-size: 1rem;
+}
+
+.content-grid #post-editor .section-label {
+	padding: 0.5rem 0;
+	font-size: 1.1rem;
 }
 
 
@@ -416,6 +437,17 @@ $rule-line-thickness: 4px;
 	.content-grid #social-icons a {
 		width: 3.5rem;
 	}
+	
+	.content-grid #post-editor .post-input-row {
+		flex-wrap: wrap;
+	}
+	
+	.content-grid #post-editor .post-input-row .post-input {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 576px) {
 }
 
 @media only screen and (max-width: 480px) {
@@ -461,5 +493,10 @@ $rule-line-thickness: 4px;
 		height: 10rem;
 		margin: 0;
 		margin-bottom: 1rem;
+	}
+
+	.content-grid .sidebar-actions a,
+	.content-grid .sidebar-actions button {
+		width: 100%;
 	}
 }
