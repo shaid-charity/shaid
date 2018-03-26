@@ -82,6 +82,12 @@ input[type="text"]:focus {
 
 /* Classes */
 
+.button-smaller {
+	@include button;
+	padding: 0.6rem 0.8rem !important;
+	margin: 0.5rem 0 !important;
+}
+
 .button-light {
 	@include button;
 	color: $color-white;
@@ -625,7 +631,7 @@ footer {
 	.navigation ul {
 		padding-left: 0.25rem;
 	}
-	
+
 	.navigation ul li a {
 		padding: $navigation-item-padding-smaller-squashed;
 	}
