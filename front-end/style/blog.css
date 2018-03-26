@@ -221,8 +221,8 @@
 .content-grid #social-icons img {
   width: 100%; }
 
-.article-formatting-blockquote {
-  padding-left: 1rem;
+.content-grid #article-content blockquote {
+  padding: 0.5rem 0 0.5rem 1rem;
   margin-left: 0rem;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -293,7 +293,7 @@
   flex-direction: column;
   padding-bottom: 1rem; }
 
-.content-grid #post-editor .post-controls {
+.content-grid #post-actions .post-controls {
   display: flex;
   flex-direction: row; }
 

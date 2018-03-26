@@ -62,6 +62,7 @@ $transition-ease-text: all 0.05 ease 0s;
 	text-transform: uppercase;
 	line-height: 1;
 	transition: $transition-ease;
+	cursor: pointer;
 }
 
 @mixin container {

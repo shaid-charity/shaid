@@ -42,33 +42,39 @@
 								</select>
 							</div>
 							<div class="post-input">
-								<label for="post-header-image">Header image</label>
-								<input type="file" name="header-image" id="post-header-image">
+								<label for="post-featured-image">Featured image</label>
+								<input type="file" name="featured-image" id="post-featured-image">
 							</div>
 							<div class="post-input">
-								<label for="post-header-image-caption">Header image caption</label>
-								<input type="text" name="header-image-caption" id="post-header-image-caption">
+								<label for="post-featured-image-caption">Featured image caption</label>
+								<input type="text" name="featured-image-caption" id="post-featured-image-caption">
 							</div>
 							<div class="post-input">
 								<label for="post-content">Post content</label>
 								<textarea name="content" id="post-content"></textarea>
-							</div>
-							<div class="post-controls">
-								<button type="submit">Publish</button>
-								<button type="button">Save as Draft</button>
 							</div>
 						</button>
 					</section>
 				</section>
 				<aside id="sidebar">
 					<section id="admin-sidebar-actions">
-						<h1>Actions</h1>
+						<h1>Options</h1>
 						<ul>
-							<li><a href="#">Action 1</a></li>
-							<li><a href="#">Action 2</a></li>
-							<li><a href="#">Action 3</a></li>
-							<li><a href="#">Action 4</a></li>
+							<li><a href="#">Option 1</a></li>
+							<li><a href="#">Option 2</a></li>
+							<li><a href="#">Option 3</a></li>
+							<li><a href="#">Option 4</a></li>
 						</ul>
+					</section>
+					<section id="post-actions">
+						<h1>Actions</h1>
+						<div class="post-controls">
+							<button type="button" class="button-dark button-smaller">Save as Draft</button>
+							<button type="button" class="button-dark button-smaller">Preview</button>
+						</div>
+						<div class="post-controls">
+							<button type="submit" class="button-green button-smaller">Publish</button>
+						</div>
 					</section>
 				</aside>
 			</div>
