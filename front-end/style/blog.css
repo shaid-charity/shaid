@@ -71,9 +71,17 @@
   flex-direction: row; }
 
 .recent-posts-thumbnail {
+  display: inline-block;
   margin-right: 0.75rem;
-  width: 5rem;
-  flex-shrink: 0; }
+  min-width: 5rem;
+  max-width: 5rem;
+  min-height: 4rem;
+  max-height: 4rem;
+  flex-shrink: 0;
+  background-image: url("http://via.placeholder.com/80x65");
+  background-size: cover;
+  background-color: #F2F2F2;
+  background-position: 50% 50%; }
 
 .recent-posts-thumbnail img {
   width: 100%; }

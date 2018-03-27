@@ -87,19 +87,23 @@
 					</section>
 				</section>
 				<aside id="sidebar">
-					<section id="post-associated">
-						<h1>Campaign</h1>
-						<h2>Name Of This Campaign</h2>
-						<img src="http://via.placeholder.com/350x150" class="sidebar-large-image">
-						<p>A brief description of what this campaign is all about...</p>
+					<section>
+						<h1>Info</h1>
+						<ul>
+							<li>
+								<span><strong>Status:</strong>
+								<em>[Status]</em></span>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h1>Options</h1>
 						<div class="sidebar-actions">
-							<a href="#" class="button-dark">More info</a>
-							<a href="#" class="button-dark">Donate</a>
+							<button type="button" class="button-dark">Save Draft</button>
+							<button type="submit" class="button-dark">Edit</button>
+							<button type="button" class="button-green">Publish</button>
 						</div>
 					</section>
-					<?php
-						require_once(SITE_ROOT . '/includes/sidebar_modules/recent_posts.php');
-					?>
 				</aside>
 			</div>
 		</div>

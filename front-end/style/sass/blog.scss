@@ -104,9 +104,17 @@ $rule-line-thickness: 4px;
 }
 
 .recent-posts-thumbnail {
+	display: inline-block;
 	margin-right: 0.75rem;
-	width: 5rem;
+	min-width: 5rem;
+	max-width: 5rem;
+	min-height: 4rem;
+	max-height: 4rem;
 	flex-shrink: 0;
+	background-image: url('http://via.placeholder.com/80x65');
+	background-size: cover;
+	background-color: $color-lightgrey;
+	background-position: 50% 50%;
 }
 
 .recent-posts-thumbnail img {
