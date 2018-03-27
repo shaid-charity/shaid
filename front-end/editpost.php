@@ -24,7 +24,7 @@
 						<span><a href="./blog.php">Blog</a></span>
 					</section>
 					<div class="page-title">
-						<h1>New Post</h1>
+						<h1>Edit Post</h1>
 					</div>
 					<section id="post-editor">
 						<form action="">
@@ -67,16 +67,22 @@
 						<ul>
 							<li>
 								<span><strong>Status:</strong>
-								<em>New</em></span>
+								<em>[Draft/Published]</em></span>
 							</li>
 						</ul>
 					</section>
 					<section>
-						<h1>Publish</h1>
+						<h1>Update</h1>
 						<div class="sidebar-actions">
 							<button type="button" class="button-dark">Save Draft</button>
 							<button type="submit" class="button-dark">Preview</button>
-							<button type="button" class="button-green">Publish</button>
+							<button type="button" class="button-green">Update</button>
+						</div>
+					</section>
+					<section>
+						<h1>Delete</h1>
+						<div class="sidebar-actions">
+							<button type="button" class="button-red">Delete</button>
 						</div>
 					</section>
 				</aside>

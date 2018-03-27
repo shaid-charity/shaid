@@ -78,6 +78,11 @@ select {
 	outline: none;
 }
 
+textarea:hover,
+input[type="text"]:hover,
+select:hover {
+}
+
 textarea:focus,
 input[type="text"]:focus,
 select:focus {
@@ -134,8 +139,21 @@ textarea {
 
 .button-green:hover,
 .button-green:focus {
-	background-color: $color-grey;
+	background-color: transparent;
 	color: $color-brandgreen;
+}
+
+.button-red {
+	@include button;
+	background-color: $color-red;
+	border-color: $color-red;
+	color: $color-white;
+}
+
+.button-red:hover,
+.button-red:focus {
+	background-color: transparent;
+	color: $color-red;
 }
 
 .inner-container {
@@ -501,6 +519,7 @@ footer {
 
 .footer-section h2 {
 	padding-top: 0;
+	padding-bottom: 0.75rem;
 }
 
 .footer-section ul {
