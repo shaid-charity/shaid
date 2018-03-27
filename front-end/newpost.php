@@ -35,7 +35,7 @@
 							<div class="post-input">
 								<label for="post-category" class="section-label">Category</label>
 								<select name="category" id="post-category">
-									<option value=""></option>
+									<option value="">Select</option>
 									<option value="id1">Category 1</option>
 									<option value="id2">Category 2</option>
 									<option value="id3">Category 3</option>
@@ -72,11 +72,20 @@
 						</ul>
 					</section>
 					<section>
+						<h1>Campaign</h1>
+						<div class="sidebar-input">
+							<select>
+								<option value="">None</option>
+								<option value="id1">Campaign 1</option>
+							</select>
+						</div>
+					</section>
+					<section>
 						<h1>Publish</h1>
 						<div class="sidebar-actions">
 							<button type="button" class="button-dark">Save Draft</button>
-							<button type="submit" class="button-dark">Preview</button>
 							<button type="button" class="button-green">Publish</button>
+							<button type="submit" class="button-dark">Preview</button>
 						</div>
 					</section>
 				</aside>

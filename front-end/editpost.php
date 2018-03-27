@@ -72,11 +72,20 @@
 						</ul>
 					</section>
 					<section>
+						<h1>Campaign</h1>
+						<div class="sidebar-input">
+							<select>
+								<option value="">None</option>
+								<option value="id1">Campaign 1</option>
+							</select>
+						</div>
+					</section>
+					<section>
 						<h1>Update</h1>
 						<div class="sidebar-actions">
 							<button type="button" class="button-dark">Save Draft</button>
-							<button type="submit" class="button-dark">Preview</button>
 							<button type="button" class="button-green">Update</button>
+							<button type="submit" class="button-dark">Preview</button>
 						</div>
 					</section>
 					<section>

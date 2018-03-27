@@ -25,19 +25,26 @@
 					</div>
 					<section id="articles-list">
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="blogpost.php"></a>
+							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
 							<div class="articles-list-entry-info">
-								<a href="blogpost.php"><h2>A Most Recent Blog Post About Homelessness</h2></a>
+								<a href="viewpost.php"><h2>A Most Recent Blog Post About Homelessness</h2></a>
 								<p>A description of the most recent blog post.</p>
 								<div class="articles-list-entry-actions">
-									<a href="category.php">Category Name</a>
+									<ul>
+										<li>
+											<span><i class="zmdi zmdi-calendar"></i> <time datetime="2018-03-23T19:00">23/03/2018</time></span>
+										</li>
+										<li>
+											<a href="category.php">Category Name</a>
+										</li>
+									</ul>
 								</div>
 							</div>
 						</div>
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="blogpost.php"></a>
+							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
 							<div class="articles-list-entry-info">
-								<a href="blogpost.php"><h2>Another Blog Post About Homelessness</h2></a>
+								<a href="viewpost.php"><h2>Another Blog Post About Homelessness</h2></a>
 								<p>A shorter description about this post.</p>
 								<div class="articles-list-entry-actions">
 									<a href="category.php">Category Name</a>
@@ -45,9 +52,9 @@
 							</div>
 						</div>
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="blogpost.php"></a>
+							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
 							<div class="articles-list-entry-info">
-								<a href="blogpost.php"><h2>Rough Sleeping Up UK-Wide</h2></a>
+								<a href="viewpost.php"><h2>Rough Sleeping Up UK-Wide</h2></a>
 								<p>What does this tell us about the UK's welfare system?</p>
 								<div class="articles-list-entry-actions">
 									<a href="category.php">Category Name</a>
@@ -55,9 +62,9 @@
 							</div>
 						</div>
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="blogpost.php"></a>
+							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
 							<div class="articles-list-entry-info">
-								<a href="blogpost.php"><h2>Official Homelessness Statistics Released</h2></a>
+								<a href="viewpost.php"><h2>Official Homelessness Statistics Released</h2></a>
 								<p>Big news today as the official figures for homelessness have been released&mdash;see our analysis in this in-depth blog post.</p>
 								<div class="articles-list-entry-actions">
 									<a href="category.php">Category Name</a>
@@ -67,17 +74,9 @@
 					</section>
 				</section>
 				<aside id="sidebar">
-					<section id="categories-list">
-						<h1>Categories</h1>
-						<ul>
-							<li><a href="category.php">Category 1</a></li>
-							<li><a href="category.php">Category 2</a></li>
-							<li><a href="category.php">Category 3</a></li>
-							<li><a href="category.php">Category 4</a></li>
-							<li><a href="category.php">Category 5</a></li>
-							<li><a href="category.php">Category 6</a></li>
-						</ul>
-					</section>
+					<?php
+						require_once(SITE_ROOT . '/includes/sidebar_modules/categories_list.php');
+					?>
 				</aside>
 			</div>
 		</div>

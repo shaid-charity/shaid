@@ -87,6 +87,13 @@
 					</section>
 				</section>
 				<aside id="sidebar">
+					<section>
+						<h1>Admin options</h1>
+						<div class="sidebar-actions">
+							<button type="button" class="button-dark">Edit</button>
+							<button type="button" class="button-dark">Make draft</button>
+						</div>
+					</section>
 					<section id="post-associated">
 						<h1>Campaign</h1>
 						<h2>Name Of This Campaign</h2>

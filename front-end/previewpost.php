@@ -61,47 +61,14 @@
 							<p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services vis-a-vis cutting-edge deliverables.</p>
 						</section>
 					</article>
-					<div class="short-separator-container">
-						<div class="short-separator-line">
-						</div>
-					</div>
-					<section id="article-footer">
-						<h2>Share this article</h2>
-						<section id="social-icons">
-							<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
-								<img src="./assets/social/svg/facebook (3).svg" alt="Share on Facebook">
-							</a>
-							<a href="http://www.twitter.com/share?url=https://example.org/&hashtags=shaid" target="_blank">
-								<img src="./assets/social/svg/twitter (3).svg" alt="Share on Twitter">
-							</a>
-							<a href="https://www.linkedin.com/shareArticle?mini=true&url=http://developer.linkedin.com&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn" target="_blank">
-								<img src="./assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
-							</a>
-							<a href="http://www.reddit.com/submit?url=http://shaid.org.uk&title=Shaid%20New%20Blog%20Post" target="_blank">
-								<img src="./assets/social/svg/reddit (3).svg" alt="Share on Reddit">
-							</a>
-							<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}&title={title}&caption={desc}&tags={hash_tags}" target="_blank">
-								<img src="./assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
-							</a>
-						</section>
-					</section>
 				</section>
 				<aside id="sidebar">
 					<section>
-						<h1>Info</h1>
-						<ul>
-							<li>
-								<span><strong>Status:</strong>
-								<em>[Status]</em></span>
-							</li>
-						</ul>
-					</section>
-					<section>
-						<h1>Options</h1>
+						<h1>Post preview</h1>
 						<div class="sidebar-actions">
 							<button type="button" class="button-dark">Save Draft</button>
-							<button type="submit" class="button-dark">Edit</button>
 							<button type="button" class="button-green">Publish</button>
+							<button type="submit" class="button-dark">Edit</button>
 						</div>
 					</section>
 				</aside>
