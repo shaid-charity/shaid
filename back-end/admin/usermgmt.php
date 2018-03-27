@@ -258,12 +258,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           }
           $query->execute();
           $query->bind_result($user_id, $user_email, $first_name, $last_name, $role, $role_id, $company_id, $can_represent_company, $biography);
+          $query->store_result();
 
           $user_count = 0;
           while($query->fetch()){
             echo "<tr>";
+
             //find if user has any unreviwed posts
-            echo "<td></td>"; //glyphs for unreviewed posts will come in enar future
+            $sql = "SELECT COUNT(id) FROM posts WHERE user_id=? AND approved=0;";
+            $countQuery = $con->prepare($sql);
+            echo $con->error;
+            $countQuery->bind_param("s", $user_id);
+            $countQuery->execute();
+            $countQuery->bind_result($notApprovedPostsCount);
+            $countQuery->fetch();
+
+            //display blue dot if the user has unreviewed posts
+            if($notApprovedPostsCount > 0){
+              echo "<td style='text-align:center; color:007bff'>&#9673</td>";
+            } else {
+              echo "<td></td>";
+            }
+            $countQuery->close();
+
             echo "<td>$user_email</td>";
             echo "<td>$first_name</td>";
             echo "<td>$last_name</td>";
