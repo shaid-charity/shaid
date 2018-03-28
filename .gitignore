@@ -1,3 +1,6 @@
+# top-level
+.DS_Store
+
 # front-end
 front-end/style/.sass-cache/*
 
