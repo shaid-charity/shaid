@@ -22,30 +22,32 @@
 	<main id="main-content">
 		<?php
 			if (isset($_GET['id'])) {
-			// Get the post's details
-			$post = new Post($db, $_GET['id']);
+				// Get the post's details
+				$post = new Post($db, $_GET['id']);
 
-			if (isset($_GET['action']) && $_GET['action'] == 'update') {
-				// Update the post
-				$post->setName($_POST['title']);
-				$post->setCategory($_POST['category']);
-				$post->setContent($_POST['content']);
-				$file = $_FILES['image'];
+				if (isset($_GET['action']) && $_GET['action'] == 'update') {
+					// Update the post
+					$post->setName($_POST['title']);
+					$post->setCategory($_POST['category']);
+					$post->setContent($_POST['content']);
+					$post->setCampaign($_POST['campaign']);
+					$file = $_FILES['image'];
 
-				// If a new main image was uploaded, change it
-				if (file_exists($file['tmp_name'])) {
-					$uploadManager = new UploadManager();
-					$uploadManager->setFilename($file['name']);
-					$imagePath = $uploadManager->getPath();
-					$uploadManager->upload($file);
+					// If a new main image was uploaded, change it
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager = new UploadManager();
+						$uploadManager->setFilename($file['name']);
+						$imagePath = $uploadManager->getPath();
+						$uploadManager->upload($file);
 
-					$post->setImage($imagePath);
-				}
+						$post->setImage($imagePath);
+					}
 
-				if ($_POST['saveType'] == 'Update') {
-					$post->setPublished(1);
-				} else if ($_POST['saveType'] == 'Save Draft') {
-					$post->setPublished(0);
+					if ($_POST['saveType'] == 'Update') {
+						$post->setPublished(1);
+					} else if ($_POST['saveType'] == 'Save Draft') {
+						$post->setPublished(0);
+					}
 				}
 			}
 		?>
@@ -132,9 +134,21 @@
 					<section>
 						<h1>Campaign</h1>
 						<div class="sidebar-input">
-							<select>
-								<option value="">None</option>
-								<option value="id1">Campaign 1</option>
+							<select name="campaign">
+								<option value="0">None</option>
+								<?php
+									// Get all campaigns
+									$stmt = $db->query("SELECT `id` FROM `campaigns`");
+										
+									foreach ($stmt as $row) {
+										$c = new Campaign($db, $row['id']);
+										if ($post->getCampaign() !== null && $c->getID() == $post->getCampaign()->getID()) {
+											echo "<option value='" . $c->getID() . "' selected>" . $c->getTitle() . "</option>";
+										} else {
+											echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";
+										}
+									}
+								?>
 							</select>
 						</div>
 					</section>
@@ -158,7 +172,6 @@
 		</div>
 	</main>
 	<?php
-		}
 		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
