@@ -5,5 +5,5 @@
     */
 ?>
 					<div class="article-message-banner">
-						Post published successfully.
+						Post draft saved successfully.
 					</div>
