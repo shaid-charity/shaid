@@ -103,7 +103,7 @@
 			<h1>Are you sure?</h1>
 			<p>Do you really want to delete this post? This action cannot be undone.</p>
 			<div class="modal-message-buttons">
-				<button type="button" class="button-dark">Cancel</button>
+				<button type="button" id="cancel-delete-post-button" class="button-dark">Cancel</button>
 				<button type="button" id="delete-post-button" class="button-red">Delete</button>
 			</div>
 		</div>
