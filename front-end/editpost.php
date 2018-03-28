@@ -91,16 +91,27 @@
 					<section>
 						<h1>Delete</h1>
 						<div class="sidebar-actions">
-							<button type="button" class="button-red">Delete</button>
+							<button type="button" id="delete-post-button" class="button-red">Delete</button>
 						</div>
 					</section>
 				</aside>
 			</div>
 		</div>
 	</main>
+	<div id="delete-post-modal" class="modal-container">
+		<div id="delete-post-message" class="modal-message">
+			<h1>Are you sure?</h1>
+			<p>Do you really want to delete this post? This action cannot be undone.</p>
+			<div class="modal-message-buttons">
+				<button type="button" class="button-dark">Cancel</button>
+				<button type="button" id="delete-post-button" class="button-red">Delete</button>
+			</div>
+		</div>
+	</div>
 	<?php
 		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
+	<script src="./scripts/blogpost.js" type="text/javascript"></script>
 </body>
 </html>

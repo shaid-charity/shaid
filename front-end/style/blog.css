@@ -367,6 +367,50 @@
   padding: 0.5rem 0;
   font-size: 1.1rem; }
 
+.modal-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity 0.1s ease-in;
+  visibility: hidden;
+  opacity: 0.0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center; }
+
+.modal-message {
+  max-width: 700px;
+  padding: 2rem;
+  margin: 2rem;
+  background-color: #FFFFFF;
+  display: block;
+  box-shadow: 0px 0px 67px -8px rgba(0, 0, 0, 0.5); }
+
+.modal-message h1 {
+  font-size: 1.4rem;
+  padding-top: 0; }
+
+.modal-message p {
+  padding: 0.5rem 0; }
+
+.modal-message-buttons {
+  margin: auto;
+  padding: 1rem 2rem 0 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.modal-message-buttons button {
+  flex-grow: 1;
+  margin: 0 0.5rem; }
+
 @media only screen and (max-width: 1199px) {
   .content-grid #sidebar h1 {
     font-size: 1.7rem; } }
@@ -430,4 +474,12 @@
     width: 100%;
     height: 10rem;
     margin: 0;
-    margin-bottom: 1rem; } }
+    margin-bottom: 1rem; }
+
+  .modal-message-buttons {
+    padding-right: 0;
+    padding-left: 0; }
+
+  .modal-message-buttons button {
+    margin: 0.4rem 0.5rem;
+    width: 100%; } }

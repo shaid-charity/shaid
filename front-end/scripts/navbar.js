@@ -1,4 +1,4 @@
-// actions.js
+// navbar.js
 
 var navMenuIsExpanded = false;
 
