@@ -73,9 +73,9 @@ class Pagination {
 		if ($pageNum > 1) {
 			$prevPage = $pageNum - 1;
 
-			$this->firstAndBackLinks = "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$prevPage'>Previous</a></li>";
+			$this->firstAndBackLinks = "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$prevPage'>&laquo;</a></li>";
 		} else {
-			$this->firstAndBackLinks = "<li class='page-item disabled'><a class='page-link' href='" . $fileAndParams . "page=$prevPage'>Previous</a></li>";
+			$this->firstAndBackLinks = "<li><a class='button-dark button-smaller disabled' href='" . $fileAndParams . "page=$prevPage'>&laquo;</a></li>";
 		}
 
 		// Get the surrounding couple of page numbers as well, if possible
@@ -87,7 +87,7 @@ class Pagination {
 
 			while ($i > 1 && $j < 2) {
 				$i--;
-				$this->beforeLinks .= "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$i'>$i</a></li>";
+				$this->beforeLinks .= "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$i'>$i</a></li>";
 				$j++;
 			}
 
@@ -97,20 +97,20 @@ class Pagination {
 
 			while ($i < $this->totalNumPages && $j < 2) {
 				$i++;
-				$this->afterLinks .= "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$i'>$i</a></li>";
+				$this->afterLinks .= "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$i'>$i</a></li>";
 				$j++;
 			}
 		}
 
-		$this->currentPage = "<li class='page-item active'><a class='page-link' href='#'>$pageNum <span class='sr-only'>(current)</span></a></li>";
+		$this->currentPage = "<li'><a class='button-dark-filled button-smaller' href='#'>$pageNum</a></li>";
 
 		// Generate links to the next page
 		if ($pageNum < $this->totalNumPages) {
 			$nextPage = $pageNum + 1;
 
-			$this->nextAndLastLinks = "<li class='page-item'><a class='page-link' href='" . $fileAndParams . "page=$nextPage'>Next</a></li>";
+			$this->nextAndLastLinks = "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$nextPage'>&raquo;</a></li>";
 		} else {
-			$this->nextAndLastLinks = "<li class='page-item disabled'><a class='page-link' href='" . $fileAndParams . "page=$nextPage'>Next</a></li>";
+			$this->nextAndLastLinks = "<li><a class='button-dark button-smaller disabled' href='" . $fileAndParams . "page=$nextPage'>&raquo;</a></li>";
 		}
 
 		return $pageNum;

@@ -2,6 +2,9 @@
     $root=pathinfo($_SERVER['SCRIPT_FILENAME']);
     define('BASE_FOLDER',  basename($root['dirname']));
     define('SITE_ROOT',    realpath(dirname(__FILE__)));
+
+    require_once '../back-end/includes/settings.php';
+	require_once '../back-end/includes/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -24,54 +27,55 @@
 						<h1>SHAID Blog</h1>
 					</div>
 					<section id="articles-list">
+						<?php
+							// Get some pages, iterate through them
+							// Set up the pagination
+							$pagination = new Pagination($db, "SELECT id FROM `posts`", array());
+							$pagination->totalRecords();
+							$pagination->setLimitPerPage(5);
+							$currentPage = $pagination->getPage();
+
+							// Select the correct number of records from the DB
+							if (isset($_GET['page'])) {
+								$startFrom = ($_GET['page'] - 1) * 5;
+							} else {
+								$startFrom = 0;
+							}
+
+							// Get all posts
+							$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 5");
+								
+							foreach ($stmt as $row) {
+								$p = new Post($db, $row['id']);
+						?>
+
 						<div class="articles-list-entry">
 							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
 							<div class="articles-list-entry-info">
-								<a href="viewpost.php"><h2>A Most Recent Blog Post About Homelessness</h2></a>
+								<a href="viewpost.php"><h2><?php echo $p->getTitle(); ?></h2></a>
 								<p>A description of the most recent blog post.</p>
 								<div class="articles-list-entry-actions">
 									<ul>
 										<li>
-											<span><i class="zmdi zmdi-calendar"></i> <time datetime="2018-03-23T19:00">23/03/2018</time></span>
+											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $p->getDatePublished(); ?>"><?php echo $p->getDatePublished(); ?></time></span>
 										</li>
 										<li>
-											<a href="category.php">Category Name</a>
+											<a href="category.php"><?php echo $p->getCategory()->getName(); ?></a>
 										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
-						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
-							<div class="articles-list-entry-info">
-								<a href="viewpost.php"><h2>Another Blog Post About Homelessness</h2></a>
-								<p>A shorter description about this post.</p>
-								<div class="articles-list-entry-actions">
-									<a href="category.php">Category Name</a>
-								</div>
-							</div>
-						</div>
-						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
-							<div class="articles-list-entry-info">
-								<a href="viewpost.php"><h2>Rough Sleeping Up UK-Wide</h2></a>
-								<p>What does this tell us about the UK's welfare system?</p>
-								<div class="articles-list-entry-actions">
-									<a href="category.php">Category Name</a>
-								</div>
-							</div>
-						</div>
-						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
-							<div class="articles-list-entry-info">
-								<a href="viewpost.php"><h2>Official Homelessness Statistics Released</h2></a>
-								<p>Big news today as the official figures for homelessness have been released&mdash;see our analysis in this in-depth blog post.</p>
-								<div class="articles-list-entry-actions">
-									<a href="category.php">Category Name</a>
-								</div>
-							</div>
-						</div>
+
+						<?php } ?>
 					</section>
+					<nav>
+						<ul class="pagination">
+							<?php
+								echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagination->getCurrentPageLinks() . $pagination->getAfterLinks() . $pagination->getNextAndLastLinks();
+							?>
+						</ul>
+					</nav>
 				</section>
 				<aside id="sidebar">
 					<?php

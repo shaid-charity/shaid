@@ -81,12 +81,8 @@ class Post extends Content {
 		return $this->published;
 	}
 
-	public function getCategoryName() {
-		return $this->category->getName();
-	}
-
-	public function getCategoryID() {
-		return $this->category->getID();
+	public function getCategory() {
+		return $this->category;
 	}
 
 	// This function is private as we will never need the user to manually update the last modified datetime
