@@ -2,6 +2,9 @@
     $root=pathinfo($_SERVER['SCRIPT_FILENAME']);
     define('BASE_FOLDER',  basename($root['dirname']));
     define('SITE_ROOT',    realpath(dirname(__FILE__)));
+
+    require_once '../back-end/includes/settings.php';
+	require_once '../back-end/includes/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,9 +20,86 @@
 		require_once(SITE_ROOT . '/includes/header.php');
 	?>
 	<main id="main-content">
+		<?php
+			if (isset($_GET['id'])) {
+				// Get the post's details
+				$post = new Post($db, $_GET['id']);
+
+				if (isset($_GET['action']) && $_GET['action'] == 'update') {
+					// Update the post
+					$post->setName($_POST['title']);
+					$post->setCategory($_POST['category']);
+					$post->setContent($_POST['content']);
+					$post->setCampaign($_POST['campaign']);
+					$file = $_FILES['image'];
+
+					// If a new main image was uploaded, change it
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager = new UploadManager();
+						$uploadManager->setFilename($file['name']);
+						$imagePath = $uploadManager->getPath();
+						$uploadManager->upload($file);
+
+						$post->setImage($imagePath);
+					}
+
+					if ($_POST['saveType'] == 'Update') {
+						$post->setPublished(1);
+					} else if ($_POST['saveType'] == 'Save Draft') {
+						$post->setPublished(0);
+					}
+				}
+			} else if ($_GET['action'] == 'createNew') {
+				// Create a new post
+				// Create the blog post
+				$name = $_POST['title'];
+				$categoryID = $_POST['category'];
+				$content = $_POST['content'];
+				$campaign = $_POST['campaign'];
+				$file = $_FILES['image'];
+
+				if (file_exists($file['tmp_name'])) {
+					$uploadManager = new UploadManager();
+					$uploadManager->setFilename($file['name']);
+					$imagePath = $uploadManager->getPath();
+				} else {
+					$imagePath = '';
+				}
+
+				$userID = 1;
+
+				if ($_POST['saveType'] == "Publish") {
+					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
+
+					$post->setPublished(1);
+
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager->upload($file);
+					}
+				} else if ($_POST['saveType'] == "Save draft") {
+					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
+
+					$post->setPublished(0);
+
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager->upload($file);
+					}
+				}
+			}
+		?>
 		<div class="inner-container">
 			<div class="content-grid">
 				<section id="main">
+					<?php
+						// Check to see if the post has been updated
+						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew')) {
+							if ($post->isPublished()) {
+								require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
+							} else {
+								require_once(SITE_ROOT . '/includes/blog_modules/post_draft_message.php');
+							}
+						}
+					?>
 					<section class="page-path">
 						<span><a href="./blog.php">Blog</a></span>
 					</section>
@@ -27,18 +107,27 @@
 						<h1>Edit Post</h1>
 					</div>
 					<section id="post-editor">
-						<form action="">
+						<form action="editpost.php?action=update&id=<?php echo $post->getID(); ?>" method="post"  enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="post-title" class="section-label">Title</label>
-								<input type="text" name="title" id="post-title">
+								<input type="text" name="title" id="post-title" value="<?php echo $post->getTitle(); ?>">
 							</div>
 							<div class="post-input">
 								<label for="post-category" class="section-label">Category</label>
 								<select name="category" id="post-category">
-									<option value=""></option>
-									<option value="id1">Category 1</option>
-									<option value="id2">Category 2</option>
-									<option value="id3">Category 3</option>
+									<?php
+										$stmt = $db->query("SELECT `id` FROM `categories`");
+										
+										foreach ($stmt as $row) {
+											$cat = new Category($db, $row['id']);
+
+											if ($cat->getID() == $post->getCategoryID()) {
+												echo '<option value="' . $cat->getID() . '" selected>' . $cat->getName() . '</option>';
+											} else {
+												echo '<option value="' . $cat->getID() . '">' . $cat->getName() . '</option>';
+											}
+										}
+									?>
 								</select>
 							</div>
 							<div class="post-input">
@@ -56,7 +145,7 @@
 							</div>
 							<div class="post-input">
 								<label for="post-content" class="section-label">Post content</label>
-								<textarea name="content" id="post-content"></textarea>
+								<textarea name="content" id="post-content"><?php echo $post->getContent(); ?></textarea>
 							</div>
 						</button>
 					</section>
@@ -67,25 +156,44 @@
 						<ul>
 							<li>
 								<span><strong>Status:</strong>
-								<em>[Draft/Published]</em></span>
+								<?php
+									if ($post->isPublished()) {
+										echo '<em>Published</em>';
+									} else {
+										echo '<em>Draft</em>';
+									}
+								?>
+								</span>
 							</li>
 						</ul>
 					</section>
 					<section>
 						<h1>Campaign</h1>
 						<div class="sidebar-input">
-							<select>
-								<option value="">None</option>
-								<option value="id1">Campaign 1</option>
+							<select name="campaign">
+								<option value="0">None</option>
+								<?php
+									// Get all campaigns
+									$stmt = $db->query("SELECT `id` FROM `campaigns`");
+										
+									foreach ($stmt as $row) {
+										$c = new Campaign($db, $row['id']);
+										if ($post->getCampaign() !== null && $c->getID() == $post->getCampaign()->getID()) {
+											echo "<option value='" . $c->getID() . "' selected>" . $c->getTitle() . "</option>";
+										} else {
+											echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";
+										}
+									}
+								?>
 							</select>
 						</div>
 					</section>
 					<section>
 						<h1>Update</h1>
 						<div class="sidebar-actions">
-							<button type="button" class="button-dark">Save Draft</button>
-							<button type="button" class="button-green">Update</button>
-							<button type="submit" class="button-dark">Preview</button>
+							<input type="submit" class="button-dark" name="saveType" value="Save Draft">
+							<input type="submit" class="button-green" name="saveType" value="Update">
+							<input type="submit" class="button-dark" name="saveType" value="Preview">
 						</div>
 					</section>
 					<section>
@@ -95,6 +203,7 @@
 						</div>
 					</section>
 				</aside>
+			</form>
 			</div>
 		</div>
 	</main>
@@ -112,6 +221,18 @@
 		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
-	<script src="./scripts/blogpost.js" type="text/javascript"></script>
+
+<!-- Include the TinyMCE WYSIWYG editor -->
+<script src="../back-end/vendor/tinymce/tinymce/tinymce.min.js"></script>
+<script>
+// Load the TinyMCE editor to the appropriate text area
+tinymce.init({
+    selector: 'textarea',
+    plugins: "image link autolink lists preview",
+    menubar: "file edit format insert view",
+    toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
+});
+</script>
+<script src="./scripts/blogpost.js" type="text/javascript"></script>
 </body>
 </html>

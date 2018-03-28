@@ -66,7 +66,7 @@ class Post extends Content {
 	}
 
 	public function getCampaign() {
-		// TODO: Finish, returning campaign object
+		return $this->campaign;
 	}
 
 	public function getEvent() {
@@ -140,6 +140,21 @@ class Post extends Content {
 		}
 
 		$this->category = new Category($this->db, $categoryID);
+
+		// Also set the last modified datetime
+		$this->setLastModifiedDateTime();
+	}
+
+	public function setCampaign($campaignID) {
+		try {
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `campaign_id` = ? WHERE `id` = ?");
+			$stmt->execute([(int) $campaignID, $this->getID()]);
+		} catch (PDOException $e) {
+			echo 'Post.class.php setCampaign() error: <br />';
+			throw new Exception($e->getMessage());
+		}
+
+		$this->campaign = new Campaign($this->db, $campaignID);
 
 		// Also set the last modified datetime
 		$this->setLastModifiedDateTime();

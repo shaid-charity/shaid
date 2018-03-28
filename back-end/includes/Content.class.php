@@ -24,7 +24,7 @@ abstract class Content extends DBRecord {
 			$this->getByID($id);
 		} else if (is_null($id) && is_null($name) && !is_null($slug) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
 			$this->getBySlug($slug);
-		} else if (is_null($id) && !is_null($name) && !is_null($slug) && !is_null($content) && !is_null($image) && !is_null($keywords) && !is_null($author)) {
+		} else if (is_null($id) && !is_null($name) && !is_null($slug) && !is_null($content) && is_null($image) && !is_null($keywords) && !is_null($author)) {
 			$this->createConstructor($name, $content, $image, $keywords, $slug, $author);
 		} else {
 			throw new Exception('Incorrect parameters set!');
