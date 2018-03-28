@@ -325,6 +325,16 @@ $rule-line-thickness: 4px;
 	font-style: italic;
 }
 
+.article-message-banner {
+	width: 100%;
+	background-color: $color-brandgreen;
+	color: $color-white;
+	font-weight: bold;
+	text-align: center;
+	padding: 1rem;
+	margin-bottom: 1.5rem;
+}
+
 
 // Articles list
 

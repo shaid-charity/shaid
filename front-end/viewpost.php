@@ -20,6 +20,10 @@
 		<div class="inner-container">
 			<div class="content-grid">
 				<section id="main">
+					<?php
+						require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
+						// require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
+					?>
 					<article id="article">
 						<section class="page-path">
 							<span><a href="./blog.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="./category.php">Category</a></span>
@@ -87,13 +91,9 @@
 					</section>
 				</section>
 				<aside id="sidebar">
-					<section>
-						<h1>Admin options</h1>
-						<div class="sidebar-actions">
-							<button type="button" class="button-dark">Edit</button>
-							<button type="button" class="button-dark">Make draft</button>
-						</div>
-					</section>
+					<?php
+						require_once(SITE_ROOT . '/includes/sidebar_modules/post_admin_options.php');
+					?>
 					<section id="post-associated">
 						<h1>Campaign</h1>
 						<h2>Name Of This Campaign</h2>

@@ -253,6 +253,15 @@
   border-left: 4px solid #EAEAEA;
   font-style: italic; }
 
+.article-message-banner {
+  width: 100%;
+  background-color: #008194;
+  color: #FFFFFF;
+  font-weight: bold;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1.5rem; }
+
 .content-grid #articles-list {
   display: grid;
   grid-auto-rows: 1fr;
