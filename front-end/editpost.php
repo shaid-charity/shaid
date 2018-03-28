@@ -49,6 +49,42 @@
 						$post->setPublished(0);
 					}
 				}
+			} else if ($_GET['action'] == 'createNew') {
+				// Create a new post
+				// Create the blog post
+				$name = $_POST['title'];
+				$categoryID = $_POST['category'];
+				$content = $_POST['content'];
+				$campaign = $_POST['campaign'];
+				$file = $_FILES['image'];
+
+				if (file_exists($file['tmp_name'])) {
+					$uploadManager = new UploadManager();
+					$uploadManager->setFilename($file['name']);
+					$imagePath = $uploadManager->getPath();
+				} else {
+					$imagePath = '';
+				}
+
+				$userID = 1;
+
+				if ($_POST['saveType'] == "Publish") {
+					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
+
+					$post->setPublished(1);
+
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager->upload($file);
+					}
+				} else if ($_POST['saveType'] == "Save draft") {
+					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
+
+					$post->setPublished(0);
+
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager->upload($file);
+					}
+				}
 			}
 		?>
 		<div class="inner-container">
@@ -56,7 +92,7 @@
 				<section id="main">
 					<?php
 						// Check to see if the post has been updated
-						if (isset($_GET['action']) && $_GET['action'] == 'update') {
+						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew')) {
 							if ($post->isPublished()) {
 								require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
 							} else {

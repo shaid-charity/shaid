@@ -84,6 +84,7 @@
 						<h1>Campaign</h1>
 						<div class="sidebar-input">
 							<select>
+								<option value="0">None</option>
 								<?php
 									// Get all campaigns
 									$stmt = $db->query("SELECT `id` FROM `campaigns`");
@@ -100,7 +101,7 @@
 						<h1>Publish</h1>
 						<div class="sidebar-actions">
 							<input type="submit" class="button-dark" name="saveType" value="Save Draft">
-							<input type="submit" class="button-green" name="saveType" value="Update">
+							<input type="submit" class="button-green" name="saveType" value="Publish">
 							<input type="submit" class="button-dark" name="saveType" value="Preview">
 						</div>
 					</section>
