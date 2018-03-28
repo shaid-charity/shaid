@@ -7,11 +7,16 @@
 					<section id="categories-list">
 						<h1>Categories</h1>
 						<ul>
-							<li><a href="category.php">Category 1</a></li>
-							<li><a href="category.php">Category 2</a></li>
-							<li><a href="category.php">Category 3</a></li>
-							<li><a href="category.php">Category 4</a></li>
-							<li><a href="category.php">Category 5</a></li>
-							<li><a href="category.php">Category 6</a></li>
+							<?php
+								$stmt = $db->query("SELECT `id` FROM `categories`");
+
+								foreach ($stmt as $row) {
+									$c = new Category($db, $row['id']);
+							?>
+							<li><a href="category.php?id=<?php echo $c->getID(); ?>"><?php echo $c->getName(); ?></a></li>
+
+							<?php
+								}
+							?>
 						</ul>
 					</section>

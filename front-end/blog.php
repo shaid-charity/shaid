@@ -42,15 +42,22 @@
 								$startFrom = 0;
 							}
 
-							// Get all posts
-							$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 5");
+							// Get all posts, order by descending date
+							$stmt = $db->query("SELECT `id` FROM `posts` ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 								
 							foreach ($stmt as $row) {
 								$p = new Post($db, $row['id']);
+
+								// Decide which image we will show (do this here so there is less inline PHP below)
+								if ($p->getImagePath() == null) {
+									$imageCSS = 'background-image: url(\'assets/img/placeholder/blog_image.jpg\');';
+								} else {
+									$imageCSS = 'background-image: url(\'../back-end/admin/' . htmlentities($p->getImagePath()) . '\');';
+								}
 						?>
 
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="viewpost.php"></a>
+							<a class="articles-list-entry-thumb" href="viewpost.php" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
 								<a href="viewpost.php"><h2><?php echo $p->getTitle(); ?></h2></a>
 								<p>A description of the most recent blog post.</p>
