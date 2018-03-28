@@ -142,6 +142,25 @@ textarea {
   color: #FFFFFF;
   text-shadow: none; }
 
+.button-dark-filled {
+  display: inline-block;
+  padding: 0.8rem 1rem;
+  margin: 0.6rem 0;
+  background-color: transparent;
+  border: 2px solid;
+  font-size: 1.1rem;
+  font-family: "PT Sans", sans-serif;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 1;
+  transition: all 0.15s ease 0s;
+  cursor: pointer;
+  border-color: #1C0B19;
+  background-color: #1C0B19;
+  color: #FFFFFF;
+  text-shadow: none; }
+
 .button-green {
   display: inline-block;
   padding: 0.8rem 1rem;
@@ -266,7 +285,7 @@ main {
 .menu-search i {
   font-size: 1.8rem; }
 
-nav {
+.navbar {
   position: relative;
   width: 100%;
   align-items: center;

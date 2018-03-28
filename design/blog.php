@@ -72,6 +72,15 @@
 							</div>
 						</div>
 					</section>
+					<nav>
+						<ul class="pagination">
+							<li><a href="#" class="button-dark button-smaller"><!--Previous-->&laquo;</a></li>
+							<li><a href="#" class="button-dark-filled button-smaller">1</a></li>
+							<li><a href="#" class="button-dark button-smaller">2</a></li>
+							<li><a href="#" class="button-dark button-smaller">3</a></li>
+							<li><a href="#" class="button-dark button-smaller"><!--Next-->&raquo;</a></li>
+						</ul>
+					</nav>
 				</section>
 				<aside id="sidebar">
 					<?php

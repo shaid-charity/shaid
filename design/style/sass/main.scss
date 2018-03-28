@@ -130,6 +130,14 @@ textarea {
 	text-shadow: none;
 }
 
+.button-dark-filled {
+	@include button;
+	border-color: $color-lightblack;
+	background-color: $color-lightblack;
+	color: $color-white;
+	text-shadow: none;
+}
+
 .button-green {
 	@include button;
 	background-color: $color-brandgreen;
@@ -248,7 +256,7 @@ main {
 	font-size: 1.8rem;
 }
 
-nav {
+.navbar {
 	position: relative;
 	width: 100%;
 	align-items: center;

@@ -20,7 +20,7 @@
 			</div>
 		</div>
 	</header>
-	<nav role="navigation" id="navbar">
+	<nav role="navigation" id="navbar" class="navbar">
 		<div class="navigation inner-container">
 			<button type="button" class="navigation-menu-button" id="nav-button">
 				<i class="material-icons" id="nav-button-icon">menu</i>

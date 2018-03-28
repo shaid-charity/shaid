@@ -16,7 +16,8 @@
   padding-top: 1rem; }
 
 .content-grid-title h1 {
-  padding-top: 0; }
+  padding-top: 0.5rem;
+  padding-bottom: 1rem; }
 
 .content-grid #sidebar {
   display: flex;
@@ -366,6 +367,21 @@
 .content-grid #post-editor .section-label {
   padding: 0.5rem 0;
   font-size: 1.1rem; }
+
+.content-grid .pagination {
+  list-style-type: none;
+  width: 100%;
+  padding: 1rem 0rem 0rem 0rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.content-grid .pagination li {
+  display: inline-block;
+  padding: 0 0.2rem; }
+
+.content-grid .pagination li a {
+  text-decoration: none; }
 
 .modal-container {
   width: 100%;
