@@ -382,7 +382,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-content: center; }
+  align-content: center;
+  z-index: 2; }
 
 .modal-message {
   max-width: 700px;

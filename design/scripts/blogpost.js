@@ -40,11 +40,19 @@ $('#delete-post-button').click(function() {
 });
 
 
+$('#cancel-delete-post-button').click(function() {
+	if (deletePostModal.isVisible) {
+		hidePostModal();
+	}
+});
+
+
 $('#delete-post-modal').click(function() {
 	if (deletePostModal.isVisible) {
 		hidePostModal();
 	}
 });
+
 
 $('#delete-post-message').click(function (e) {
     // Stop propagation to delete-post-modal element
