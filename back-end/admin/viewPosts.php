@@ -42,7 +42,7 @@ if (isset($_GET['page'])) {
 //uncomment to enable
 //we should also possibly list all posts belonging to a single user
 
-//if(isset($_GET['user_id'])){
+//if(isset($_GET['user_id']) && $role_id < 3){
 //	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = " . getValidData($_GET["user_id"]) . " LIMIT $startFrom, 10");
 //} else {
 //	$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
