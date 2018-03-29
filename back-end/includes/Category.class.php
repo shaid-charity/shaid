@@ -17,6 +17,8 @@ class Category extends DBRecord {
 			$this->getByID($id);
 		} else if (is_null($id) && !is_null($name)) {
 			$this->createConstructor($name);
+		} else if (!is_null($id) && !is_null($name)) {
+			$this->getByName($name);
 		} else {
 			throw new Exception('Incorrect parameters');
 		}
@@ -36,7 +38,7 @@ class Category extends DBRecord {
 		$this->name = $result['name'];
 	}
 
-	private static function getByName($name) {
+	private function getByName($name) {
 		$stmt = $this->db->prepare('SELECT * FROM `categories` WHERE `name` = ?');
 		$stmt->execute([$name]);
 		$result = $stmt->fetch();
@@ -46,7 +48,7 @@ class Category extends DBRecord {
 			throw new Exception("No category with name '" . $name . "'");
 		}
 
-		$this->id = $id;
+		$this->id = $result['id'];
 		$this->name = $result['name'];
 	}
 

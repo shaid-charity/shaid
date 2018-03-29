@@ -4,6 +4,7 @@
         global meta and stylesheet/link tags.
         * All pages should contain this.
     */
+    require_once '.././back-end/includes/settings.php';
 ?>
 	<!-- Meta -->
     <meta charset="utf-8">
@@ -13,4 +14,4 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 	<!-- Internal stylesheets -->
-	<link href="./style/main.css" rel="stylesheet">
+	<link rel="stylesheet" href="/<?php echo INSTALLED_DIR; ?>/front-end/style/main.css">

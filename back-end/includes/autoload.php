@@ -29,5 +29,13 @@ spl_autoload_register(function($className) {
 	if (file_exists($path)) {
 		require_once $path;
 	}
+
+	// Try yet another path
+	$path = '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'back-end' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . $className . '.class.php';
+
+	// If the file exists, load it
+	if (file_exists($path)) {
+		require_once $path;
+	}
 });
 ?>

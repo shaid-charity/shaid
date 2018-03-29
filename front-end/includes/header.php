@@ -3,12 +3,13 @@
         Website header - contains logo, search bar and navigation.
         * All pages should contain this.
     */
+    require_once '.././back-end/includes/settings.php';
 ?>
 	<header id="header">
 		<div class="header-content">
 			<div class="header-logo">
 				<a href="index.php">
-					<img src="./assets/logos/header-logo-old.jpg" alt="SHAID">
+					<img src="/<?php echo INSTALLED_DIR; ?>/front-end/assets/logos/header-logo-old.jpg" alt="SHAID">
 				</a>
 			</div>
 			<span class="header-text">Single Homeless Action Initiative in Durham</span>
