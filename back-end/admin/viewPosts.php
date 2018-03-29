@@ -38,6 +38,15 @@ if (isset($_GET['page'])) {
 	$startFrom = 0;
 }
 
+//list posts by user if provided in GET (will add permission check as well)
+//uncomment to enable
+//we should also possibly list all posts belonging to a single user
+
+//if(isset($_GET['user_id'])){
+//	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = " . getValidData($_GET["user_id"]) . " LIMIT $startFrom, 10");
+//} else {
+//	$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
+//}
 // Get all posts
 $stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
 	

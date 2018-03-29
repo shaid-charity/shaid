@@ -36,8 +36,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     break;
 
     default:
-    die("Something went wrong");
-    break;
+      die("Something went wrong");
+      break;
   }
   header("Location: usermgmt.php");
   die();
@@ -110,8 +110,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
       $(".view_posts_button").on("click", function(event){
         var userID = $(this).data("userid");
-        alert("display posts for user id: " + userID);
-        //window.location.replace("viewPosts.php?user=" + userID);
+        //alert("display posts for user id: " + userID);
+        window.location.replace("viewPosts.php?user_id=" + userID);
       });
     });
   </script>

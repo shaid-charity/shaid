@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
           // Decide where to go back to
           if (!isset($_GET['back'])) {
-            header("Location: usermgmt.php");
+            header("Location: viewPosts.php");
             die();
           } else {
             header("Location: " . $_GET['back']);
