@@ -85,6 +85,10 @@ class Post extends Content {
 		return $this->category;
 	}
 
+	public function getLink() {
+		return $this->category->getName() . '/' . $this->getID() . '-' . $this->getTitle();
+	}
+
 	// This function is private as we will never need the user to manually update the last modified datetime
 	private function setLastModifiedDateTime() {
 		try {
