@@ -57,9 +57,9 @@
 						?>
 
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="<?php echo $post->getCategory()->getName() . '/' . $post->getID() . '-' . $post->getTitle(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+							<a class="articles-list-entry-thumb" href="<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="<?php echo $post->getCategory()->getName() . '/' . $post->getID() . '-' . $post->getTitle(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
+								<a href="<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
 								<p>A description of the most recent blog post.</p>
 								<div class="articles-list-entry-actions">
 									<ul>
