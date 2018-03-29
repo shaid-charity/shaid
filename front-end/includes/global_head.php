@@ -4,7 +4,7 @@
         global meta and stylesheet/link tags.
         * All pages should contain this.
     */
-    require_once '.././back-end/includes/settings.php';
+    require_once '../../back-end/includes/settings.php';
 ?>
 	<!-- Meta -->
     <meta charset="utf-8">

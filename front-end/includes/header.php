@@ -3,7 +3,7 @@
         Website header - contains logo, search bar and navigation.
         * All pages should contain this.
     */
-    require_once '.././back-end/includes/settings.php';
+    require_once '../../back-end/includes/settings.php';
 ?>
 	<header id="header">
 		<div class="header-content">
