@@ -3,21 +3,21 @@
     define('BASE_FOLDER',  basename($root['dirname']));
     define('SITE_ROOT',    realpath(dirname(__FILE__)));
 
-    require_once '../back-end/includes/settings.php';
-	require_once '../back-end/includes/config.php';
+    require_once '../../back-end/includes/settings.php';
+	require_once '../../back-end/includes/config.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>SHAID</title>
 	<?php
-		require_once(SITE_ROOT . '/includes/global_head.php');
+		require_once(SITE_ROOT . '/../includes/global_head.php');
 	?>
-	<link href="./style/blog.css" rel="stylesheet">
+	<link href="../style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
-		require_once(SITE_ROOT . '/includes/header.php');
+		require_once(SITE_ROOT . '/../includes/header.php');
 	?>
 	<main id="main-content">
 		<div class="inner-container">
@@ -111,12 +111,12 @@
 		</div>
 	</main>
 	<?php
-		require_once(SITE_ROOT . '/includes/footer.php');
-		require_once(SITE_ROOT . '/includes/global_scripts.php');
+		require_once(SITE_ROOT . '/../includes/footer.php');
+		require_once(SITE_ROOT . '/../includes/global_scripts.php');
 	?>
 
 <!-- Include the TinyMCE WYSIWYG editor -->
-<script src="../back-end/vendor/tinymce/tinymce/tinymce.min.js"></script>
+<script src="../../back-end/vendor/tinymce/tinymce/tinymce.min.js"></script>
 <script>
 // Load the TinyMCE editor to the appropriate text area
 tinymce.init({
