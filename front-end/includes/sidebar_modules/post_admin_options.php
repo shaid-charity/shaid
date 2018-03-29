@@ -7,7 +7,7 @@
 					<section>
 						<h1>Admin options</h1>
 						<div class="sidebar-actions">
-							<button type="button" class="button-dark">Edit</button>
-							<button type="button" class="button-dark">Make draft</button>
+							<a href="editpost.php?id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Edit</a>
+							<a href="editpost.php?id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Make draft</a>
 						</div>
 					</section>

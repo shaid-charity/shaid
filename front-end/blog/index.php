@@ -46,28 +46,28 @@
 							$stmt = $db->query("SELECT `id` FROM `posts` ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 								
 							foreach ($stmt as $row) {
-								$p = new Post($db, $row['id']);
+								$post = new Post($db, $row['id']);
 
 								// Decide which image we will show (do this here so there is less inline PHP below)
-								if ($p->getImagePath() == null) {
+								if ($post->getImagePath() == null) {
 									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/front-end/assets/img/placeholder/blog_image.jpg\');';
 								} else {
-									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/back-end/admin/' . htmlentities($p->getImagePath()) . '\');';
+									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/back-end/admin/' . htmlentities($post->getImagePath()) . '\');';
 								}
 						?>
 
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="viewpost.php" style="<?php echo $imageCSS; ?>"></a>
+							<a class="articles-list-entry-thumb" href="<?php echo $post->getCategory()->getName() . '/' . $post->getID() . '-' . $post->getTitle(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="viewpost.php"><h2><?php echo $p->getTitle(); ?></h2></a>
+								<a href="<?php echo $post->getCategory()->getName() . '/' . $post->getID() . '-' . $post->getTitle(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
 								<p>A description of the most recent blog post.</p>
 								<div class="articles-list-entry-actions">
 									<ul>
 										<li>
-											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $p->getDatePublished(); ?>"><?php echo $p->getDatePublished(); ?></time></span>
+											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $post->getDatePublished(); ?>"><?php echo $post->getDatePublished(); ?></time></span>
 										</li>
 										<li>
-											<a href="category.php"><?php echo $p->getCategory()->getName(); ?></a>
+											<a href="category.php"><?php echo $post->getCategory()->getName(); ?></a>
 										</li>
 									</ul>
 								</div>

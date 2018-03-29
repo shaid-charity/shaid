@@ -105,9 +105,9 @@
 						?>
 						
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="viewpost.php" style="<?php echo $imageCSS; ?>"></a>
+							<a class="articles-list-entry-thumb" href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="viewpost.php"><h2><?php echo $p->getTitle(); ?></h2></a>
+								<a href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/"><h2><?php echo $p->getTitle(); ?></h2></a>
 								<p>A description of the most recent blog post.</p>
 								<div class="articles-list-entry-actions">
 									<ul>
