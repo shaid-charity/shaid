@@ -48,7 +48,9 @@ if (isset($_GET['page'])) {
 //	$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
 //}
 // Get all posts
-$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
+
+//Will make posts from all users viewable by admins
+$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = $USER_ID LIMIT $startFrom, 10");
 	
 foreach ($stmt as $row) {
 	$p = new Post($db, $row['id']);

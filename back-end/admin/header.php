@@ -15,11 +15,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   }
 }
 
-$query = $con->prepare("SELECT session_number FROM sessions WHERE session_id=? AND session_ip=? AND session_expiration > NOW() ORDER BY session_number DESC;");
+$query = $con->prepare("SELECT user_id, session_number FROM sessions WHERE session_id=? AND session_ip=? AND session_expiration > NOW() ORDER BY session_number DESC;");
 
 $query->bind_param("ss", session_id(), $_SERVER["REMOTE_ADDR"]);
 $query->execute();
-$query->bind_result($session_number);
+$query->bind_result($USER_ID, $session_number);
 $query->fetch();
 $query->close();
 
