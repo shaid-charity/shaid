@@ -48,6 +48,14 @@
 					} else if ($_POST['saveType'] == 'Save Draft') {
 						$post->setPublished(0);
 					}
+				} else if (isset($_GET['action']) && $_GET['action'] == 'fromPreview') {
+					if ($_POST['saveType'] == 'Save Draft') {
+						$post->setPublished(0);
+					} else if ($_POST['saveType'] == 'Publish') {
+						$post->setPublished(1);
+					}
+
+					// If the Edit button was selected, do nothing
 				}
 			} else if ($_GET['action'] == 'createNew') {
 				// Create a new post
@@ -92,10 +100,11 @@
 				<section id="main">
 					<?php
 						// Check to see if the post has been updated
-						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew')) {
-							if ($post->isPublished()) {
+						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew' || $_GET['action'] == 'fromPreview')) {
+
+							if ($post->isPublished() && $_POST['saveType'] != "Edit") {
 								require_once(SITE_ROOT . '/../includes/blog_modules/post_published_message.php');
-							} else {
+							} else if ($_POST['saveType'] != "Edit") {
 								require_once(SITE_ROOT . '/../includes/blog_modules/post_draft_message.php');
 							}
 						}
@@ -107,7 +116,7 @@
 						<h1>Edit Post</h1>
 					</div>
 					<section id="post-editor">
-						<form action="editpost.php?action=update&id=<?php echo $post->getID(); ?>" method="post"  enctype="multipart/form-data">
+						<form id="postForm" action="editpost.php?action=update&id=<?php echo $post->getID(); ?>" method="post"  enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="post-title" class="section-label">Title</label>
 								<input type="text" name="title" id="post-title" value="<?php echo $post->getTitle(); ?>">
@@ -193,7 +202,7 @@
 						<div class="sidebar-actions">
 							<input type="submit" class="button-dark" name="saveType" value="Save Draft">
 							<input type="submit" class="button-green" name="saveType" value="Update">
-							<input type="submit" class="button-dark" name="saveType" value="Preview">
+							<input id="previewButton" data-url="previewpost.php" type="submit" class="button-dark" name="saveType" value="Preview">
 						</div>
 					</section>
 					<section>
@@ -234,6 +243,16 @@ tinymce.init({
     plugins: "image link autolink lists preview",
     menubar: "file edit format insert view",
     toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
+});
+
+// Change the URL of the form if the Preview button was selected
+$("#previewButton").click(function(e) {
+    e.preventDefault();
+
+    var form = $("#postForm");
+
+    form.prop("action", $(this).data("url"));
+    form.submit();
 });
 </script>
 <script src="../scripts/blogpost.js" type="text/javascript"></script>

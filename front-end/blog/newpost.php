@@ -34,13 +34,13 @@
 						}
 					?>
 					<section class="page-path">
-						<span><a href="./blog.php">Blog</a></span>
+						<span><a href="./index.php">Blog</a></span>
 					</section>
 					<div class="page-title">
 						<h1>New Post</h1>
 					</div>
 					<section id="post-editor">
-						<form action="editpost.php?action=createNew" method="post"  enctype="multipart/form-data">
+						<form id="postForm" action="editpost.php?action=createNew" method="post"  enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="post-title" class="section-label">Title</label>
 								<input type="text" name="title" id="post-title">
@@ -112,7 +112,7 @@
 						<div class="sidebar-actions">
 							<input type="submit" class="button-dark" name="saveType" value="Save Draft">
 							<input type="submit" class="button-green" name="saveType" value="Publish">
-							<input type="submit" class="button-dark" name="saveType" value="Preview">
+							<input type="submit" data-url="previewpost.php" id="previewButton" class="button-dark" name="saveType" value="Preview">
 						</div>
 					</section>
 				</aside>
@@ -134,6 +134,16 @@ tinymce.init({
     plugins: "image link autolink lists preview",
     menubar: "file edit format insert view",
     toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
+});
+
+// Change the URL of the form if the Preview button was selected
+$("#previewButton").click(function(e) {
+    e.preventDefault();
+
+    var form = $("#postForm");
+
+    form.prop("action", $(this).data("url"));
+    form.submit();
 });
 </script>
 </body>
