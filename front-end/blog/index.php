@@ -67,7 +67,7 @@
 											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $post->getDatePublished(); ?>"><?php echo $post->getDatePublished(); ?></time></span>
 										</li>
 										<li>
-											<a href="category.php"><?php echo $post->getCategory()->getName(); ?></a>
+											<a href="<?php echo $post->getCategory()->getName(); ?>/"><?php echo $post->getCategory()->getName(); ?></a>
 										</li>
 									</ul>
 								</div>
