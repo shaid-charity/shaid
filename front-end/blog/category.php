@@ -31,7 +31,7 @@
 						<span><a href="./blog.php">Blog</a></span>
 					</section>
 					<div class="page-title">
-						<h1>Category Name</h1>
+						<h1><?php echo $_GET['name']; ?></h1>
 					</div>
 					<?php
 						// Check an ID was given and that it exists
@@ -115,7 +115,7 @@
 											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $p->getDatePublished(); ?>"><?php echo $p->getDatePublished(); ?></time></span>
 										</li>
 										<li>
-											<a href="category.php"><?php echo $p->getCategory()->getName(); ?></a>
+											<a href="<?php echo $p->getCategory()->getName(); ?>/"><?php echo $p->getCategory()->getName(); ?></a>
 										</li>
 									</ul>
 								</div>

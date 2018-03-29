@@ -23,6 +23,16 @@
 		<div class="inner-container">
 			<div class="content-grid">
 				<section id="main">
+					<?php
+						// Check to see if the post has been deleted
+						if ($_POST['saveType'] == 'Delete') {
+							// Delete the post in question
+							$stmt = $db->prepare("DELETE FROM `posts` WHERE `id` = ?");
+							$stmt->execute([$_POST['id']]);
+
+							require_once(SITE_ROOT . '/../includes/blog_modules/post_deleted_message.php');
+						}
+					?>
 					<section class="page-path">
 						<span><a href="./blog.php">Blog</a></span>
 					</section>

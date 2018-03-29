@@ -213,7 +213,10 @@
 			<p>Do you really want to delete this post? This action cannot be undone.</p>
 			<div class="modal-message-buttons">
 				<button type="button" id="cancel-delete-post-button" class="button-dark">Cancel</button>
-				<button type="button" id="delete-post-button" class="button-red">Delete</button>
+				<form action="newpost.php" method="post">
+					<input type="submit" id="delete-post-button" class="button-red" name="saveType" value="Delete">
+					<input type="hidden" name="id" value="<?php echo $post->getID(); ?>">
+				</form>
 			</div>
 		</div>
 	</div>
@@ -233,6 +236,6 @@ tinymce.init({
     toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
 });
 </script>
-<script src="./scripts/blogpost.js" type="text/javascript"></script>
+<script src="../scripts/blogpost.js" type="text/javascript"></script>
 </body>
 </html>
