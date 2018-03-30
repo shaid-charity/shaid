@@ -42,15 +42,15 @@ if (isset($_GET['page'])) {
 //uncomment to enable
 //we should also possibly list all posts belonging to a single user
 
-//if(isset($_GET['user_id']) && $role_id < 3){
-//	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = " . getValidData($_GET["user_id"]) . " LIMIT $startFrom, 10");
-//} else {
-//	$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
-//}
 // Get all posts
+if(isset($_GET['user_id']) && $role_id == 1){
+	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = " . getValidData($_GET["user_id"]) . " LIMIT $startFrom, 10");
+} else {
+	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = $USER_ID LIMIT $startFrom, 10");
+}
 
-//Will make posts from all users viewable by admins
-$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = $USER_ID LIMIT $startFrom, 10");
+//
+//$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
 	
 foreach ($stmt as $row) {
 	$p = new Post($db, $row['id']);
