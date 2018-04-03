@@ -64,7 +64,19 @@
 			<ul>
 				<li><a href="terms-conditions.php">Terms and Conditions</a></li>
 				<li>&bull;</li>
+				<?php
+					if ($user == null) {
+				?>
 				<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/login.php">Log in</a></li>
-			</ul>
+				<?php
+					} else {
+				?>
+				<li><a href="#">Admin Panel</a></li>
+				<li>&bull;</li>
+				<li><a onclick="$('#logoutForm').submit();">Log out</a></li>
+				<?php
+					}
+				?>
+ 			</ul>
 		</div>
 	</footer>
