@@ -67,6 +67,8 @@ img {
 
 textarea,
 input[type="text"],
+input[type="password"],
+input[type="email"],
 select {
 	border-radius: 0px;
 	padding: 0.6rem;
@@ -85,6 +87,8 @@ select:hover {
 
 textarea:focus,
 input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
 select:focus {
 	border-color: $color-lightblack;
 }
@@ -106,62 +110,62 @@ textarea {
 
 .button-light {
 	@include button;
-	color: $color-white;
-	border-color: $color-white;
+	color: $color-white !important;
+	border-color: $color-white !important;
 }
 
 .button-light:hover,
 .button-light:focus {
 	background-color: $color-white;
-	color: $color-lightblack;
+	color: $color-lightblack !important;
 	text-shadow: none;
 }
 
 .button-dark {
 	@include button;
-	color: $color-lightblack;
-	border-color: $color-lightblack;
+	color: $color-lightblack !important;
+	border-color: $color-lightblack !important;
 }
 
 .button-dark:hover,
 .button-dark:focus {
 	background-color: $color-lightblack;
-	color: $color-white;
+	color: $color-white !important;
 	text-shadow: none;
 }
 
 .button-dark-filled {
 	@include button;
-	border-color: $color-lightblack;
+	border-color: $color-lightblack !important;
 	background-color: $color-lightblack;
-	color: $color-white;
+	color: $color-white !important;
 	text-shadow: none;
 }
 
 .button-green {
 	@include button;
 	background-color: $color-brandgreen;
-	border-color: $color-brandgreen;
-	color: $color-white;
+	border-color: $color-brandgreen !important;
+	color: $color-white !important;
 }
 
 .button-green:hover,
 .button-green:focus {
 	background-color: transparent;
-	color: $color-brandgreen;
+	color: $color-brandgreen !important;
 }
 
 .button-red {
 	@include button;
 	background-color: $color-red;
-	border-color: $color-red;
-	color: $color-white;
+	border-color: $color-red !important;
+	color: $color-white !important;
 }
 
 .button-red:hover,
 .button-red:focus {
 	background-color: transparent;
-	color: $color-red;
+	color: $color-red !important;
 }
 
 .inner-container {
@@ -619,6 +623,73 @@ footer {
 	line-height: 1rem;
 }
 
+.footer-charityinfo ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0.5rem 0;
+	font-size: 0.8rem;
+	line-height: 1rem;
+}
+
+.footer-charityinfo ul li {
+	display: inline;
+	padding: 0 0.25rem;
+}
+
+.footer-charityinfo a {
+	color: $color-white;
+	border-bottom: 1px solid transparent;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.footer-charityinfo a:hover,
+.footer-charityinfo a:active {
+	border-bottom: 1px dotted $color-white;
+}
+
+// Cookie warning and login
+
+.cookie-warning {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: $color-lightblack-translucent;
+	color: $color-white;
+	padding: 0.5rem 1rem;
+}
+
+.info-banner a {
+	font-weight: bold;
+	color: $color-white;
+	border-bottom: 1px solid transparent;
+	text-decoration: none;
+}
+
+.info-banner a:hover,
+.info-banner a:active {
+	border-bottom: 1px dotted $color-white;
+}
+
+.info-banner-content {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+.info-banner-text {
+	flex-grow: 1;
+	flex-shrink: 1;
+	padding-right: 1rem;
+}
+
+.info-banner-button {
+	flex-grow: 0;
+	flex-shrink: 0;
+}
+
 
 // Media queries
 
@@ -933,6 +1004,27 @@ footer {
 @media only screen and (max-width: 576px) {
 	.footer-social-button i {
 		font-size: 2.5rem;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.cookie-warning-content {
+		flex-wrap: wrap;
+	}
+
+	.cookie-warning-text {
+		display: block;
+		width: 100%;
+		padding: 0.5rem 0 0.5rem 0;
+	}
+
+	.cookie-warning-button {
+		width: 100%;
+		text-align: right;
+	}
+
+	.cookie-warning-button a {
+		width: 100%;
 	}
 }
 

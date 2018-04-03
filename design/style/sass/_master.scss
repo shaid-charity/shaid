@@ -11,6 +11,7 @@ $body-fontsize-smaller: 1.0rem;
 
 $color-white: #FFFFFF;
 $color-lightblack: #1C0B19;
+$color-lightblack-translucent: rgba(28, 11, 25, 0.9);
 $color-lightgrey: #F2F2F2;
 $color-grey: #EAEAEA;
 $color-grey-select: #E0E0E0;
@@ -55,7 +56,7 @@ $transition-ease-text: all 0.05 ease 0s;
 	padding: 0.8rem 1rem;
 	margin: 0.6rem 0;
 	background-color: transparent;
-	border: 2px solid;
+	border: 2px solid !important;
 	font-size: $body-fontsize;
 	font-family: $button-fonts;
 	text-align: center;

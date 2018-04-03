@@ -58,6 +58,8 @@ img {
 
 textarea,
 input[type="text"],
+input[type="password"],
+input[type="email"],
 select {
   border-radius: 0px;
   padding: 0.6rem;
@@ -70,6 +72,8 @@ select {
 
 textarea:focus,
 input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
 select:focus {
   border-color: #1C0B19; }
 
@@ -84,7 +88,7 @@ textarea {
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
   background-color: transparent;
-  border: 2px solid;
+  border: 2px solid !important;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
   text-align: center;
@@ -101,7 +105,7 @@ textarea {
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
   background-color: transparent;
-  border: 2px solid;
+  border: 2px solid !important;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
   text-align: center;
@@ -110,13 +114,13 @@ textarea {
   line-height: 1;
   transition: all 0.15s ease 0s;
   cursor: pointer;
-  color: #FFFFFF;
-  border-color: #FFFFFF; }
+  color: #FFFFFF !important;
+  border-color: #FFFFFF !important; }
 
 .button-light:hover,
 .button-light:focus {
   background-color: #FFFFFF;
-  color: #1C0B19;
+  color: #1C0B19 !important;
   text-shadow: none; }
 
 .button-dark {
@@ -124,7 +128,7 @@ textarea {
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
   background-color: transparent;
-  border: 2px solid;
+  border: 2px solid !important;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
   text-align: center;
@@ -133,13 +137,13 @@ textarea {
   line-height: 1;
   transition: all 0.15s ease 0s;
   cursor: pointer;
-  color: #1C0B19;
-  border-color: #1C0B19; }
+  color: #1C0B19 !important;
+  border-color: #1C0B19 !important; }
 
 .button-dark:hover,
 .button-dark:focus {
   background-color: #1C0B19;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   text-shadow: none; }
 
 .button-dark-filled {
@@ -147,7 +151,7 @@ textarea {
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
   background-color: transparent;
-  border: 2px solid;
+  border: 2px solid !important;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
   text-align: center;
@@ -156,9 +160,9 @@ textarea {
   line-height: 1;
   transition: all 0.15s ease 0s;
   cursor: pointer;
-  border-color: #1C0B19;
+  border-color: #1C0B19 !important;
   background-color: #1C0B19;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   text-shadow: none; }
 
 .button-green {
@@ -166,7 +170,7 @@ textarea {
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
   background-color: transparent;
-  border: 2px solid;
+  border: 2px solid !important;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
   text-align: center;
@@ -176,20 +180,20 @@ textarea {
   transition: all 0.15s ease 0s;
   cursor: pointer;
   background-color: #008194;
-  border-color: #008194;
-  color: #FFFFFF; }
+  border-color: #008194 !important;
+  color: #FFFFFF !important; }
 
 .button-green:hover,
 .button-green:focus {
   background-color: transparent;
-  color: #008194; }
+  color: #008194 !important; }
 
 .button-red {
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
   background-color: transparent;
-  border: 2px solid;
+  border: 2px solid !important;
   font-size: 1.1rem;
   font-family: "PT Sans", sans-serif;
   text-align: center;
@@ -199,13 +203,13 @@ textarea {
   transition: all 0.15s ease 0s;
   cursor: pointer;
   background-color: #E24D4D;
-  border-color: #E24D4D;
-  color: #FFFFFF; }
+  border-color: #E24D4D !important;
+  color: #FFFFFF !important; }
 
 .button-red:hover,
 .button-red:focus {
   background-color: transparent;
-  color: #E24D4D; }
+  color: #E24D4D !important; }
 
 .inner-container {
   margin: 0 auto !important;
@@ -571,6 +575,61 @@ footer {
   font-size: 0.8rem;
   line-height: 1rem; }
 
+.footer-charityinfo ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  line-height: 1rem; }
+
+.footer-charityinfo ul li {
+  display: inline;
+  padding: 0 0.25rem; }
+
+.footer-charityinfo a {
+  color: #FFFFFF;
+  border-bottom: 1px solid transparent;
+  text-decoration: none;
+  font-weight: bold; }
+
+.footer-charityinfo a:hover,
+.footer-charityinfo a:active {
+  border-bottom: 1px dotted #FFFFFF; }
+
+.cookie-warning {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(28, 11, 25, 0.9);
+  color: #FFFFFF;
+  padding: 0.5rem 1rem; }
+
+.info-banner a {
+  font-weight: bold;
+  color: #FFFFFF;
+  border-bottom: 1px solid transparent;
+  text-decoration: none; }
+
+.info-banner a:hover,
+.info-banner a:active {
+  border-bottom: 1px dotted #FFFFFF; }
+
+.info-banner-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center; }
+
+.info-banner-text {
+  flex-grow: 1;
+  flex-shrink: 1;
+  padding-right: 1rem; }
+
+.info-banner-button {
+  flex-grow: 0;
+  flex-shrink: 0; }
+
 @media only screen and (max-width: 1199px) {
   body {
     font-size: 1rem; }
@@ -814,6 +873,21 @@ footer {
 @media only screen and (max-width: 576px) {
   .footer-social-button i {
     font-size: 2.5rem; } }
+@media only screen and (max-width: 480px) {
+  .cookie-warning-content {
+    flex-wrap: wrap; }
+
+  .cookie-warning-text {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0 0.5rem 0; }
+
+  .cookie-warning-button {
+    width: 100%;
+    text-align: right; }
+
+  .cookie-warning-button a {
+    width: 100%; } }
 @media only screen and (max-width: 370px) {
   .footer-social-container {
     display: flex;
