@@ -9,15 +9,15 @@
 			<div class="footer-section footer-navigation">
 				<h2>Navigation</h2>
 				<ul>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/index.php">Home</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/blog.php">News &amp; Blog</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/about.php">About</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/services.php">Services</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/events.php">Events</a></li>
-					<!--<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/store.php">Store</a></li>-->
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/referrals.php">Referrals</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/downloads.php">Downloads</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/contact.php">Contact</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/index.php">Home</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/blog.php">News &amp; Blog</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/about.php">About</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/services.php">Services</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/events.php">Events</a></li>
+					<!--<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/store.php">Store</a></li>-->
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/referrals.php">Referrals</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/downloads.php">Downloads</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/contact.php">Contact</a></li>
 				</ul>
 			</div>
 			<div class="footer-section">
@@ -67,7 +67,7 @@
 				<?php
 					if ($user == null) {
 				?>
-				<li><a href="/<?php echo INSTALLED_DIR; ?>/front-end/blog/login.php">Log in</a></li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/login.php">Log in</a></li>
 				<?php
 					} else {
 				?>

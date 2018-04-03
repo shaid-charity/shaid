@@ -10,3 +10,7 @@ back-end/includes/db.php
 phpmyadmin/
 back-end/images/*
 !back-end/images/.htaccess
+
+# blog
+blog/includes/config.php
+blog/includes/db.php
