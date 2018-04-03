@@ -22,8 +22,8 @@
 									}
 							?>
 							<li>
-								<a href="/<?php echo INSTALLED_DIR . '/front-end/blog/' . $post->getLink(); ?>/" class="recent-posts-thumbnail" style="<?php echo $imageCSS; ?>"></a>
-								<span><a href="/<?php echo INSTALLED_DIR . '/front-end/blog/' . $post->getLink(); ?>/"><?php echo $post->getTitle(); ?></a></span>
+								<a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getLink(); ?>/" class="recent-posts-thumbnail" style="<?php echo $imageCSS; ?>"></a>
+								<span><a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getLink(); ?>/"><?php echo $post->getTitle(); ?></a></span>
 							</li>
 							<?php
 								}
