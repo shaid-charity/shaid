@@ -7,7 +7,7 @@
     if ($user != null) {
 ?>
 	<!-- Internal stylesheets -->
-	<link href="/<?php echo INSTALLED_DIR; ?>/front-end/style/admin.css" rel="stylesheet">
+	<link href="/<?php echo INSTALLED_DIR; ?>/style/admin.css" rel="stylesheet">
 
 	<!-- Add extra padding so footer links are still visible -->
 	<style>
