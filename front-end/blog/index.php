@@ -12,10 +12,12 @@
 	<title>SHAID</title>
 	<?php
 		require_once(SITE_ROOT . '/../includes/global_head.php');
+		require_once(SITE_ROOT . '/../includes/admin/admin_head.php');
 	?>
 </head>
 <body>
 	<?php
+		require_once(SITE_ROOT . '/../includes/admin/admin_header.php');
 		require_once(SITE_ROOT . '/../includes/header.php');
 	?>
 	<main id="main-content">
