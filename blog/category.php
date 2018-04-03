@@ -100,7 +100,7 @@
 
 								// Decide which image we will show (do this here so there is less inline PHP below)
 								if ($p->getImagePath() == null) {
-									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/front-end/assets/img/placeholder/blog_image.jpg\');';
+									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
 								} else {
 									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/admin/' . htmlentities($p->getImagePath()) . '\');';
 								}

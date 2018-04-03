@@ -29,7 +29,7 @@
 
 				// Decide which image we will show (do this here so there is less inline PHP below)
 				if ($post->getImagePath() == null) {
-					$image = '/' . INSTALLED_DIR . '/front-end/assets/img/placeholder/blog_image.jpg';
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
 				} else {
 					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($post->getImagePath());
 				}
@@ -44,7 +44,7 @@
 
 				// Decide which image we will show (do this here so there is less inline PHP below)
 				if ($post->getImagePath() == null) {
-					$image = '/' . INSTALLED_DIR . '/front-end/assets/img/placeholder/blog_image.jpg';
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
 				} else {
 					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($post->getImagePath());
 				}
