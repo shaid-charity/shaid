@@ -8,7 +8,7 @@
 	<header id="header">
 		<div class="header-content">
 			<div class="header-logo">
-				<a href="index.php">
+				<a href="/<?php echo INSTALLED_DIR; ?>/index.php">
 					<img src="/<?php echo INSTALLED_DIR; ?>/assets/logos/header-logo-old.jpg" alt="SHAID">
 				</a>
 			</div>
