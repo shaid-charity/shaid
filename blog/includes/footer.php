@@ -9,15 +9,15 @@
 			<div class="footer-section footer-navigation">
 				<h2>Navigation</h2>
 				<ul>
-					<li><a href="index.php">Home</a></li>
-					<li><a href="blog.php">News &amp; Blog</a></li>
-					<li><a href="about.php">About</a></li>
-					<li><a href="services.php">Services</a></li>
-					<li><a href="events.php">Events</a></li>
-					<!--<li><a href="store.php">Store</a></li>-->
-					<li><a href="referrals.php">Referrals</a></li>
-					<li><a href="downloads.php">Downloads</a></li>
-					<li><a href="contact.php">Contact</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/index.php">Home</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">News &amp; Blog</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/about.php">About</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/services.php">Services</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/events.php">Events</a></li>
+					<!--<li><a href="/<?php echo INSTALLED_DIR; ?>/store.php">Store</a></li>-->
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/referrals.php">Referrals</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/downloads.php">Downloads</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/contact.php">Contact</a></li>
 				</ul>
 			</div>
 			<div class="footer-section">
@@ -62,12 +62,12 @@
 		<div class="footer-charityinfo inner-container">
 			<p>Single Homeless Action Initiative in Durham Ltd is a registered company, number 3659370, and a registered charity, number 1074505.</p>
 			<ul>
-				<li><a href="terms-conditions.php">Terms and Conditions</a></li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/terms-conditions.php">Terms and Conditions</a></li>
 				<li>&bull;</li>
 				<?php
 					if ($user == null) {
 				?>
-				<li><a href="login.php">Log in</a></li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/login.php">Log in</a></li>
 				<?php
 					} else {
 				?>
