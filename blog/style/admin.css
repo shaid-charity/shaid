@@ -9,8 +9,8 @@
   padding: 0.75rem;
   background-color: #008194;
   color: #FFFFFF;
-  font-size: 1rem; 
-  z-index: 1; }
+  font-size: 1rem;
+  z-index: 100; }
 
 .info-banner-nav {
   list-style-type: none;

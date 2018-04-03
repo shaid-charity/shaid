@@ -63,7 +63,9 @@
   flex-wrap: wrap; }
 
 .content-grid .sidebar-actions a,
-.content-grid .sidebar-actions button {
+.content-grid .sidebar-actions button,
+.content-grid .sidebar-actions input[type="submit"],
+.content-grid .sidebar-actions input[type="button"] {
   flex-grow: 0;
   width: 48%; }
 
@@ -621,7 +623,9 @@
     font-size: 1.7rem; } }
 @media only screen and (min-width: 992px) and (max-width: 1080px) {
   .content-grid .sidebar-actions a,
-  .content-grid .sidebar-actions button {
+  .content-grid .sidebar-actions button
+  .content-grid .sidebar-actions input[type="submit"],
+  .content-grid .sidebar-actions input[type="button"] {
     width: 100%; } }
 @media only screen and (max-width: 991px) {
   .content-grid {
@@ -655,7 +659,9 @@
     grid-row-gap: 1rem; } }
 @media only screen and (max-width: 576px) {
   .content-grid .sidebar-actions a,
-  .content-grid .sidebar-actions button {
+  .content-grid .sidebar-actions button
+  .content-grid .sidebar-actions input[type="submit"],
+  .content-grid .sidebar-actions input[type="button"] {
     width: 100%; }
 
   .content-grid-flex-row {

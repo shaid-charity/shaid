@@ -92,7 +92,9 @@ $rule-line-thickness: 4px;
 }
 
 .content-grid .sidebar-actions a,
-.content-grid .sidebar-actions button {
+.content-grid .sidebar-actions button,
+.content-grid .sidebar-actions input[type="submit"],
+.content-grid .sidebar-actions input[type="button"] {
 	flex-grow: 0;
 	width: 48%;
 }
@@ -810,7 +812,9 @@ $rule-line-thickness: 4px;
 
 @media only screen and (min-width: 992px) and (max-width: 1080px) {
 	.content-grid .sidebar-actions a,
-	.content-grid .sidebar-actions button {
+	.content-grid .sidebar-actions button
+	.content-grid .sidebar-actions input[type="submit"],
+	.content-grid .sidebar-actions input[type="button"] {
 		width: 100%;
 	}
 }
@@ -861,7 +865,9 @@ $rule-line-thickness: 4px;
 
 @media only screen and (max-width: 576px) {
 	.content-grid .sidebar-actions a,
-	.content-grid .sidebar-actions button {
+	.content-grid .sidebar-actions button
+	.content-grid .sidebar-actions input[type="submit"],
+	.content-grid .sidebar-actions input[type="button"] {
 		width: 100%;
 	}
 

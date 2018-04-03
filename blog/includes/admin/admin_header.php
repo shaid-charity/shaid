@@ -16,7 +16,7 @@
 				</ul>
 			</div>
 			<div class="info-banner-button">
-				<a onclick="document.getElementById('logoutForm').submit();">Log out</a>
+				<a href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit();">Log out</a>
 			</div>
 			<form id="logoutForm" method="post" action="/<?php echo INSTALLED_DIR; ?>/login.php">
         		<input type="hidden" name="logout" value="LOGOUT"/>
