@@ -1,0 +1,7 @@
+Options -Indexes
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*)\/(.*)\/ ../viewpost.php?slug=$2 [L,QSA]
+RewriteRule (.*)\/ ../category.php?name=$1 [L,QSA]
