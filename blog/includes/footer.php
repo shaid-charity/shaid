@@ -67,7 +67,7 @@
 				<?php
 					if ($user == null) {
 				?>
-				<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/login.php">Log in</a></li>
+				<li><a href="login.php">Log in</a></li>
 				<?php
 					} else {
 				?>
