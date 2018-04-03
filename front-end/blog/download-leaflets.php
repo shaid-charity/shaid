@@ -2,6 +2,9 @@
     $root=pathinfo($_SERVER['SCRIPT_FILENAME']);
     define('BASE_FOLDER',  basename($root['dirname']));
     define('SITE_ROOT',    realpath(dirname(__FILE__)));
+
+    require_once '../../back-end/includes/settings.php';
+	require_once '../../back-end/includes/config.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +13,7 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 	?>
-	<link href="./style/blog.css" rel="stylesheet">
+	<link href="../style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
