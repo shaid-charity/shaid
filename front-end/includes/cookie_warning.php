@@ -10,7 +10,7 @@
 				This site uses cookies to improve your experience. <a href="https://www.aboutcookies.org">Find out more</a>.
 			</div>
 			<div class="info-banner-button">
-				<a href="#" class="button-light">OK, got it</a>
+				<a id="dismiss-cookie-warning" href="#" class="button-light">OK, got it</a>
 			</div>
 		</div>
 	</div>
