@@ -30,15 +30,15 @@
 			</button>
 			<div class="navigation-items" id="nav-items">
 				<ul>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/index.php">Home</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/blog.php">News &amp; Blog</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/about.php">About</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/services.php">Services</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/events.php">Events</a></li>
-					<!--<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/store.php">Store</a></li>-->
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/referrals.php">Referrals</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/downloads.php">Downloads</a></li>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/includes/blog/contact.php">Contact</a></li>
+					<li><a href="index.php">Home</a></li>
+					<li><a href="blog.php">News &amp; Blog</a></li>
+					<li><a href="about.php">About</a></li>
+					<li><a href="services.php">Services</a></li>
+					<li><a href="events.php">Events</a></li>
+					<!--<li><a href="store.php">Store</a></li>-->
+					<li><a href="referrals.php">Referrals</a></li>
+					<li><a href="downloads.php">Downloads</a></li>
+					<li><a href="contact.php">Contact</a></li>
 				</ul>
 				<div class="navigation-search">
 					<form action="" class="search menu-search">

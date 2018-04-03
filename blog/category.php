@@ -16,7 +16,7 @@
 	?>
 	<style>
 	<?php
-		require_once '../style/blog.css';
+		require_once 'style/blog.css';
 	?>
 	</style>
 </head>
