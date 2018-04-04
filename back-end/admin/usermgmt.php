@@ -95,6 +95,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       });
 
       $("#submit_user_details").click(function(event){
+        //simple validation, will possibly add regex for first and last name
+ 	      var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var email = $("#user_email").val();
+        var firstName = $("#first_name").val().trim();
+        var lastName = $("#last_name").val();
+
+        if(!emailRegex.test(email)){
+          alert("Invalid Email");
+          return;
+        }
+        if(!(firstName.length > 0 && firstName.length <= 30)){
+          alert("Invalid First Name");
+          return;
+        }
+        if(!(lastName.length > 0 && lastName.length <= 30)){
+          alert("Invalid Last Name");
+          return;
+        }
+
         $("#user_details_form").submit();
       });
 
@@ -137,15 +156,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <input type="hidden" name="user_id" id="user_id" value=""/>
               <div class="form-group">
                 <label for="user_email" class="form-control-label">Email:</label>
-                <input type="text" class="form-control" id="user_email" name="user_email">
+                <input type="email" class="form-control" id="user_email" name="user_email"
+                  pattern="(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|&quot(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*&quot)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])" required>
+                <!-- regex from http://emailregex.com/ -->
               </div>
               <div class="form-group">
                 <label for="first_name" class="form-control-label">First Name:</label>
-                <input type="text" class="form-control" id="first_name" name="first_name">
+                <input type="text" class="form-control" id="first_name" name="first_name" maxlength="30" required>
               </div>
               <div class="form-group">
                 <label for="last_name" class="form-control-label">Last Name:</label>
-                <input type="text" class="form-control" id="last_name" name="last_name">
+                <input type="text" class="form-control" id="last_name" name="last_name" maxlength="30" required>
               </div>
               <div class="form-group">
                 <label for="userperm" class="form-control-label">Permissions:</label>
@@ -155,7 +176,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $query->execute();
                     $query->bind_result($id, $name, $description); //description for tooltips
                     while ($query->fetch()) {
-                      echo "<option value=".$id.">".$name."</option>";
+                      echo "<option value=".$id." data-toggle='tooltip' title='".$description."'>".$name."</option>";
                     }
                     $query->close();
                   ?>
@@ -167,7 +188,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <?php
                     $query = $con->prepare("SELECT id, name FROM companies;");
                     $query->execute();
-                    $query->bind_result($id, $name); //description for tooltips
+                    $query->bind_result($id, $name);
                     while ($query->fetch()) {
                       echo "<option value=".$id.">".$name."</option>";
                     }
@@ -188,7 +209,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <div class="form-group">
                 </br>
                 <label class="form-control-label" for="biography">Biography:</label>
-                <textarea class="form-control" id="biography" name="biography" rows="6"></textarea>
+                <textarea class="form-control" id="biography" name="biography" rows="6" maxlength="1000"></textarea>
               </div>
             </form>
             <div class="modal-footer">
