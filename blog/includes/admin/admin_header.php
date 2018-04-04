@@ -13,6 +13,9 @@
 					<li>Logged in as <a href="#"><?php echo $user->getFullName(); ?></a></li>
 					<li>&bull;</li>
 					<li><a href="#">Admin panel</a></li>
+					<li>&bull;</li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/newpost.php">New Blog Post</a></li>
+					<li><a href="#">New Blog Category</a></li>
 				</ul>
 			</div>
 			<div class="info-banner-button">
