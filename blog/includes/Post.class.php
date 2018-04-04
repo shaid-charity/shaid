@@ -28,6 +28,7 @@ class Post extends Content {
 
 		// Set the other properties
 		$this->setCategory($categoryID);
+		$this->setPublishedDateTime();
 	}
 
 	public function getByID($id) {

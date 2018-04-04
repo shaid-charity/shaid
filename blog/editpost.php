@@ -89,7 +89,7 @@
 					if (file_exists($file['tmp_name'])) {
 						$uploadManager->upload($file);
 					}
-				} else if ($_POST['saveType'] == "Save draft") {
+				} else if ($_POST['saveType'] == "Save Draft") {
 					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 
 					$post->setPublished(0);
@@ -228,7 +228,7 @@
 			<div class="modal-message-buttons">
 				<button type="button" id="cancel-delete-post-button" class="button-dark">Cancel</button>
 				<form action="newpost.php" method="post">
-					<input type="submit" id="delete-post-button" class="button-red" name="saveType" value="Delete">
+					<button type="submit" id="delete-post-button" class="button-red" name="saveType" value="Delete">Delete</button>
 					<input type="hidden" name="id" value="<?php echo $post->getID(); ?>">
 				</form>
 			</div>
@@ -236,7 +236,7 @@
 	</div>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
-require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 
@@ -261,6 +261,6 @@ $("#previewButton").click(function(e) {
     form.submit();
 });
 </script>
-<script src="../scripts/blogpost.js" type="text/javascript"></script>
+<script src="/<?php echo INSTALLED_DIR; ?>/scripts/blogpost.js" type="text/javascript"></script>
 </body>
 </html>
