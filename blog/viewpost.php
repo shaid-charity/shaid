@@ -63,7 +63,7 @@
 					?>
 					<article id="article">
 						<section class="page-path">
-							<span><a href="/<?php echo INSTALLED_DIR; ?>/index.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getCategory()->getName(); ?>/"><?php echo $post->getCategory()->getName(); ?></a></span>
+							<span><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getCategory()->getName(); ?>/"><?php echo $post->getCategory()->getName(); ?></a></span>
 						</section>
 						<section id="article-title" class="page-title article-title">
 							<h1><?php echo $post->getTitle(); ?></h1>

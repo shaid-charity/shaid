@@ -13,7 +13,7 @@
 								foreach ($stmt as $row) {
 									$c = new Category($db, $row['id']);
 							?>
-							<li><a href="category.php?id=<?php echo $c->getID(); ?>"><?php echo $c->getName(); ?></a></li>
+							<li><a href="/<?php echo INSTALLED_DIR; ?>/news/<?php echo $c->getName(); ?>/"><?php echo $c->getName(); ?></a></li>
 
 							<?php
 								}
