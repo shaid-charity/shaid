@@ -38,6 +38,12 @@ class Post extends Content {
 		$stmt->execute([$id]);
 		$result = $stmt->fetch();
 
+		// Make sure the post exists
+		if ($stmt->rowCount() <= 0) {
+			// Post does not exist
+			return;
+		}
+
 		$this->datePublished = $result['datetime-published'];
 		$this->lastModifiedDate = $result['datetime-last-modified'];
 		$this->category = new Category($this->db, $result['category_id']);
@@ -51,6 +57,12 @@ class Post extends Content {
 		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `title` = ?");
 		$stmt->execute([$title]);
 		$result = $stmt->fetch();
+
+		// Make sure the post exists
+		if ($stmt->rowCount() <= 0) {
+			// Post does not exist
+			return;
+		}
 
 		$this->datePublished = $result['datetime-published'];
 		$this->lastModifiedDate = $result['datetime-last-modified'];

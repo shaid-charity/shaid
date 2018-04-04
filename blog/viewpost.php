@@ -28,7 +28,7 @@
 				$post = new Post($db, $_GET['id']);
 
 				// Decide which image we will show (do this here so there is less inline PHP below)
-				if ($post->getImagePath() == null) {
+				if ($post != null && $post->getImagePath() == null) {
 					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
 				} else {
 					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($post->getImagePath());
@@ -43,7 +43,7 @@
 				$post = new Post($db, $id);
 
 				// Decide which image we will show (do this here so there is less inline PHP below)
-				if ($post->getImagePath() == null) {
+				if ($post != null && $post->getImagePath() == null) {
 					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
 				} else {
 					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($post->getImagePath());
@@ -53,9 +53,17 @@
 		<div class="inner-container">
 			<div class="content-grid">
 				<section id="main">
+					<?php
+						// If the article is a draft and we are not logged in, show an error message
+						// Show the same message if the post does not exist
+
+						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
+							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+						} else {
+					?>
 					<article id="article">
 						<section class="page-path">
-							<span><a href="../../index.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="/<?php echo INSTALLED_DIR . '/front-end/blog/' . $post->getCategory()->getName(); ?>/">Category</a></span>
+							<span><a href="/<?php echo INSTALLED_DIR; ?>/index.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i> <a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getCategory()->getName(); ?>/"><?php echo $post->getCategory()->getName(); ?></a></span>
 						</section>
 						<section id="article-title" class="page-title article-title">
 							<h1><?php echo $post->getTitle(); ?></h1>
@@ -107,6 +115,9 @@
 						</section>
 					</section>
 				</section>
+				<?php
+					}
+				?>
 				<aside id="sidebar">
 					<?php
 						require_once(SITE_ROOT . '/includes/sidebar_modules/post_admin_options.php');

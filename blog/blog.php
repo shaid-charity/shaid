@@ -30,9 +30,16 @@
 					</div>
 					<section id="articles-list">
 						<?php
+							// If we are not logged in, only get published posts
+							if ($user == null) {
+								$query = "SELECT `id` FROM `posts` WHERE `published` = 1 ";
+							} else {
+								$query = "SELECT `id` FROM `posts` ";
+							}
+
 							// Get some pages, iterate through them
 							// Set up the pagination
-							$pagination = new Pagination($db, "SELECT id FROM `posts`", array());
+							$pagination = new Pagination($db, $query, array());
 							$pagination->totalRecords();
 							$pagination->setLimitPerPage(5);
 							$currentPage = $pagination->getPage();
@@ -45,7 +52,7 @@
 							}
 
 							// Get all posts, order by descending date
-							$stmt = $db->query("SELECT `id` FROM `posts` ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+							$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 								
 							foreach ($stmt as $row) {
 								$post = new Post($db, $row['id']);

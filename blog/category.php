@@ -46,7 +46,6 @@
 					<?php
 						} else if (isset($_GET['id'])) {
 							// Check the ID exists
-							echo 'using id';
 							try {
 								$category = new Category($db, $_GET['id']);
 							} catch (Exception $e) {
@@ -77,9 +76,16 @@
 					<section id="articles-list">
 
 						<?php
+							// If we are not logged in, only get published posts
+							if ($user == null) {
+								$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `category_id` = ? ";
+							} else {
+								$query = "SELECT `id` FROM `posts` WHERE `category_id` = ? ";
+							}
+
 							// Get all posts in category
 							// Set up the pagination
-							$pagination = new Pagination($db, "SELECT id FROM `posts` WHERE `category_id` = ?", array($category->getID()));
+							$pagination = new Pagination($db, $query, array($category->getID()));
 							$pagination->totalRecords();
 							$pagination->setLimitPerPage(5);
 							$currentPage = $pagination->getPage();
@@ -92,7 +98,7 @@
 							}
 
 							// Get all posts, order by descending date
-							$stmt = $db->prepare("SELECT `id` FROM `posts` WHERE `category_id` = ? ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+							$stmt = $db->prepare($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 							$stmt->execute([$category->getID()]);
 								
 							foreach ($stmt as $row) {
