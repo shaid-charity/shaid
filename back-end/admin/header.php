@@ -1,5 +1,4 @@
-b<?php
-
+<?php
 // This header file will include everything we need for the user management. This way we do not need to repeat any code.
 session_start();
 require_once('../includes/db.php');
