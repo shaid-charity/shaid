@@ -13,11 +13,12 @@ abstract class Content extends DBRecord {
 	private $slug;
 	private $content;
 	private $image;
+	private $imageCaption;
 	private $user;
 	private $keywords;
 
 	// TODO: Add author user - need to see Dmytro's code
-	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null) {
+	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null, $imageCaption = null) {
 		$this->db = $db;
 
 		if (!is_null($id) && is_null($name) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
@@ -41,6 +42,7 @@ abstract class Content extends DBRecord {
 		$this->slug = $result['slug'];
 		$this->content = $result['content'];
 		$this->image = $result['image'];
+		$this->imageCaption = $result['image_caption'];
 		$this->user = new User($this->db, $result['user_id']);
 	}
 
@@ -56,6 +58,7 @@ abstract class Content extends DBRecord {
 		$this->slug = $slug;
 		$this->content = $result['content'];
 		$this->image = $result['image'];
+		$this->imageCaption = $result['image_caption'];
 		$this->user = new User($this->db, $result['user_id']);
 	}
 
@@ -63,8 +66,8 @@ abstract class Content extends DBRecord {
 
 		
 		try {
-			$stmt = $this->db->prepare("INSERT INTO `$this->table`(title, content, image, user_id) VALUES (?, ?, ?, ?)");
-			$stmt->execute([$name, $content, $image, $userID]);
+			$stmt = $this->db->prepare("INSERT INTO `$this->table`(title, content, image, user_id, image_caption) VALUES (?, ?, ?, ?, ?)");
+			$stmt->execute([$name, $content, $image, $userID, $imageCaption]);
 		} catch (PDOException $e) {
 			echo 'Content.class.php createConstructor() error: <br />';
 			echo "Title: $name <br />Slug: $slug <br />Content: $content <br />Image: $image <br />Keywords: $keywords <br />Author: $userID";
@@ -103,6 +106,14 @@ abstract class Content extends DBRecord {
 
 	public function getImageName() {
 		return basename($this->image);
+	}
+
+	public function getImageCaption() {
+		if ($this->imageCaption == null) {
+			return "";
+		}
+		
+		return $this->imageCaption;
 	}
 
 	public function getKeywords() {
@@ -167,6 +178,18 @@ abstract class Content extends DBRecord {
 		}
 
 		$this->image = $image;
+	}
+
+	public function setImageCaption($imageCaption) {
+		try {
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `image_caption` = ? WHERE `id` = ?");
+			$stmt->execute([$imageCaption, $this->id]);
+		} catch (PDOException $e) {
+			echo 'Content.class.php setImageCaption() error: <br />';
+			throw new Exception($e->getMessage());
+		}
+
+		$this->imageCaption = $imageCaption;
 	}
 
 	public function setCategory($categoryID) {

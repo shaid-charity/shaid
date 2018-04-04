@@ -108,7 +108,7 @@
 								if ($p->getImagePath() == null) {
 									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
 								} else {
-									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/admin/' . htmlentities($p->getImagePath()) . '\');';
+									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($p->getImagePath()) . '\');';
 								}
 						?>
 						

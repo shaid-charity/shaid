@@ -36,14 +36,14 @@
 					$post->setCategory($_POST['category']);
 					$post->setContent($_POST['content']);
 					$post->setCampaign($_POST['campaign']);
-					$file = $_FILES['image'];
+					$post->setImageCaption($_POST['featured-image-caption']);
+					$file = $_FILES['featured-image'];
 
 					// If a new main image was uploaded, change it
 					if (file_exists($file['tmp_name'])) {
 						$uploadManager = new UploadManager();
 						$uploadManager->setFilename($file['name']);
 						$imagePath = $uploadManager->getPath();
-						$uploadManager->upload($file);
 
 						$post->setImage($imagePath);
 					}
@@ -69,7 +69,8 @@
 				$categoryID = $_POST['category'];
 				$content = $_POST['content'];
 				$campaign = $_POST['campaign'];
-				$file = $_FILES['image'];
+				$file = $_FILES['featured-image'];
+				$imageCaption = $_POST['featured-image-caption'];
 
 				if (file_exists($file['tmp_name'])) {
 					$uploadManager = new UploadManager();
@@ -79,11 +80,12 @@
 					$imagePath = '';
 				}
 
-				$userID = 1;
+				$userID = $user->getID();
 
 				if ($_POST['saveType'] == "Publish") {
 					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 
+					$post->setImageCaption($imageCaption);
 					$post->setPublished(1);
 
 					if (file_exists($file['tmp_name'])) {
@@ -92,6 +94,7 @@
 				} else if ($_POST['saveType'] == "Save Draft") {
 					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 
+					$post->setImageCaption($imageCaption);
 					$post->setPublished(0);
 
 					if (file_exists($file['tmp_name'])) {
@@ -153,7 +156,7 @@
 									</div>
 									<div class="post-input">
 										<label for="post-featured-image-caption">Featured image caption</label>
-										<input type="text" name="featured-image-caption" id="post-featured-image-caption">
+										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $post->getImageCaption(); ?>">
 									</div>
 								</div>
 							</div>

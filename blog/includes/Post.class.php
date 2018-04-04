@@ -12,7 +12,7 @@ class Post extends Content {
 	private $approved;
 	private $published;
 
-	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null, $categoryID = null, $datePublished = null, $campaignID = null, $eventID = null, $approved = null, $published = null) {
+	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $keywords = null, $categoryID = null, $datePublished = null, $campaignID = null, $eventID = null, $approved = null, $published = null, $imageCaption = null) {
 		$this->db = $db;
 
 		// Get by slug

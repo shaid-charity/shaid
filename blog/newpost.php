@@ -67,7 +67,7 @@
 								<div class="post-input-row">
 									<div class="post-input">
 										<label for="post-featured-image">Image file</label>
-										<input type="file" name="image" id="post-featured-image">
+										<input type="file" name="featured-image" id="post-featured-image">
 									</div>
 									<div class="post-input">
 										<label for="post-featured-image-caption">Featured image caption</label>

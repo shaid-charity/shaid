@@ -46,7 +46,7 @@
 				if ($post != null && $post->getImagePath() == null) {
 					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
 				} else {
-					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($post->getImagePath());
+					$image = '/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath());
 				}
 			}
 		?>
@@ -83,8 +83,8 @@
 							</section>
 						</section>
 						<figure id="article-image">
-							<img src="<?php echo $image; ?>" alt="Above: Official figures show that 1 in 2 people are homeless.">
-							<figcaption>Above: Official figures show that 1 in 2 people are homeless.</figcaption>
+							<img src="<?php echo $image; ?>" alt="<?php echo $post->getImageCaption(); ?>">
+							<figcaption><?php echo $post->getImageCaption(); ?></figcaption>
 						</figure>
 						<section id="article-content">
 							<?php echo $post->getContent(); ?>

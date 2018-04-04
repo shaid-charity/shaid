@@ -98,6 +98,7 @@ CREATE TABLE `posts` (
   `user_id` int(11) DEFAULT NULL,
   `content` varchar(1500) DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
+  `image_caption` varchar(6500) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
   `campaign_id` int(11) DEFAULT NULL,
   `event_id` int(11) DEFAULT NULL,
@@ -300,7 +301,7 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -312,7 +313,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `session_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `session_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `ticket_sales`
@@ -354,4 +355,5 @@ ALTER TABLE `ticket_sales`
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
+  ADD CONSTRAINT `users_ibfk_2` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`);

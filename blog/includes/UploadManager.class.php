@@ -2,7 +2,8 @@
 
 class UploadManager {
 	// Some settings, set to their defaults
-	private $uploadLocation = "../images/";
+	//private $uploadLocation = "/" . INSTALLED_DIR . "/images/";
+	private $uploadLocation = "images/";
 	private $filename = "name.ext";
 	private $allowedExtensions = array("image/jpeg", "image/png");
 
@@ -60,6 +61,7 @@ class UploadManager {
 		$location = $this->uploadLocation . $this->filename;
 
 		if (!is_dir($this->uploadLocation)) {
+			echo $this->uploadLocation;
 			return '<strong>Incorrect directory set!</strong>';
 		}
 		
