@@ -92,13 +92,11 @@
 				<aside id="sidebar">
 					<section>
 						<h1>Post preview</h1>
-						<div class="sidebar-actions">
-							<form action="editpost.php?action=fromPreview&id=<?php echo $post->getID(); ?>" method="post">
-								<button type="submit" class="button-dark" name="saveType" value="Save Draft">Save Draft</button>
-								<button type="submit" class="button-green" name="saveType" value="Publish">Publish</button>
-								<button type="submit" class="button-dark" name="saveType" value="Edit">Edit</button>
-							</form>
-						</div>
+						<form action="editpost.php?action=fromPreview&id=<?php echo $post->getID(); ?>" method="post" class="sidebar-actions">
+							<button type="submit" class="button-dark" name="saveType" value="Save Draft">Save Draft</button>
+							<button type="submit" class="button-green" name="saveType" value="Publish">Publish</button>
+							<button type="submit" class="button-dark" name="saveType" value="Edit">Edit</button>
+						</form>
 					</section>
 				</aside>
 			</div>
