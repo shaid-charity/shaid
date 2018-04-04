@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 class Pagination {
 	private $db;
@@ -82,13 +82,19 @@ class Pagination {
 
 		if ($this->totalNumPages > 1) {
 			// Get (up to) two page numbers < the current page
+			// Use a stack to get the correct ordering
 			$i = $pageNum;
 			$j = 0;
+			$pageStack = [];
 
 			while ($i > 1 && $j < 2) {
 				$i--;
-				$this->beforeLinks .= "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$i'>$i</a></li>";
+				array_push($pageStack, "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$i'>$i</a></li>");
 				$j++;
+			}
+
+			while (!empty($pageStack)) {
+				$this->beforeLinks .= array_pop($pageStack);
 			}
 
 			// Get (up to) two page numbers > the current page
