@@ -1,4 +1,4 @@
-s<?php
+<?php
 
 class Pagination {
 	private $db;
