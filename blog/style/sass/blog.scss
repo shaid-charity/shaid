@@ -83,6 +83,10 @@ $rule-line-thickness: 4px;
 .content-grid #post-associated {
 }
 
+.content-grid #sidebar form {
+	width: 100%;
+}
+
 .content-grid .sidebar-actions {
 	display: flex;
 	flex-direction: row;
