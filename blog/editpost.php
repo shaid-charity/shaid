@@ -27,7 +27,10 @@
 				// Get the post's details
 				$post = new Post($db, $_GET['id']);
 
-				if (isset($_GET['action']) && $_GET['action'] == 'update') {
+				// Make the post a draft if need be
+				if (isset($_GET['action']) && $_GET['action'] == 'makeDraft') {
+					$post->setPublished(0);
+				} else if (isset($_GET['action']) && $_GET['action'] == 'update') {
 					// Update the post
 					$post->setName($_POST['title']);
 					$post->setCategory($_POST['category']);
@@ -102,11 +105,11 @@
 				<section id="main">
 					<?php
 						// Check to see if the post has been updated
-						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew' || $_GET['action'] == 'fromPreview')) {
+						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew' || $_GET['action'] == 'fromPreview' || $_GET['action'] == 'makeDraft')) {
 
 							if ($post->isPublished() && $_POST['saveType'] != "Edit") {
 								require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
-							} else if ($_POST['saveType'] != "Edit") {
+							} else if ($_POST['saveType'] != "Edit" || $_GET['action'] == 'makeDraft') {
 								require_once(SITE_ROOT . '/includes/blog_modules/post_draft_message.php');
 							}
 						}
