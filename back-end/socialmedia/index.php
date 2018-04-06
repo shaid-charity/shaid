@@ -163,6 +163,87 @@ I ran it from terminal using php -S localhost:8000
 
     <div class="col-sm-5 text-left">
       <h1>Add tracking trends here?</h1>
+      <button type="button"> Email Current Top Trends</button>
+      <br>
+      <form id=form2 method = "post" >
+        <input type="text" name="keyword[]"/>
+        <input type = "submit" name="submit" id="add_key" value = "Add Keyword">
+      </form>
+
+      <?php
+          require_once('./wrapper/TwitterAPIExchange.php');
+
+          /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
+          $settings = array(
+              'oauth_access_token' => "703944336950558720-utt80LMNGr2d7XHfUTArdgE2NmJr0ME",
+              'oauth_access_token_secret' => "fuM6RTVqH16VVBBpUpQzWtzUefyQNeb1oDI5Rq5DYRInA",
+              'consumer_key' => "lvW8nadoeKijsBF6zFrGKjHVr",
+              'consumer_secret' => "NmEOvOHkLOhHsDyk00smEirmTZ72lmTgvGgsAYNxuRMxoW16qL"
+          );
+
+          $url = "https://api.twitter.com/1.1/trends/place.json";
+
+          $requestMethod = "GET";
+
+          $getfield = '?id=30079'; //Newcastle: 30079
+
+          $twitter = new TwitterAPIExchange($settings);
+          $string = json_decode($twitter->setGetfield($getfield)
+                       ->buildOauth($url, $requestMethod)
+                       ->performRequest(), $assoc=TRUE);
+
+          if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
+
+
+
+          if(isset($_POST['add_key'])){
+              array_push($keywords,"ISSET");
+              $new_word = $_POST['keyword'];
+              if(!empty($new_word)){
+                array_push($keywords,$new_word);
+                echo "\n".$new_word." has been added to your list of keywords.\n";
+              }
+
+          }
+
+          $key_trending = array();
+
+          /** $keywords_timer = gettimeofday();**/
+          /** if($keywords_timer == "0.0"){**/
+          /**   $key_trending = array();**/
+          /** }**/
+
+          echo "\nYour current keywords are:\n";
+          foreach($keywords as $word){
+            echo $word."\n";
+          }
+          echo "\n";
+
+
+          foreach($string[0]["trends"] as $items)
+            {
+              foreach($keywords as $key){
+                if(strpos($items['name'],$key)!==false){
+                  //echo "KEY FOUND: ".$key."\n";
+                  array_push($key_trending,$items['name']);
+                }
+              }
+              echo $items['name']."\n";
+            }
+
+
+          if(count($key_trending)==0){
+            echo "\nNone of your key words are currently trending.";
+          }else{
+            echo "\nThe following are trends of interest: \n";
+            foreach($key_trending as $trend){
+              echo $trend."\n";
+            }
+          }
+
+      ?>
+
+
     </div>
 
   </div>
