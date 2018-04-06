@@ -194,16 +194,19 @@ I ran it from terminal using php -S localhost:8000
 
           if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
 
-
+          $keywords = array("homelessness","tragedy","sleeping rough", "fire");
 
           if(isset($_POST['add_key'])){
-              array_push($keywords,"ISSET");
-              $new_word = $_POST['keyword'];
-              if(!empty($new_word)){
-                array_push($keywords,$new_word);
-                echo "\n".$new_word." has been added to your list of keywords.\n";
-              }
+            echo "BUTTON CLICKED";
+            addKeyword();
+          }
 
+          function addKeyword(){
+            $new_word = $_POST['keyword'];
+            if(!empty($new_word)){
+              array_push($keywords,$new_word);
+              echo "<br>".$new_word." has been added to your list of keywords.<br>";
+            }
           }
 
           $key_trending = array();
@@ -213,27 +216,35 @@ I ran it from terminal using php -S localhost:8000
           /**   $key_trending = array();**/
           /** }**/
 
-          echo "\nYour current keywords are:\n";
+
+          echo "<br><h3>Your current keywords are:</h3><br>";
           foreach($keywords as $word){
-            echo $word."\n";
+            echo $word."<br>";
           }
-          echo "\n";
 
 
+          echo "<br><h3>Current trends:</h1><br>";
+          $counter = 0; /** Twitter always gives 50 (cannot change), only display 20 **/
+          $overrideLimit = False;
           foreach($string[0]["trends"] as $items)
             {
               foreach($keywords as $key){
-                if(strpos($items['name'],$key)!==false){
+                if(strpos(strtolower($items['name']),strtolower($key))!==false){
                   //echo "KEY FOUND: ".$key."\n";
                   array_push($key_trending,$items['name']);
+                  $overrideLimit = True;
                 }
               }
-              echo $items['name']."\n";
+              $counter +=1;
+              if(($counter <= 20) || $overrideLimit){
+                echo $items['name']."<br>";
+                $overrideLimit = False;
+              }
             }
 
 
           if(count($key_trending)==0){
-            echo "\nNone of your key words are currently trending.";
+            echo "<br>None of your key words are currently trending in the top 50.<br>";
           }else{
             echo "\nThe following are trends of interest: \n";
             foreach($key_trending as $trend){
