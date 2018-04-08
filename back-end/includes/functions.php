@@ -22,4 +22,33 @@ function getRepresenting($input){
     return "0";
   }
 }
+
+//user details simple validation
+//to be tested properly
+function validateUser($email, $first_name, $lastName, $bio){
+  //email regex, same as in JS
+  $pattern = '/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+  
+  $first_name_length = strlen(getValidData(trim($first_name)));
+  $last_name_length = strlen(getValidData(trim($last_name)));
+  $bio_length = strlen(getValidData(trim($bio)));
+
+  if(preg_match($pattern, $email) === 0){
+    return false;
+  }
+
+  if($first_name_length > 50 && $first_name_length < 1){
+    return false;
+  }
+
+  if($last_name_length > 50 && $last_name_length < 1){
+    return false;
+  }
+  
+  if($bio_length > 1500){
+    return false;
+  }
+
+  return true;
+}
 ?>

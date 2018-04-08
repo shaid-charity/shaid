@@ -5,19 +5,28 @@ require_once('../includes/db.php');
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
     case 'ADD':
-    $representing = getRepresenting($_POST["representative"]);
-    $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography) VALUES(?,?,?,?,?,?,?,?,?,?);");
-    $query->bind_param("ssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "--------------------", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]));
-    $query->execute();
-    $query->close();
+    if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography'])){
+      //echo "validation successful";
+      $representing = getRepresenting($_POST["representative"]);
+      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography) VALUES(?,?,?,?,?,?,?,?,?,?);");
+      $query->bind_param("ssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "--------------------", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]));
+      $query->execute();
+      $query->close();
+    } else {
+      echo "<script>alert('something went wrong');</script>";
+    }
     break;
 
     case 'UPDATE':
-    $representing = getRepresenting($_POST["representative"]);
-    $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
-    $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
-    $query->execute();
-    $query->close();
+    if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography'])){
+      $representing = getRepresenting($_POST["representative"]);
+      $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
+      $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
+      $query->execute();
+      $query->close();
+    } else {
+      echo "<script>alert('something went wrong');</script>";
+    }
     break;
 
     case 'DELETE':
