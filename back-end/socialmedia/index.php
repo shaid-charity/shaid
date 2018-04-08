@@ -48,7 +48,7 @@ I ran it from terminal using php -S localhost:8000
     <div class="col-sm-6 text-left">
 
       <form id=form1 method = "post" >
-        <h4>Posting to social medias</h4>
+        <h4><center>Posting to social medias</center></h4>
         Enter text below:
         <br>
         <textarea  id= "input" name = "input" form = "form1"  value = "h" rows="8" cols="80"></textarea>
@@ -72,7 +72,7 @@ I ran it from terminal using php -S localhost:8000
     // create a new instance
     $tweet = new TwitterOAuth($consumerKey, $consumerSecret, $oAuthToken, $oAuthSecret);
 
-    //FACEBOOK - app not live yet so only admin can see posts
+    //FACEBOOK    - app not live yet so only admin can see posts
 
     define('FACEBOOK_SDK_V4_SRC_DIR', __DIR__ . '/src/Facebook/');
     require_once(__DIR__ . '/src/Facebook/autoload.php');
@@ -157,17 +157,17 @@ I ran it from terminal using php -S localhost:8000
     </div>
   </div>
 
-    <div class="col-sm-1 text-center">
-    <hr style="border:none; border-left:1px solid hsla(200, 10%, 50%,100);height:100vh;width:1px;">
-    </div>
 
-    <div class="col-sm-5 text-left">
-      <h1>Add tracking trends here?</h1>
+
+    <div class="col-sm-6 text-left" style="background-color: #f1f1f1">
+      <h4><center>Twitter trends</center></h4>
+      <br>
       <button type="button"> Email Current Top Trends</button>
       <br>
+      <br>
       <form id=form2 method = "post" >
-        <input type="text" name="keyword[]"/>
-        <input type = "submit" name="submit" id="add_key" value = "Add Keyword">
+        <input type="text" id="keyword" name="keyword">
+        <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
       </form>
 
       <?php
@@ -192,17 +192,15 @@ I ran it from terminal using php -S localhost:8000
                        ->buildOauth($url, $requestMethod)
                        ->performRequest(), $assoc=TRUE);
 
-          if($string["errors"][0]["message"] != "") {echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";exit();}
+          if($string["errors"][0]["message"] != "") {
+            echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";
+            exit();
+          }
 
           $keywords = array("homelessness","tragedy","sleeping rough", "fire");
 
           if(isset($_POST['add_key'])){
-            echo "BUTTON CLICKED";
-            addKeyword();
-          }
-
-          function addKeyword(){
-            $new_word = $_POST['keyword'];
+            $new_word = htmlspecialchars($_POST['keyword']);
             if(!empty($new_word)){
               array_push($keywords,$new_word);
               echo "<br>".$new_word." has been added to your list of keywords.<br>";
@@ -217,13 +215,12 @@ I ran it from terminal using php -S localhost:8000
           /** }**/
 
 
-          echo "<br><h3>Your current keywords are:</h3><br>";
+          echo "<br><h3>Your current keywords are:</h3>";
           foreach($keywords as $word){
             echo $word."<br>";
           }
 
-
-          echo "<br><h3>Current trends:</h1><br>";
+          echo "<h3>Current trends:</h1>";
           $counter = 0; /** Twitter always gives 50 (cannot change), only display 20 **/
           $overrideLimit = False;
           foreach($string[0]["trends"] as $items)
@@ -246,20 +243,14 @@ I ran it from terminal using php -S localhost:8000
           if(count($key_trending)==0){
             echo "<br>None of your key words are currently trending in the top 50.<br>";
           }else{
-            echo "\nThe following are trends of interest: \n";
+            echo "<br>\nThe following are trends of interest: \n";
             foreach($key_trending as $trend){
-              echo $trend."\n";
+              echo "<strong>".$trend."\n"."</strong>";
             }
           }
-
       ?>
-
-
     </div>
-
   </div>
 </div>
-
-
 </body>
 </html>
