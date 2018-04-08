@@ -68,9 +68,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
   <script>
     $(document).ready(function(){
+      var last_role = 5;
 
       $("#userEditModal").on("show.bs.modal", function(event){
-        var permissions = "";
         var user = $(event.relatedTarget);
         var modal = $(this);
         if(user.data("useraction") === "update"){
@@ -89,7 +89,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $("#submit_user_details").html("Update user");
           $("#delete_user").show();
 
+          last_role = user.data("roleid");
+
         } else if(user.data("useraction") === "add"){
+          last_role = 5;
+
           modal.find("#user_email").val("");
           modal.find("#first_name").val("");
           modal.find("#last_name").val("");
@@ -140,6 +144,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         var userID = $(this).data("userid");
         //alert("display posts for user id: " + userID);
         window.location.replace("viewPosts.php?user_id=" + userID);
+      });
+
+      $("#userperm").on("change", function(){
+        var current_role = $("option:selected", this).val();
+        if(current_role == 1 && confirm("Are you sure want to give this user access to everything?")){
+          $("#userperm").val(current_role);
+          last_role = current_role;          
+        } else if(current_role > 1) {
+          $("#userperm").val(current_role);          
+          last_role = current_role;
+        } else {
+          $("#userperm").val(last_role);
+        }
+        
       });
     });
   </script>
