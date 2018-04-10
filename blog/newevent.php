@@ -42,31 +42,17 @@
 						<h1>New Event</h1>
 					</div>
 					<section id="post-editor">
-						<form id="postForm" action="editpost.php?action=createNew" method="post" enctype="multipart/form-data">
+						<form id="postForm" action="editevent.php?action=createNew" method="post" enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="title" class="section-label">Title</label>
 								<input type="text" name="title" id="post-title">
-							</div>
-							<div class="post-input">
-								<label for="campaign" class="section-label">Campaign</label>
-								<select name="campaign" id="post-campaign">
-									<?php
-										// Get all campaigns
-										$stmt = $db->query("SELECT `id` FROM `campaigns`");
-										
-										foreach ($stmt as $row) {
-											$cam = new Campaign($db, $row['id']);
-											echo '<option value="' . $cam->getID() . '">' . $cam->getTitle() . '</option>';
-										}
-									?>
-								</select>
 							</div>
 							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
 									<div class="post-input">
 										<label for="startDatetime">Start date and time</label>
-										<input type="datetime-local" name="startDatetimeInput" id="post-startDatetime">
+										<input type="datetime-local" name="startDatetime" id="post-startDatetime">
 									</div>
 									<div class="post-input">
 										<label for="endDatetime">End date and time</label>

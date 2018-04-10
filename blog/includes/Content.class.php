@@ -1,4 +1,4 @@
-<?php
+d<?php
 
 abstract class Content extends DBRecord {
 	// We will use dependency injection to pass the DB object to this class

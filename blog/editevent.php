@@ -103,7 +103,7 @@
 						<form id="postForm" action="editpost.php?action=update&id=<?php echo $event->getID(); ?>" method="post" enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="title" class="section-label">Title</label>
-								<input type="text" name="title" id="post-title" value="<?php echo $event->getName(); ?>">
+								<input type="text" name="title" id="post-title" value="<?php echo $event->getTitle(); ?>">
 							</div>
 							<div class="post-input">
 								<label for="campaign" class="section-label">Campaign</label>
@@ -199,7 +199,7 @@
 										
 									foreach ($stmt as $row) {
 										$c = new Campaign($db, $row['id']);
-										if ($event->getCampaign() !== null && $c->getID() == $event->getCampaign()->getID()) {
+										if ($event->getCampaign() !== null && $event->getCampaign() != 0 && $c->getID() == $event->getCampaign()->getID()) {
 											echo "<option value='" . $c->getID() . "' selected>" . $c->getTitle() . "</option>";
 										} else {
 											echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";

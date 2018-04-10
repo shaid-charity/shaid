@@ -107,7 +107,7 @@ class Event extends Content {
 
 	public function setStartDatetime($startDatetime) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = FROM_UNIXTIME(?) WHERE `id` = ?");
 			$stmt->execute([$startDatetime, $this->getID()]);
 		} catch (PDOException $e) {
 			echo 'Event.class.php setStartDatetime() error: <br />';
@@ -119,7 +119,7 @@ class Event extends Content {
 
 	public function setEndDatetime($endDatetime) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `end_datetime` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `end_datetime` = FROM_UNIXTIME(?) WHERE `id` = ?");
 			$stmt->execute([$endDatetime, $this->getID()]);
 		} catch (PDOException $e) {
 			echo 'Event.class.php setEndDatetime() error: <br />';
@@ -131,7 +131,7 @@ class Event extends Content {
 
 	public function setClosingDatetime($closingDatetime) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `closing_datetime` = ? WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `closing_datetime` = FROM_UNIXTIME(?) WHERE `id` = ?");
 			$stmt->execute([$closingDatetime, $this->getID()]);
 		} catch (PDOException $e) {
 			echo 'Event.class.php setClosingDatetime() error: <br />';
@@ -150,7 +150,11 @@ class Event extends Content {
 			throw new Exception($e->getMessage());
 		}
 
-		$this->campaign = new Campaign($this->db, $campaignID);
+		if ($campaignID == 0) {
+			$this->campaign = 0;
+		} else {
+			$this->campaign = new Campaign($this->db, $campaignID);
+		}
 	}
 
 	public function setCapacity($capacity) {
