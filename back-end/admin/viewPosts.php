@@ -56,7 +56,7 @@ foreach ($stmt as $row) {
 	$p = new Post($db, $row['id']);
 ?>
 
-			<tr><td><?php echo $p->getTitle(); ?></td><td><?php echo $p->getCategoryName(); ?></td><td><?php echo $p->getLastModifiedDate(); ?></td><td><a class="btn btn-primary btn-sm" href="post.php?action=edit&id=<?php echo $p->getID(); ?>" name="postID">Edit</a></td></tr>
+			<tr><td><?php echo $p->getTitle(); ?></td><td><?php echo $p->getCategory()->getName(); ?></td><td><?php echo $p->getLastModifiedDate(); ?></td><td><a class="btn btn-primary btn-sm" href="post.php?action=edit&id=<?php echo $p->getID(); ?>" name="postID">Edit</a></td></tr>
 
 <?php
 
