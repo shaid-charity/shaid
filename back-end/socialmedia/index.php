@@ -51,7 +51,7 @@ I ran it from terminal using php -S localhost:8000
         <h4><center>Posting to social medias</center></h4>
         Enter text below:
         <br>
-        <textarea  id= "input" name = "input" form = "form1"  value = "h" rows="8" cols="80"></textarea>
+        <textarea  id= "input" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
         <br>
         <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
         <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
@@ -253,4 +253,10 @@ I ran it from terminal using php -S localhost:8000
   </div>
 </div>
 </body>
+<footer class="footer text-center" style="background-color: #222222">
+<div class="privacy">
+    <a href="" style="color: #808080"> Privacy policy </a>
+    <!-- need to add link!-->
+</div>
+</footer>
 </html>
