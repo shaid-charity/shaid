@@ -27,7 +27,7 @@ if(empty($session_number)){
   die('no session number');
     //return;
 } else {
-    //check if user has permission to access user management
+  //get role id
   $query = $con->prepare("SELECT role_id FROM users, sessions WHERE users.user_id = sessions.user_id AND session_number=?");
   $query->bind_param("s", $session_number);
   $query->execute();
@@ -134,7 +134,7 @@ if(empty($session_number)){
         <li class="nav-item <?php if (CURRENT_PAGE == 'contactDB') echo 'active'; if($role_id > 2) echo ' hidden';?>">
           <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item <?php if($role_id > 1) echo ' hidden';?>">
+        <li class="nav-item <?php if(CURRENT_PAGE == 'usermgmt') echo 'active'; if($role_id > 1) echo ' hidden';?>">
           <a class="nav-link" href="usermgmt.php">User Management</a>
         </li>
       </ul>

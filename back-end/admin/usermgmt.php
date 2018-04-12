@@ -1,6 +1,10 @@
 <?php
-require_once('header.php');
-require_once('../includes/db.php');
+define('CURRENT_PAGE', 'usermgmt');
+
+require_once '../includes/settings.php';
+require_once '../includes/config.php';
+require_once '../includes/db.php';
+require_once 'header.php';
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
@@ -53,116 +57,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<html>
-<head>
-  <title>User Management</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-
-  <!-- Optional theme -->
   
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function(){
-      var last_role = 5;
 
-      $("#userEditModal").on("show.bs.modal", function(event){
-        var user = $(event.relatedTarget);
-        var modal = $(this);
-        if(user.data("useraction") === "update"){
-          modal.find("#delete_id").val(user.data("userid"));
-          modal.find("#user_id").val(user.data("userid"));
-          modal.find("#user_email").val(user.data("useremail"));
-          modal.find("#first_name").val(user.data("firstname"));
-          modal.find("#last_name").val(user.data("lastname"));
-          modal.find("#user_details_form_action").val("UPDATE");
-          modal.find("#userperm").val(user.data("roleid"));
-          modal.find("#company").val(user.data("companyid"));
-          modal.find("#biography").val(user.data("biography"));
-          if(user.data("representative") === 1){
-            $("#representative").prop("checked", true);
-          }
-          $("#submit_user_details").html("Update user");
-          $("#delete_user").show();
-
-          last_role = user.data("roleid");
-
-        } else if(user.data("useraction") === "add"){
-          last_role = 5;
-
-          modal.find("#user_email").val("");
-          modal.find("#first_name").val("");
-          modal.find("#last_name").val("");
-          modal.find("#userperm").val(5);
-          modal.find("#company").val(1);
-          modal.find("#biography").val("");
-          $("#representative").prop("checked", false);
-          modal.find("#user_details_form_action").val("ADD");
-          $("#submit_user_details").html("Add user");
-          $("#delete_user").hide();
-        }
-      });
-
-      $("#submit_user_details").click(function(event){
-        //simple validation, will possibly add regex for first and last name
- 	      var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        var email = $("#user_email").val();
-        var firstName = $("#first_name").val().trim();
-        var lastName = $("#last_name").val();
-
-        if(!emailRegex.test(email)){
-          alert("Invalid Email");
-          return;
-        }
-        if(!(firstName.length > 0 && firstName.length <= 30)){
-          alert("Invalid First Name");
-          return;
-        }
-        if(!(lastName.length > 0 && lastName.length <= 30)){
-          alert("Invalid Last Name");
-          return;
-        }
-
-        $("#user_details_form").submit();
-      });
-
-      $("#delete_user").click(function(){
-        if(confirm("Are you sure want to delete this user?")){
-          $("#delete_user_form").submit();
-        }
-      });
-
-      $("#search_button").click(function(){
-        window.location.replace("usermgmt.php?search_query=" + $("#search_query").val());
-      });
-
-      $(".view_posts_button").on("click", function(event){
-        var userID = $(this).data("userid");
-        //alert("display posts for user id: " + userID);
-        window.location.replace("viewPosts.php?user_id=" + userID);
-      });
-
-      $("#userperm").on("change", function(){
-        var current_role = $("option:selected", this).val();
-        if(current_role == 1 && confirm("Are you sure want to give this user access to everything?")){
-          $("#userperm").val(current_role);
-          last_role = current_role;          
-        } else if(current_role > 1) {
-          $("#userperm").val(current_role);          
-          last_role = current_role;
-        } else {
-          $("#userperm").val(last_role);
-        }
-        
-      });
-    });
-  </script>
-</head>
-<body>
   <div class="container">
     <div class="modal fade" id="userEditModal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -345,4 +241,88 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </table>
   </div>
 </body>
+<script>
+  $(document).ready(function(){
+    var last_role = 5;
+    $("#userEditModal").on("show.bs.modal", function(event){
+      var user = $(event.relatedTarget);
+      var modal = $(this);
+      if(user.data("useraction") === "update"){
+        modal.find("#delete_id").val(user.data("userid"));
+        modal.find("#user_id").val(user.data("userid"));
+        modal.find("#user_email").val(user.data("useremail"));
+        modal.find("#first_name").val(user.data("firstname"));
+        modal.find("#last_name").val(user.data("lastname"));
+        modal.find("#user_details_form_action").val("UPDATE");
+        modal.find("#userperm").val(user.data("roleid"));
+        modal.find("#company").val(user.data("companyid"));
+        modal.find("#biography").val(user.data("biography"));
+        if(user.data("representative") === 1){
+          $("#representative").prop("checked", true);
+        }
+        $("#submit_user_details").html("Update user");
+        $("#delete_user").show();
+        last_role = user.data("roleid");
+      } else if(user.data("useraction") === "add"){
+        last_role = 5;
+        modal.find("#user_email").val("");
+        modal.find("#first_name").val("");
+        modal.find("#last_name").val("");
+        modal.find("#userperm").val(5);
+        modal.find("#company").val(1);
+        modal.find("#biography").val("");
+        $("#representative").prop("checked", false);
+        modal.find("#user_details_form_action").val("ADD");
+        $("#submit_user_details").html("Add user");
+        $("#delete_user").hide();
+      }
+    });
+    $("#submit_user_details").click(function(event){
+      //simple validation, will possibly add regex for first and last name
+      var emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var email = $("#user_email").val();
+      var firstName = $("#first_name").val().trim();
+      var lastName = $("#last_name").val();
+      if(!emailRegex.test(email)){
+        alert("Invalid Email");
+        return;
+      }
+      if(!(firstName.length > 0 && firstName.length <= 30)){
+        alert("Invalid First Name");
+        return;
+      }
+      if(!(lastName.length > 0 && lastName.length <= 30)){
+        alert("Invalid Last Name");
+        return;
+      }
+      $("#user_details_form").submit();
+    });
+    $("#delete_user").click(function(){
+      if(confirm("Are you sure want to delete this user?")){
+        $("#delete_user_form").submit();
+      }
+    });
+    $("#search_button").click(function(){
+      window.location.replace("usermgmt.php?search_query=" + $("#search_query").val());
+    });
+    $(".view_posts_button").on("click", function(event){
+      var userID = $(this).data("userid");
+      //alert("display posts for user id: " + userID);
+      window.location.replace("viewPosts.php?user_id=" + userID);
+    });
+    $("#userperm").on("change", function(){
+      var current_role = $("option:selected", this).val();
+      if(current_role == 1 && confirm("Are you sure want to give this user access to everything?")){
+        $("#userperm").val(current_role);
+        last_role = current_role;          
+      } else if(current_role > 1) {
+        $("#userperm").val(current_role);          
+        last_role = current_role;
+      } else {
+        $("#userperm").val(last_role);
+      }
+      
+    });
+  });
+</script>
 </html>

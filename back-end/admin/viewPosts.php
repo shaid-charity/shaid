@@ -26,7 +26,15 @@ require_once 'header.php';
 <?php
 
 // Set up the pagination
-$pagination = new Pagination($db, "SELECT id FROM `posts`", array());
+$pagination = null;
+
+if(isset($_GET['user_id']) && $role_id === 1){
+	$pagination = new Pagination($db, "SELECT id FROM `posts` WHERE `user_id` = ?", array(getValidData($_GET["user_id"])));
+} else if($role_id == 1){
+	$pagination = new Pagination($db, "SELECT id FROM `posts`", array());	
+} else {
+	$pagination = new Pagination($db, "SELECT id FROM `posts` WHERE `user_id` = ?", array($USER_ID));
+}
 $pagination->totalRecords();
 $pagination->setLimitPerPage(10);
 $currentPage = $pagination->getPage();
@@ -44,9 +52,12 @@ if (isset($_GET['page'])) {
 
 // Get all posts
 if(isset($_GET['user_id']) && $role_id == 1){
-	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = " . getValidData($_GET["user_id"]) . " LIMIT $startFrom, 10");
+	$stmt = $db->prepare("SELECT `id` FROM `posts` WHERE `user_id` = ? LIMIT $startFrom, 10");
+	$stmt->execute(array(getValidData($_GET["user_id"])));
+} else if($role_id == 1){
+	$stmt = $db->query("SELECT `id` FROM `posts` LIMIT $startFrom, 10");
 } else {
-	$stmt = $db->query("SELECT `id` FROM `posts` WHERE user_id = $USER_ID LIMIT $startFrom, 10");
+	$stmt = $db->query("SELECT `id` FROM `posts` WHERE `user_id` = $USER_ID LIMIT $startFrom, 10");	
 }
 
 //
