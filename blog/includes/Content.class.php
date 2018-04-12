@@ -26,7 +26,7 @@ abstract class Content extends DBRecord {
 		} else if (is_null($id) && is_null($name) && !is_null($slug) && is_null($content) && is_null($image) && is_null($author) && is_null($keywords)) {
 			$this->getBySlug($slug);
 		} else if (is_null($id) && !is_null($name) && !is_null($slug) && !is_null($content) && !is_null($keywords) && !is_null($author)) {
-			$this->createConstructor($name, $content, $image, $keywords, $slug, $author);
+			$this->createConstructor($name, $content, $image, $keywords, $slug, $author, $imageCaption);
 		} else {
 			throw new Exception('Incorrect parameters set!');
 		}
@@ -62,8 +62,10 @@ abstract class Content extends DBRecord {
 		$this->user = new User($this->db, $result['user_id']);
 	}
 
-	private function createConstructor($name, $content, $image, $keywords, $slug, $userID) {
-
+	private function createConstructor($name, $content, $image, $keywords, $slug, $userID, $imageCaption) {
+		if (is_null($imageCaption)) {
+			$imageCaption = '';
+		}
 		
 		try {
 			$stmt = $this->db->prepare("INSERT INTO `$this->table`(title, content, image, user_id, image_caption) VALUES (?, ?, ?, ?, ?)");
@@ -79,6 +81,7 @@ abstract class Content extends DBRecord {
 		$this->slug = $slug;
 		$this->content = $content;
 		$this->image = $image;
+		$this->imageCaption = $imageCaption;
 		$this->keywords = $keywords;
 		$this->user = new User($this->db, $userID);
 	}

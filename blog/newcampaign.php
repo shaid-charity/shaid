@@ -29,20 +29,20 @@
 						// Check to see if the post has been deleted
 						if ($_POST['saveType'] == 'Delete') {
 							// Delete the post in question
-							$stmt = $db->prepare("DELETE FROM `events` WHERE `id` = ?");
+							$stmt = $db->prepare("DELETE FROM `campaigns` WHERE `id` = ?");
 							$stmt->execute([$_POST['id']]);
 
 							require_once(SITE_ROOT . '/includes/blog_modules/post_deleted_message.php');
 						}
 					?>
 					<section class="page-path">
-						<span><a href="./events.php">Events</a></span>
+						<span><a href="./campaigns.php">Campaigns</a></span>
 					</section>
 					<div class="page-title">
-						<h1>New Event</h1>
+						<h1>New Campaign</h1>
 					</div>
 					<section id="post-editor">
-						<form id="postForm" action="editevent.php?action=createNew" method="post" enctype="multipart/form-data">
+						<form id="postForm" action="editcampaign.php?action=createNew" method="post" enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="title" class="section-label">Title</label>
 								<input type="text" name="title" id="post-title">
@@ -61,25 +61,8 @@
 								</div>
 							</div>
 							<div class="post-input">
-								<label for="closingDatetime" class="section-label">Closing date and time</label>
-								<input type=datetime-local name="closingDatetime" id="post-closingDatetime">
-							</div>
-							<div class="post-input">
-								<label for="location" class="section-label">Location</label>
-								<input type="text" name="location" id="post-location">
-							</div>
-							<div class="post-input">
-								<span class="section-label">Ticket Information</span>
-								<div class="post-input-row">
-									<div class="post-input">
-										<label for="capacity">Capacity</label>
-										<input type="number" name="capacity" id="post-capacity">
-									</div>
-									<div class="post-input">
-										<label for="ticketPrice">Ticket Price</label>
-										<input type="number" step="0.01" name="ticketPrice" id="post-ticketPrice">
-									</div>
-								</div>
+								<label for="goalAmount" class="section-label">Goal Amount</label>
+								<input type="number" step="0.01" name="goalAmount" id="post-goalAmount">
 							</div>
 							<div class="post-input">
 								<span class="section-label">Featured image</span>
@@ -95,10 +78,9 @@
 								</div>
 							</div>
 							<div class="post-input">
-								<label for="post-content" class="section-label">Event description</label>
+								<label for="post-content" class="section-label">Campaign description</label>
 								<textarea name="content" id="post-content"></textarea>
 							</div>
-						</button>
 					</section>
 				</section>
 				<aside id="sidebar">
@@ -112,27 +94,10 @@
 						</ul>
 					</section>
 					<section>
-						<h1>Campaign</h1>
-						<div class="sidebar-input">
-							<select>
-								<option value="0">None</option>
-								<?php
-									// Get all campaigns
-									$stmt = $db->query("SELECT `id` FROM `campaigns`");
-										
-									foreach ($stmt as $row) {
-										$c = new Campaign($db, $row['id']);
-										echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";
-									}
-								?>
-							</select>
-						</div>
-					</section>
-					<section>
 						<h1>Publish</h1>
 						<div class="sidebar-actions">
 							<input type="submit" class="button-green" name="saveType" value="Publish">
-							<input type="submit" data-url="previewevent.php" id="previewButton" class="button-dark" name="saveType" value="Preview">
+							<input type="submit" data-url="previewcampaign.php" id="previewButton" class="button-dark" name="saveType" value="Preview">
 						</div>
 					</section>
 				</aside>

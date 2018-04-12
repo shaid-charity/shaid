@@ -25,20 +25,16 @@
 		<?php
 			if (isset($_GET['id'])) {
 				// Get the event's details
-				$event = new Event($db, $_GET['id']);
+				$campaign = new Campaign($db, $_GET['id']);
 
 				if (isset($_GET['action']) && $_GET['action'] == 'update') {
-					// Update the event
-					$event->setName($_POST['title']);
-					$event->setStartDatetime($_POST['startDatetime']);
-					$event->setEndDatetime($_POST['endDatetime']);
-					$event->setClosingDatetime($_POST['closingDatetime']);
-					$event->setCampaign($_POST['campaign']);
-					$event->setCapacity($_POST['capacity']);
-					$event->setTicketPrice($_POST['ticketPrice']);
-					$event->setLocation($_POST['location']);
-					$event->setContent($_POST['content']);
-					$event->setImageCaption($_POST['featured-image-caption']);
+					// Update the campaign
+					$campaign->setName($_POST['title']);
+					$campaign->setStartDatetime($_POST['startDatetime']);
+					$campaign->setEndDatetime($_POST['endDatetime']);
+					$campaign->setGoalAmount($_POST['goalAmount']);
+					$campaign->setImageCaption($_POST['featured-image-caption']);
+					$campaign->setContent($_POST['content']);
 
 					$file = $_FILES['featured-image'];
 
@@ -48,20 +44,15 @@
 						$uploadManager->setFilename($file['name']);
 						$imagePath = $uploadManager->getPath();
 
-						$event->setImage($imagePath);
+						$campaign->setImage($imagePath);
 					}
 				}
 			} else if ($_GET['action'] == 'createNew') {
-				// Create a new event
+				// Create a new campaign
 				$name = $_POST['title'];
 				$startDatetime = $_POST['startDatetime'];
 				$endDatetime = $_POST['endDatetime'];
-				$closingDatetime = $_POST['closingDatetime'];
-				$campaignID = $_POST['campaign'];
-				$capacity = $_POST['capacity'];
-				$ticketsAvailable = $capacity;
-				$ticketPrice = $_POST['ticketPrice'];
-				$location = $_POST['location'];
+				$goalAmount = $_POST['goalAmount'];
 				$content = $_POST['content'];
 				$imageCaption = $_POST['featured-image-caption'];
 				$file = $_FILES['featured-image'];
@@ -77,7 +68,9 @@
 				$userID = $user->getID();
 
 				if ($_POST['saveType'] == "Publish") {
-					$event = new Event($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, $startDatetime, $endDatetime, $closingDatetime, $campaignID, $capacity, $ticketsAvailable, $ticketPrice, $location, $imageCaption);
+					// New campaign, so assume nothing has been raised yet
+					// Maybe change this - will already-running campaigns ever need to be added?
+					$campaign = new Campaign($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, $startDatetime, $endDatetime, $goalAmount, 0, $imageCaption);
 
 					if (file_exists($file['tmp_name'])) {
 						$uploadManager->upload($file);
@@ -89,75 +82,40 @@
 			<div class="content-grid">
 				<section id="main">
 					<?php
-						// Check to see if the post has been updated
+						// Check to see if the campaign has been updated
 						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew' || $_GET['action'] == 'fromPreview' || $_GET['action'] == 'makeDraft')) {
 
 							require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
 						}
 					?>
 					<section class="page-path">
-						<span><a href="./events.php">Events</a></span>
+						<span><a href="./campaigns.php">Campaigns</a></span>
 					</section>
 					<div class="page-title">
-						<h1>New Event</h1>
+						<h1>Edit Campaign</h1>
 					</div>
 					<section id="post-editor">
-						<form id="postForm" action="editpost.php?action=update&id=<?php echo $event->getID(); ?>" method="post" enctype="multipart/form-data">
+						<form id="postForm" action="editcampaign.php?action=update&id=<?php echo $campaign->getID(); ?>" method="post" enctype="multipart/form-data">
 							<div class="post-input">
 								<label for="title" class="section-label">Title</label>
-								<input type="text" name="title" id="post-title" value="<?php echo $event->getTitle(); ?>">
-							</div>
-							<div class="post-input">
-								<label for="campaign" class="section-label">Campaign</label>
-								<select name="campaign" id="post-campaign">
-									<?php
-										// Get all campaigns
-										$stmt = $db->query("SELECT `id` FROM `campaigns`");
-										
-										foreach ($stmt as $row) {
-											$cam = new Campaign($db, $row['id']);
-											if ($cam->getID() == $event->getID()) {
-												echo '<option value="' . $cam->getID() . '" default>' . $cam->getTitle() . '</option>';
-											} else {
-												echo '<option value="' . $cam->getID() . '">' . $cam->getTitle() . '</option>';
-											}
-										}
-									?>
-								</select>
+								<input type="text" name="title" id="post-title" value="<?php echo $campaign->getTitle(); ?>">
 							</div>
 							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
 									<div class="post-input">
 										<label for="startDatetime">Start date and time</label>
-										<input type="datetime-local" name="startDatetimeInput" id="post-startDatetime" value="<?php echo $event->getStartDatetime(); ?>">
+										<input type="datetime-local" name="startDatetime" id="post-startDatetime" value="<?php echo $campaign->getStartDatetime(); ?>">
 									</div>
 									<div class="post-input">
 										<label for="endDatetime">End date and time</label>
-										<input type="datetime-local" name="endDatetime" id="post-endDatetime" value="<?php echo $event->getEndDatetime(); ?>">
+										<input type="datetime-local" name="endDatetime" id="post-endDatetime" value="<?php echo $campaign->getEndDatetime(); ?>">
 									</div>
 								</div>
 							</div>
 							<div class="post-input">
-								<label for="closingDatetime" class="section-label">Closing date and time</label>
-								<input type=datetime-local name="closingDatetime" id="post-closingDatetime" value="<?php echo $event->getClosingDatetime(); ?>">
-							</div>
-							<div class="post-input">
-								<label for="location" class="section-label">Location</label>
-								<input type="text" name="location" id="post-location" value="<?php echo $event->getLocation(); ?>">
-							</div>
-							<div class="post-input">
-								<span class="section-label">Ticket Information</span>
-								<div class="post-input-row">
-									<div class="post-input">
-										<label for="capacity">Capacity</label>
-										<input type="number" name="capacity" id="post-capacity" value="<?php echo $event->getCapacity(); ?>">
-									</div>
-									<div class="post-input">
-										<label for="ticketPrice">Ticket Price</label>
-										<input type="number" step="0.01" name="ticketPrice" id="post-ticketPrice" value="<?php echo $event->getTicketPrice(); ?>">
-									</div>
-								</div>
+								<label for="goalAmount" class="section-label">Goal Amount</label>
+								<input type="number" step="0.01" name="goalAmount" id="post-goalAmount" value="<?php echo $campaign->getGoalAmount(); ?>">
 							</div>
 							<div class="post-input">
 								<span class="section-label">Featured image</span>
@@ -168,15 +126,14 @@
 									</div>
 									<div class="post-input">
 										<label for="post-featured-image-caption">Featured image caption</label>
-										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $event->getImageCaption(); ?>">
+										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $campaign->getImageCaption(); ?>">
 									</div>
 								</div>
 							</div>
 							<div class="post-input">
-								<label for="post-content" class="section-label">Event description</label>
-								<textarea name="content" id="post-content"><?php echo $event->getContent(); ?></textarea>
+								<label for="post-content" class="section-label">Campaign description</label>
+								<textarea name="content" id="post-content"><?php echo $campaign->getContent(); ?></textarea>
 							</div>
-						</button>
 					</section>
 				</section>
 				<aside id="sidebar">
@@ -191,31 +148,10 @@
 						</ul>
 					</section>
 					<section>
-						<h1>Campaign</h1>
-						<div class="sidebar-input">
-							<select name="campaign">
-								<option value="0">None</option>
-								<?php
-									// Get all campaigns
-									$stmt = $db->query("SELECT `id` FROM `campaigns`");
-										
-									foreach ($stmt as $row) {
-										$c = new Campaign($db, $row['id']);
-										if ($event->getCampaign() !== null && $event->getCampaign() != 0 && $c->getID() == $event->getCampaign()->getID()) {
-											echo "<option value='" . $c->getID() . "' selected>" . $c->getTitle() . "</option>";
-										} else {
-											echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";
-										}
-									}
-								?>
-							</select>
-						</div>
-					</section>
-					<section>
 						<h1>Update</h1>
 						<div class="sidebar-actions">
 							<input type="submit" class="button-green" name="saveType" value="Update">
-							<input id="previewButton" data-url="previewpost.php" type="submit" class="button-dark" name="saveType" value="Preview">
+							<input id="previewButton" data-url="previewcampaign.php" type="submit" class="button-dark" name="saveType" value="Preview">
 						</div>
 					</section>
 					<section>
@@ -232,12 +168,12 @@
 	<div id="delete-post-modal" class="modal-container">
 		<div id="delete-post-message" class="modal-message">
 			<h1>Are you sure?</h1>
-			<p>Do you really want to delete this event? This action cannot be undone.</p>
+			<p>Do you really want to delete this campaign? This action cannot be undone.</p>
 			<div class="modal-message-buttons">
 				<button type="button" id="cancel-delete-post-button" class="button-dark">Cancel</button>
-				<form action="newevent.php" method="post">
+				<form action="newcampaign.php" method="post">
 					<button type="submit" id="delete-post-button" class="button-red" name="saveType" value="Delete">Delete</button>
-					<input type="hidden" name="id" value="<?php echo $event->getID(); ?>">
+					<input type="hidden" name="id" value="<?php echo $campaign->getID(); ?>">
 				</form>
 			</div>
 		</div>
