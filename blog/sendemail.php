@@ -66,7 +66,7 @@
 							$toText = '';
 							if (isset($_POST['type'])) {
 								if ($_POST['type'] == 'all') {
-									$stmt = $db->query("SELECT `email` FROM `gp_friends`");
+									$stmt = $db->query("SELECT `email` FROM `friends`");
 								}
 								
 								$emails = array();
