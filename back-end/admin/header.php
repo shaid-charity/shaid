@@ -63,6 +63,8 @@ if(empty($session_number)){
     "/viewPosts.php" => 5,
     "/createCategory.php" => 3,
     "/viewCategories.php" => 3,
+    "/socialPost.php" => 2,
+    "/socialTrends.php" => 2,
   );
 
   $page_name = strrchr($_SERVER['PHP_SELF'], "/");
@@ -133,6 +135,15 @@ if(empty($session_number)){
         </li>
         <li class="nav-item <?php if (CURRENT_PAGE == 'contactDB') echo 'active'; if($role_id > 2) echo ' hidden';?>">
           <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown <?php if (substr(CURRENT_PAGE, 0, 6) == 'social') echo 'active'; if($role_id > 2) echo ' hidden';?>">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Social Media
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item <?php if (CURRENT_PAGE == 'socialPost') echo 'active'; ?>" href="socialPost.php">Post</a>
+            <a class="dropdown-item <?php if (CURRENT_PAGE == 'socialTrends') echo 'active'; ?>" href="socialTrends.php">Trends</a>
+          </div>
         </li>
         <li class="nav-item <?php if(CURRENT_PAGE == 'usermgmt') echo 'active'; if($role_id > 1) echo ' hidden';?>">
           <a class="nav-link" href="usermgmt.php">User Management</a>
