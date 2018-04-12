@@ -38,6 +38,7 @@
 					$event->setTicketPrice($_POST['ticketPrice']);
 					$event->setLocation($_POST['location']);
 					$event->setContent($_POST['content']);
+					$event->setImageCaption($_POST['featured-image-caption']);
 
 					$file = $_FILES['featured-image'];
 
@@ -62,6 +63,7 @@
 				$ticketPrice = $_POST['ticketPrice'];
 				$location = $_POST['location'];
 				$content = $_POST['content'];
+				$imageCaption = $_POST['featured-image-caption'];
 				$file = $_FILES['featured-image'];
 
 				if (file_exists($file['tmp_name'])) {
@@ -75,7 +77,7 @@
 				$userID = $user->getID();
 
 				if ($_POST['saveType'] == "Publish") {
-					$event = new Event($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, $startDatetime, $endDatetime, $closingDatetime, $campaignID, $capacity, $ticketsAvailable, $ticketPrice, $location);
+					$event = new Event($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, $startDatetime, $endDatetime, $closingDatetime, $campaignID, $capacity, $ticketsAvailable, $ticketPrice, $location, $imageCaption);
 
 					if (file_exists($file['tmp_name'])) {
 						$uploadManager->upload($file);
@@ -166,7 +168,7 @@
 									</div>
 									<div class="post-input">
 										<label for="post-featured-image-caption">Featured image caption</label>
-										<input type="text" name="featured-image-caption" id="post-featured-image-caption">
+										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $event->getImageCaption(); ?>">
 									</div>
 								</div>
 							</div>

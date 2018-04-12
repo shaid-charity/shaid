@@ -13,7 +13,7 @@ class Event extends Content {
 	private $ticketPrice;
 	private $location;
 
-	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $startDatetime = null, $endDatetime = null, $closingDatetime = null, $campaign = null, $capacity = null, $ticketsAvailable = null, $ticketPrice = null, $location = null) {
+	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $startDatetime = null, $endDatetime = null, $closingDatetime = null, $campaign = null, $capacity = null, $ticketsAvailable = null, $ticketPrice = null, $location = null, $imageCaption = null) {
 		$this->db = $db;
 
 		// Get by slug
@@ -25,7 +25,7 @@ class Event extends Content {
 			return;
 		}
 
-		parent::__construct($db, $id, $name, $slug, $content, $image, $author, '');
+		parent::__construct($db, $id, $name, $slug, $content, $image, $author, '', $imageCaption);
 
 		// Set the other properties
 		$this->setStartDatetime($startDatetime);
@@ -107,7 +107,7 @@ class Event extends Content {
 
 	public function setStartDatetime($startDatetime) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = FROM_UNIXTIME(?) WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = ? WHERE `id` = ?");
 			$stmt->execute([$startDatetime, $this->getID()]);
 		} catch (PDOException $e) {
 			echo 'Event.class.php setStartDatetime() error: <br />';
@@ -119,7 +119,7 @@ class Event extends Content {
 
 	public function setEndDatetime($endDatetime) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `end_datetime` = FROM_UNIXTIME(?) WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `end_datetime` = ? WHERE `id` = ?");
 			$stmt->execute([$endDatetime, $this->getID()]);
 		} catch (PDOException $e) {
 			echo 'Event.class.php setEndDatetime() error: <br />';
@@ -131,7 +131,7 @@ class Event extends Content {
 
 	public function setClosingDatetime($closingDatetime) {
 		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `closing_datetime` = FROM_UNIXTIME(?) WHERE `id` = ?");
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `closing_datetime` = ? WHERE `id` = ?");
 			$stmt->execute([$closingDatetime, $this->getID()]);
 		} catch (PDOException $e) {
 			echo 'Event.class.php setClosingDatetime() error: <br />';

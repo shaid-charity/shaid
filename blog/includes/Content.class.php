@@ -63,7 +63,9 @@ abstract class Content extends DBRecord {
 	}
 
 	private function createConstructor($name, $content, $image, $keywords, $slug, $userID, $imageCaption) {
-
+		if (is_null($imageCaption)) {
+			$imageCaption = '';
+		}
 		
 		try {
 			$stmt = $this->db->prepare("INSERT INTO `$this->table`(title, content, image, user_id, image_caption) VALUES (?, ?, ?, ?, ?)");
@@ -79,6 +81,7 @@ abstract class Content extends DBRecord {
 		$this->slug = $slug;
 		$this->content = $content;
 		$this->image = $image;
+		$this->imageCaption = $imageCaption;
 		$this->keywords = $keywords;
 		$this->user = new User($this->db, $userID);
 	}
