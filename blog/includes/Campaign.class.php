@@ -9,7 +9,7 @@ class Campaign extends Content {
 	private $goalAmount;
 	private $amountRaised;
 
-	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $startDatetime = null, $endDatetime = null, $goalAmount = null, $amountRaised = null) {
+	public function __construct($db, $id = null, $name = null, $slug = null, $content = null, $image = null, $author = null, $startDatetime = null, $endDatetime = null, $goalAmount = null, $amountRaised = null, $imageCaption = null) {
 		$this->db = $db;
 
 		// Get by slug
@@ -21,7 +21,7 @@ class Campaign extends Content {
 			return;
 		}
 
-		parent::__construct($db, $id, $name, $slug, $content, $image, $author, '');
+		parent::__construct($db, $id, $name, $slug, $content, $image, $author, '', $imageCaption);
 
 		// Set the other properties
 		$this->setStartDatetime($startDatetime);

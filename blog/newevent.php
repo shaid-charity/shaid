@@ -29,7 +29,7 @@
 						// Check to see if the post has been deleted
 						if ($_POST['saveType'] == 'Delete') {
 							// Delete the post in question
-							$stmt = $db->prepare("DELETE FROM `posts` WHERE `id` = ?");
+							$stmt = $db->prepare("DELETE FROM `events` WHERE `id` = ?");
 							$stmt->execute([$_POST['id']]);
 
 							require_once(SITE_ROOT . '/includes/blog_modules/post_deleted_message.php');
