@@ -16,6 +16,9 @@
 					<li>&bull;</li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/newpost.php">New Blog Post</a></li>
 					<li><a href="#">New Blog Category</a></li>
+					<li>&bull;</li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/newevent.php">New Event</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/newcampaign.php">New Campaign</a></li>
 				</ul>
 			</div>
 			<div class="info-banner-button">
