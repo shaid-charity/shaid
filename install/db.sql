@@ -13,15 +13,15 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `campaigns` (
   `id` int(11) NOT NULL,
-  `title` varchar(150) NOT NULL,
-  `start_datetime` datetime NOT NULL,
-  `end_datetime` datetime NOT NULL,
-  `goal_amount` decimal(10,2) NOT NULL,
-  `amount_raised` decimal(10,2) NOT NULL,
-  `content` varchar(1500) NOT NULL,
-  `image` varchar(150) NOT NULL,
-  `image_caption` varchar(6500) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `title` varchar(150) DEFAULT NULL,
+  `start_datetime` datetime DEFAULT NULL,
+  `end_datetime` datetime DEFAULT NULL,
+  `goal_amount` decimal(10,2) DEFAULT NULL,
+  `amount_raised` decimal(10,2) DEFAULT NULL,
+  `content` varchar(1500) DEFAULT NULL,
+  `image` varchar(150) DEFAULT NULL,
+  `image_caption` varchar(6500) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -56,20 +56,20 @@ CREATE TABLE `companies` (
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
-  `campaign_id` int(11) NOT NULL,
-  `title` varchar(150) NOT NULL,
-  `start_datetime` datetime NOT NULL,
-  `end_datetime` datetime NOT NULL,
-  `closing_datetime` datetime NOT NULL,
-  `capacity` int(11) NOT NULL,
-  `tickets_available` int(11) NOT NULL,
-  `ticket_price` decimal(10,2) NOT NULL,
-  `location` varchar(100) NOT NULL,
-  `company` int(11) NOT NULL,
-  `content` varchar(1500) NOT NULL,
-  `image` varchar(150) NOT NULL,
+  `campaign_id` int(11) DEFAULT NULL,
+  `title` varchar(150) DEFAULT NULL,
+  `start_datetime` datetime DEFAULT NULL,
+  `end_datetime` datetime DEFAULT NULL,
+  `closing_datetime` datetime DEFAULT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `tickets_available` int(11) DEFAULT NULL,
+  `ticket_price` decimal(10,2) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `company` int(11) DEFAULT NULL,
+  `content` varchar(1500) DEFAULT NULL,
+  `image` varchar(150) DEFAULT NULL,
   `image_caption` varchar(6500) DEFAULT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -291,7 +291,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `friends`
@@ -315,7 +315,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `session_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `session_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `ticket_sales`
