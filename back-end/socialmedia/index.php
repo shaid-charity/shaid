@@ -14,15 +14,6 @@ I ran it from terminal using php -S localhost:8000
 </head>
 <body>
 
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=2016556085255853&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-  }
-  (document, 'script', 'facebook-jssdk'));
-</script>
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -42,7 +33,7 @@ I ran it from terminal using php -S localhost:8000
     </div>
   </div>
 </nav>
-
+<!--
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-6 text-left">
@@ -57,9 +48,10 @@ I ran it from terminal using php -S localhost:8000
         <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
         <input type = "submit" name="submit" id="search" value = "Send">
       </form>
-
+-->
     <?php
-
+    require_once 'post.php';
+/*
     //TWITTER
     $consumerKey    = 'PErpyYJif6jXHajdni3PNDfh3';
     $consumerSecret = 'heNVbOL8FcezVjz0ztMvwPGSs7UspkwBe9wZUsf0e5dTi2D969';
@@ -133,12 +125,12 @@ I ran it from terminal using php -S localhost:8000
         }
     }
     }
-
+*/
     //Future things to add: Add other social medias?
     //                      Option to add pictures etc.
     //                      Could add login buttons to make more transferrable
     ?>
-
+<!--
     <div class="container-fluid text-center">
       <div class="row content">
         <div class="col-sm-6 text-left">
@@ -156,9 +148,9 @@ I ran it from terminal using php -S localhost:8000
       </div>
     </div>
   </div>
+-->
 
-
-
+<!--
     <div class="col-sm-6 text-left" style="background-color: #f1f1f1">
       <h4><center>Twitter trends</center></h4>
       <br>
@@ -169,11 +161,13 @@ I ran it from terminal using php -S localhost:8000
         <input type="text" id="keyword" name="keyword">
         <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
       </form>
-
+-->
       <?php
-          require_once('./wrapper/TwitterAPIExchange.php');
+        require_once 'trends.php';
+          //require_once('./wrapper/TwitterAPIExchange.php');
 
           /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
+          /*
           $settings = array(
               'oauth_access_token' => "703944336950558720-utt80LMNGr2d7XHfUTArdgE2NmJr0ME",
               'oauth_access_token_secret' => "fuM6RTVqH16VVBBpUpQzWtzUefyQNeb1oDI5Rq5DYRInA",
@@ -214,7 +208,7 @@ I ran it from terminal using php -S localhost:8000
           /**   $key_trending = array();**/
           /** }**/
 
-
+          /*
           echo "<br><h3>Your current keywords are:</h3>";
           foreach($keywords as $word){
             echo $word."<br>";
@@ -222,6 +216,7 @@ I ran it from terminal using php -S localhost:8000
 
           echo "<h3>Current trends:</h1>";
           $counter = 0; /** Twitter always gives 50 (cannot change), only display 20 **/
+          /*
           $overrideLimit = False;
           foreach($string[0]["trends"] as $items)
             {
@@ -248,10 +243,13 @@ I ran it from terminal using php -S localhost:8000
               echo "<strong>".$trend."\n"."</strong>";
             }
           }
+          */
       ?>
+      <!--
     </div>
   </div>
 </div>
+-->
 </body>
 <footer class="footer text-center" style="background-color: #222222">
 <div class="privacy">
@@ -259,4 +257,13 @@ I ran it from terminal using php -S localhost:8000
     <!-- need to add link!-->
 </div>
 </footer>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=2016556085255853&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+  }
+  (document, 'script', 'facebook-jssdk'));
+</script>
 </html>
