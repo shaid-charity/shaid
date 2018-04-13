@@ -108,24 +108,6 @@
 								<input type="text" name="title" id="post-title" value="<?php echo $event->getTitle(); ?>">
 							</div>
 							<div class="post-input">
-								<label for="campaign" class="section-label">Campaign</label>
-								<select name="campaign" id="post-campaign">
-									<?php
-										// Get all campaigns
-										$stmt = $db->query("SELECT `id` FROM `campaigns`");
-										
-										foreach ($stmt as $row) {
-											$cam = new Campaign($db, $row['id']);
-											if ($cam->getID() == $event->getID()) {
-												echo '<option value="' . $cam->getID() . '" default>' . $cam->getTitle() . '</option>';
-											} else {
-												echo '<option value="' . $cam->getID() . '">' . $cam->getTitle() . '</option>';
-											}
-										}
-									?>
-								</select>
-							</div>
-							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
 									<div class="post-input">
