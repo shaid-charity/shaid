@@ -103,11 +103,11 @@
 							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-right">
 										<label for="startDatetime">Start date and time</label>
 										<input type="datetime-local" name="startDatetime" id="post-startDatetime" value="<?php echo $campaign->getStartDatetime(); ?>">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-lef">
 										<label for="endDatetime">End date and time</label>
 										<input type="datetime-local" name="endDatetime" id="post-endDatetime" value="<?php echo $campaign->getEndDatetime(); ?>">
 									</div>
@@ -124,7 +124,7 @@
 										<label for="post-featured-image">Image file</label>
 										<input type="file" name="featured-image" id="post-featured-image">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow">
 										<label for="post-featured-image-caption">Featured image caption</label>
 										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $campaign->getImageCaption(); ?>">
 									</div>

@@ -110,11 +110,11 @@
 							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-right">
 										<label for="startDatetime">Start date and time</label>
 										<input type="datetime-local" name="startDatetimeInput" id="post-startDatetime" value="<?php echo $event->getStartDatetime(); ?>">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-left">
 										<label for="endDatetime">End date and time</label>
 										<input type="datetime-local" name="endDatetime" id="post-endDatetime" value="<?php echo $event->getEndDatetime(); ?>">
 									</div>
@@ -131,11 +131,11 @@
 							<div class="post-input">
 								<span class="section-label">Ticket Information</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-right">
 										<label for="capacity">Capacity</label>
 										<input type="number" name="capacity" id="post-capacity" value="<?php echo $event->getCapacity(); ?>">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-left">
 										<label for="ticketPrice">Ticket Price</label>
 										<input type="number" step="0.01" name="ticketPrice" id="post-ticketPrice" value="<?php echo $event->getTicketPrice(); ?>">
 									</div>
@@ -144,11 +144,11 @@
 							<div class="post-input">
 								<span class="section-label">Featured image</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-padding-right">
 										<label for="post-featured-image">Image file</label>
 										<input type="file" name="featured-image" id="post-featured-image">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-left">
 										<label for="post-featured-image-caption">Featured image caption</label>
 										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $event->getImageCaption(); ?>">
 									</div>
