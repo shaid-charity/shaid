@@ -468,13 +468,17 @@ $rule-line-thickness: 4px;
 	padding-bottom: 0;
 }
 
-.post-input-row .post-input:last-child {
+.post-input-row .post-input-grow {
 	flex-grow: 1;
 }
 
 .content-grid #post-editor input[type="file"] {
 	margin-top: auto;
 	margin-bottom: auto;
+}
+
+.content-grid #post-editor input {
+	width: 100%;
 }
 
 .content-grid #post-editor label {
@@ -842,6 +846,16 @@ $rule-line-thickness: 4px;
 
 	.downloads-page-aside {
 		display: none;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.post-input-padding-left {
+		padding-left: 0.5rem;
+	}
+
+	.post-input-padding-right {
+		padding-right: 0.5rem;
 	}
 }
 
