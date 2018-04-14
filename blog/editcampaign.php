@@ -15,6 +15,9 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
 	<link href="style/blog.css" rel="stylesheet">
+
+	<!-- jQuery Datetime picker CSS -->
+	<link rel="stylesheet" type="text/css" href="style/jquery.datetimepicker.css" />
 </head>
 <body>
 	<?php
@@ -103,13 +106,13 @@
 							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-right">
 										<label for="startDatetime">Start date and time</label>
-										<input type="datetime-local" name="startDatetime" id="post-startDatetime" value="<?php echo $campaign->getStartDatetime(); ?>">
+										<input type="text" class="datetimepicker" name="startDatetime" id="post-startDatetime" value="<?php echo $campaign->getStartDatetime(); ?>">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-lef">
 										<label for="endDatetime">End date and time</label>
-										<input type="datetime-local" name="endDatetime" id="post-endDatetime" value="<?php echo $campaign->getEndDatetime(); ?>">
+										<input type="text" class="datetimepicker" name="endDatetime" id="post-endDatetime" value="<?php echo $campaign->getEndDatetime(); ?>">
 									</div>
 								</div>
 							</div>
@@ -124,7 +127,7 @@
 										<label for="post-featured-image">Image file</label>
 										<input type="file" name="featured-image" id="post-featured-image">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow">
 										<label for="post-featured-image-caption">Featured image caption</label>
 										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $campaign->getImageCaption(); ?>">
 									</div>
@@ -186,6 +189,9 @@
 
 <!-- Include the TinyMCE WYSIWYG editor -->
 <script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
+
+<!-- Include the jQuery Datetime picker sript -->
+<script src="scripts/jquery.datetimepicker.full.min.js"></script>
 <script>
 // Load the TinyMCE editor to the appropriate text area
 tinymce.init({
@@ -204,6 +210,9 @@ $("#previewButton").click(function(e) {
     form.prop("action", $(this).data("url"));
     form.submit();
 });
+
+// Set the datetime picker fields up
+$('.datetimepicker').datetimepicker();
 </script>
 <script src="/<?php echo INSTALLED_DIR; ?>/scripts/blogpost.js" type="text/javascript"></script>
 </body>

@@ -15,6 +15,9 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
 	<link href="style/blog.css" rel="stylesheet">
+
+	<!-- jQuery Datetime picker CSS -->
+	<link rel="stylesheet" type="text/css" href="style/jquery.datetimepicker.css" />
 </head>
 <body>
 	<?php
@@ -110,19 +113,19 @@
 							<div class="post-input">
 								<span class="section-label">Start and end dates</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-right">
 										<label for="startDatetime">Start date and time</label>
-										<input type="datetime-local" name="startDatetimeInput" id="post-startDatetime" value="<?php echo $event->getStartDatetime(); ?>">
+										<input type="text" class="datetimepicker" name="startDatetimeInput" id="post-startDatetime" value="<?php echo $event->getStartDatetime(); ?>">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-left">
 										<label for="endDatetime">End date and time</label>
-										<input type="datetime-local" name="endDatetime" id="post-endDatetime" value="<?php echo $event->getEndDatetime(); ?>">
+										<input type="text" class="datetimepicker" name="endDatetime" id="post-endDatetime" value="<?php echo $event->getEndDatetime(); ?>">
 									</div>
 								</div>
 							</div>
 							<div class="post-input">
 								<label for="closingDatetime" class="section-label">Closing date and time</label>
-								<input type=datetime-local name="closingDatetime" id="post-closingDatetime" value="<?php echo $event->getClosingDatetime(); ?>">
+								<input type="text" class="datetimepicker" name="closingDatetime" id="post-closingDatetime" value="<?php echo $event->getClosingDatetime(); ?>">
 							</div>
 							<div class="post-input">
 								<label for="location" class="section-label">Location</label>
@@ -131,11 +134,11 @@
 							<div class="post-input">
 								<span class="section-label">Ticket Information</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-right">
 										<label for="capacity">Capacity</label>
 										<input type="number" name="capacity" id="post-capacity" value="<?php echo $event->getCapacity(); ?>">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-left">
 										<label for="ticketPrice">Ticket Price</label>
 										<input type="number" step="0.01" name="ticketPrice" id="post-ticketPrice" value="<?php echo $event->getTicketPrice(); ?>">
 									</div>
@@ -144,11 +147,11 @@
 							<div class="post-input">
 								<span class="section-label">Featured image</span>
 								<div class="post-input-row">
-									<div class="post-input">
+									<div class="post-input post-input-padding-right">
 										<label for="post-featured-image">Image file</label>
 										<input type="file" name="featured-image" id="post-featured-image">
 									</div>
-									<div class="post-input">
+									<div class="post-input post-input-grow post-input-padding-left">
 										<label for="post-featured-image-caption">Featured image caption</label>
 										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $event->getImageCaption(); ?>">
 									</div>
@@ -232,6 +235,9 @@
 
 <!-- Include the TinyMCE WYSIWYG editor -->
 <script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
+
+<!-- Include the jQuery Datetime picker sript -->
+<script src="scripts/jquery.datetimepicker.full.min.js"></script>
 <script>
 // Load the TinyMCE editor to the appropriate text area
 tinymce.init({
@@ -250,6 +256,9 @@ $("#previewButton").click(function(e) {
     form.prop("action", $(this).data("url"));
     form.submit();
 });
+
+// Set the datetime picker fields up
+$('.datetimepicker').datetimepicker();
 </script>
 <script src="/<?php echo INSTALLED_DIR; ?>/scripts/blogpost.js" type="text/javascript"></script>
 </body>
