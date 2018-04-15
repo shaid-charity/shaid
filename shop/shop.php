@@ -117,7 +117,7 @@
 									            <div class=\"product-result-image-container\"> 
 									            	<div class=\"product-result-image\" style=\"background-image:url('%s');\"></div>
 									            </div>
-									            <a href=\"%s\" target=\"_blank\" class=\"button-dark product-result-button\">More info</a>
+									            <a href=\"%s\" target=\"_blank\" class=\"button-dark product-result-button\">View on Ebay</a>
 								            </li>",
 								            $item->Title,
 								            $item->PictureDetails->PictureURL[0],
