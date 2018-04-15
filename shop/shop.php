@@ -1,25 +1,23 @@
+<?php
+    $root=pathinfo($_SERVER['SCRIPT_FILENAME']);
+    define('BASE_FOLDER',  basename($root['dirname']));
+    define('SITE_ROOT',    realpath(dirname(__FILE__)));
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Shop</title>
-	<style>
-	.results-list {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		grid-column-gap: 2rem;
-		grid-row-gap: 2rem;
-	}
-
-	.result {
-		display: block;
-		background-color: #F3F3F3;
-	}
-	</style>
+	<title>SHAID</title>
+	<?php
+		require_once(SITE_ROOT . '/includes/global_head.php');
+	?>
+	<link href="./style/blog.css" rel="stylesheet">
+	<link href="./style/shop.css" rel="stylesheet">
 </head>
 <body>
 	<?php
+		require_once(SITE_ROOT . '/includes/header.php');
 
-		/* -------------------- SETUP -------------------- */
+		/* ----- EBAY SETUP ----- */
 
 		// Load ebay-sdk
 		require './includes/lib/ebay-sdk/ebay-sdk-php-autoloader.php';
@@ -46,7 +44,7 @@
 		]);
 
 
-		/* -------------------- BUILD REQUEST -------------------- */
+		/* ----- BUILD API REQUEST ----- */
 
 		// Create the request object.
 		$request = new Types\GetSellerListRequestType();
@@ -67,7 +65,7 @@
 
 		$request->UserID = $USER;
 
-		// Page
+		// Set page number to load
 		$pageNum = 1;
 		if (isset($_GET["page"])) {
 			$pageNum = intval(htmlspecialchars($_GET["page"]));
@@ -78,50 +76,74 @@
 		$request->Pagination->PageNumber = $pageNum;
 
 
-		/* -------------------- PARSE RESPONSE -------------------- */
+		/* ----- FETCH API RESPONSE ----- */
 
 		$response = $service->getSellerList($request);
-		/**
-		 * Output the result of calling the service operation.
-		 */
-		if (isset($response->Errors)) {
-		    foreach ($response->Errors as $error) {
-		        printf(
-		            "%s: %s\n%s\n\n",
-		            $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
-		            $error->ShortMessage,
-		            $error->LongMessage
-		        );
-		    }
-		    die();
-		}
-		$totalPages = $response->PaginationResult->TotalNumberOfPages;
-		echo "<h1>Results</h1>";
-		if ($response->Ack !== 'Failure') {
+	?>
+	<main id="main-content">
+		<div class="inner-container">
+			<div class="content-grid no-sidebar">
+				<section id="main">
+					<section class="info-page-content">
+						<div class="page-title">
+							<h1>Shop</h1>
+						</div>
+						<?php
 
-			// Display list of results from requested page
-			echo "<ul class=\"results-list\">";
-		    foreach ($response->ItemArray->Item as $item) {
-		        printf(
-		            "<li class=\"result\">%s <a href=\"%s\">View item</a>
-		            <br>
-		            	<img src=\"%s\" width=\"200\">
-		            <br>
-		            </li>",
-		            $item->Title,
-		            $item->ListingDetails->ViewItemURL,
-		            $item->PictureDetails->PictureURL[0]
-		        );
-		    }
-			echo "</ul>";
+							/**
+							 * Output the result of calling the service operation.
+							 */
+							if (isset($response->Errors)) {
+								/*
+							    foreach ($response->Errors as $error) {
+							        printf(
+							            "%s: %s\n%s\n\n",
+							            $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
+							            $error->ShortMessage,
+							            $error->LongMessage
+							        );
+							    }
+							    die();
+							    */
+								echo "<p>Error: Request to Ebay failed.</p>";
+							} elseif ($response->Ack !== 'Failure') {
+								$totalPages = $response->PaginationResult->TotalNumberOfPages;
 
-			// Pagination to navigate pages
-			echo "<ul>";
-			echo "<li><a href=\"?page=" . ($pageNum - 1) . "\">Previous page</a></li>";
-			echo "<li>Page $pageNum of $totalPages</li>";
-			echo "<li><a href=\"?page=" . ($pageNum + 1) . "\">Next page</a></li>";
-			echo "</ul>";
-		}
+								echo "<ul class=\"products-results-list\">";
+									foreach ($response->ItemArray->Item as $item) {
+								        printf(
+								            "<li class=\"product-result\">
+									            <h2 class=\"product-result-title\">%s</h2>
+									            <div class=\"product-result-image-container\"> 
+									            	<div class=\"product-result-image\" style=\"background-image:url('%s');\"></div>
+									            </div>
+									            <a href=\"%s\" target=\"_blank\" class=\"button-dark product-result-button\">More info</a>
+								            </li>",
+								            $item->Title,
+								            $item->PictureDetails->PictureURL[0],
+								            $item->ListingDetails->ViewItemURL
+								        );
+								    }
+								echo "</ul>";
+
+								// Pagination to navigate pages
+								echo "<ul>";
+								echo "<li><a href=\"?page=" . ($pageNum - 1) . "\">Previous page</a></li>";
+								echo "<li>Page $pageNum of $totalPages</li>";
+								echo "<li><a href=\"?page=" . ($pageNum + 1) . "\">Next page</a></li>";
+								echo "</ul>";
+							} else {
+								echo "<p>Error: Could not connect to Ebay.</p>";
+							}
+						?>
+					</section>
+				</section>
+			</div>
+		</div>
+	</main>
+	<?php
+		require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 </body>
 </html>
