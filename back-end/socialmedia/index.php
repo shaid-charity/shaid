@@ -22,7 +22,7 @@ I ran it from terminal using php -S localhost:8000
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo?</a>
+      <img src="logo-small.png" style="width:97.5px;height:50px;">
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -135,7 +135,7 @@ I ran it from terminal using php -S localhost:8000
       <div class="row content">
         <div class="col-sm-6 text-left">
 
-        <a class="twitter-timeline" data-width="220" data-height="300" href="https://twitter.com/test19022018?ref_src=twsrc%5Etfw">Tweets by test19022018</a>
+        <a class="twitter-timeline" data-width="220" data-height="500" href="https://twitter.com/test19022018?ref_src=twsrc%5Etfw">Tweets by test19022018</a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="col-sm-6 text-left">
@@ -245,16 +245,16 @@ I ran it from terminal using php -S localhost:8000
           }
           */
       ?>
-      
+
     </div>
   </div>
 </div>
 
 </body>
+<br>
 <footer class="footer text-center" style="background-color: #222222">
 <div class="privacy">
-    <a href="" style="color: #808080"> Privacy policy </a>
-    <!-- need to add link!-->
+    <a href="https://docs.google.com/document/d/1YYyh0I6En1-aSbdt5CmT79SlQSY7xIRYgrg2ZSigkyo/edit?usp=sharing" style="color: #808080"> Privacy policy </a>
 </div>
 </footer>
 <script>(function(d, s, id) {

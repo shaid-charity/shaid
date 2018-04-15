@@ -12,7 +12,6 @@
     // create a new instance
     $tweet = new TwitterOAuth($consumerKey, $consumerSecret, $oAuthToken, $oAuthSecret);
 
-    //FACEBOOK    - app not live yet so only admin can see posts
 
     define('FACEBOOK_SDK_V4_SRC_DIR', __DIR__ . '/src/Facebook/');
     require_once(__DIR__ . '/src/Facebook/autoload.php');
