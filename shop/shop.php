@@ -3,9 +3,6 @@
 <head>
 	<title>Shop</title>
 	<style>
-	li {
-		padding-bottom: 100px;
-	}
 	</style>
 </head>
 <body>
@@ -41,19 +38,19 @@ $service = new Services\TradingService([
     'siteId'      => Constants\SiteIds::GB
 ]);
 
+
+/* -------------------- BUILD REQUEST -------------------- */
+
 /**
  * Create the request object.
  */
 $request = new Types\GetSellerListRequestType();
+
 /**
  * An user token is required when using the Trading service.
  */
 $request->RequesterCredentials = new Types\CustomSecurityHeaderType();
 $request->RequesterCredentials->eBayAuthToken = $config[$MODE]['userAuthToken'];
-
-//$request->Pagination = new Types\PaginationType();
-//$request->Pagination->EntriesPerPage = 10;
-//$request->Pagination->PageNumber = 1;
 
 $request->Pagination = new Types\PaginationType();
 $request->Pagination->EntriesPerPage = 10;
@@ -66,46 +63,41 @@ $request->DetailLevel[] = Enums\DetailLevelCodeType::C_ITEM_RETURN_DESCRIPTION;
 
 $request->UserID = 'dhammatek';
 
-echo "<ul>";
-
 $pageNum = 1;
+$request->Pagination->PageNumber = $pageNum;
 
-do {
-    $request->Pagination->PageNumber = $pageNum;
 
-	/**
-	 * Send the request.
-	 */
-	$response = $service->getSellerList($request);
-	/**
-	 * Output the result of calling the service operation.
-	 */
-	echo "<li>";
-	echo "<p>=== Results for page $pageNum ===</p>";
-	if (isset($response->Errors)) {
-	    foreach ($response->Errors as $error) {
-	        printf(
-	            "%s: %s\n%s\n\n",
-	            $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
-	            $error->ShortMessage,
-	            $error->LongMessage
-	        );
-	    }
-	}
-	if ($response->Ack !== 'Failure') {
-        foreach ($response->ItemArray->Item as $item) {
-            printf(
-                "<p>(%s) %s <a href=\"%s\">View item</a></p>",
-                $item->ItemID,
-                $item->Title,
-                $item->ListingDetails->ViewItemURL
-            );
-        }
+/* -------------------- SEND REQUEST -------------------- */
+
+$response = $service->getSellerList($request);
+/**
+ * Output the result of calling the service operation.
+ */
+if (isset($response->Errors)) {
+    foreach ($response->Errors as $error) {
+        printf(
+            "%s: %s\n%s\n\n",
+            $error->SeverityCode === Enums\SeverityCodeType::C_ERROR ? 'Error' : 'Warning',
+            $error->ShortMessage,
+            $error->LongMessage
+        );
     }
-    echo "</li>";
-    $pageNum += 1;
-} while (false === true && $pageNum <= $response->PaginationResult->TotalNumberOfPages);
-echo "</ul>";
+    die();
+}
+$totalPages = $response->PaginationResult->TotalNumberOfPages;
+echo "<h1>Results for page $pageNum of $totalPages</h1>";
+if ($response->Ack !== 'Failure') {
+	echo "<ul>";
+    foreach ($response->ItemArray->Item as $item) {
+        printf(
+            "<li>(%s) %s <a href=\"%s\">View item</a></li>",
+            $item->ItemID,
+            $item->Title,
+            $item->ListingDetails->ViewItemURL
+        );
+    }
+	echo "</ul>";
+}
 ?>
 	</ul>
 </body>
