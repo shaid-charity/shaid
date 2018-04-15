@@ -33,7 +33,7 @@ I ran it from terminal using php -S localhost:8000
     </div>
   </div>
 </nav>
-<!--
+
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-6 text-left">
@@ -48,7 +48,7 @@ I ran it from terminal using php -S localhost:8000
         <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
         <input type = "submit" name="submit" id="search" value = "Send">
       </form>
--->
+
     <?php
     require_once 'post.php';
 /*
@@ -130,7 +130,7 @@ I ran it from terminal using php -S localhost:8000
     //                      Option to add pictures etc.
     //                      Could add login buttons to make more transferrable
     ?>
-<!--
+
     <div class="container-fluid text-center">
       <div class="row content">
         <div class="col-sm-6 text-left">
@@ -148,9 +148,9 @@ I ran it from terminal using php -S localhost:8000
       </div>
     </div>
   </div>
--->
 
-<!--
+
+
     <div class="col-sm-6 text-left" style="background-color: #f1f1f1">
       <h4><center>Twitter trends</center></h4>
       <br>
@@ -161,7 +161,7 @@ I ran it from terminal using php -S localhost:8000
         <input type="text" id="keyword" name="keyword">
         <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
       </form>
--->
+
       <?php
         require_once 'trends.php';
           //require_once('./wrapper/TwitterAPIExchange.php');
@@ -245,11 +245,11 @@ I ran it from terminal using php -S localhost:8000
           }
           */
       ?>
-      <!--
+      
     </div>
   </div>
 </div>
--->
+
 </body>
 <footer class="footer text-center" style="background-color: #222222">
 <div class="privacy">
