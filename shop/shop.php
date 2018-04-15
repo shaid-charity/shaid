@@ -3,6 +3,17 @@
 <head>
 	<title>Shop</title>
 	<style>
+	.results-list {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		grid-column-gap: 2rem;
+		grid-row-gap: 2rem;
+	}
+
+	.result {
+		display: block;
+		background-color: #F3F3F3;
+	}
 	</style>
 </head>
 <body>
@@ -63,8 +74,6 @@
 
 			// TODO: Validate page number
 			// ...
-		} else {
-			echo "<p>[no page number set; displaying page 1]</p>";
 		}
 		$request->Pagination->PageNumber = $pageNum;
 
@@ -87,19 +96,18 @@
 		    die();
 		}
 		$totalPages = $response->PaginationResult->TotalNumberOfPages;
-		echo "<h1>Results for page $pageNum of $totalPages</h1>";
+		echo "<h1>Results</h1>";
 		if ($response->Ack !== 'Failure') {
 
 			// Display list of results from requested page
-			echo "<ul>";
+			echo "<ul class=\"results-list\">";
 		    foreach ($response->ItemArray->Item as $item) {
 		        printf(
-		            "<li>(%s) %s <a href=\"%s\">View item</a>
+		            "<li class=\"result\">%s <a href=\"%s\">View item</a>
 		            <br>
 		            	<img src=\"%s\" width=\"200\">
 		            <br>
 		            </li>",
-		            $item->ItemID,
 		            $item->Title,
 		            $item->ListingDetails->ViewItemURL,
 		            $item->PictureDetails->PictureURL[0]
@@ -110,6 +118,7 @@
 			// Pagination to navigate pages
 			echo "<ul>";
 			echo "<li><a href=\"?page=" . ($pageNum - 1) . "\">Previous page</a></li>";
+			echo "<li>Page $pageNum of $totalPages</li>";
 			echo "<li><a href=\"?page=" . ($pageNum + 1) . "\">Next page</a></li>";
 			echo "</ul>";
 		}
