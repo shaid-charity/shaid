@@ -98,7 +98,7 @@ CREATE TABLE `posts` (
   `datetime-published` datetime DEFAULT NULL,
   `datetime-last-modified` datetime DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `content` varchar(1500) DEFAULT NULL,
+  `content` text DEFAULT NULL,
   `image` varchar(200) DEFAULT NULL,
   `image_caption` varchar(6500) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,

@@ -20,10 +20,10 @@
 		/* ----- EBAY SETUP ----- */
 
 		// Load ebay-sdk
-		require SITE_ROOT . '/includes/lib/ebay-sdk/ebay-sdk-php-autoloader.php';
+		require 'includes/lib/ebay-sdk/ebay-sdk-php-autoloader.php';
 
 		// Load config
-		$config = require SITE_ROOT . '/includes/config.php';
+		$config = require 'includes/ebay.config.php';
 
 		// Set mode to use with ebay-sdk
 		$MODE = 'production';
