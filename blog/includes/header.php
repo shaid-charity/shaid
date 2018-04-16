@@ -14,7 +14,7 @@
 			</div>
 			<span class="header-text">Single Homeless Action Initiative in Durham</span>
 			<div class="header-right">
-				<form action="search.php" class="search header-search">
+				<form action="/<?php echo INSTALLED_DIR; ?>/search.php" class="search header-search">
 					<input type="text" name="term" placeholder="Search" />
 					<button><i type="submit" class="material-icons">search</i></button>
 				</form>
