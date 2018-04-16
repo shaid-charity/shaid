@@ -21,7 +21,7 @@
 			<div class="content-grid no-sidebar">
 				<section id="main">
 					<section class="info-page-content">
-						<div class="page-title">
+						<div class="content-grid-title">
 							<h1>Terms &amp; Conditions</h1>
 						</div>
 						<h2>1. Definitions</h2>

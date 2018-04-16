@@ -89,7 +89,7 @@
 			<div class="content-grid no-sidebar">
 				<section id="main">
 					<section class="info-page-content">
-						<div class="page-title">
+						<div class="content-grid-title">
 							<h1>SHAID Store</h1>
 						</div>
 						<p>Below you can see all of the items we have for sale on our <a href="https://ebay.co.uk/usr/<?php echo $USER; ?>" target="_blank">eBay store</a>. By purchasing an item through our eBay store you are directly supporting SHAID.</p>
