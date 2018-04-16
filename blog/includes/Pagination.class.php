@@ -119,7 +119,7 @@ class Pagination {
 			}
 		}
 
-		$this->currentPage = "<li'><a class='button-dark-filled button-smaller' href='#'>$pageNum</a></li>";
+		$this->currentPage = "<li><a class='button-dark-filled button-smaller' href='#'>$pageNum</a></li>";
 
 		// Generate links to the next page
 		if ($pageNum < $this->totalNumPages) {
