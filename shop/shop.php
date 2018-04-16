@@ -29,7 +29,7 @@
 		$MODE = 'production';
 
 		// Set user to view items of
-		$USER = 'dhammatek';
+		$USER = 'sofas4less';
 
 		// The namespaces provided by the SDK.
 		use \DTS\eBaySDK\Constants;
@@ -58,8 +58,12 @@
 		$request->Pagination->EntriesPerPage = 10;
 		// $request->Sort = Enums\ItemSortTypeCodeType::C_CURRENT_PRICE_DESCENDING;
 
-		$request->StartTimeFrom = DateTime::createFromFormat('d/m/Y', '23/02/2018');
-		$request->StartTimeTo   = DateTime::createFromFormat('d/m/Y', '15/04/2018');
+		$startDate = DateTime::createFromFormat('d/m/Y', date('d/m/Y'));
+		// Do NOT modify - 120 days is the maximum range supported by the ebay sdk and despite what
+		// the documentation says, a date range is a required parameter of GetSellerList.
+		$startDate->modify('-120 days');
+		$request->StartTimeFrom = $startDate;
+		$request->StartTimeTo   = DateTime::createFromFormat('d/m/Y', date('d/m/Y'));
 
 		$request->DetailLevel[] = Enums\DetailLevelCodeType::C_ITEM_RETURN_DESCRIPTION;
 
@@ -86,7 +90,7 @@
 				<section id="main">
 					<section class="info-page-content">
 						<div class="page-title">
-							<h1>Shop</h1>
+							<h1>Store</h1>
 						</div>
 						<?php
 
@@ -127,11 +131,19 @@
 								echo "</ul>";
 
 								// Pagination to navigate pages
-								echo "<ul>";
-								echo "<li><a href=\"?page=" . ($pageNum - 1) . "\">Previous page</a></li>";
-								echo "<li>Page $pageNum of $totalPages</li>";
-								echo "<li><a href=\"?page=" . ($pageNum + 1) . "\">Next page</a></li>";
-								echo "</ul>";
+								?>
+								<nav>
+									<ul class="pagination">
+										<?php if ($pageNum > 1) { ?>
+											<li><a href="?page=<?php echo ($pageNum - 1); ?>" class="button-dark button-smaller"><!--Previous-->&laquo;</a></li>
+										<?php } ?>
+										<li><a href="?page=<?php echo $pageNum; ?>" class="button-dark-filled button-smaller"><?php echo $pageNum; ?></a></li>
+										<?php if ($pageNum < $totalPages) { ?>
+											<li><a href="?page=<?php echo ($pageNum + 1); ?>" class="button-dark button-smaller"><!--Next-->&raquo;</a></li>
+										<?php } ?>
+									</ul>
+								</nav>
+								<?php
 							} else {
 								echo "<p>Error: Could not connect to Ebay.</p>";
 							}
