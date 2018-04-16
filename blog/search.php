@@ -44,6 +44,7 @@
 
 							// Get some pages, iterate through them
 							// Set up the pagination
+							$displayResultsList = true; // Boolean to output articles-list
 							try {
 								$pagination = new Pagination($db, $postsQuery, array($term, $term, $term));
 								$pagination->totalRecords();
@@ -69,10 +70,13 @@
 								}
 							}
 							catch (Exception $error) {
+								$displayResultsList = false;
 								require_once(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							}
+							if ($displayResultsList) {
+								echo '<section id="articles-list">';
+							}
 					?>
-					<section id="articles-list">
 						<?php
 							foreach ($stmt as $row) {
 								$post = new Post($db, $row['id']);
@@ -141,9 +145,13 @@
 						</div>
 
 						<?php
+
+							}
+
+							if ($displayResultsList) {
+								echo '</section>';
 							}
 						?>
-					</section>
 
 					<!-- ========== BEGIN EVENTS SECTION =========== -->
 					<h2 class="search-section-title">SHAID Events</h2>
@@ -153,6 +161,7 @@
 
 						// Get some pages, iterate through them
 						// Set up the pagination
+						$displayResultsList = true; // Boolean to output articles-list
 						try {
 							$eventsPagination = new Pagination($db, $eventsQuery, array($term, $term, $term));
 							$eventsPagination->totalRecords();
@@ -178,11 +187,14 @@
 							}
 						}
 						catch (Exception $error) {
+							$displayResultsList = false;
 							require(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							$eventsStmt = array();
 						}
+						if ($displayResultsList) {
+							echo '<section id="articles-list">';
+						}
 					?>
-					<section id="articles-list">
 						<?php
 							foreach ($eventsStmt as $row) {
 								$event = new Event($db, $row['id']);
@@ -247,8 +259,14 @@
 							</div>
 						</div>
 
-					<?php } ?>
-					</section>
+					<?php
+
+						}
+
+						if ($displayResultsList) {
+							echo '</section>';
+						}
+					?>
 
 					<!-- ========== BEGIN CAMPAIGNS SECTION =========== -->
 					<h2 class="search-section-title">SHAID Campaigns</h2>
@@ -258,6 +276,7 @@
 
 						// Get some pages, iterate through them
 						// Set up the pagination
+						$displayResultsList = true; // Boolean to output articles-list
 						try {
 							$campaignsPagination = new Pagination($db, $campaignsQuery, array($term, $term, $term));
 							$campaignsPagination->totalRecords();
@@ -283,11 +302,15 @@
 							}
 						}
 						catch (Exception $error) {
+							$displayResultsList = false;
 							require(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							$campaignsStmt = array();
 						}
+
+						if ($displayResultsList) {
+							echo '<section id="articles-list">';
+						}
 					?>
-					<section id="articles-list">
 						<?php
 							foreach ($campaignsStmt as $row) {
 								$campaign = new Campaign($db, $row['id']);
@@ -352,8 +375,14 @@
 							</div>
 						</div>
 
-					<?php } ?>
-					</section>
+					<?php
+
+						}
+
+						if ($displayResultsList) {
+							echo '</section>';
+						}
+					?>
 
 					<!-- ========== BEGIN PAGINATION =========== -->
 					<nav>
