@@ -105,6 +105,10 @@ class Event extends Content {
 		return $this->location;
 	}
 
+	public function getLink() {
+		return '#';
+	}
+
 	public function setStartDatetime($startDatetime) {
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = ? WHERE `id` = ?");

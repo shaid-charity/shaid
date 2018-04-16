@@ -153,6 +153,10 @@ class Pagination {
 	public function getAfterLinks() {
 		return $this->afterLinks;
 	}
+
+	public function getTotalRecords() {
+		return $this->totalNumRecords;
+	}
 }
 
 ?>
