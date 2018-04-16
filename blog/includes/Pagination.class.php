@@ -16,14 +16,25 @@ class Pagination {
 	protected $query;
 	protected $params;
 
-	public function __construct($db, $query, array $params) {
-		$this->db = $db;
-		$this->query = $query;
-		$this->params = $params;
+	public function __construct($db = null, $query = null, array $params = null) {
+		if (!(is_null($db) && is_null($query) && is_null($params))) {
+			$this->db = $db;
+			$this->query = $query;
+			$this->params = $params;
+		}
 
 		// So we can concatenate later on
 		$this->beforeLinks = '';
 		$this->afterLinks = '';
+	}
+
+	public function setTotalRecords($totalRecords) {
+		// Only allow this to occur if we are not using the DB
+		if (!is_null($this->db)) {
+			throw new Exception("This method cannot be used when using the DB for pagination.");
+		}
+
+		$this->totalNumRecords = $totalRecords;
 	}
 
 	public function totalRecords() {
