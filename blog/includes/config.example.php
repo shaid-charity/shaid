@@ -39,3 +39,23 @@ define('EMAIL_NAME', 'Sender Name');
 define('EMAIL_PASSWORD', 'password');
 define('EMAIL_SERVER', 'SMTP.Server.com');
 define('EMAIL_PORT', 587);
+
+// eBay settings for store.php
+return [
+    'sandbox' => [
+        'credentials' => [
+            'devId' => '',
+            'appId' => '',
+            'certId' => '',
+        ],
+        'userAuthToken' => ''
+    ],
+    'production' => [
+        'credentials' => [
+            'devId' => '',
+            'appId' => '',
+            'certId' => '',
+        ],
+        'userAuthToken' => ''
+    ]
+];
