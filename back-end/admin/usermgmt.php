@@ -13,7 +13,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       //echo "validation successful";
       $representing = getRepresenting($_POST["representative"]);
       $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography) VALUES(?,?,?,?,?,?,?,?,?,?);");
-      $query->bind_param("ssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "--------------------", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]));
+      $query->bind_param("ssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]));
       $query->execute();
       $query->close();
     } else {
@@ -36,6 +36,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     case 'DELETE':
     $query = $con->prepare("DELETE FROM users WHERE user_id=?");
     $query->bind_param("s", getValidData($_POST["user_id"]));
+    $query->execute();
+    $query->close();
+    break;
+
+    case 'RESET':
+    $query = $con->prepare("UPDATE users SET pass_salt=?, pass_hash=? WHERE user_id=?");
+    $query->bind_param("sss", $salt = "undefined", $hash = "undefined", getValidData($_POST["user_id"]));
     $query->execute();
     $query->close();
     break;
@@ -73,6 +80,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <form method="POST" id="delete_user_form">
               <input type="hidden" name="action" value="DELETE"/>
               <input type="hidden" name="user_id" id="delete_id" value=""/>
+            </form>
+            <form method="POST" id="pass_reset_form">
+              <input type="hidden" name="action" value="RESET"/>
+              <input type="hidden" name="user_id" id="pass_reset_id" value=""/>
             </form>
             <form method="POST" id="user_details_form">
               <input type="hidden" name="action" id="user_details_form_action" value="UPDATE" />
@@ -137,6 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger mr-auto" id="delete_user">Delete User</button>
+              <button type="button" class="btn btn-danger mr-auto" id="pass_reset">Reset Password</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="submit_user_details">Update User</button>  
             </div>
@@ -248,6 +260,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       var user = $(event.relatedTarget);
       var modal = $(this);
       if(user.data("useraction") === "update"){
+        modal.find("#pass_reset_id").val(user.data("userid"));
         modal.find("#delete_id").val(user.data("userid"));
         modal.find("#user_id").val(user.data("userid"));
         modal.find("#user_email").val(user.data("useremail"));
@@ -262,6 +275,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         $("#submit_user_details").html("Update user");
         $("#delete_user").show();
+        $("#pass_reset").show();
         last_role = user.data("roleid");
       } else if(user.data("useraction") === "add"){
         last_role = 5;
@@ -275,6 +289,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         modal.find("#user_details_form_action").val("ADD");
         $("#submit_user_details").html("Add user");
         $("#delete_user").hide();
+        $("#pass_reset").hide();        
       }
     });
     $("#submit_user_details").click(function(event){
@@ -300,6 +315,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $("#delete_user").click(function(){
       if(confirm("Are you sure want to delete this user?")){
         $("#delete_user_form").submit();
+      }
+    });
+    $("#pass_reset").on("click", function(){
+      if(confirm("Are you sure want to reset password for this user?")){
+        $("#pass_reset_form").submit();
       }
     });
     $("#search_button").click(function(){
