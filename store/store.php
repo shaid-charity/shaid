@@ -11,7 +11,7 @@
 		require_once(SITE_ROOT . '/includes/global_head.php');
 	?>
 	<link href="./style/blog.css" rel="stylesheet">
-	<link href="./style/shop.css" rel="stylesheet">
+	<link href="./style/store.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -90,8 +90,9 @@
 				<section id="main">
 					<section class="info-page-content">
 						<div class="page-title">
-							<h1>Store</h1>
+							<h1>SHAID Store</h1>
 						</div>
+						<p>Below you can see all of the items we have for sale on our <a href="https://ebay.co.uk/usr/<?php echo $USER; ?>" target="_blank">eBay store</a>. By purchasing an item through our eBay store you are directly supporting SHAID.</p>
 						<?php
 
 							/**
@@ -109,7 +110,7 @@
 							    }
 							    die();
 							    */
-								echo "<p>Error: Request to Ebay failed.</p>";
+								echo "<p>Error: Request to eBay failed.</p>";
 							} elseif ($response->Ack !== 'Failure') {
 								$totalPages = $response->PaginationResult->TotalNumberOfPages;
 
@@ -121,7 +122,7 @@
 									            <div class=\"product-result-image-container\"> 
 									            	<div class=\"product-result-image\" style=\"background-image:url('%s');\"></div>
 									            </div>
-									            <a href=\"%s\" target=\"_blank\" class=\"button-dark product-result-button\">View on Ebay</a>
+									            <a href=\"%s\" target=\"_blank\" class=\"button-dark product-result-button\">View on eBay</a>
 								            </li>",
 								            $item->Title,
 								            $item->PictureDetails->PictureURL[0],
