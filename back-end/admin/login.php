@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     if($disabled){
       //echo "<script>alert('Your account has been disabled. Please contact system administrator');</script>";
-      header("Location: login.php");
+      //header("Location: login.php");
       die('Your account has been disabled. Please contact system administrator');          
     } else {
       if(!empty($hash)){
