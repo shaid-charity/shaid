@@ -56,8 +56,16 @@
 				} else if (isset($_GET['action']) && $_GET['action'] == 'fromPreview') {
 					if ($_POST['saveType'] == 'Save Draft') {
 						$post->setPublished(0);
+
+						if (file_exists($file['tmp_name'])) {
+						$uploadManager->upload($file);
+					}
 					} else if ($_POST['saveType'] == 'Publish') {
 						$post->setPublished(1);
+
+						if (file_exists($file['tmp_name'])) {
+						$uploadManager->upload($file);
+					}
 					}
 
 					// If the Edit button was selected, do nothing
