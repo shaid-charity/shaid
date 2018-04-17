@@ -67,6 +67,7 @@
 									$type = 'blog posts';
 									require(SITE_ROOT . '/includes/blog_modules/search_no_more_results.php');
 									$stmt = array();
+									$displayResultsList = false;
 								}
 							}
 							catch (Exception $error) {
@@ -190,6 +191,7 @@
 							$displayResultsList = false;
 							require(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							$eventsStmt = array();
+							$displayResultsList = false;
 						}
 						if ($displayResultsList) {
 							echo '<section id="articles-list">';
@@ -305,6 +307,7 @@
 							$displayResultsList = false;
 							require(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							$campaignsStmt = array();
+							$displayResultsList = false;
 						}
 
 						if ($displayResultsList) {
