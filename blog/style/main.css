@@ -634,6 +634,13 @@ footer {
   flex-grow: 0;
   flex-shrink: 0; }
 
+.search-term {
+  background-color: #f2f296;
+  padding: 0 0.2rem; }
+
+.search-result-title {
+  font-size: 1.8rem; }
+
 @media only screen and (max-width: 1199px) {
   body {
     font-size: 1rem; }

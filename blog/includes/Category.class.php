@@ -74,6 +74,10 @@ class Category extends DBRecord {
 		return $this->name;
 	}
 
+	public function getLink() {
+		return '/' . INSTALLED_DIR . '/blog/' . str_replace(" ", "-",  $this->name);
+	}
+
 	public function setName($name) {
 		try {
 			$stmt = $this->db->prepare("UPDATE `categories` SET `name` = ? WHERE `id` = ?");

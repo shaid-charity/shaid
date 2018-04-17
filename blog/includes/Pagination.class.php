@@ -86,7 +86,7 @@ class Pagination {
 
 			$this->firstAndBackLinks = "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$prevPage'>&laquo;</a></li>";
 		} else {
-			$this->firstAndBackLinks = "<li><a class='button-dark button-smaller disabled' href='" . $fileAndParams . "page=$prevPage'>&laquo;</a></li>";
+			$this->firstAndBackLinks = "";
 		}
 
 		// Get the surrounding couple of page numbers as well, if possible
@@ -127,7 +127,7 @@ class Pagination {
 
 			$this->nextAndLastLinks = "<li><a class='button-dark button-smaller' href='" . $fileAndParams . "page=$nextPage'>&raquo;</a></li>";
 		} else {
-			$this->nextAndLastLinks = "<li><a class='button-dark button-smaller disabled' href='" . $fileAndParams . "page=$nextPage'>&raquo;</a></li>";
+			$this->nextAndLastLinks = "";
 		}
 
 		return $pageNum;

@@ -7,6 +7,7 @@ class Post extends Content {
 	private $datePublished;
 	private $lastModifiedDate;
 	private $campaignID;
+	private $campaign;
 	private $eventID;
 	private $category;
 	private $approved;
@@ -48,6 +49,13 @@ class Post extends Content {
 		$this->lastModifiedDate = $result['datetime-last-modified'];
 		$this->category = new Category($this->db, $result['category_id']);
 		$this->published = $result['published'];
+
+		if (isset($result['campaign_id']) && $result['campaign_id'] != 0)
+		{
+			$this->campaign = new Campaign($this->db, $result['campaign_id']);
+		} else {
+			$this->campaign = null;
+		}
 	}
 
 	public function getBySlug($slug) {
@@ -68,14 +76,23 @@ class Post extends Content {
 		$this->lastModifiedDate = $result['datetime-last-modified'];
 		$this->category = new Category($this->db, $result['category_id']);
 		$this->published = $result['published'];
+
+		if (isset($result['campaign_id']) && $result['campaign_id'] != 0)
+		{
+			$this->campaign = new Campaign($this->db, $result['campaign_id']);
+		} else {
+			$this->campaign = null;
+		}
 	}
 
 	public function getDatePublished() {
-		return $this->datePublished;
+		// Format the date first
+		return date("d/m/Y", strtotime($this->datePublished));
 	}
 
 	public function getLastModifiedDate() {
-		return $this->lastModifiedDate;
+		// Format the date first
+		return date("d/m/Y", strtotime($this->lastModifiedDate));
 	}
 
 	public function getCampaign() {
@@ -99,7 +116,9 @@ class Post extends Content {
 	}
 
 	public function getLink() {
-		return $this->category->getName() . '/' . $this->getID() . '-' . $this->getTitle();
+		$title = str_replace(" ", "-", $this->getTitle());
+		$categoryName = str_replace(" ", "-",  $this->category->getName());
+		return '/' . INSTALLED_DIR . '/blog/' . $categoryName . '/' . $this->getID() . '-' . $title;
 	}
 
 	// This function is private as we will never need the user to manually update the last modified datetime
@@ -159,15 +178,19 @@ class Post extends Content {
 	}
 
 	public function setCampaign($campaignID) {
-		try {
-			$stmt = $this->db->prepare("UPDATE `$this->table` SET `campaign_id` = ? WHERE `id` = ?");
-			$stmt->execute([(int) $campaignID, $this->getID()]);
-		} catch (PDOException $e) {
-			echo 'Post.class.php setCampaign() error: <br />';
-			throw new Exception($e->getMessage());
+		if ($campaignID != 0 && !is_null($campaign_id)) {
+			try {
+				$stmt = $this->db->prepare("UPDATE `$this->table` SET `campaign_id` = ? WHERE `id` = ?");
+				$stmt->execute([(int) $campaignID, $this->getID()]);
+			} catch (PDOException $e) {
+				echo 'Post.class.php setCampaign() error: <br />';
+				throw new Exception($e->getMessage());
+			}
+
+			$this->campaign = new Campaign($this->db, $campaignID);
 		}
 
-		$this->campaign = new Campaign($this->db, $campaignID);
+		$this->campaignID = $campaignID;
 
 		// Also set the last modified datetime
 		$this->setLastModifiedDateTime();

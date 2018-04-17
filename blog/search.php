@@ -15,11 +15,6 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
 	<link href="style/blog.css" rel="stylesheet">
-	<style>
-		.search-term {
-			background-color: #008194;
-		}
-	</style>
 </head>
 <body>
 	<?php
@@ -31,8 +26,9 @@
 			<div class="content-grid">
 				<section id="main">
 					<div class="content-grid-title">
-						<h1>SHAID Blog</h1>
+						<h1>Search</h1>
 					</div>
+					<h2 class="search-section-title">SHAID Blog</h2>
 					<?php
 						// Check we have a search term
 						if (!isset($_GET['term'])) {
@@ -48,6 +44,7 @@
 
 							// Get some pages, iterate through them
 							// Set up the pagination
+							$displayResultsList = true; // Boolean to output articles-list
 							try {
 								$pagination = new Pagination($db, $postsQuery, array($term, $term, $term));
 								$pagination->totalRecords();
@@ -70,13 +67,17 @@
 									$type = 'blog posts';
 									require(SITE_ROOT . '/includes/blog_modules/search_no_more_results.php');
 									$stmt = array();
+									$displayResultsList = false;
 								}
 							}
 							catch (Exception $error) {
+								$displayResultsList = false;
 								require_once(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							}
+							if ($displayResultsList) {
+								echo '<section id="articles-list">';
+							}
 					?>
-					<section id="articles-list">
 						<?php
 							foreach ($stmt as $row) {
 								$post = new Post($db, $row['id']);
@@ -129,7 +130,7 @@
 						<div class="articles-list-entry">
 							<a class="articles-list-entry-thumb" href="news/<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="news/<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
+								<a href="news/<?php echo $post->getLink(); ?>/"><h2 class="search-result-title"><?php echo $post->getTitle(); ?></h2></a>
 								<p><?php echo $description; ?></p>
 								<div class="articles-list-entry-actions">
 									<ul>
@@ -145,18 +146,23 @@
 						</div>
 
 						<?php
+
+							}
+
+							if ($displayResultsList) {
+								echo '</section>';
 							}
 						?>
-					</section>
 
 					<!-- ========== BEGIN EVENTS SECTION =========== -->
-					<h1>SHAID Events</h1>
+					<h2 class="search-section-title">SHAID Events</h2>
 
 					<?php
 						$eventsQuery = "SELECT DISTINCT `id` from `events` WHERE (match(`title`) against(? IN BOOLEAN MODE) OR match(`content`) against(? IN BOOLEAN MODE) OR match(`image_caption`) against(? IN BOOLEAN MODE))";
 
 						// Get some pages, iterate through them
 						// Set up the pagination
+						$displayResultsList = true; // Boolean to output articles-list
 						try {
 							$eventsPagination = new Pagination($db, $eventsQuery, array($term, $term, $term));
 							$eventsPagination->totalRecords();
@@ -182,11 +188,15 @@
 							}
 						}
 						catch (Exception $error) {
+							$displayResultsList = false;
 							require(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							$eventsStmt = array();
+							$displayResultsList = false;
+						}
+						if ($displayResultsList) {
+							echo '<section id="articles-list">';
 						}
 					?>
-					<section id="articles-list">
 						<?php
 							foreach ($eventsStmt as $row) {
 								$event = new Event($db, $row['id']);
@@ -239,7 +249,7 @@
 						<div class="articles-list-entry">
 							<a class="articles-list-entry-thumb" href="news/<?php echo $event->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="news/<?php echo $event->getLink(); ?>/"><h2><?php echo $event->getTitle(); ?></h2></a>
+								<a href="news/<?php echo $event->getLink(); ?>/"><h2 class="search-result-title"><?php echo $event->getTitle(); ?></h2></a>
 								<p><?php echo $description; ?></p>
 								<div class="articles-list-entry-actions">
 									<ul>
@@ -251,17 +261,24 @@
 							</div>
 						</div>
 
-					<?php } ?>
-					</section>
+					<?php
+
+						}
+
+						if ($displayResultsList) {
+							echo '</section>';
+						}
+					?>
 
 					<!-- ========== BEGIN CAMPAIGNS SECTION =========== -->
-					<h1>SHAID Campaigns</h1>
+					<h2 class="search-section-title">SHAID Campaigns</h2>
 
 					<?php
 						$campaignsQuery = "SELECT DISTINCT `id` from `campaigns` WHERE (match(`title`) against(? IN BOOLEAN MODE) OR match(`content`) against(? IN BOOLEAN MODE) OR match(`image_caption`) against(? IN BOOLEAN MODE))";
 
 						// Get some pages, iterate through them
 						// Set up the pagination
+						$displayResultsList = true; // Boolean to output articles-list
 						try {
 							$campaignsPagination = new Pagination($db, $campaignsQuery, array($term, $term, $term));
 							$campaignsPagination->totalRecords();
@@ -287,11 +304,16 @@
 							}
 						}
 						catch (Exception $error) {
+							$displayResultsList = false;
 							require(SITE_ROOT . '/includes/blog_modules/search_no_results.php');
 							$campaignsStmt = array();
+							$displayResultsList = false;
+						}
+
+						if ($displayResultsList) {
+							echo '<section id="articles-list">';
 						}
 					?>
-					<section id="articles-list">
 						<?php
 							foreach ($campaignsStmt as $row) {
 								$campaign = new Campaign($db, $row['id']);
@@ -344,7 +366,7 @@
 						<div class="articles-list-entry">
 							<a class="articles-list-entry-thumb" href="news/<?php echo $campaign->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="news/<?php echo $campaign->getLink(); ?>/"><h2><?php echo $campaign->getTitle(); ?></h2></a>
+								<a href="news/<?php echo $campaign->getLink(); ?>/"><h2 class="search-result-title"><?php echo $campaign->getTitle(); ?></h2></a>
 								<p><?php echo $description; ?></p>
 								<div class="articles-list-entry-actions">
 									<ul>
@@ -356,8 +378,14 @@
 							</div>
 						</div>
 
-					<?php } ?>
-					</section>
+					<?php
+
+						}
+
+						if ($displayResultsList) {
+							echo '</section>';
+						}
+					?>
 
 					<!-- ========== BEGIN PAGINATION =========== -->
 					<nav>
