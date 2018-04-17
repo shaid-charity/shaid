@@ -99,7 +99,9 @@ class Post extends Content {
 	}
 
 	public function getLink() {
-		return $this->category->getName() . '/' . $this->getID() . '-' . $this->getTitle();
+		$title = str_replace(" ", "-", $this->getTitle());
+		$categoryName = str_replace(" ", "-",  $this->category->getName());
+		return '/' . INSTALLED_DIR . '/news/' . $categoryName . '/' . $this->getID() . '-' . $title;
 	}
 
 	// This function is private as we will never need the user to manually update the last modified datetime

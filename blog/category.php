@@ -24,6 +24,10 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/admin/admin_header.php');
 		require_once(SITE_ROOT . '/includes/header.php');
+
+		$slug = $_GET['name'];
+
+		$name = str_replace("-", " ", $slug);
 	?>
 	<main id="main-content">
 		<div class="inner-container">
@@ -33,7 +37,7 @@
 						<span><a href="./blog.php">Blog</a></span>
 					</section>
 					<div class="page-title">
-						<h1><?php echo $_GET['name']; ?></h1>
+						<h1><?php echo $name ?></h1>
 					</div>
 					<?php
 						// Check an ID was given and that it exists
@@ -59,7 +63,7 @@
 							}
 						} else if (isset($_GET['name'])) {
 							// Check the name exists
-							$name = htmlspecialchars_decode($_GET['name']);
+							$name = htmlspecialchars_decode($name);
 							try {
 								$category = new Category($db, true, $name);
 							} catch (Exception $e) {

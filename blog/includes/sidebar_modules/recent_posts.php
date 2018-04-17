@@ -18,12 +18,12 @@
 									if ($post->getImagePath() == null) {
 										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
 									} else {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/admin/' . htmlentities($post->getImagePath()) . '\');';
+										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath()) . '\');';
 									}
 							?>
 							<li>
-								<a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getLink(); ?>/" class="recent-posts-thumbnail" style="<?php echo $imageCSS; ?>"></a>
-								<span><a href="/<?php echo INSTALLED_DIR . '/news/' . $post->getLink(); ?>/"><?php echo $post->getTitle(); ?></a></span>
+								<a href="<?php echo $post->getLink(); ?>/" class="recent-posts-thumbnail" style="<?php echo $imageCSS; ?>"></a>
+								<span><a href="<?php echo $post->getLink(); ?>/"><?php echo $post->getTitle(); ?></a></span>
 							</li>
 							<?php
 								}
