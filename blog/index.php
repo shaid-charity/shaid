@@ -27,7 +27,7 @@
 				<div class="hero-text">
 					<h1>Who are we?</h1>
 					<p>SHAID provides a range of housing advice, support and related services to help young people make the difficult transition to living independently in the community.</p>
-					<a href="#" class="button-light">I want to hear more</a>
+					<a href="/<?php echo INSTALLED_DIR; ?>/about.php" class="button-light">I want to hear more</a>
 				</div>
 			</div>
 		</div>
@@ -41,7 +41,7 @@
 						<p>Download our referral form to make a referral to SHAID's <b>Housing Support Services</b>. You can also make referrals to our Pre-Tenancy service using our online form.</p>
 					</div>
 					<div class="section-item-bottom">
-						<a href="#" class="button-dark">Find out more</a>
+						<a href="/<?php echo INSTALLED_DIR; ?>/referrals.php" class="button-dark">Find out more</a>
 					</div>
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 						<p>SHAID's <b>Pre-Tenancy Support Service</b> is available to anyone aged 18 to 25 who lives within Derwentside and needs assistance in accessing accommodation.</p>
 					</div>
 					<div class="section-item-bottom">
-						<a href="#" class="button-dark">Find out more</a>
+						<a href="/<?php echo INSTALLED_DIR; ?>/pre-tenancy-support.php" class="button-dark">Find out more</a>
 					</div>
 				</div>
 			</div>
@@ -65,7 +65,7 @@
 						<p>SHAID's <b>Floating Support Service</b> is available to anyone aged 16 to 25 who lives within Derwentside and needs assistance in managing their tenancy.</p>
 					</div>
 					<div class="section-item-bottom">
-						<a href="#" class="button-dark">Find out more</a>
+						<a href="/<?php echo INSTALLED_DIR; ?>/floating-support.php" class="button-dark">Find out more</a>
 					</div>
 				</div>
 			</div>
