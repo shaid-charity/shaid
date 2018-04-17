@@ -71,11 +71,13 @@ class Post extends Content {
 	}
 
 	public function getDatePublished() {
-		return $this->datePublished;
+		// Format the date first
+		return date("d/m/Y", strtotime($this->datePublished));
 	}
 
 	public function getLastModifiedDate() {
-		return $this->lastModifiedDate;
+		// Format the date first
+		return date("d/m/Y", strtotime($this->lastModifiedDate));
 	}
 
 	public function getCampaign() {
@@ -101,7 +103,7 @@ class Post extends Content {
 	public function getLink() {
 		$title = str_replace(" ", "-", $this->getTitle());
 		$categoryName = str_replace(" ", "-",  $this->category->getName());
-		return '/' . INSTALLED_DIR . '/news/' . $categoryName . '/' . $this->getID() . '-' . $title;
+		return '/' . INSTALLED_DIR . '/blog/' . $categoryName . '/' . $this->getID() . '-' . $title;
 	}
 
 	// This function is private as we will never need the user to manually update the last modified datetime

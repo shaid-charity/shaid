@@ -75,23 +75,33 @@
 				<div class="newspreview-header">
 					<h1>SHAID News</h1>
 				</div>
+				<?php 
+					// Get latest article in category 1 (news category)
+
+					$stmt = $db->query("SELECT `id` FROM `posts` WHERE `category_id` = 1 ORDER BY `datetime-published` DESC LIMIT 1");
+					$id = $stmt->fetch()['id'];
+
+					$post = new Post($db, $id);
+
+					$description = substr(html_entity_decode(strip_tags($post->getContent())), 0, 150) . '...';
+				?>
 				<div class="newspreview-item inner-container">
-					<span class="newspreview-item-date">18/01/2017</span>
-					<h2>National Citizen Service Student Group Fundraise for SHAID</h2>
+					<span class="newspreview-item-date"><?php echo $post->getDatePublished(); ?></span>
+					<h2><?php echo $post->getTitle(); ?></h2>
 					<div class="newspreview-item-content">
 						<div class="newspreview-item-content-img">
-							<img src="./assets/home/news-img-1.png" alt="title here">
+							<img src="<?php echo $post->getImagePath(); ?>" alt="<?php echo $post->getImageCaption(); ?>">
 						</div>
 						<div class="newspreview-item-content-text">
-							<p>SHAID were approached by the NCS student group known the 'Little Guardians of the Unfortunate'. As part of the NCS National Week of Social Action, the group wished to carry out...</p>
+							<p><?php echo $description; ?></p>
 							<div class="newspreview-item-content-text-link">
-								<a href="#" class="button-dark">Read article</a>
+								<a href="<?php echo $post->getLink(); ?>/" class="button-dark">Read article</a>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="newspreview-footer">
-					<a href="#" class="button-light">Read more on our blog</a>
+					<a href="/<?php echo INSTALLED_DIR; ?>/blog/News/" class="button-light">Read more on our blog</a>
 				</div>
 			</div>
 		</div>

@@ -75,7 +75,7 @@ class Category extends DBRecord {
 	}
 
 	public function getLink() {
-		return '/' . INSTALLED_DIR . '/news/' . str_replace(" ", "-",  $this->name);
+		return '/' . INSTALLED_DIR . '/blog/' . str_replace(" ", "-",  $this->name);
 	}
 
 	public function setName($name) {
