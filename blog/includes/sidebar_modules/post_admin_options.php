@@ -4,7 +4,7 @@
         * Only CMS pages should show this.
     */
 
-    if ($user != null) {
+    if ($user != null && $user->getID() == $post->getAuthor()->getID()) {
 ?>
 					<section>
 						<h1>Admin options</h1>
