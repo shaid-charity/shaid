@@ -4,45 +4,51 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   if(!empty($_POST['user'])){
     $user_email = $_POST['user'];
     $pass = $_POST['pass'];
-    $query = $con->prepare("SELECT user_id, first_name, last_name, pass_salt, pass_hash FROM users WHERE email=?");
+    $query = $con->prepare("SELECT user_id, first_name, last_name, pass_salt, pass_hash, disabled FROM users WHERE email=?");
     $query->bind_param("s", $user_email);
     $query->execute();
-    $query->bind_result($user_id, $first_name, $last_name, $salt, $hash);
+    $query->bind_result($user_id, $first_name, $last_name, $salt, $hash, $disabled);
     $query->fetch();
     $query->close();
 
-    if(!empty($hash)){
-      if($hash == "undefined") {
-        //password has not been set yet
-        header("Location: passreset.php?user_email=" . $user_email);
-        die();
-      } else {
-        //check if password is correct
-        if(hash("sha256", $pass . $salt) == $hash){
-          session_start();
-          //possible session variables to use as a greeting in the future
-          $_SESSION["first_name"] = $first_name;
-          $_SESSION["last_name"] = $last_name;
-
-          //add login record into sessions table with 4 hour expiry timer
-          $query = $con->prepare("INSERT INTO sessions (session_id, user_id, session_ip, session_expiration) VALUES(?, ?, ?, DATE_ADD(NOW(), INTERVAL 4 HOUR));");
-          $query->bind_param("sss", session_id(), $user_id, $_SERVER['REMOTE_ADDR']);
-          $query->execute();
-          $query->close();
-
-          // Decide where to go back to
-          if (!isset($_GET['back'])) {
-            header("Location: viewPosts.php");
-            die();
-          } else {
-            header("Location: " . $_GET['back']);
-            die();
+    if($disabled){
+      //echo "<script>alert('Your account has been disabled. Please contact system administrator');</script>";
+      header("Location: login.php");
+      die('Your account has been disabled. Please contact system administrator');          
+    } else {
+      if(!empty($hash)){
+        if($hash == "undefined") {
+          //password has not been set yet
+          header("Location: passreset.php?user_email=" . $user_email);
+          die();
+        } else {
+          //check if password is correct
+          if(hash("sha256", $pass . $salt) == $hash){
+            session_start();
+            //possible session variables to use as a greeting in the future
+            $_SESSION["first_name"] = $first_name;
+            $_SESSION["last_name"] = $last_name;
+  
+            //add login record into sessions table with 4 hour expiry timer
+            $query = $con->prepare("INSERT INTO sessions (session_id, user_id, session_ip, session_expiration) VALUES(?, ?, ?, DATE_ADD(NOW(), INTERVAL 4 HOUR));");
+            $query->bind_param("sss", session_id(), $user_id, $_SERVER['REMOTE_ADDR']);
+            $query->execute();
+            $query->close();
+  
+            // Decide where to go back to
+            if (!isset($_GET['back'])) {
+              header("Location: viewPosts.php");
+              die();
+            } else {
+              header("Location: " . $_GET['back']);
+              die();
+            }
           }
         }
+      } else {
+        header("Location: login.php");
+        die();
       }
-    } else {
-      header("Location: login.php");
-      die();
     }
   } else {
     header("Location: login.php");

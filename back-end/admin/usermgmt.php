@@ -12,8 +12,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography'])){
       //echo "validation successful";
       $representing = getRepresenting($_POST["representative"]);
-      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography) VALUES(?,?,?,?,?,?,?,?,?,?);");
-      $query->bind_param("ssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]));
+      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography, disabled) VALUES(?,?,?,?,?,?,?,?,?,?,?);");
+      $query->bind_param("sssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]), $disabled = "0");
       $query->execute();
       $query->close();
     } else {
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     break;
 
     case 'DELETE':
-    $query = $con->prepare("DELETE FROM users WHERE user_id=?");
+    $query = $con->prepare("UPDATE users SET disabled=1 WHERE user_id=?");
     $query->bind_param("s", getValidData($_POST["user_id"]));
     $query->execute();
     $query->close();
@@ -187,8 +187,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
     </form>
     
-    <table id="table_of_users" class="table table-hover">
-      <thead>
+    <table id="table_of_users" class="table table-hover table-striped">
+      <thead class="thead-light">
         <tr>
           <th>New</th>
           <th>Email</th>
@@ -202,23 +202,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <tbody>
         <?php
               //display users based on search query; if empty search or initial load of page -> show all users
-          $sql = "SELECT user_id, email, first_name, last_name, roles.name, role_id, company_id, can_represent_company, biography FROM users, roles WHERE roles.id = users.role_id";
+          $sql = "SELECT user_id, email, first_name, last_name, roles.name, role_id, company_id, can_represent_company, biography, disabled FROM users, roles WHERE roles.id = users.role_id";
           $query = null;
           if(!empty($_GET["search_query"])){
-            $sql .= " AND ((user_id LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?));";
+            $sql .= " AND ((user_id LIKE ?) OR (first_name LIKE ?) OR (last_name LIKE ?)) ORDER BY disabled, first_name, last_name;";
             $search_query = "%" . getValidData($_GET["search_query"]) . "%";
             $query = $con->prepare($sql);
             $query->bind_param("sss", $search_query, $search_query, $search_query);
           } else {
+            $sql .= " ORDER BY disabled, first_name, last_name;";
             $query = $con->prepare($sql);
           }
           $query->execute();
-          $query->bind_result($user_id, $user_email, $first_name, $last_name, $role, $role_id, $company_id, $can_represent_company, $biography);
+          $query->bind_result($user_id, $user_email, $first_name, $last_name, $role, $role_id, $company_id, $can_represent_company, $biography, $disabled);
           $query->store_result();
 
           $user_count = 0;
           while($query->fetch()){
-            echo "<tr>";
+            if($disabled){
+              echo "<tr class='table-danger'>";
+            } else {
+              echo "<tr>";
+            }
 
             //find if user has any unreviwed posts
             $sql = "SELECT COUNT(id) FROM posts WHERE user_id=? AND approved=0;";
