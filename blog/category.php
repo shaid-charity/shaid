@@ -77,65 +77,67 @@
 							}
 						}
 					?>
-					<section id="articles-list">
+					<div class="articles-list-container">
+						<section id="articles-list">
 
-						<?php
-							// If we are not logged in, only get published posts
-							if ($user == null) {
-								$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `category_id` = ? ";
-							} else {
-								$query = "SELECT `id` FROM `posts` WHERE `category_id` = ? ";
-							}
-
-							// Get all posts in category
-							// Set up the pagination
-							$pagination = new Pagination($db, $query, array($category->getID()));
-							$pagination->totalRecords();
-							$pagination->setLimitPerPage(5);
-							$currentPage = $pagination->getPage();
-
-							// Select the correct number of records from the DB
-							if (isset($_GET['page'])) {
-								$startFrom = ($_GET['page'] - 1) * 5;
-							} else {
-								$startFrom = 0;
-							}
-
-							// Get all posts, order by descending date
-							$stmt = $db->prepare($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
-							$stmt->execute([$category->getID()]);
-								
-							foreach ($stmt as $row) {
-								$p = new Post($db, $row['id']);
-
-								// Decide which image we will show (do this here so there is less inline PHP below)
-								if ($p->getImagePath() == null) {
-									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
+							<?php
+								// If we are not logged in, only get published posts
+								if ($user == null) {
+									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `category_id` = ? ";
 								} else {
-									$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($p->getImagePath()) . '\');';
+									$query = "SELECT `id` FROM `posts` WHERE `category_id` = ? ";
 								}
-						?>
-						
-						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/" style="<?php echo $imageCSS; ?>"></a>
-							<div class="articles-list-entry-info">
-								<a href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/"><h2><?php echo $p->getTitle(); ?></h2></a>
-								<p>A description of the most recent blog post.</p>
-								<div class="articles-list-entry-actions">
-									<ul>
-										<li>
-											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $p->getDatePublished(); ?>"><?php echo $p->getDatePublished(); ?></time></span>
-										</li>
-										<li>
-											<a href="<?php echo $p->getCategory()->getName(); ?>/"><?php echo $p->getCategory()->getName(); ?></a>
-										</li>
-									</ul>
+
+								// Get all posts in category
+								// Set up the pagination
+								$pagination = new Pagination($db, $query, array($category->getID()));
+								$pagination->totalRecords();
+								$pagination->setLimitPerPage(5);
+								$currentPage = $pagination->getPage();
+
+								// Select the correct number of records from the DB
+								if (isset($_GET['page'])) {
+									$startFrom = ($_GET['page'] - 1) * 5;
+								} else {
+									$startFrom = 0;
+								}
+
+								// Get all posts, order by descending date
+								$stmt = $db->prepare($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+								$stmt->execute([$category->getID()]);
+									
+								foreach ($stmt as $row) {
+									$p = new Post($db, $row['id']);
+
+									// Decide which image we will show (do this here so there is less inline PHP below)
+									if ($p->getImagePath() == null) {
+										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
+									} else {
+										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($p->getImagePath()) . '\');';
+									}
+							?>
+							
+							<div class="articles-list-entry">
+								<a class="articles-list-entry-thumb" href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+								<div class="articles-list-entry-info">
+									<a href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/"><h2><?php echo $p->getTitle(); ?></h2></a>
+									<p>A description of the most recent blog post.</p>
+									<div class="articles-list-entry-actions">
+										<ul>
+											<li>
+												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $p->getDatePublished(); ?>"><?php echo $p->getDatePublished(); ?></time></span>
+											</li>
+											<li>
+												<a href="<?php echo $p->getCategory()->getName(); ?>/"><?php echo $p->getCategory()->getName(); ?></a>
+											</li>
+										</ul>
+									</div>
 								</div>
 							</div>
-						</div>
 
-						<?php } ?>
-					</section>
+							<?php } ?>
+						</section>
+					</div>
 					<nav>
 						<ul class="pagination">
 							<?php

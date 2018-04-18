@@ -52,6 +52,7 @@
 									$startFrom = 0;
 								}
 
+<<<<<<< HEAD
 								// Get all posts, order by descending date
 								$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 									
@@ -67,9 +68,9 @@
 							?>
 
 							<div class="articles-list-entry">
-								<a class="articles-list-entry-thumb" href="<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+								<a class="articles-list-entry-thumb" href="news/<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 								<div class="articles-list-entry-info">
-									<a href="<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
+									<a href="news/<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
 									<p>A description of the most recent blog post.</p>
 									<div class="articles-list-entry-actions">
 										<ul>
@@ -77,10 +78,26 @@
 												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $post->getDatePublished(); ?>"><?php echo $post->getDatePublished(); ?></time></span>
 											</li>
 											<li>
-												<a href="<?php echo $post->getCategory()->getLink(); ?>/"><?php echo $post->getCategory()->getName(); ?></a>
+												<a href="<?php echo $post->getCategory()->getName(); ?>/"><?php echo $post->getCategory()->getName(); ?></a>
 											</li>
 										</ul>
 									</div>
+=======
+						<div class="articles-list-entry">
+							<a class="articles-list-entry-thumb" href="<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+							<div class="articles-list-entry-info">
+								<a href="<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
+								<p>A description of the most recent blog post.</p>
+								<div class="articles-list-entry-actions">
+									<ul>
+										<li>
+											<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $post->getDatePublished(); ?>"><?php echo $post->getDatePublished(); ?></time></span>
+										</li>
+										<li>
+											<a href="<?php echo $post->getCategory()->getLink(); ?>/"><?php echo $post->getCategory()->getName(); ?></a>
+										</li>
+									</ul>
+>>>>>>> a3f8f63f48490133b07d617374be8993c0dfac4f
 								</div>
 							</div>
 

@@ -29,6 +29,7 @@
 						<h1>Search</h1>
 					</div>
 					<h2 class="search-section-title">SHAID Blog</h2>
+					<div class="search-section-container>"
 					<?php
 						// Check we have a search term
 						if (!isset($_GET['term'])) {
@@ -153,10 +154,11 @@
 								echo '</section>';
 							}
 						?>
+					</div>
 
 					<!-- ========== BEGIN EVENTS SECTION =========== -->
 					<h2 class="search-section-title">SHAID Events</h2>
-
+					<div class="search-section-container>"
 					<?php
 						$eventsQuery = "SELECT DISTINCT `id` from `events` WHERE (match(`title`) against(? IN BOOLEAN MODE) OR match(`content`) against(? IN BOOLEAN MODE) OR match(`image_caption`) against(? IN BOOLEAN MODE))";
 
@@ -269,9 +271,11 @@
 							echo '</section>';
 						}
 					?>
+					</div>
 
 					<!-- ========== BEGIN CAMPAIGNS SECTION =========== -->
 					<h2 class="search-section-title">SHAID Campaigns</h2>
+					<div class="search-section-container>"
 
 					<?php
 						$campaignsQuery = "SELECT DISTINCT `id` from `campaigns` WHERE (match(`title`) against(? IN BOOLEAN MODE) OR match(`content`) against(? IN BOOLEAN MODE) OR match(`image_caption`) against(? IN BOOLEAN MODE))";
@@ -386,6 +390,7 @@
 							echo '</section>';
 						}
 					?>
+					</div>
 
 					<!-- ========== BEGIN PAGINATION =========== -->
 					<nav>
