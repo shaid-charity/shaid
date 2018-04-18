@@ -60,6 +60,12 @@
 						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
 							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
 						} else {
+							// Generate link to share
+							if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
+								$link = 'https://' . $_SERVER['HTTP_HOST'] . $post->getLink();
+							} else {
+								$link = 'http://' . $_SERVER['HTTP_HOST'] . $post->getLink();
+							}
 					?>
 					<article id="article">
 						<section class="page-path">
@@ -97,19 +103,19 @@
 					<section id="article-footer">
 						<h2>Share this article</h2>
 						<section id="social-icons">
-							<a href="https://www.facebook.com/sharer/sharer.php?u=example.org" target="_blank">
+							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $link; ?>" target="_blank">
 								<img src="../../../assets/social/svg/facebook (3).svg" alt="Share on Facebook">
 							</a>
-							<a href="http://www.twitter.com/share?url=https://example.org/&hashtags=shaid" target="_blank">
+							<a href="http://www.twitter.com/share?url=<?php echo $link; ?>&hashtags=shaid" target="_blank">
 								<img src="../../../assets/social/svg/twitter (3).svg" alt="Share on Twitter">
 							</a>
-							<a href="https://www.linkedin.com/shareArticle?mini=true&url=http://developer.linkedin.com&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn" target="_blank">
+							<a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $link; ?>&source=SHAID" target="_blank">
 								<img src="../../../assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
 							</a>
-							<a href="http://www.reddit.com/submit?url=http://shaid.org.uk&title=Shaid%20New%20Blog%20Post" target="_blank">
+							<a href="http://www.reddit.com/submit?url=<?php echo $link; ?>&title=<?php echo $post->getTitle(); ?>" target="_blank">
 								<img src="../../../assets/social/svg/reddit (3).svg" alt="Share on Reddit">
 							</a>
-							<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl={url}&title={title}&caption={desc}&tags={hash_tags}" target="_blank">
+							<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo $link; ?>&title=<?php echo $post->getTitle(); ?>&caption=<?php echo $post->getContent(); ?>&tags=shaid" target="_blank">
 								<img src="../../../assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
 							</a>
 						</section>
@@ -147,7 +153,7 @@
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
-require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 </body>
