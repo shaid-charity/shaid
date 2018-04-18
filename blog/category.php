@@ -136,6 +136,13 @@
 
 						<?php } ?>
 					</section>
+					<nav>
+						<ul class="pagination">
+							<?php
+								echo $pagination->getFirstAndBackLinks() . $pagination->getBeforeLinks() . $pagination->getCurrentPageLinks() . $pagination->getAfterLinks() . $pagination->getNextAndLastLinks();
+							?>
+						</ul>
+					</nav>
 				</section>
 				<aside id="sidebar">
 					<?php
@@ -148,7 +155,7 @@
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
-require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 </body>
