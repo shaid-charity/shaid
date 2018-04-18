@@ -55,20 +55,7 @@ if(empty($session_number)){
   $query->execute();
   $query->close();
 
-  $page_min_permissions = array(
-    "/usermgmt.php" => 1,
-    "/contactDB.php" => 2,
-    "/viewEvents.php" => 3,
-    "/event.php" => 3,
-    "/campaign.php" => 2,
-    "/viewCampaigns.php" => 2,
-    "/post.php" => 5,
-    "/viewPosts.php" => 5,
-    "/createCategory.php" => 3,
-    "/viewCategories.php" => 3,
-    "/socialPost.php" => 2,
-    "/socialTrends.php" => 2,
-  );
+  $page_min_permissions = getPermissionArray();
 
   $page_name = strrchr($_SERVER['PHP_SELF'], "/");
   if($role_id > $page_min_permissions[$page_name]){
@@ -107,6 +94,9 @@ if(empty($session_number)){
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link <?php if (CURRENT_PAGE == 'profile') echo 'active'; ?>" href="profile.php">Profile</a>
+        </li>
         <li class="nav-item dropdown <?php if (substr(CURRENT_PAGE, 0, 7) == 'content') echo 'active'; ?>">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Content

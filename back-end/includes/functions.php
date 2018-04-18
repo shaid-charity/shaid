@@ -1,4 +1,22 @@
 <?php
+function getPermissionArray(){
+  return array(
+    "/usermgmt.php" => 1,
+    "/contactDB.php" => 2,
+    "/viewEvents.php" => 3,
+    "/event.php" => 3,
+    "/campaign.php" => 2,
+    "/viewCampaigns.php" => 2,
+    "/post.php" => 5,
+    "/viewPosts.php" => 5,
+    "/createCategory.php" => 3,
+    "/viewCategories.php" => 3,
+    "/socialPost.php" => 2,
+    "/socialTrends.php" => 2,
+    "/profile.php" => 5,
+  );
+}
+
   //generate a random 20 character long string
 function generateSalt(){
   $alphabet = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
