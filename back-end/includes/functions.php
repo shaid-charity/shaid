@@ -69,4 +69,43 @@ function validateUser($email, $first_name, $lastName, $bio){
 
   return true;
 }
+
+function checkIfEmailExists($con, $email, $user_id){
+  $query = $con->prepare("SELECT COUNT(email) FROM users WHERE email=?");
+  $query->bind_param("s", $email);
+  $query->execute();
+  $query->bind_result($count);
+  $query->fetch();
+  $query->close();
+
+  if($user_id == -1){
+    if($count == 0){
+      return false;
+    } else {
+      return true;
+    }
+  } else {
+    $query = $con->prepare("SELECT email FROM users WHERE user_id=?");
+    $query->bind_param("s", $user_id);
+    $query->execute();
+    $query->bind_result($user_email);
+    $query->fetch();
+    $query->close();
+
+    $threshold = 0;
+    if($user_email == $email){
+      $threshold = 1;
+    } else {
+      $threshold = 0;
+    }
+
+    if($count > $threshold){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+}
 ?>
