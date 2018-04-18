@@ -121,30 +121,24 @@
 				<aside id="sidebar">
 					<?php
 						require_once(SITE_ROOT . '/includes/sidebar_modules/post_admin_options.php');
+
+						if (!is_null($post->getCampaign())) {
 					?>
 					<section id="post-associated">
 						<h1>Campaign</h1>
 						<?php
-							// If no campaign is associated...
-							if ($post->getCampaign() == null) {
-						?>
-						<h2>No campaign</h2>
-						<?php
-							} else {
-								$campaign = $post->getCampaign();
+							$campaign = $post->getCampaign();
 						?>
 						<h2><?php echo $campaign->getTitle(); ?></h2>
-						<img src="http://via.placeholder.com/350x150" class="sidebar-large-image">
-						<p>A brief description of what this campaign is all about...</p>
+						<img src="<?php echo $campaign->getImagePath(); ?>" class="sidebar-large-image">
+						<p><?php echo strip_tags(substr($campaign->getContent(), 100)); ?></p>
 						<div class="sidebar-actions">
-							<a href="#" class="button-dark">More info</a>
+							<a href="<?php echo $campaign->getLink(); ?>" class="button-dark">More info</a>
 							<a href="#" class="button-dark">Donate</a>
 						</div>
-						<?php
-							}
-						?>
 					</section>
 					<?php
+						}
 						require_once(SITE_ROOT . '/includes/sidebar_modules/recent_posts.php');
 					?>
 				</aside>

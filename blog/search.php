@@ -23,7 +23,7 @@
 	?>
 	<main id="main-content">
 		<div class="inner-container">
-			<div class="content-grid">
+			<div class="content-grid no-sidebar">
 				<section id="main">
 					<div class="content-grid-title">
 						<h1>Search</h1>
@@ -128,9 +128,9 @@
 						?>
 
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="news/<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+							<a class="articles-list-entry-thumb" href="<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="news/<?php echo $post->getLink(); ?>/"><h2 class="search-result-title"><?php echo $post->getTitle(); ?></h2></a>
+								<a href="<?php echo $post->getLink(); ?>/"><h2 class="search-result-title"><?php echo $post->getTitle(); ?></h2></a>
 								<p><?php echo $description; ?></p>
 								<div class="articles-list-entry-actions">
 									<ul>
@@ -247,9 +247,9 @@
 						?>
 
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="news/<?php echo $event->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+							<a class="articles-list-entry-thumb" href="<?php echo $event->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="news/<?php echo $event->getLink(); ?>/"><h2 class="search-result-title"><?php echo $event->getTitle(); ?></h2></a>
+								<a href="<?php echo $event->getLink(); ?>/"><h2 class="search-result-title"><?php echo $event->getTitle(); ?></h2></a>
 								<p><?php echo $description; ?></p>
 								<div class="articles-list-entry-actions">
 									<ul>
@@ -364,9 +364,9 @@
 						?>
 
 						<div class="articles-list-entry">
-							<a class="articles-list-entry-thumb" href="news/<?php echo $campaign->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+							<a class="articles-list-entry-thumb" href="<?php echo $campaign->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 							<div class="articles-list-entry-info">
-								<a href="news/<?php echo $campaign->getLink(); ?>/"><h2 class="search-result-title"><?php echo $campaign->getTitle(); ?></h2></a>
+								<a href="<?php echo $campaign->getLink(); ?>/"><h2 class="search-result-title"><?php echo $campaign->getTitle(); ?></h2></a>
 								<p><?php echo $description; ?></p>
 								<div class="articles-list-entry-actions">
 									<ul>
@@ -406,11 +406,6 @@
 				<?php 
 					}
 				?>
-				<aside id="sidebar">
-					<?php
-						require_once(SITE_ROOT . '/includes/sidebar_modules/categories_list.php');
-					?>
-				</aside>
 			</div>
 		</div>
 	</main>
