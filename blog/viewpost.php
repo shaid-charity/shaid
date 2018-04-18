@@ -71,11 +71,11 @@
 						<section id="article-info">
 							<section id="article-author">
 								<div id="article-author-photo">
-									<img src="../../../assets/img/placeholder/profile_photo.jpg" alt="Jenny Smith">
+									<img src="<?php echo $post->getAuthor()->getAvatarPath(); ?>" alt="<?php echo $post->getAuthor()->getFullName(); ?>">
 								</div>
 								<div id="article-author-text">
 									<span id="article-author-text-name"><a href=""><?php echo $post->getAuthor()->getFullName(); ?></a></span>
-									<span id="article-author-text-about">Guest blogger (SomeCharity)</span>
+									<span id="article-author-text-about"><?php echo $post->getAuthor()->getBiography(); ?></span>
 								</div>
 							</section>
 							<section id="article-date">
