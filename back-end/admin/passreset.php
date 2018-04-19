@@ -40,14 +40,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   <script>
     $(document).ready(function(){
+      var password = "";
+      
       $("#password_reset_button").click(function(){
-        if($("#new_password").val() != $("#repeat_password").val()){
+        if($("#new_password").val() != $("#repeat_password").val() || !validatePassword(password)){
           $("#repeat_password_field").addClass("has-error");
 
         } else {
           $("#password_reset_form").submit();
         }
       });
+
+      $("#new_password").on("keyup", function(){
+        $("#new_password").removeClass("is-valid");
+        $("#new_password").removeClass("is-invalid");
+        password = $("#new_password").val();
+
+        if(validatePassword(password)){
+          $("#new_password").addClass("is-valid");    
+        } else {
+          $("#new_password").addClass("is-invalid");
+        }
+      });
+
+      $("#repeat_password").on("keyup", function(){
+        $("#repeat_password").removeClass("is-valid");
+        $("#repeat_password").removeClass("is-invalid");
+        
+        if((password == $("#repeat_password").val()) && validatePassword(password)){
+          $("#repeat_password").addClass("is-valid");
+        } else {
+          $("#repeat_password").addClass("is-invalid");
+        }
+      });
+
+      function validatePassword(pass){
+        if((password.length >= 8) && (password != password.toLowerCase()) && (/([0-9])+/.test(password))){
+          return true;          
+        } else {
+          return false;
+        }
+      }
     });
   </script>
 </head>
@@ -56,9 +89,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="panel panel-default" style="border-radius:18px; overflow:hidden; padding:15px">
       <form method="POST" id="password_reset_form">  
         <input type="hidden" name="user_email" value="<?php require_once("../includes/functions.php"); echo getValidData($_GET["user_email"]); ?>">
-        <?php
-          echo getValidData($_GET["user_email"]);
-        ?>
         <div class="input-group">
           <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></div>
             <input class="form-control" type="password" name="new_password" id="new_password" placeholder="New Password"></br>
