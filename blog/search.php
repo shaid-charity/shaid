@@ -29,7 +29,7 @@
 						<h1>Search</h1>
 					</div>
 					<h2 class="search-section-title">SHAID Blog</h2>
-					<div class="search-section-container>"
+					<div class="search-section-container">
 					<?php
 						// Check we have a search term
 						if (!isset($_GET['term'])) {
