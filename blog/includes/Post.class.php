@@ -178,7 +178,7 @@ class Post extends Content {
 	}
 
 	public function setCampaign($campaignID) {
-		if ($campaignID != 0 && !is_null($campaign_id)) {
+		if ($campaignID != 0 && !is_null($campaignID)) {
 			try {
 				$stmt = $this->db->prepare("UPDATE `$this->table` SET `campaign_id` = ? WHERE `id` = ?");
 				$stmt->execute([(int) $campaignID, $this->getID()]);
