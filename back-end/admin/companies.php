@@ -16,8 +16,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       break;
     
     case 'UPDATE':
-      $query = $con->prepare("UPDATE companies SET name=?, url=?, icon=? WHERE id=?");
-      $query->bind_param("ssss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($_POST["logo"]), getValidData($_POST["company_id"]));
+      $query = null;
+      if($_POST['logo'].trim() != ""){
+        $query = $con->prepare("UPDATE companies SET name=?, url=?, icon=? WHERE id=?");
+        $query->bind_param("ssss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($_POST["logo"]), getValidData($_POST["company_id"]));
+      } else {
+        $query = $con->prepare("UPDATE companies SET name=?, url=? WHERE id=?");
+        $query->bind_param("ssss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($_POST["company_id"]));
+      }
       $query->execute();
       $query->close();
       break;
@@ -144,14 +150,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
       if(company.data("action") === "update"){
         $("#name").val(company.data("name"));
-        $("#url").val(company.data("url"));  
+        $("#url").val(company.data("url"));
         $("#company_id").val(company.data("id"));
         $("#company_details_form_action").val("UPDATE");
         $("#submit_company_details").html("Update");
       } else if(company.data("action") === "add"){
         $("#name").val("");
         $("#url").val("");
-        $("#icon").val("");
+        $("#logo").val("");
         $("#company_id").val("");
         $("#company_details_form_action").val("ADD");
         $("#submit_company_details").html("Add");                

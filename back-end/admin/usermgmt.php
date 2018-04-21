@@ -14,8 +14,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){
       //echo "validation successful";
       $representing = getRepresenting($_POST["representative"]);
-      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography, disabled) VALUES(?,?,?,?,?,?,?,?,?,?,?);");
-      $query->bind_param("sssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]), $disabled = "0");
+      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
+      $query->bind_param("ssssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["avatar"]), getValidData($_POST["biography"]), $disabled = "0");
       $query->execute();
       $query->close();
       header("Location: usermgmt.php");
@@ -33,8 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){
       $representing = getRepresenting($_POST["representative"]);
-      $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
-      $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
+      $query = null;
+      if($_POST['avatar'].trim() == ""){      
+        $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
+        $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
+      } else {
+        $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=?, avatar=? WHERE user_id=?;");
+        $query->bind_param("sssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["avatar"]), getValidData($_POST["user_id"]));
+      }
       $query->execute();
       $query->close();
       header("Location: usermgmt.php");      
