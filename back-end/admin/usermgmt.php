@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       if($emailExists){
         echo "<script>alert('This email is already in use');</script>";
       } else {
-        echo "<script>alert('something went wrong');</script>";
+        echo "<script>alert('validation failed');</script>";
       }
     }
     break;
@@ -122,7 +122,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               </div>
               <div class="form-group">
                 <label for="userperm" class="form-control-label">Permissions:</label>
-                <select class="form-control" name="userperm" id="userperm">
+                <select class="form-control" name="userperm" id="userperm" required>
                   <?php
                     $query = $con->prepare("SELECT id, name, description FROM roles;");
                     $query->execute();
@@ -136,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               </div>
               <div class="form-group">
                 <label for="company" class="form-control-label">Company</label>
-                <select class="form-control" name="company" id="company">
+                <select class="form-control" name="company" id="company" required>
                 <?php
                     $query = $con->prepare("SELECT id, name FROM companies;");
                     $query->execute();
@@ -166,7 +166,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger mr-auto" id="delete_user">Delete User</button>
-              <button type="button" class="btn btn-danger mr-auto" id="pass_reset">Reset Password</button>
+              <!-- <button type="button" class="btn btn-danger mr-auto" id="pass_reset">Reset Password</button> -->
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="submit_user_details">Update User</button>  
             </div>
@@ -278,6 +278,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 <script>
   $(document).ready(function(){
+    //$("#company").editableSelect();
+
     var last_role = 5;
     $("#userEditModal").on("show.bs.modal", function(event){
       var user = $(event.relatedTarget);

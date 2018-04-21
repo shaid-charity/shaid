@@ -2,6 +2,7 @@
 function getPermissionArray(){
   return array(
     "/usermgmt.php" => 1,
+    "/companies.php" => 1,
     "/contactDB.php" => 2,
     "/viewEvents.php" => 3,
     "/event.php" => 3,

@@ -147,12 +147,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $("#url").val(company.data("url"));  
         $("#company_id").val(company.data("id"));
         $("#company_details_form_action").val("UPDATE");
+        $("#submit_company_details").html("Update");
       } else if(company.data("action") === "add"){
         $("#name").val("");
         $("#url").val("");
         $("#icon").val("");
         $("#company_id").val("");
-        $("#company_details_form_action").val("ADD");        
+        $("#company_details_form_action").val("ADD");
+        $("#submit_company_details").html("Add");                
       }
     });
 
