@@ -37,6 +37,10 @@ class Campaign extends Content {
 		$stmt->execute([$id]);
 		$result = $stmt->fetch();
 
+		if (!$stmt->rowCount()) {
+			throw new Exception("No category with ID $id");
+		}
+
 		$this->startDatetime = $result['start_datetime'];
 		$this->endDatetime = $result['end_datetime'];
 		$this->goalAmount = $result['goal_amount'];
@@ -50,6 +54,10 @@ class Campaign extends Content {
 		$stmt = $this->db->prepare("SELECT * FROM `$this->table` WHERE `title` = ?");
 		$stmt->execute([$title]);
 		$result = $stmt->fetch();
+
+		if (!$stmt->rowCount()) {
+			throw new Exception("No category with slug $slug");
+		}
 
 		$this->startDatetime = $result['start_datetime'];
 		$this->endDatetime = $result['end_datetime'];

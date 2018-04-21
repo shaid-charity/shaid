@@ -58,6 +58,7 @@ class Category extends DBRecord {
 			$stmt->execute([$name]);
 		} catch (PDOException $e) {
 			// Hopefully this will catch any DB errors (e.g. slug is not unique)
+			echo $e->getMessage();
 			throw new $e;
 		}
 

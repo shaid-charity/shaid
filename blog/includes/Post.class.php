@@ -180,10 +180,15 @@ class Post extends Content {
 	public function setCampaign($campaignID) {
 		if ($campaignID != 0 && !is_null($campaignID)) {
 			try {
+				// Check the campaign actually exists
+				$campaign = new Campaign($this->db, $campaignID);
+				print_r($campaign);
 				$stmt = $this->db->prepare("UPDATE `$this->table` SET `campaign_id` = ? WHERE `id` = ?");
 				$stmt->execute([(int) $campaignID, $this->getID()]);
 			} catch (PDOException $e) {
 				echo 'Post.class.php setCampaign() error: <br />';
+				throw new Exception($e->getMessage());
+			} catch (Exception $e) {
 				throw new Exception($e->getMessage());
 			}
 
