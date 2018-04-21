@@ -20,7 +20,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $query->bind_param("sss", $salt = "undefined", $hash = "undefined", $USER_ID);
       $query->execute();
       $query->close();
-      header("Location: login.php");
+
+      $query = $con->prepare("DELETE FROM sessions WHERE session_id=?");
+      $query->bind_param("s", session_id());
+      $query->execute();
+      $query->close();
+
+      echo "<script>window.location.replace('passreset.php?user_email=$email')</script>";
+      //header("Location: passreset.php?user_email=$email");
       die();
       break;
     
