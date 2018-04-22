@@ -630,19 +630,19 @@
   display: block;
   width: 100%;
   padding: 1.5rem;
-  background-color: #FFFFFF;
-  border: 2px solid #1C0B19; }
+  background-color: #F2F2F2; }
 
 .campaign-donation-meter {
   display: block;
   height: 2rem;
   width: 100%;
-  background-color: #999999; }
+  background-color: #FFFFFF;
+  border: 2px solid #1C0B19; }
 
 .campaign-donation-meter-progress {
   display: block;
   height: 100%;
-  width: 0;
+  width: 0%;
   background-color: #008194; }
 
 @media only screen and (max-width: 1199px) {

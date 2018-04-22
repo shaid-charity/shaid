@@ -817,21 +817,21 @@ $rule-line-thickness: 4px;
 	display: block;
 	width: 100%;
 	padding: 1.5rem;
-	background-color: $color-white;
-	border: 2px solid $color-lightblack;
+	background-color: $color-lightgrey;
 }
 
 .campaign-donation-meter {
 	display: block;
 	height: 2rem;
 	width: 100%;
-	background-color: $color-mediumgrey;
+	background-color: $color-white;
+	border: 2px solid $color-lightblack;
 }
 
 .campaign-donation-meter-progress {
 	display: block;
 	height: 100%;
-	width: 0;
+	width: 0%;
 	background-color: $color-brandgreen;
 }
 
