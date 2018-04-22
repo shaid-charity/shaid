@@ -19,6 +19,7 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/admin/admin_header.php');
 		require_once(SITE_ROOT . '/includes/header.php');
+		echo 'test';
 	?>
 	<main id="main-content">
 		<div class="hero">
