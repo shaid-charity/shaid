@@ -92,7 +92,8 @@ class Campaign extends Content {
 	}
 
 	public function getLink() {
-		return '#';
+		$title = str_replace(" ", "-", $this->getTitle());
+		return '/' . INSTALLED_DIR . '/campaigns/' . $this->getID() . '-' . $title;
 	}
 
 	public function getShortDescription() {
