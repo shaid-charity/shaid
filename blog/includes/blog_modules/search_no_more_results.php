@@ -4,6 +4,6 @@
         * Only CMS pages should show this.
     */
 ?>
-					<p>
+					<span>
 						No more <?php echo $type ?> were found!
-					</p>
+					</span>

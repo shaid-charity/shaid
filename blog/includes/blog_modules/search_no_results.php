@@ -4,6 +4,6 @@
         * Only CMS pages should show this.
     */
 ?>
-					<p>
+					<span>
 						No results were found!
-					</p>
+					</span>
