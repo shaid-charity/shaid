@@ -33,7 +33,7 @@
 							<?php
 								// Get all campaigns
 								if ($user == null) {
-									$query = "SELECT `id` FROM `campaigns` WHERE `end-datetime` >= now()";
+									$query = "SELECT `id` FROM `campaigns` WHERE `end_datetime` >= now()";
 								} else {
 									$query = "SELECT `id` FROM `campaigns`";
 								}
