@@ -106,6 +106,20 @@
 								</div>
 							</section>
 						</section>
+						<section class="campaign-donation-section">
+							<p>
+								Amount raised:
+								<?php
+									echo $campaign->getAmountRaised();
+								?>
+							</p>
+							<p>
+								Goal amount:
+								<?php
+									echo $campaign->getGoalAmount();
+								?>
+							</p>
+						</section>
 						<figure id="article-image">
 							<img src="<?php echo $image; ?>" alt="<?php echo $campaign->getImageCaption(); ?>">
 							<figcaption><?php echo $campaign->getImageCaption(); ?></figcaption>
