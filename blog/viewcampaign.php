@@ -106,7 +106,8 @@
 								</div>
 							</section>
 							<section id="article-date">
-								<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+								<span><i class="zmdi zmdi-calendar"></i> Start date: <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+								<span><i class="zmdi zmdi-calendar"></i> End date: <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getEndDatetime(); ?></time></span>
 							</section>
 						</section>
 						<figure id="article-image">
