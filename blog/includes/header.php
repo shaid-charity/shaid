@@ -32,13 +32,13 @@
 				<ul>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/index.php">Home</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Blog</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/about.php">About</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/services.php">Services</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/store.php">Store</a></li>
 					<?php
 						/* <li><a href="/<?php echo INSTALLED_DIR; ?>/events.php">Events</a></li> */
 					?>
-					<li><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/referrals.php">Referrals</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/downloads.php">Downloads</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/contact.php">Contact</a></li>
