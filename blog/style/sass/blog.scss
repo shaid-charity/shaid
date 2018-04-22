@@ -817,7 +817,8 @@ $rule-line-thickness: 4px;
 	display: block;
 	width: 100%;
 	padding: 1.5rem;
-	background-color: $color-lightgrey;
+	background-color: $color-white;
+	border: 2px solid $color-lightblack;
 }
 
 .campaign-donation-meter {

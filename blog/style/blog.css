@@ -630,7 +630,8 @@
   display: block;
   width: 100%;
   padding: 1.5rem;
-  background-color: #F2F2F2; }
+  background-color: #FFFFFF;
+  border: 2px solid #1C0B19; }
 
 .campaign-donation-meter {
   display: block;
