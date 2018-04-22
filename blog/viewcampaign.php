@@ -119,6 +119,7 @@
 									echo $campaign->getGoalAmount();
 								?>
 							</p>
+							<a href="javascript:void(0)" class="button-green">Donate to this Campaign</a>
 						</section>
 						<figure id="article-image">
 							<img src="<?php echo $image; ?>" alt="<?php echo $campaign->getImageCaption(); ?>">
