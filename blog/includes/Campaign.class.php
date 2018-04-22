@@ -87,6 +87,10 @@ class Campaign extends Content {
 		return '#';
 	}
 
+	public function getShortDescription() {
+		return strip_tags(substr($this->getContent(), 100)) . '...';
+	}
+
 	public function setStartDatetime($startDatetime) {
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = ? WHERE `id` = ?");
