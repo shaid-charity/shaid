@@ -158,8 +158,11 @@ I ran it from terminal using php -S localhost:8000
       <br>
       <br>
       <form id=form2 method = "post" >
-        <input type="text" id="keyword" name="keyword">
+        <input type="text" id="add_keyword" name="add_keyword">
         <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
+        <br>
+        <input type="text" id="del_keyword" name="del_keyword">
+        <button type = "del_key" name="del_key" id="del_key">Delete Keyword </button>
       </form>
 
       <?php
