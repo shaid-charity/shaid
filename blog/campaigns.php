@@ -31,6 +31,11 @@
 					<div class="articles-list-container">
 						<section id="articles-list">
 							<?php
+								// Remove this:
+									ini_set('display_errors', 1);
+									ini_set('display_startup_errors', 1);
+									error_reporting(E_ALL);
+								// Remove that^
 								// Get all campaigns
 								if ($user == null) {
 									$query = "SELECT `id` FROM `campaigns` WHERE `end_datetime` >= now()";
