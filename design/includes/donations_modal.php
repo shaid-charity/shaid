@@ -16,7 +16,7 @@
 			<p>Choose your donation amount below.</p>
 
 			<div class="donation-input">
-				<span class="donation-currency-symbol">£</span>
+				<span class="donation-currency-symbol">&pound;</span>
 				<input class="donation-input-amount" id="donationAmount" autocomplete="off" placeholder="0.00" pattern="[0-9]*" value="" type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">
 			</div>
 
