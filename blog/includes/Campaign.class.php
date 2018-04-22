@@ -67,7 +67,7 @@ class Campaign extends Content {
 
 	public function getStartDatetime() {
 		// Format the date first
-		return date("d/m/Y H A", strtotime($this->startDatetime));
+		return date("d/m/Y \a\t HA", strtotime($this->startDatetime));
 	}
 
 	public function getEndDatetime() {
