@@ -111,8 +111,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </thead>
       <tbody>
       <?php
-        $query = $con->prepare("SELECT id, name, icon, url FROM companies");
-        $query->execute();
+        $query = null;
+        if(isset($_GET["search_query"])){
+          $query = $con->prepare("SELECT id, name, icon, url FROM companies WHERE name LIKE '%".getValidData($_GET["search_query"])."%'");
+          $query->execute();
+        } else {
+          $query = $con->prepare("SELECT id, name, icon, url FROM companies");
+          $query->execute();
+        }
         $query->bind_result($id, $name, $icon, $url);
         $query->store_result();
         
@@ -175,6 +181,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(confirm("Are you sure want to delete this company from the list?")){
         $("#delete_company_form").submit();
       }
+    });
+
+    $("#search_button").click(function(){
+      window.location.replace("companies.php?search_query=" + $("#search_query").val());
     });
   });
 </script>
