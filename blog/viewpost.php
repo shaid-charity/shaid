@@ -60,7 +60,7 @@
 						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
 							?>
 								<article id="article">
-									<section class="page-path">
+									<section class="page-path" style="padding-bottom: 1.5rem;">
 										<span><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Blog</a></span>
 									</section>
 									<?php
