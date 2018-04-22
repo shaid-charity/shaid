@@ -74,7 +74,11 @@
 									<div class="articles-list-entry-actions">
 										<ul>
 											<li>
-												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getStartDateTime(); ?>"><?php echo $campaign->getStartDateTime(); ?></time> to <time datetime="<?php echo $campaign->getEndDateTime(); ?>"><?php echo $campaign->getEndDateTime(); ?></time></span>
+												<span>
+													<i class="zmdi zmdi-calendar"></i>
+													<time datetime="<?php echo $campaign->getStartDateTime(); ?>"><?php echo $campaign->getStartDateTime(); ?></time>
+													to
+													<time datetime="<?php echo $campaign->getEndDateTime(); ?>"><?php echo $campaign->getEndDateTime(); ?></time></span>
 											</li>
 										</ul>
 									</div>
