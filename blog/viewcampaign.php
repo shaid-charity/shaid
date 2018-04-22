@@ -72,7 +72,7 @@
 						// If the article is a draft and we are not logged in, show an error message
 						// Show the same message if the campaign does not exist
 
-						if ($campaign->getID() == null) {
+						if (!$campaignLoaded) {
 							?>
 								<article id="article">
 									<section class="page-path" style="padding-bottom: 1.5rem;">
