@@ -121,6 +121,10 @@ class Post extends Content {
 		return '/' . INSTALLED_DIR . '/blog/' . $categoryName . '/' . $this->getID() . '-' . $title;
 	}
 
+	public function getShortDescription() {
+		return substr(strip_tags($this->getContent()), 0, 150) . '...';
+	}
+
 	// This function is private as we will never need the user to manually update the last modified datetime
 	private function setLastModifiedDateTime() {
 		try {
