@@ -28,10 +28,20 @@
           $keywords = array("homelessness","tragedy","sleeping rough", "fire");
 
           if(isset($_POST['add_key'])){
-            $new_word = htmlspecialchars($_POST['keyword']);
+            $new_word = htmlspecialchars($_POST['add_keyword']);
             if(!empty($new_word)){
               array_push($keywords,$new_word);
               echo "<br>".$new_word." has been added to your list of keywords.<br>";
+            }
+          }
+
+          if(isset($_POST['del_key'])){
+            $old_word = htmlspecialchars($_POST['del_keyword']);
+            if(!empty($old_word)){
+              if (($del_this = array_search($old_word, $keywords)) !== false) {
+                unset($keywords[$del_this]);
+              }
+              echo "<br>".$old_word." has been deleted from your list of keywords.<br>";
             }
           }
 
