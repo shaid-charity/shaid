@@ -60,6 +60,9 @@
 						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
 							?>
 								<article id="article">
+									<section class="page-path">
+										<span><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Blog</a></span>
+									</section>
 									<?php
 										require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
 									?>
