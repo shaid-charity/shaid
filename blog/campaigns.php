@@ -76,9 +76,9 @@
 											<li>
 												<span>
 													<i class="zmdi zmdi-calendar"></i>
-													<time datetime="<?php echo $campaign->getStartDate(); ?>"><?php echo $campaign->getStartDateTime(); ?></time>
+													<time datetime="<?php echo $campaign->getStartDateTime(); ?>"><?php echo $campaign->getStartDate(); ?></time>
 													<span style="padding-left: 0.25rem;">until</span>
-													<time datetime="<?php echo $campaign->getEndDate(); ?>"><?php echo $campaign->getEndDateTime(); ?></time></span>
+													<time datetime="<?php echo $campaign->getEndDateTime(); ?>"><?php echo $campaign->getEndDate(); ?></time></span>
 											</li>
 										</ul>
 									</div>
