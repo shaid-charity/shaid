@@ -96,6 +96,15 @@
 							<h1><?php echo $campaign->getTitle(); ?></h1>
 						</section>
 						<section id="article-info">
+							<section id="article-author">
+								<div id="article-author-photo">
+									<img src="<?php echo $campaign->getAuthor()->getAvatarPath(); ?>" alt="<?php echo $campaign->getAuthor()->getFullName(); ?>">
+								</div>
+								<div id="article-author-text">
+									<span id="article-author-text-name"><a href=""><?php echo $campaign->getAuthor()->getFullName(); ?></a></span>
+									<span id="article-author-text-about"><?php echo $campaign->getAuthor()->getBiography(); ?></span>
+								</div>
+							</section>
 							<section id="article-date">
 								<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
 							</section>
