@@ -4,6 +4,6 @@
         * Only CMS pages should show this.
     */
 ?>
-					<div class="article-message-banner">
+					<span>
 						No results were found!
-					</div>
+					</span>
