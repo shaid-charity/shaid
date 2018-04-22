@@ -149,7 +149,7 @@
 				?>
 				<aside id="sidebar">
 					<?php
-						// require_once(SITE_ROOT . '/includes/sidebar_modules/post_admin_options.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaign_admin_options.php');
 						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_associated_posts.php');
 					?>
 				</aside>
