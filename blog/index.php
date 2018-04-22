@@ -70,21 +70,28 @@
 				</div>
 			</div>
 		</div>
+		<?php 
+			// Get latest article in category 1 (news category)
+			$news = true;
+
+			try {
+				$stmt = $db->query("SELECT `id` FROM `posts` WHERE `category_id` = 1 ORDER BY `datetime-published` DESC LIMIT 1");
+				$id = $stmt->fetch()['id'];
+
+				$post = new Post($db, $id);
+
+				$description = substr(html_entity_decode(strip_tags($post->getContent())), 0, 150) . '...';
+			} catch (Exception $e) {
+				$news = false;
+			}
+
+			if ($news) {
+		?>
 		<div class="newspreview">
 			<div class="inner-container">
 				<div class="newspreview-header">
 					<h1>SHAID News</h1>
 				</div>
-				<?php 
-					// Get latest article in category 1 (news category)
-
-					$stmt = $db->query("SELECT `id` FROM `posts` WHERE `category_id` = 1 ORDER BY `datetime-published` DESC LIMIT 1");
-					$id = $stmt->fetch()['id'];
-
-					$post = new Post($db, $id);
-
-					$description = substr(html_entity_decode(strip_tags($post->getContent())), 0, 150) . '...';
-				?>
 				<div class="newspreview-item inner-container">
 					<span class="newspreview-item-date"><?php echo $post->getDatePublished(); ?></span>
 					<h2><?php echo $post->getTitle(); ?></h2>
@@ -105,6 +112,9 @@
 				</div>
 			</div>
 		</div>
+		<?php
+			}
+		?>
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
