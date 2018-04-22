@@ -10,7 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $query->bind_param("s", session_id());
     $query->execute();
     $query->close();
-    header("Location: login.php");
+    header("Location: ../login.php");
   }
 }
 
@@ -23,7 +23,7 @@ $query->fetch();
 $query->close();
 
 if(empty($session_number)){
-  header("Location: login.php?back=" . $_SERVER['PHP_SELF']);
+  header("Location: ../login.php?back=" . $_SERVER['PHP_SELF']);
   die('no session number');
     //return;
 } else {
@@ -59,7 +59,7 @@ if(empty($session_number)){
 
   $page_name = strrchr($_SERVER['PHP_SELF'], "/");
   if($role_id > $page_min_permissions[$page_name]){
-    header("Location: login.php?back=viewPosts.php"); //view posts as a default redirect for wrong permission
+    header("Location: ../login.php?back=index.php"); //view posts as a default redirect for wrong permission
   }
 }
 
