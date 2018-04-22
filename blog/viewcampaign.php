@@ -107,6 +107,8 @@
 							</section>
 						</section>
 						<section class="campaign-donation-section">
+							<div class="campaign-donation-meter">
+							</div>
 							<p>
 								Amount raised:
 								<?php
