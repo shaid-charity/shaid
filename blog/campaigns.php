@@ -74,7 +74,7 @@
 									<div class="articles-list-entry-actions">
 										<ul>
 											<li>
-												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getDatePublished(); ?>"><?php echo $campaign->getDatePublished(); ?></time></span>
+												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getStartDateTime(); ?>"><?php echo $campaign->getStartDateTime(); ?></time></span>
 											</li>
 											<li>
 												<a href="<?php echo $campaign->getCategory()->getLink(); ?>/"><?php echo $campaign->getCategory()->getName(); ?></a>
