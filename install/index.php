@@ -3,6 +3,9 @@
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans:700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="../blog/style/main.css" rel="stylesheet">
+	<link href="../blog/style/blog.css" rel="stylesheet">
+	<link href="../blog/style/admin.css" rel="stylesheet">
 	<style>
 		.centre {
 		    margin: auto;
@@ -41,7 +44,7 @@
 </head>
 <body>
 <img src="../blog/assets/logo.jpg" alt="SHAID" id="logo"/>
-<div class="main-content centre">
+<div class="content-grid no-sidebar main-content centre">
 	<h1>SHAID Software Installation</h1><br />
 
 	<?php
@@ -56,12 +59,12 @@
 	?>
 		<div class="instructions">Please enter your database details. Default values have already been entered, but these may still need to be changed depending on your setup.</div>
 		<form action="index.php?step=2" method="post">
-			<div class="field"><label for="host">Database host: </label><input type="text" name="host" value="localhost"></div>
-			<div class="field"><label for="port">Database port: </label><input type="number" name="port" value="3306"></div>
-			<div class="field"><label for="name">Database name: </label><input type="text" name="name" value="gp_new"></div> <!-- TODO: Change default -->
-			<div class="field"><label for="user">Database user: </label><input type="text" name="user" value="root"></div> <!-- TODO: Change default -->
-			<div class="field"><label for="pass">Database user password: </label><input type="password" name="pass"></div>
-			<div class="field"><input type="submit"></div>
+			<div class="field post-input"><label for="host">Database host</label><input type="text" name="host" value="localhost"></div>
+			<div class="field post-input"><label for="port">Database port</label><input type="number" name="port" value="3306"></div>
+			<div class="field post-input"><label for="name">Database name</label><input type="text" name="name" value="gp_new"></div> <!-- TODO: Change default -->
+			<div class="field post-input"><label for="user">Database user</label><input type="text" name="user" value="root"></div> <!-- TODO: Change default -->
+			<div class="field post-input"><label for="pass">Database user password</label><input type="password" name="pass"></div>
+			<div class="field post-input"><input class="button-green" type="submit"></div>
 		</form>
 	<?php
 		} else if ($_GET['step'] == '2') {
@@ -111,9 +114,9 @@
 			}
 	?>
 	<!-- Show the checks -->
-	<div>Database connection: <?php echo $dbConnection; ?></div>
-	<div>PHP version: <?php echo $phpVersion; ?></div>
-	<div>PHP cURL extension: <?php echo $curlInstalled; ?></div>
+	<div class="post-input">Database connection: <?php echo $dbConnection; ?></div>
+	<div class="post-input">PHP version: <?php echo $phpVersion; ?></div>
+	<div class="post-input">PHP cURL extension: <?php echo $curlInstalled; ?></div>
 
 	<?php
 			// If there was an error, the user needs to go back
@@ -121,7 +124,7 @@
 	?>
 
 	<form action="index.php">
-		<input type="submit" value="Go back">
+		<div class="post-input"><input class="button-dark" type="submit" value="Go back"></div>
 	</form>
 
 	<?php
@@ -174,7 +177,7 @@ try {
 
 	?>
 	<form action="index.php?step=3" method="post">
-		<input type="submit" value="Next">
+		<div class="post-input"><input class="button-green" type="submit" value="Next"></div>
 	</form>
 	<?php
 			}
@@ -182,12 +185,12 @@ try {
 	?>
 	<div class="instructions">Please enter your email details. This email address will be used when sending newsletters and system notifications.</div>
 	<form action="index.php?step=4" method="post">
-		<div class="field"><label for="address">Email address: </label><input type="email" name="address"></div>
-		<div class="field"><label for="name">Email name: </label><input type="text" name="name"></div>
-		<div class="field"><label for="pass">Email password: </label><input type="password" name="pass"></div>
-		<div class="field"><label for="server">Email server: </label><input type="text" name="host"></div>
-		<div class="field"><label for="port">Email server port; </label><input type="number" name="port"></div>
-		<div class="field"><input type="submit"></div>
+		<div class="field post-input"><label for="address">Email address</label><input type="email" name="address"></div>
+		<div class="field post-input"><label for="name">Email name</label><input type="text" name="name"></div>
+		<div class="field post-input"><label for="pass">Email password</label><input type="password" name="pass"></div>
+		<div class="field post-input"><label for="server">Email server</label><input type="text" name="host"></div>
+		<div class="field post-input"><label for="port">Email server port</label><input type="number" name="port"></div>
+		<div class="field post-input"><input class="button-green" type="submit"></div>
 	</form>
 	<?php
 		} else if ($_GET['step'] == '4') {
@@ -211,12 +214,12 @@ define("MAIL_PORT", ' . $port . ');
 	?>
 	<div class="instructions">Please create your website administrator account.</div>
 	<form action="index.php?step=5" method="post">
-		<div class="field"><label for="address">Email address: </label><input type="email" name="address"></div>
-		<div class="field"><label for="fname">First name: </label><input type="text" name="fname"></div>
-		<div class="field"><label for="sname">Second name: </label><input type="text" name="sname"></div>
-		<div class="field"><label for="pass">Password: </label><input type="password" name="pass"></div>
-		<div class="field"><label for="passRetype">Retype password: </label><input type="password" name="passRetype"></div>
-		<div class="field"><input type="submit"></div>
+		<div class="field post-input"><label for="address">Email address: </label><input type="email" name="address"></div>
+		<div class="field post-input"><label for="fname">First name: </label><input type="text" name="fname"></div>
+		<div class="field post-input"><label for="sname">Second name: </label><input type="text" name="sname"></div>
+		<div class="field post-input"><label for="pass">Password: </label><input type="password" name="pass"></div>
+		<div class="field post-input"><label for="passRetype">Retype password: </label><input type="password" name="passRetype"></div>
+		<div class="field post-input"><input class="button-green" type="submit"></div>
 	</form>
 	<?php
 		} else if ($_GET['step'] == '5') {
@@ -237,7 +240,7 @@ define("MAIL_PORT", ' . $port . ');
 	?>
 	<div class="instructions">Installation has now finished. Remove the /install/ folder from the server.</div>
 	<form action="<?php echo $_SERVER['HTTP_HOST']; ?>" method="post">
-		<input type="submit" value="Finish">
+		<div class="post-input"><input class="button-green" type="submit" value="Finish"></div>
 	</form>
 	<?php
 		}
