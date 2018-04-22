@@ -636,7 +636,13 @@
   display: block;
   height: 2rem;
   width: 100%;
-  background-color: #FFFFFF; }
+  background-color: #999999; }
+
+.campaign-donation-meter-progress {
+  display: block;
+  height: 100%;
+  width: 0;
+  background-color: #008194; }
 
 @media only screen and (max-width: 1199px) {
   .content-grid #sidebar h1 {
