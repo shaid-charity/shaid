@@ -70,7 +70,7 @@
 								<a class="articles-list-entry-thumb" href="<?php echo $campaign->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 								<div class="articles-list-entry-info">
 									<a href="<?php echo $campaign->getLink(); ?>/"><h2><?php echo $campaign->getTitle(); ?></h2></a>
-									<p>A description of the most recent blog post.</p>
+									<p><?php echo strip_tags(substr($campaign->getContent(), 100)); ?></p>
 									<div class="articles-list-entry-actions">
 										<ul>
 											<li>
