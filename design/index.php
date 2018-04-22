@@ -93,8 +93,24 @@
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
+		require_once(SITE_ROOT . '/includes/donations_modal.php');
 		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
+	<script>
+		// Initialize a new plugin instance for one element or NodeList of elements.
+		var slider = document.querySelectorAll('input[type="range"]');
+		rangeSlider.create(slider, {
+			min: 0,          // Number , 0
+		    max: 100,        // Number, 100
+		    step: 5,         // Number, 1
+		    value: 5,        // Number, center of slider
+		    buffer: 0        // Number, in percent, 0 by default
+		});
+
+		// update position
+		var triggerEvents = true; // or false
+		slider.rangeSlider.update({min : 0, max : 100, step : 5, value : 5, buffer : 0}, triggerEvents);
+	</script>
 </body>
 </html>

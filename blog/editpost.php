@@ -236,13 +236,11 @@
 		<div id="delete-post-message" class="modal-message">
 			<h1>Are you sure?</h1>
 			<p>Do you really want to delete this post? This action cannot be undone.</p>
-			<div class="modal-message-buttons">
-				<button type="button" id="cancel-delete-post-button" class="button-dark">Cancel</button>
-				<form action="newpost.php" method="post">
-					<button type="submit" id="delete-post-button" class="button-red" name="saveType" value="Delete">Delete</button>
-					<input type="hidden" name="id" value="<?php echo $post->getID(); ?>">
-				</form>
-			</div>
+			<form action="newpost.php" method="post" class="modal-message-button-container">
+				<button type="button" id="cancel-delete-post-button" class="button-dark modal-message-button">Cancel</button>
+				<button type="submit" id="delete-post-button" class="button-red modal-message-button" name="saveType" value="Delete">Delete</button>
+				<input type="hidden" name="id" value="<?php echo $post->getID(); ?>">
+			</form>
 		</div>
 	</div>
 	<?php

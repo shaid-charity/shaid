@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<div class="navigation-right">
-				<a href="#" class="button-green">Make a donation</a>
+				<a href="#" id="global-donate-button" class="button-green">Make a donation</a>
 			</div>
 		</div>
 	</nav>
