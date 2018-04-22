@@ -7,7 +7,11 @@
 					<section id="campaign-info">
 						<h1>Info</h1>
 						<ul>
-							<li><span><strong>Start date:</strong> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span></li>
-							<li><strong>End date:</strong> <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></li>
+							<li>
+								<span><strong>Start date:</strong> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+							</li>
+							<li>
+								<span><strong>End date:</strong> <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+							</li>
 						</ul>
 					</section>
