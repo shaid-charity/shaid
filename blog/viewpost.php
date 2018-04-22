@@ -36,9 +36,8 @@
 				$image = '/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath());
 			}
 		}
-	?>
-	<?php
-		$pageTitle = $post->getTitle() != null ? $post->getTitle() : 'Error';
+
+		$pageTitle = $post->getTitle() != null ? $post->getTitle() : 'Post Not Found';
 	?>
 	<title>SHAID - <?php echo $pageTitle; ?></title>
 	<?php
