@@ -689,9 +689,62 @@ footer {
   flex-direction: row;
   flex-wrap: wrap; }
 
+.modal-message-button-container-full-width {
+  margin: auto;
+  padding: 1rem 0 0 0;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
 .modal-message-button {
   flex-grow: 1;
   margin: 0 0.5rem; }
+
+.modal-message-button-full-width {
+  width: 100%;
+  margin: 0.3rem 0; }
+
+#global-donate-modal-message {
+  max-width: 450px; }
+
+.donation-header-split {
+  display: flex;
+  flex-direction: row;
+  wrap: nowrap;
+  align-items: top; }
+
+.donation-header-split h1 {
+  flex-grow: 1; }
+
+.donation-input {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  justify-content: center;
+  padding-bottom: 1rem; }
+
+.donation-currency-symbol {
+  font-size: 3rem !important;
+  color: #4E3D42;
+  padding-right: 0.25rem; }
+
+.donation-input-amount {
+  border: 0 !important;
+  outline: 0 !important;
+  font-size: 5rem !important;
+  box-shadow: none;
+  color: #4E3D42 !important;
+  width: 60%;
+  padding: 0.2rem 0 !important;
+  border-bottom: 3px solid #999999 !important;
+  text-align: center; }
+
+.donation-input-amount:focus {
+  color: #1C0B19 !important;
+  border-color: #1C0B19 !important; }
 
 @media only screen and (max-width: 1199px) {
   body {
@@ -950,7 +1003,11 @@ footer {
     text-align: right; }
 
   .cookie-warning-button a {
-    width: 100%; } }
+    width: 100%; }
+
+  .donation-input-amount {
+    width: 65%;
+    font-size: 4rem !important; } }
 @media only screen and (max-width: 370px) {
   .footer-social-container {
     display: flex;
@@ -965,4 +1022,11 @@ footer {
     display: inline-block; }
 
   .footer-social-button a {
-    justify-content: center; } }
+    justify-content: center; }
+
+  .donation-currency-symbol {
+    font-size: 2.5rem !important; }
+
+  .donation-input-amount {
+    width: 80%;
+    font-size: 3rem !important; } }
