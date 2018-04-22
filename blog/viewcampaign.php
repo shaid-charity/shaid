@@ -33,7 +33,7 @@
 			if ($campaign != null && $campaign->getImagePath() == null) {
 				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
 			} else {
-				$image = '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath());
+				$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
 			}
 		}
 	?>
@@ -42,7 +42,7 @@
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
-	<link href="../../../style/blog.css" rel="stylesheet">
+	<link href="../../style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -95,19 +95,19 @@
 						<h2>Share this campaign</h2>
 						<section id="social-icons">
 							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $link; ?>" target="_blank">
-								<img src="../../../assets/social/svg/facebook (3).svg" alt="Share on Facebook">
+								<img src="../../assets/social/svg/facebook (3).svg" alt="Share on Facebook">
 							</a>
 							<a href="http://www.twitter.com/share?url=<?php echo $link; ?>&hashtags=shaid" target="_blank">
-								<img src="../../../assets/social/svg/twitter (3).svg" alt="Share on Twitter">
+								<img src="../../assets/social/svg/twitter (3).svg" alt="Share on Twitter">
 							</a>
 							<a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $link; ?>&source=SHAID" target="_blank">
-								<img src="../../../assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
+								<img src="../../assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
 							</a>
 							<a href="http://www.reddit.com/submit?url=<?php echo $link; ?>&title=<?php echo $campaign->getTitle(); ?>" target="_blank">
-								<img src="../../../assets/social/svg/reddit (3).svg" alt="Share on Reddit">
+								<img src="../../assets/social/svg/reddit (3).svg" alt="Share on Reddit">
 							</a>
 							<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo $link; ?>&title=<?php echo $campaign->getTitle(); ?>&caption=<?php echo $campaign->getContent(); ?>&tags=shaid" target="_blank">
-								<img src="../../../assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
+								<img src="../../assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
 							</a>
 						</section>
 					</section>
@@ -118,7 +118,7 @@
 				<aside id="sidebar">
 					<?php
 						// require_once(SITE_ROOT . '/includes/sidebar_modules/post_admin_options.php');
-						require_once(SITE_ROOT . '/includes/sidebar_modules/recent_posts.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_associated_posts.php');
 					?>
 				</aside>
 			</div>
