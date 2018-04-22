@@ -53,7 +53,7 @@
 								}
 
 								// Get all posts, order by descending date
-								$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+								$stmt = $db->query($query . "ORDER BY `start_datetime` DESC LIMIT $startFrom, 5");
 									
 								foreach ($stmt as $row) {
 									$post = new Post($db, $row['id']);
