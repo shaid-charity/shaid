@@ -10,34 +10,49 @@
 <html>
 <head>
 	<?php
-		if (isset($_GET['id'])) {
-			// Get the campaign's details
-			$campaign = new Campaign($db, $_GET['id']);
+		$campaignLoaded = true;
+		try {
+			if (isset($_GET['id'])) {
+				// Get the campaign's details
+				$campaign = new Campaign($db, $_GET['id']);
 
-			// Decide which image we will show (do this here so there is less inline PHP below)
-			if ($campaign != null && $campaign->getImagePath() == null) {
-				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
-			} else {
-				$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+				// Decide which image we will show (do this here so there is less inline PHP below)
+				if ($campaign != null && $campaign->getImagePath() == null) {
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
+				} else {
+					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+				}
 			}
-		}
 
-		if (isset($_GET['slug'])) {
-			// Split it up by - and get the id
-			$parts = explode('-', $_GET['slug']);
-			$id = $parts[0];
+			if (isset($_GET['slug'])) {
+				// Split it up by - and get the id
+				$parts = explode('-', $_GET['slug']);
+				$id = $parts[0];
 
-			$campaign = new Campaign($db, $id);
+				$campaign = new Campaign($db, $id);
 
-			// Decide which image we will show (do this here so there is less inline PHP below)
-			if ($campaign != null && $campaign->getImagePath() == null) {
-				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
-			} else {
-				$image = '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath());
+				// Decide which image we will show (do this here so there is less inline PHP below)
+				if ($campaign != null && $campaign->getImagePath() == null) {
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
+				} else {
+					$image = '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath());
+				}
 			}
+		} catch (Exception $e) {
+			$campaignLoaded = false;
 		}
 	?>
-	<title>SHAID - <?php echo $campaign->getTitle(); ?></title>
+	<?php
+		if ($campaignLoaded) {
+			?>
+			<title>SHAID - <?php echo $campaign->getTitle(); ?></title>
+		<?php
+		} else {
+			?>
+			<title>SHAID - Campaign Not Found</title>
+			<?php
+		}
+	?>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
