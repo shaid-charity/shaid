@@ -69,7 +69,7 @@
 					?>
 					<article id="article">
 						<section class="page-path">
-							<span><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Campaigns</a></span>
+							<span><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></span>
 						</section>
 						<section id="article-title" class="page-title article-title">
 							<h1><?php echo $campaign->getTitle(); ?></h1>
