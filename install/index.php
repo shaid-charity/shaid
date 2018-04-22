@@ -41,6 +41,7 @@
 	</style>
 
 	<title>SHAID Software Installation</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <img src="../blog/assets/logo.jpg" alt="SHAID" id="logo"/>
@@ -212,6 +213,21 @@ define("MAIL_PORT", ' . $port . ');
 
 			file_put_contents('../config.php', $text, FILE_APPEND);
 	?>
+	<script>
+		$(':input').focus(function() {
+			var pass = $('input[name=pass]').val();
+			var passRetype = $('input[name=passRetype]').val();
+
+
+			if (pass.length == 0 || passRetype.length == 0) {
+				$('form').submit(false);
+			} else if (pass != passRetype) {
+				$('form').submit(false);
+			} else {
+				$('form').submit(true);
+			}
+		});
+	</script>
 	<div class="instructions">Please create your website administrator account.</div>
 	<form action="index.php?step=5" method="post">
 		<div class="field post-input"><label for="address">Email address: </label><input type="email" name="address"></div>
@@ -232,17 +248,29 @@ define("MAIL_PORT", ' . $port . ');
 			$fname = $_POST['fname'];
 			$sname = $_POST['sname'];
 			$pass = $_POST['pass'];
-			$salt = generateSalt();
-			$hash = hash("sha256", getValidData($pass) . $salt);
 
-			$stmt = $db->prepare("INSERT INTO users(first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,1,?,?,0,0,'','',0)");
-			$stmt->execute([$fname, $sname, $email, $salt, $hash]);
+			if ($pass = $_POST['passRetype']) {
+				$salt = generateSalt();
+				$hash = hash("sha256", getValidData($pass) . $salt);
+
+				$stmt = $db->prepare("INSERT INTO users(first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,1,?,?,0,0,'','',0)");
+				$stmt->execute([$fname, $sname, $email, $salt, $hash]);
 	?>
 	<div class="instructions">Installation has now finished. Remove the /install/ folder from the server.</div>
 	<form action="<?php echo $_SERVER['HTTP_HOST']; ?>" method="post">
 		<div class="post-input"><input class="button-green" type="submit" value="Finish"></div>
 	</form>
 	<?php
+			} else {
+	?>
+
+	<div class="instructions">Your passwords did not match!</div>
+	<form action="index.php?step=4" method="post">
+		<div class="post-input"><input class="button-green" type="submit" value="Finish"></div>
+	</form>
+
+	<?php
+			}
 		}
 	?>
 </div>
