@@ -144,7 +144,9 @@
 						?>
 						<h2><?php echo $campaign->getTitle(); ?></h2>
 						<img src="<?php echo $campaign->getImagePath(); ?>" class="sidebar-large-image">
+
 						<p><?php echo strip_tags($campaign->getShortDescription()); ?></p>
+
 						<div class="sidebar-actions">
 							<a href="<?php echo $campaign->getLink(); ?>" class="button-dark">More info</a>
 							<a href="#" class="button-dark">Donate</a>

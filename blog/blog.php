@@ -70,7 +70,7 @@
 								<a class="articles-list-entry-thumb" href="<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 								<div class="articles-list-entry-info">
 									<a href="<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
-									<p>A description of the most recent blog post.</p>
+									<p><?php echo $post->getShortDescription(); ?></p>
 									<div class="articles-list-entry-actions">
 										<ul>
 											<li>
@@ -105,7 +105,7 @@
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
-require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 </body>
