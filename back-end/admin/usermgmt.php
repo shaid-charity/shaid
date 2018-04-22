@@ -14,8 +14,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){
       //echo "validation successful";
       $representing = getRepresenting($_POST["representative"]);
-      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, biography, disabled) VALUES(?,?,?,?,?,?,?,?,?,?,?);");
-      $query->bind_param("sssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["biography"]), $disabled = "0");
+      $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
+      $query->bind_param("ssssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["avatar"]), getValidData($_POST["biography"]), $disabled = "0");
       $query->execute();
       $query->close();
       header("Location: usermgmt.php");
@@ -33,8 +33,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){
       $representing = getRepresenting($_POST["representative"]);
-      $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
-      $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
+      $query = null;
+      if($_POST['avatar'].trim() == ""){      
+        $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
+        $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
+      } else {
+        $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=?, avatar=? WHERE user_id=?;");
+        $query->bind_param("sssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["avatar"]), getValidData($_POST["user_id"]));
+      }
       $query->execute();
       $query->close();
       header("Location: usermgmt.php");      
@@ -42,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       if($emailExists){
         echo "<script>alert('This email is already in use');</script>";
       } else {
-        echo "<script>alert('something went wrong');</script>";
+        echo "<script>alert('validation failed');</script>";
       }
     }
     break;
@@ -122,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               </div>
               <div class="form-group">
                 <label for="userperm" class="form-control-label">Permissions:</label>
-                <select class="form-control" name="userperm" id="userperm">
+                <select class="form-control" name="userperm" id="userperm" required>
                   <?php
                     $query = $con->prepare("SELECT id, name, description FROM roles;");
                     $query->execute();
@@ -136,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               </div>
               <div class="form-group">
                 <label for="company" class="form-control-label">Company</label>
-                <select class="form-control" name="company" id="company">
+                <select class="form-control" name="company" id="company" required>
                 <?php
                     $query = $con->prepare("SELECT id, name FROM companies;");
                     $query->execute();
@@ -166,7 +172,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger mr-auto" id="delete_user">Delete User</button>
-              <button type="button" class="btn btn-danger mr-auto" id="pass_reset">Reset Password</button>
+              <!-- <button type="button" class="btn btn-danger mr-auto" id="pass_reset">Reset Password</button> -->
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="submit_user_details">Update User</button>  
             </div>
@@ -278,6 +284,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </body>
 <script>
   $(document).ready(function(){
+    //$("#company").editableSelect();
+
     var last_role = 5;
     $("#userEditModal").on("show.bs.modal", function(event){
       var user = $(event.relatedTarget);

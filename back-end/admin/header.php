@@ -76,7 +76,11 @@ if(empty($session_number)){
   <!-- Latest compiled and minified JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
-
+  <!--Editable combobox-->
+  <!--<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
+  <link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
+  -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <style>
     .hidden {
@@ -138,8 +142,11 @@ if(empty($session_number)){
             <a class="dropdown-item <?php if (CURRENT_PAGE == 'socialTrends') echo 'active'; ?>" href="socialTrends.php">Trends</a>
           </div>
         </li>
+        <li class="nav-item <?php if(CURRENT_PAGE == 'companies') echo 'active'; if($role_id > 1) echo ' hidden';?>">
+          <a class="nav-link" href="companies.php">Companies</a>
+        </li>
         <li class="nav-item <?php if(CURRENT_PAGE == 'usermgmt') echo 'active'; if($role_id > 1) echo ' hidden';?>">
-          <a class="nav-link" href="usermgmt.php">User Management</a>
+          <a class="nav-link" href="usermgmt.php">Users</a>
         </li>
       </ul>
 

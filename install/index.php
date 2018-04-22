@@ -134,15 +134,15 @@
 
 define( "APP_ROOT", realpath(dirname( __FILE__ ) ) . "/../");
 
-require_once "autoload.php";
-require_once APP_ROOT . "vendor/autoload.php";// Autoloads the packages installed via Composer that we use
-require_once "db.php"; // Require Dmyro\'s db.php
+//require_once "autoload.php";
+//require_once APP_ROOT . "vendor/autoload.php";// Autoloads the packages installed via Composer that we use
+//require_once "db.php"; // Require Dmyro\'s db.php
 
 // If someone tries to load this file directly, then deny access
 // The IN_APP constant is defined in settings.php
-if (!defined("IN_APP")) {
+/*if (!defined("IN_APP")) {
 	die("You cannot access this file directly");
-}
+}*/
 
 // Databse constants that will be defined throughout the application
 // TODO: We are opening two connections to the DB so that both my code and Dmytro\'s will work.
@@ -167,6 +167,11 @@ try {
 				;
 
 			file_put_contents('../config.php', $text);
+
+			// At this stage we can also create the tables we need
+			$sql = file_get_contents('./db.sql');
+			$results = $db->exec($sql);
+
 	?>
 	<form action="index.php?step=3" method="post">
 		<input type="submit" value="Next">
@@ -186,7 +191,7 @@ try {
 	</form>
 	<?php
 		} else if ($_GET['step'] == '4') {
-			// There's no easy way to vertify the email info - we'll just have to hope it was correct
+			// There's no easy way to verify the email info - we'll just have to hope it was correct
 			$address = $_POST['address'];
 			$name = $_POST['name'];
 			$pass = $_POST['pass'];
@@ -204,12 +209,38 @@ define("MAIL_PORT", ' . $port . ');
 
 			file_put_contents('../config.php', $text, FILE_APPEND);
 	?>
+	<div class="instructions">Please create your website administrator account.</div>
+	<form action="index.php?step=5" method="post">
+		<div class="field"><label for="address">Email address: </label><input type="email" name="address"></div>
+		<div class="field"><label for="fname">First name: </label><input type="text" name="fname"></div>
+		<div class="field"><label for="sname">Second name: </label><input type="text" name="sname"></div>
+		<div class="field"><label for="pass">Password: </label><input type="password" name="pass"></div>
+		<div class="field"><label for="passRetype">Retype password: </label><input type="password" name="passRetype"></div>
+		<div class="field"><input type="submit"></div>
+	</form>
+	<?php
+		} else if ($_GET['step'] == '5') {
+			// config.php is complete, so we can include that for our DB connection
+			// TODO: May need to change location
+			require_once '../config.php';
+			require_once '../back-end/includes/functions.php';
+
+			$email = $_POST['address'];
+			$fname = $_POST['fname'];
+			$sname = $_POST['sname'];
+			$pass = $_POST['pass'];
+			$salt = generateSalt();
+			$hash = hash("sha256", getValidData($pass) . $salt);
+
+			$stmt = $db->prepare("INSERT INTO users(first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,1,?,?,0,0,'','',0)");
+			$stmt->execute([$fname, $sname, $email, $salt, $hash]);
+	?>
 	<div class="instructions">Installation has now finished. Remove the /install/ folder from the server.</div>
 	<form action="<?php echo $_SERVER['HTTP_HOST']; ?>" method="post">
 		<input type="submit" value="Finish">
 	</form>
 	<?php
-	}
+		}
 	?>
 </div>
 
