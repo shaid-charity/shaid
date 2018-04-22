@@ -57,8 +57,18 @@
 						// If the article is a draft and we are not logged in, show an error message
 						// Show the same message if the campaign does not exist
 
-						if (false) {
-							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+						if ($campaign->getID() == null) {
+							?>
+								<article id="article">
+									<section class="page-path" style="padding-bottom: 1.5rem;">
+										<span><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></span>
+									</section>
+									<?php
+										require_once(SITE_ROOT . '/includes/blog_modules/campaign_does_not_exist_message.php');
+									?>
+								</article>
+							</section>
+							<?php
 						} else {
 							// Generate link to share
 							if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
