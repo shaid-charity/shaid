@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SHAID</title>
+	<title>SHAID - Store</title>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 	?>
