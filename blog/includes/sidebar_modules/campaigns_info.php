@@ -11,9 +11,3 @@
 							<li><strong>End date:</strong></li>
 						</ul>
 					</section>
-					<section id="campaign-sidebar-donate">
-						<h1>Donate</h1>
-						<ul>
-							<li>...</li>
-						</ul>
-					</section>
