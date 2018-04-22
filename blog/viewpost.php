@@ -58,7 +58,13 @@
 						// Show the same message if the post does not exist
 
 						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
-							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+							?>
+							<article id="article">
+								<?php
+									require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+								?>
+							</article>
+							<?php
 						} else {
 							// Generate link to share
 							if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
