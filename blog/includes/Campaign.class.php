@@ -67,12 +67,12 @@ class Campaign extends Content {
 
 	public function getStartDatetime() {
 		// Format the date first
-		return date("d/m/Y \a\\t HA", strtotime($this->startDatetime));
+		return date("d/m/Y \a\\t H A", strtotime($this->startDatetime));
 	}
 
 	public function getEndDatetime() {
 		// Format the date first
-		return date("d/m/Y H A", strtotime($this->endDatetime));
+		return date("d/m/Y \a\\t H A", strtotime($this->endDatetime));
 	}
 
 	public function getGoalAmount() {
