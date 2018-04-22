@@ -9,7 +9,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SHAID</title>
+	<?php
+		$slug = $_GET['name'];
+
+		$name = str_replace("-", " ", $slug);
+	?>
+	<title>SHAID - <?php echo $name; ?></title>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
@@ -24,10 +29,6 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/admin/admin_header.php');
 		require_once(SITE_ROOT . '/includes/header.php');
-
-		$slug = $_GET['name'];
-
-		$name = str_replace("-", " ", $slug);
 	?>
 	<main id="main-content">
 		<div class="inner-container">
