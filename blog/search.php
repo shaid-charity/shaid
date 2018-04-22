@@ -275,7 +275,7 @@
 
 					<!-- ========== BEGIN CAMPAIGNS SECTION =========== -->
 					<h2 class="search-section-title">SHAID Campaigns</h2>
-					<div class="search-section-container>"
+					<div class="search-section-container">
 
 					<?php
 						$campaignsQuery = "SELECT DISTINCT `id` from `campaigns` WHERE (match(`title`) against(? IN BOOLEAN MODE) OR match(`content`) against(? IN BOOLEAN MODE) OR match(`image_caption`) against(? IN BOOLEAN MODE))";
