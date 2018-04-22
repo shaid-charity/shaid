@@ -4,6 +4,6 @@
         * Only CMS pages should show this.
     */
 ?>
-					<div class="article-message-banner">
+					<p>
 						No more <?php echo $type ?> were found!
-					</div>
+					</p>
