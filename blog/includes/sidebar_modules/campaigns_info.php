@@ -5,7 +5,7 @@
     */
 ?>
 					<section id="campaign-info">
-						<h1>Info</h1>
+						<h1>Dates</h1>
 						<ul>
 							<li>
 								<span><strong>Start date:</strong> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
