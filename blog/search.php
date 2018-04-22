@@ -158,7 +158,7 @@
 
 					<!-- ========== BEGIN EVENTS SECTION =========== -->
 					<h2 class="search-section-title">SHAID Events</h2>
-					<div class="search-section-container>"
+					<div class="search-section-container">
 					<?php
 						$eventsQuery = "SELECT DISTINCT `id` from `events` WHERE (match(`title`) against(? IN BOOLEAN MODE) OR match(`content`) against(? IN BOOLEAN MODE) OR match(`image_caption`) against(? IN BOOLEAN MODE))";
 
