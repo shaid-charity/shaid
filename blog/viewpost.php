@@ -36,8 +36,10 @@
 				$image = '/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath());
 			}
 		}
+
+		$pageTitle = $post->getTitle() != null ? $post->getTitle() : 'Post Not Found';
 	?>
-	<title>SHAID - <?php echo $post->getTitle(); ?></title>
+	<title>SHAID - <?php echo $pageTitle; ?></title>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');

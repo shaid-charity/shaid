@@ -10,34 +10,45 @@
 <html>
 <head>
 	<?php
-		if (isset($_GET['id'])) {
-			// Get the campaign's details
-			$campaign = new Campaign($db, $_GET['id']);
-
-			// Decide which image we will show (do this here so there is less inline PHP below)
-			if ($campaign != null && $campaign->getImagePath() == null) {
-				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
-			} else {
-				$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+		$campaignLoaded = true;
+		try {
+			if (isset($_GET['id'])) {
+				// Get the campaign's details
+				$campaign = new Campaign($db, $_GET['id']);
+				// Decide which image we will show (do this here so there is less inline PHP below)
+				if ($campaign != null && $campaign->getImagePath() == null) {
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
+				} else {
+					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+				}
 			}
-		}
-
-		if (isset($_GET['slug'])) {
-			// Split it up by - and get the id
-			$parts = explode('-', $_GET['slug']);
-			$id = $parts[0];
-
-			$campaign = new Campaign($db, $id);
-
-			// Decide which image we will show (do this here so there is less inline PHP below)
-			if ($campaign != null && $campaign->getImagePath() == null) {
-				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
-			} else {
-				$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+			if (isset($_GET['slug'])) {
+				// Split it up by - and get the id
+				$parts = explode('-', $_GET['slug']);
+				$id = $parts[0];
+				$campaign = new Campaign($db, $id);
+				// Decide which image we will show (do this here so there is less inline PHP below)
+				if ($campaign != null && $campaign->getImagePath() == null) {
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
+				} else {
+					$image = '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath());
+				}
 			}
+		} catch (Exception $e) {
+			$campaignLoaded = false;
 		}
 	?>
-	<title>SHAID - <?php echo $campaign->getTitle(); ?></title>
+	<?php
+		if ($campaignLoaded) {
+			?>
+			<title>SHAID - <?php echo $campaign->getTitle(); ?></title>
+		<?php
+		} else {
+			?>
+			<title>SHAID - Campaign Not Found</title>
+			<?php
+		}
+	?>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
@@ -57,8 +68,18 @@
 						// If the article is a draft and we are not logged in, show an error message
 						// Show the same message if the campaign does not exist
 
-						if (false) {
-							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+						if (!$campaignLoaded) {
+							?>
+								<article id="article">
+									<section class="page-path" style="padding-bottom: 1.5rem;">
+										<span><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></span>
+									</section>
+									<?php
+										require_once(SITE_ROOT . '/includes/blog_modules/campaign_does_not_exist_message.php');
+									?>
+								</article>
+							</section>
+							<?php
 						} else {
 							// Generate link to share
 							if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
