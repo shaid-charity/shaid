@@ -105,11 +105,6 @@
 									<span id="article-author-text-about"><?php echo $campaign->getAuthor()->getBiography(); ?></span>
 								</div>
 							</section>
-							<section id="article-date">
-								<span><i class="zmdi zmdi-calendar"></i> Start date: <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
-								<br>
-								<span><i class="zmdi zmdi-calendar"></i> End date: <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getEndDatetime(); ?></time></span>
-							</section>
 						</section>
 						<figure id="article-image">
 							<img src="<?php echo $image; ?>" alt="<?php echo $campaign->getImageCaption(); ?>">
@@ -144,15 +139,16 @@
 						</section>
 					</section>
 				</section>
-				<?php
-					}
-				?>
 				<aside id="sidebar">
 					<?php
-						require_once(SITE_ROOT . '/includes/sidebar_modules/campaign_admin_options.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_admin_options.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_info.php');
 						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_associated_posts.php');
 					?>
 				</aside>
+				<?php
+					}
+				?>
 			</div>
 		</div>
 	</main>
