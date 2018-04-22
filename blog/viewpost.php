@@ -59,11 +59,12 @@
 
 						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
 							?>
-							<article id="article">
-								<?php
-									require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
-								?>
-							</article>
+								<article id="article">
+									<?php
+										require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+									?>
+								</article>
+							</section>
 							<?php
 						} else {
 							// Generate link to share
