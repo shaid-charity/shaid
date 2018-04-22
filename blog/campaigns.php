@@ -52,32 +52,32 @@
 									$startFrom = 0;
 								}
 
-								// Get all posts, order by descending date
+								// Get all categories, order by descending date
 								$stmt = $db->query($query . "ORDER BY `start_datetime` DESC LIMIT $startFrom, 5");
 									
 								foreach ($stmt as $row) {
-									$post = new Post($db, $row['id']);
+									$campaign = new Campaign($db, $row['id']);
 
 									// Decide which image we will show (do this here so there is less inline PHP below)
-									if ($post->getImagePath() == null) {
+									if ($campaign->getImagePath() == null) {
 										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
 									} else {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath()) . '\');';
+										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath()) . '\');';
 									}
 							?>
 
 							<div class="articles-list-entry">
-								<a class="articles-list-entry-thumb" href="<?php echo $post->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
+								<a class="articles-list-entry-thumb" href="<?php echo $campaign->getLink(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 								<div class="articles-list-entry-info">
-									<a href="<?php echo $post->getLink(); ?>/"><h2><?php echo $post->getTitle(); ?></h2></a>
+									<a href="<?php echo $campaign->getLink(); ?>/"><h2><?php echo $campaign->getTitle(); ?></h2></a>
 									<p>A description of the most recent blog post.</p>
 									<div class="articles-list-entry-actions">
 										<ul>
 											<li>
-												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $post->getDatePublished(); ?>"><?php echo $post->getDatePublished(); ?></time></span>
+												<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getDatePublished(); ?>"><?php echo $campaign->getDatePublished(); ?></time></span>
 											</li>
 											<li>
-												<a href="<?php echo $post->getCategory()->getLink(); ?>/"><?php echo $post->getCategory()->getName(); ?></a>
+												<a href="<?php echo $campaign->getCategory()->getLink(); ?>/"><?php echo $campaign->getCategory()->getName(); ?></a>
 											</li>
 										</ul>
 									</div>
