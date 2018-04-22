@@ -7,8 +7,8 @@
 					<section id="campaign-info">
 						<h1>Info</h1>
 						<ul>
-							<li>Start date:</li>
-							<li>End date:</li>
+							<li><strong>Start date:</strong></li>
+							<li><strong>End date:</strong></li>
 						</ul>
 					</section>
 					<section id="campaign-sidebar-donate">
