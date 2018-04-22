@@ -59,9 +59,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $query->execute();
     $query->close();
     header("Location: usermgmt.php");
-    die();
     break;
 
+    case 'RESTORE':
+    $query = $con->prepare("UPDATE users SET disabled=0 WHERE user_id=?");
+    $query->bind_param("s", getValidData($_POST["user_id"]));
+    $query->execute();
+    $query->close();
+    header("Location: usermgmt.php");
+    break;
+
+    //not currently used
     case 'RESET':
     $query = $con->prepare("UPDATE users SET pass_salt=?, pass_hash=? WHERE user_id=?");
     $query->bind_param("sss", $salt = "undefined", $hash = "undefined", getValidData($_POST["user_id"]));
@@ -101,6 +109,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </button>
           </div>
           <div class="modal-body">
+            <form method="POST" id="restore_user_form">
+              <input type="hidden" name="action" value="RESTORE"/>
+              <input type="hidden" name="user_id" id="restore_id" value=""/>
+            </form>
             <form method="POST" id="delete_user_form">
               <input type="hidden" name="action" value="DELETE"/>
               <input type="hidden" name="user_id" id="delete_id" value=""/>
@@ -172,7 +184,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger mr-auto" id="delete_user">Delete User</button>
-              <!-- <button type="button" class="btn btn-danger mr-auto" id="pass_reset">Reset Password</button> -->
+              <button type="button" class="btn btn-danger mr-auto" id="restore_user">Restore User</button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="submit_user_details">Update User</button>  
             </div>
@@ -270,7 +282,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo "<td>$first_name</td>";
             echo "<td>$last_name</td>";
             echo "<td>$role</td>";
-            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='".$user_id."' data-useremail='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "' data-roleid='".$role_id."' data-companyid='".$company_id."' data-representative='".$can_represent_company."' data-biography='".$biography."'>Edit User</button></td>";
+            echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-useraction='update' data-target='#userEditModal' data-userid='".$user_id."' data-useremail='" . $user_email . "' data-firstname='" . $first_name . "' data-lastname='" . $last_name . "' data-permissions='" . $role . "' data-roleid='".$role_id."' data-companyid='".$company_id."' data-representative='".$can_represent_company."' data-biography='".$biography."' data-disabled='$disabled'>Edit User</button></td>";
             echo "<td><button type='button' class='btn btn-primary view_posts_button' data-userid='".$user_id."'>Posts</button></td>";
             echo "</tr>";
             $user_count += 1;
@@ -293,6 +305,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       if(user.data("useraction") === "update"){
         modal.find("#pass_reset_id").val(user.data("userid"));
         modal.find("#delete_id").val(user.data("userid"));
+        modal.find("#restore_id").val(user.data("userid"));
         modal.find("#user_id").val(user.data("userid"));
         modal.find("#user_email").val(user.data("useremail"));
         modal.find("#first_name").val(user.data("firstname"));
@@ -305,8 +318,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $("#representative").prop("checked", true);
         }
         $("#submit_user_details").html("Update user");
-        $("#delete_user").show();
-        $("#pass_reset").show();
+        if(user.data("disabled") == '0'){
+          $("#restore_user").hide();          
+          $("#delete_user").show();
+        } else {
+          $("#delete_user").hide();          
+          $("#restore_user").show();
+        }
+        
         last_role = user.data("roleid");
       } else if(user.data("useraction") === "add"){
         last_role = 5;
@@ -320,6 +339,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         modal.find("#user_details_form_action").val("ADD");
         $("#submit_user_details").html("Add user");
         $("#delete_user").hide();
+        $("#restore_user").hide();
         $("#pass_reset").hide();        
       }
     });
@@ -348,6 +368,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $("#delete_user_form").submit();
       }
     });
+    
+    $("#restore_user").click(function(){
+      if(confirm("Are you sure want to restore this user account?")){
+        $("#restore_user_form").submit();
+      }
+    });
+
+    //not currently used
     $("#pass_reset").on("click", function(){
       if(confirm("Are you sure want to reset password for this user?")){
         $("#pass_reset_form").submit();
