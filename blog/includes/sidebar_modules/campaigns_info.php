@@ -4,8 +4,16 @@
         * Only CMS pages should show this.
     */
 ?>
-					<section id="categories-list">
+					<section id="campaign-info">
 						<h1>Info</h1>
 						<ul>
+							<li>Start date:</li>
+							<li>End date:</li>
+						</ul>
+					</section>
+					<section id="campaign-sidebar-donate">
+						<h1>Donate</h1>
+						<ul>
+							<li>...</li>
 						</ul>
 					</section>
