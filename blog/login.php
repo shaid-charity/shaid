@@ -44,7 +44,8 @@
 
 				//if the access to the account has been disabled
 				if($disabled == 1){
-					echo "<script>window.location.replace('login.php')</script>";	
+					echo "<script>window.location.replace('login.php');</script>";
+					die("This account has been disabled. Please contact your system administrator.");	
 				}	
 
 		    if(!empty($hash)){
