@@ -647,6 +647,10 @@
   width: 0%;
   background-color: #008194; }
 
+.campaign-donation-section h2 {
+  padding-top: 1rem;
+  padding-bottom: 1.5rem; }
+
 @media only screen and (max-width: 1199px) {
   .content-grid #sidebar h1 {
     font-size: 1.7rem; } }

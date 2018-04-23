@@ -112,7 +112,7 @@
 								</div>
 							</div>
 							<h2>
-								£<?php echo $campaign->getAmountRaised(); ?> raised of £<?php echo $campaign->getGoalAmount(); ?>
+								£<?php echo $campaign->getAmountRaised(); ?> raised of £<?php echo $campaign->getGoalAmount(); ?> goal
 							</h2>
 							<a href="javascript:void(0)" class="button-green">Donate to this Campaign</a>
 						</section>
