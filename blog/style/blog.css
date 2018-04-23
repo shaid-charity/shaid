@@ -637,7 +637,7 @@
   height: 2rem;
   width: 100%;
   background-color: #FFFFFF;
-  border: 2px solid #999999;
+  border: 2px solid #008194;
   overflow: hidden;
   border-radius: 45px; }
 
@@ -645,8 +645,7 @@
   display: block;
   height: 100%;
   width: 0%;
-  background-color: #008194;
-  border-right: 2px solid #999999; }
+  background-color: #008194; }
 
 @media only screen and (max-width: 1199px) {
   .content-grid #sidebar h1 {

@@ -825,7 +825,7 @@ $rule-line-thickness: 4px;
 	height: 2rem;
 	width: 100%;
 	background-color: $color-white;
-	border: 2px solid $color-mediumgrey;
+	border: 2px solid $color-brandgreen;
 	overflow: hidden;
 	border-radius: 45px;
 }
@@ -835,7 +835,6 @@ $rule-line-thickness: 4px;
 	height: 100%;
 	width: 0%;
 	background-color: $color-brandgreen;
-	border-right: 2px solid $color-mediumgrey;
 }
 
 .campaign-donation-meter,
