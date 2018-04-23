@@ -7,7 +7,7 @@
 
     require_once 'includes/settings.php';
 	require_once 'includes/config.php';
-	require_once 'includes/permissionCheck.php';
+	require_once SITE_ROOT . '/includes/permissionCheck.php';
 ?>
 <!DOCTYPE html>
 <html>
