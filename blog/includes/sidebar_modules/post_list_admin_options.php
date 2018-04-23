@@ -3,7 +3,7 @@
         View post admin options (sidebar module) - shows admin options for a viewed post.
         * Only CMS pages should show this.
     */
-	require_once '/../permissionCheck.php';
+	//require_once '/../permissionCheck.php';
 
     if ($user != null) {
 ?>
