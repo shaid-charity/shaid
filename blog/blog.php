@@ -105,6 +105,7 @@
 					<?php
 						require_once(SITE_ROOT . '/includes/sidebar_modules/post_list_admin_options.php');
 						require_once(SITE_ROOT . '/includes/sidebar_modules/categories_list.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/newsletter_subscribe.php');
 					?>
 				</aside>
 			</div>
