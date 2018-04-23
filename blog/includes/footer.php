@@ -28,7 +28,7 @@
 				<h2>Keep updated</h2>
 				<div class="footer-social-container">
 					<span class="footer-social-button">
-						<a href="#" data-platform="email">
+						<a href="/<?php echo INSTALLED_DIR; ?>/newsletter.php" data-platform="email">
 							<i class="zmdi zmdi-email"></i>
 							<span class="footer-social-button-label">Email</span>
 						</a>
@@ -77,7 +77,7 @@
 				?>
 				<li><a href="#">Admin Panel</a></li>
 				<li>&bull;</li>
-				<li><a onclick="$('#logoutForm').submit();">Log out</a></li>
+				<li><a href="javascript:void(0)" onclick="$('#logoutForm').submit();">Log out</a></li>
 				<?php
 					}
 				?>
