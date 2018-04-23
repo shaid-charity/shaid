@@ -20,7 +20,9 @@ table {
 
 table th {
   text-align: left;
-  border-bottom: 2px solid #DDDDDD; }
+  border-bottom: 2px solid #DDDDDD;
+  font-family: "PT Sans", sans-serif;
+  font-size: 1.4rem; }
 
 table td:first-child {
   width: 1px !important; }
