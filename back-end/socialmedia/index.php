@@ -42,7 +42,9 @@ I ran it from terminal using php -S localhost:8000
         <h4><center>Posting to social medias</center></h4>
         Enter text below:
         <br>
-        <textarea  id= "input" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
+        <div class="form-group">
+        <textarea  id= "input" name = "input" class= "form-control" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
+        </div>
         <br>
         <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
         <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
@@ -158,11 +160,8 @@ I ran it from terminal using php -S localhost:8000
       <br>
       <br>
       <form id=form2 method = "post" >
-        <input type="text" id="add_keyword" name="add_keyword">
+        <input type="text" id="keyword" name="keyword">
         <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
-        <br>
-        <input type="text" id="del_keyword" name="del_keyword">
-        <button type = "del_key" name="del_key" id="del_key">Delete Keyword </button>
       </form>
 
       <?php
