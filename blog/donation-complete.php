@@ -30,7 +30,7 @@
 							<h1>Donation Complete</h1>
 							<p>Your donation has been received.</p>
 							<p>Thank you for supporting SHAID!</p>
-							<p><a href="index.php">Return to home</a>
+							<p><a href="index.php" class="button-green">Return to home</a>
 						</div>
 					</section>
 				</section>
