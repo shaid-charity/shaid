@@ -50,7 +50,8 @@
 
 		    if(!empty($hash)){
 		      if($hash == "undefined") {
-		        //password has not been set yet
+						//password has not been set yet
+						//change this to fail until the password is reset
 		        header("Location: passreset.php?user_email=" . $user_email);
 		        die();
 		      } else {

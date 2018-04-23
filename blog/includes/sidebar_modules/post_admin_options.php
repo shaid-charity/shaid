@@ -3,8 +3,8 @@
         View post admin options (sidebar module) - shows admin options for a viewed post.
         * Only CMS pages should show this.
     */
-
-    if ($user != null && ($user->getID() == $post->getAuthor()->getID() || $user->getRoleID() <= 1)) {
+	echo $user->getRoleID();
+    if ($user != null && ($user->getID() == $post->getAuthor()->getID() || $user->getRoleID() == 1)) {
 ?>
 					<section>
 						<h1>Admin options</h1>
