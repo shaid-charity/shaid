@@ -516,6 +516,11 @@ main {
 	color: $color-white;
 }
 
+.home-newsletter-subscription input[type="email"] {
+	border-color: $color-white;
+	width: 10rem;
+}
+
 footer {
 	width: 100%;
 	height: 100%;

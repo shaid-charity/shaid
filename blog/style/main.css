@@ -501,6 +501,10 @@ main {
 .home-newsletter-subscription h2 {
   color: #FFFFFF; }
 
+.home-newsletter-subscription input[type="email"] {
+  border-color: #FFFFFF;
+  width: 10rem; }
+
 footer {
   width: 100%;
   height: 100%;
