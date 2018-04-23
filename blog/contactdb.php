@@ -111,12 +111,12 @@
 
 								</ul>
 							</nav>
-							<button class="button-green" type="submit" name="sendEmail">Send email to selected</button> <label for="sendEmail" id="numChecked">0</label> <label>currently selected emails</label>
+							<button class="button-dark" type="submit" name="sendEmail">Send email to selected</button> <label for="sendEmail" id="numChecked" style="padding-left: 0.5rem;">0</label> <label>currently selected emails</label>
 						</form>
 
 						<form action="sendemail.php" method="post">
 							<input type="hidden" name="type" value="all">
-							<button class="button-dark" type="submit" value="Send email to all contacts">Send email to all contacts</button>
+							<button class="button-green" type="submit" value="Send email to all contacts">Send email to all contacts</button>
 						</form>
 					</section>
 				</section>
