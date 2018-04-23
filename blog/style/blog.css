@@ -638,14 +638,18 @@
   width: 100%;
   background-color: #FFFFFF;
   border: 2px solid #4E3D42;
-  border-radius: 45px;
   overflow: hidden; }
 
 .campaign-donation-meter-progress {
   display: block;
   height: 100%;
   width: 0%;
-  background-color: #008194; }
+  background-color: #008194;
+  border-right: 2px solid #4E3D42; }
+
+.campaign-donation-meter,
+.campaign-donation-meter-progress {
+  border-radius: 45px; }
 
 @media only screen and (max-width: 1199px) {
   .content-grid #sidebar h1 {
