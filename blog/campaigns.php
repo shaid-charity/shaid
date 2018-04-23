@@ -23,7 +23,7 @@
 	?>
 	<main id="main-content">
 		<div class="inner-container">
-			<div class="content-grid no-sidebar">
+			<div class="content-grid no-sidebar"> <!-- Remove no-sidebar if relevant permissions -->
 				<section id="main">
 					<div class="content-grid-title">
 						<h1>Campaigns</h1>
@@ -96,6 +96,15 @@
 						</ul>
 					</nav>
 				</section>
+				<!-- Add sidebar if relevant permissions:
+				<aside id="sidebar">
+					<?php
+						/*
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_admin_options.php');
+						*/
+					?>
+				</aside>
+				 -->
 			</div>
 		</div>
 	</main>
