@@ -67,8 +67,6 @@
 			<ul>
 				<li><a href="/<?php echo INSTALLED_DIR; ?>/terms-conditions.php">Terms and Conditions</a></li>
 				<li>&bull;</li>
-				<li><a href="links.php">Useful Links</a></li>
-				<li>&bull;</li>
 				<?php
 					if ($user == null) {
 				?>
