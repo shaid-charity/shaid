@@ -49,6 +49,7 @@ class Post extends Content {
 		$this->lastModifiedDate = $result['datetime-last-modified'];
 		$this->category = new Category($this->db, $result['category_id']);
 		$this->published = $result['published'];
+		$this->approved = $result['approved'];
 
 		if (isset($result['campaign_id']) && $result['campaign_id'] != 0)
 		{
@@ -76,6 +77,7 @@ class Post extends Content {
 		$this->lastModifiedDate = $result['datetime-last-modified'];
 		$this->category = new Category($this->db, $result['category_id']);
 		$this->published = $result['published'];
+		$this->approved = $result['approved'];		
 
 		if (isset($result['campaign_id']) && $result['campaign_id'] != 0)
 		{

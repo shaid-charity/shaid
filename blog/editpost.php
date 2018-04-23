@@ -32,6 +32,9 @@
 					$post->setPublished(0);
 				} else if(isset($_GET['action']) && $_GET['action'] == 'approve'){
 					$post->approve();
+					//there must be a better way than this
+					echo "<script>window.location.replace('viewpost.php?id=".$_GET['id']."')</script>";
+					die();
 				} else if (isset($_GET['action']) && $_GET['action'] == 'update') {
 					// Update the post
 					$post->setName($_POST['title']);
