@@ -4,3 +4,8 @@
 .profile-header-photo {
   border-radius: 50%;
   height: 8rem; }
+
+.profile-header h3 {
+  padding-top: 0.5rem;
+  font-weight: normal;
+  color: #4E3D42; }
