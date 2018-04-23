@@ -101,38 +101,6 @@ if(empty($session_number)){
         <li class="nav-item">
           <a class="nav-link <?php if (CURRENT_PAGE == 'profile') echo 'active'; ?>" href="profile.php">Profile</a>
         </li>
-        <li class="nav-item dropdown <?php if (substr(CURRENT_PAGE, 0, 7) == 'content') echo 'active'; ?>">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Content
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item <?php if (CURRENT_PAGE == 'contentCreateCategory') echo 'active'; if($role_id > 3) echo ' hidden';?>" href="createCategory.php">Create Category</a>
-              <a class="dropdown-item <?php if (CURRENT_PAGE == 'contentViewCategories') echo 'active'; if($role_id > 3) echo ' hidden';?>" href="viewCategories.php">View Categories</a>
-              <a class="dropdown-item <?php if (CURRENT_PAGE == 'contentCreatePost') echo 'active'; ?>" href="post.php">Create Post</a>
-              <a class="dropdown-item <?php if (CURRENT_PAGE == 'contentViewPosts') echo 'active'; ?>" href="viewPosts.php">View Posts</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown <?php if (substr(CURRENT_PAGE, 0, 9) == 'campaigns') echo 'active'; if($role_id > 2) echo ' hidden';?>">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Campaigns
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item <?php if (CURRENT_PAGE == 'campaignsCreate') echo 'active'; ?>" href="campaign.php">Create Campaign</a>
-            <a class="dropdown-item <?php if (CURRENT_PAGE == 'campaignsView') echo 'active'; ?>" href="viewCampaigns.php">View Campaigns</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown <?php if (substr(CURRENT_PAGE, 0, 6) == 'events') echo 'active'; if($role_id > 3) echo ' hidden';?>">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Events
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item <?php if (CURRENT_PAGE == 'eventsCreate') echo 'active'; ?>" href="event.php">Create Event</a>
-            <a class="dropdown-item <?php if (CURRENT_PAGE == 'eventsView') echo 'active'; ?>" href="viewEvents.php">View Events</a>
-          </div>
-        </li>
-        <li class="nav-item <?php if (CURRENT_PAGE == 'contactDB') echo 'active'; if($role_id > 2) echo ' hidden';?>">
-          <a class="nav-link" href="contactDB.php">Contact DB <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item dropdown <?php if (substr(CURRENT_PAGE, 0, 6) == 'social') echo 'active'; if($role_id > 2) echo ' hidden';?>">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Social Media
