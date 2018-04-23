@@ -18,7 +18,7 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 
 		if($user == null || !grantAccess($user->getRoleID(), PAGE_NAME)){
-			die("You dont have permission to access this page");
+			header('Location: permissionserror.php');
 		}
 	?>
 	<link href="style/blog.css" rel="stylesheet">
