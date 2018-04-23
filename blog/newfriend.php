@@ -35,7 +35,14 @@
 						// Check to see if a user has been added
 						// If the user is not logged in, show an error message
 						if ($user == null) {
-							require_once(SITE_ROOT . '/includes/admin/admin_not_logged_in_notice.php');
+							?>
+								<article id="article">
+									<?php
+										require_once(SITE_ROOT . '/includes/admin/admin_not_logged_in_notice.php');
+									?>
+								</article>
+							</section>
+							<?php
 						} else {
 							if ($_GET['action'] == 'submit') {
 								// Create a new instantce of the Friend class, adding it to the DB in the process
@@ -63,11 +70,11 @@
 							</div>
 							<div class="post-input">
 								<div class="post-input-row">
-									<div class="post-input">
-										<label for="forename">Forename</label>
+									<div class="post-input-grow post-input-padding-right">
+										<label for="forename">First Name</label>
 										<input type="text" name="forename" id="friend-forename">
 									</div>
-									<div class="post-input">
+									<div class="post-input-grow post-input-padding-left">
 										<label for="surname">Surname</label>
 										<input type="text" name="surname" id="friend-surname">
 									</div>

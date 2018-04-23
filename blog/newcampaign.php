@@ -123,9 +123,9 @@
 // Load the TinyMCE editor to the appropriate text area
 tinymce.init({
     selector: 'textarea',
-    plugins: "image link autolink lists preview",
+    plugins: "image link autolink lists",
     menubar: "file edit format insert view",
-    toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image link numlist bullist preview"
+    toolbar: "undo redo cut copy paste bold italic underline strikethrough subscript superscript removeformat formats image blockquote link numlist bullist"
 });
 
 // Change the URL of the form if the Preview button was selected
