@@ -37,9 +37,6 @@
 							</form>
 						</div>
 					</section>
-					<?php
-						}
-					?>
 				</section>
 			</div>
 		</div>
