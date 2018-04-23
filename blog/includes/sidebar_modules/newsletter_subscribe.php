@@ -7,7 +7,7 @@
 					<section id="categories-list">
 						<h1>Newsletter</h1>
 						<form action="newsletter.php" method="post" class="login-form">
-							<div class="post-input">
+							<div class="post-input" style="padding-bottom: 0.5rem;">
 								<label for="email" class="section-label">Email address</label>
 								<input type="email" id="email" name="email">
 							</div>
