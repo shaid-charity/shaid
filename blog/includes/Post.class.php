@@ -145,7 +145,7 @@ class Post extends Content {
 	}
 
 	//approve post
-	public function approvePost(){
+	public function approve(){
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `approved` = 1 WHERE `id` = ?");
 			$stmt->execute([$this->getID()]);

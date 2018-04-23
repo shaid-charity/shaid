@@ -30,6 +30,8 @@
 				// Make the post a draft if need be
 				if (isset($_GET['action']) && $_GET['action'] == 'makeDraft') {
 					$post->setPublished(0);
+				} else if(isset($_GET['action']) && $_GET['action'] == 'approve'){
+					$post->approve();
 				} else if (isset($_GET['action']) && $_GET['action'] == 'update') {
 					// Update the post
 					$post->setName($_POST['title']);
