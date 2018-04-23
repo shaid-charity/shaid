@@ -9,9 +9,7 @@ table {
   width: 100%; }
 
 table th {
-  text-align: left; }
-
-table tr:first-child {
+  text-align: left;
   border-bottom: 2px solid #999999; }
 
 table td:first-child {

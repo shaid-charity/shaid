@@ -16,10 +16,10 @@ table {
 
 table th {
 	text-align: left;
+	border-bottom: 2px solid $color-mediumgrey;
 }
 
 table tr:first-child {
-	border-bottom: 2px solid $color-mediumgrey;
 }
 
 table td:first-child {
