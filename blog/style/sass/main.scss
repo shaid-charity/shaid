@@ -501,8 +501,15 @@ main {
 }
 
 .home-newsletter-subscription {
-	background-color: $color-darkgrey;
+	//background-color: $color-darkgrey;
+	background-color: #555555;
 	padding: 1.8rem 0;
+}
+
+.home-newsletter-subscription-inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
 .home-newsletter-subscription h2 {

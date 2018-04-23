@@ -116,7 +116,7 @@
 			}
 		?>
 		<div class="home-newsletter-subscription">
-			<div class="inner-container">
+			<div class="inner-container home-newsletter-subscription-inner">
 				<h2>Keep up to date with our newsletter</h2>
 				<form action="newsletter.php" method="post">
 					<input type="email" id="email" name="email">

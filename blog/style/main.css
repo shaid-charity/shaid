@@ -490,8 +490,13 @@ main {
   padding-top: 1.5rem; }
 
 .home-newsletter-subscription {
-  background-color: #4E3D42;
+  background-color: #555555;
   padding: 1.8rem 0; }
+
+.home-newsletter-subscription-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
 
 .home-newsletter-subscription h2 {
   color: #FFFFFF; }
