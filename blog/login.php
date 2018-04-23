@@ -43,7 +43,7 @@
 		    $query->close();
 
 				if($disabled == 1){
-					header("Location: login.php");
+					die("Your account has been disabled. Please contact system administrtor");
 				}	
 
 		    if(!empty($hash)){
