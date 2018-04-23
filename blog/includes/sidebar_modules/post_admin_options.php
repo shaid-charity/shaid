@@ -4,7 +4,7 @@
         * Only CMS pages should show this.
     */
 
-    if ($user != null && $user->getID() == $post->getAuthor()->getID()) {
+    if ($user != null && ($user->getID() == $post->getAuthor()->getID() || $user->getRoleID() <= 1)) {
 ?>
 					<section>
 						<h1>Admin options</h1>
@@ -13,7 +13,7 @@
 							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=makeDraft&id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Make draft</a>
 							<!-- Dmytro asked for this -->
 							<?php 
-							if($user->getRoleID() == 1){
+							if($user->getRoleID() <= 1){
 							?>
 							<a href="/<?php echo INSTALLED_DIR; ?>/afile.php" type="button" class="button-dark">Approve</a>
 							<?php
