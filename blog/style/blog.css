@@ -387,7 +387,8 @@
   box-shadow: none;
   outline: none;
   border: 2px solid #999999;
-  border-width: 2px !important; }
+  border-width: 2px !important;
+  box-sizing: border-box; }
 
 #mceu_27-body {
   display: flex;
