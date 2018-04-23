@@ -1,11 +1,12 @@
 .profile-header {
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 1rem; }
 
 .profile-header-photo {
   border-radius: 50%;
   height: 8rem; }
 
 .profile-header h3 {
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
   font-weight: normal;
   color: #4E3D42; }
