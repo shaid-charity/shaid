@@ -20,6 +20,22 @@
 		if($user == null || !grantAccess($user->getRoleID(), PAGE_NAME)){
 			die("You dont have permission to access this page");
 		}
+
+		if (isset($_POST['fromPreview'])) {
+			$title = $_POST['title'];
+			$category = $_POST['category'];
+			$campaign = $_POST['campaign'];
+			$content = $_POST['content'];
+			$file = $_FILES['featured-image'];
+			$imageCaption = $_POST['featured-image-caption'];
+		} else {
+			$title = '';
+			$category = '';
+			$campaign = '';
+			$content = '';
+			$file = '';
+			$imageCaption = '';
+		}
 	?>
 	<link href="style/blog.css" rel="stylesheet">
 </head>
@@ -50,9 +66,10 @@
 					</div>
 					<section id="post-editor">
 						<form id="postForm" action="editpost.php?action=createNew" method="post"  enctype="multipart/form-data">
+							<input type="hidden" name="id" value="0">
 							<div class="post-input">
 								<label for="post-title" class="section-label">Title</label>
-								<input type="text" name="title" id="post-title">
+								<input type="text" name="title" id="post-title" value="<?php echo $title; ?>">
 							</div>
 							<div class="post-input">
 								<label for="post-category" class="section-label">Category</label>
@@ -64,7 +81,11 @@
 										$categories = Array();
 										foreach ($stmt as $row) {
 											$cat = new Category($db, $row['id']);
-											echo '<option value="' . $cat->getID() . '">' . $cat->getName() . '</option>';
+											if ($category == $cat->getID()) {
+												echo '<option value="' . $cat->getID() . '" selected>' . $cat->getName() . '</option>';
+											} else {
+												echo '<option value="' . $cat->getID() . '">' . $cat->getName() . '</option>';
+											}
 										}
 									?>
 								</select>
@@ -78,13 +99,13 @@
 									</div>
 									<div class="post-input-grow">
 										<label for="post-featured-image-caption">Featured image caption</label>
-										<input type="text" name="featured-image-caption" id="post-featured-image-caption">
+										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $imageCaption; ?>">
 									</div>
 								</div>
 							</div>
 							<div class="post-input">
 								<label for="post-content" class="section-label">Post content</label>
-								<textarea name="content" id="post-content"></textarea>
+								<textarea name="content" id="post-content"><?php echo $content; ?></textarea>
 							</div>
 						</button>
 					</section>
@@ -110,7 +131,11 @@
 										
 									foreach ($stmt as $row) {
 										$c = new Campaign($db, $row['id']);
-										echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";
+										if ($campaign == $c->getID()) {
+											echo "<option value='" . $c->getID() . "' selected>" . $c->getTitle() . "</option>";
+										} else {
+											echo "<option value='" . $c->getID() . "'>" . $c->getTitle() . "</option>";
+										}
 									}
 								?>
 							</select>

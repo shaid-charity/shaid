@@ -66,25 +66,28 @@
 						$post->setPublished(0);
 					}
 				} else if (isset($_GET['action']) && $_GET['action'] == 'fromPreview') {
-					if ($_POST['saveType'] == 'Save Draft') {
-						$post->setPublished(0);
+					$post = new Post($db, $_GET['id']);
 
-						if (file_exists($file['tmp_name'])) {
-						$uploadManager->upload($file);
-					}
-					} else if ($_POST['saveType'] == 'Publish') {
-						$post->setPublished(1);
+					$post->setName($_POST['title']);
+					$post->setCategory($_POST['category']);
+					$post->setContent($_POST['content']);
+					$post->setCampaign($_POST['campaign']);
+					$post->setImageCaption($_POST['featured-image-caption']);
+					$file = $_FILES['featured-image'];
 
-						if (file_exists($file['tmp_name'])) {
-						$uploadManager->upload($file);
-					}
-					}
+					// If a new main image was uploaded, change it
+					if (file_exists($file['tmp_name'])) {
+						$uploadManager = new UploadManager();
+						$uploadManager->setFilename($file['name']);
+						$imagePath = $uploadManager->getPath();
 
-					// If the Edit button was selected, do nothing
+						$post->setImage($imagePath);
+					}
 				}
 			} else if ($_GET['action'] == 'createNew') {
 				// Create a new post
 				// Create the blog post
+				echo 'saveType: ' . $_POST['saveType'];
 				$name = $_POST['title'];
 				$categoryID = $_POST['category'];
 				$content = $_POST['content'];
@@ -103,6 +106,8 @@
 				$userID = $user->getID();
 
 				if ($_POST['saveType'] == "Publish") {
+					echo 'publishing';
+
 					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 
 					$post->setImageCaption($imageCaption);
@@ -128,7 +133,7 @@
 				<section id="main">
 					<?php
 						// Check to see if the post has been updated
-						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew' || $_GET['action'] == 'fromPreview' || $_GET['action'] == 'makeDraft')) {
+						if (isset($_GET['action']) && ($_GET['action'] == 'update' || $_GET['action'] == 'createNew' || $_GET['action'] == 'makeDraft')) {
 
 							if ($post->isPublished() && $_POST['saveType'] != "Edit") {
 								require_once(SITE_ROOT . '/includes/blog_modules/post_published_message.php');
@@ -144,7 +149,18 @@
 						<h1>Edit Post</h1>
 					</div>
 					<section id="post-editor">
+						<?php
+								if ($_GET['action'] != 'fromPreview') {
+						?>
 						<form id="postForm" action="editpost.php?action=update&id=<?php echo $post->getID(); ?>" method="post"  enctype="multipart/form-data">
+							<input type="hidden" name="id" value="<?php echo $post->getID(); ?>">
+						<?php
+							} else {
+						?>
+						<form id="postForm" action="editpost.php?action=createNew" method="post"  enctype="multipart/form-data">
+						<?php
+							}
+						?>
 							<div class="post-input">
 								<label for="post-title" class="section-label">Title</label>
 								<input type="text" name="title" id="post-title" value="<?php echo $post->getTitle(); ?>">

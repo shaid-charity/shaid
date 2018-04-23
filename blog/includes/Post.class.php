@@ -248,4 +248,16 @@ class Post extends Content {
 		// Also set the last modified datetime
 		$this->setLastModifiedDateTime();
 	}
+
+	public function delete() {
+		// Remove the post from the DB
+		try {
+			$stmt = $this->db->prepare("DELETE FROM `$this->table` WHERE `id` = ?");
+			$stmt->execute([$this->getID()]);
+		} catch (Exception $e) {
+			return false;
+		}
+
+		return true;
+	}
 }
