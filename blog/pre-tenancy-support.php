@@ -51,7 +51,7 @@
 								<a href="http://monkey.uk.net/" target="_blank"><img src="./assets/logos/external/monkey.png" class="list-img"></a>
 							</li>
 						</ul>
-						<p><a href="#" class="button-green">Make a referral</a></p>
+						<p><a href="referrals.php" class="button-green">Make a referral</a></p>
 					</section>
 				</section>
 				<aside id="sidebar">

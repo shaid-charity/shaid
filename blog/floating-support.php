@@ -48,7 +48,7 @@
 							<li>Advice on education, training or employment;</li>
 							<li>Advocacy.</li>
 						</ul>
-						<p><a href="#" class="button-green">Make a referral</a></p>
+						<p><a href="referrals.php" class="button-green">Make a referral</a></p>
 					</section>
 				</section>
 				<aside id="sidebar">

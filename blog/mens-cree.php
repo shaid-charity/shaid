@@ -64,7 +64,7 @@
 							<li>Wellbeing courses.</li>
 							<li><em>And much more...</em></li>
 						</ul>
-						<p><a href="#" class="button-green">Make a referral</a></p>
+						<p><a href="referrals.php" class="button-green">Make a referral</a></p>
 					</section>
 				</section>
 				<aside id="sidebar">

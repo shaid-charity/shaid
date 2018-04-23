@@ -53,7 +53,7 @@
 						<p>Externally there is a car park,  tenants allotment and garden.</p>
 						<p>SHAID can offer tenants support &amp; advice on issues including   possible funding avenues for training and employment as well as provide housing support when a  tenant decides to move on.</p>
 						<p>Tenants may stay at St Peters Court for up to two years.</p>
-						<p><a href="#" class="button-green">Make a referral</a></p>
+						<p><a href="referrals.php" class="button-green">Make a referral</a></p>
 					</section>
 				</section>
 				<aside id="sidebar">

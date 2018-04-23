@@ -38,7 +38,7 @@
 								<p>This project approaches your educational and employment dreams in an informal, creative and fun environment.</p>
 								<p>Our aim is to identify individual’s needs and make this experience unique.</p>
 								<p>Your future is our priority.</p>
-								<p><a href="#" class="button-green">Make a referral</a></p>
+								<p><a href="referrals.php" class="button-green">Make a referral</a></p>
 							</div>
 							<div class="service-page-split-img">
 								<img src="./assets/img/services/plan-4-life.png">
