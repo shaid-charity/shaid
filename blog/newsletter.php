@@ -29,14 +29,17 @@
 						<div class="content-grid-title">
 							<h1>Newsletter</h1>
 							<?php
-								if(isset($POST['email'])) {
+								if(isset($_POST['email'])) {
 							?>
 							<p>Thank you for subscribing to the SHAID newsletter.</p>
-							<p><a href="index.php" class="button-green">Return to home page</a></p>
-							<p><a href="javascript:void(0)" class="button-dark">Unsubscribe</a></p>
+							<p>
+								<a href="index.php" class="button-green">Return to home page</a>
+								<a href="javascript:void(0)" class="button-dark">Unsubscribe</a>
+							</p>
 							<?php
 								} else {
 							?>
+							<p>Enter your email address below to subscribe to the SHAID newsletter and keep up to date with our mission.</p>
 							<form method="post" class="login-form">
 								<div class="post-input">
 									<label for="email" class="section-label">Email address</label>
