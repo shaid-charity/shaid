@@ -34,7 +34,7 @@
 		// If no search term is entered, just match anything
 		if (!isset($_GET['term'])) {
 			$searchTerm = '%';
-			$searchText = 'Search...';
+			$searchText = 'Search contacts';
 		} else {
 			$searchTerm = '%' . $_GET['term'] . '%';
 			$searchText = $_GET['term'];
