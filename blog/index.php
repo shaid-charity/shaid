@@ -74,11 +74,8 @@
 			<div class="inner-container">
 				<h2>Keep up to date with our newsletter</h2>
 				<form action="newsletter.php" method="post">
-					<div class="post-input">
-						<label for="email" class="section-label">Email address</label>
-						<input type="email" id="email" name="email">
-					</div>
-					<button type="submit" class="button-green">Subscribe</button>
+					<input type="email" id="email" name="email">
+					<button type="submit" class="button-light">Subscribe</button>
 				</form>
 			</div>
 		</div>
