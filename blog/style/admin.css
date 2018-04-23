@@ -23,3 +23,12 @@
 
 .info-banner-nav li:first-child {
   padding-left: 0; }
+
+/* Media queries */
+@media only screen and (max-width: 576px) {
+  .info-banner-nav li {
+    display: block;
+    padding: 0; }
+
+  .info-banner-nav-sep {
+    display: none; } }
