@@ -104,15 +104,23 @@ abstract class Content extends DBRecord {
 	}
 
 	public function getImagePath() {
+		if ($this->image == '' || is_null($this->image)) {
+			return 'assets/img/placeholder/460x230.png';
+		}
+
 		return $this->image;
 	}
 
 	public function getImageName() {
+		if ($this->image == '' || is_null($this->image)) {
+			return '460x230.png';
+		}
+
 		return basename($this->image);
 	}
 
 	public function getImageCaption() {
-		if ($this->imageCaption == null) {
+		if (is_null($this->imageCaption)) {
 			return "";
 		}
 		
