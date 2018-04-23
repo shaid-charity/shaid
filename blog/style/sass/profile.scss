@@ -6,11 +6,19 @@
 .profile-header {
 	text-align: center;
 	padding-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
 }
 
 .profile-header-photo {
 	border-radius: 50%;
 	height: 8rem;
+}
+
+.profile-header-info {
+	padding-left: 1rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .profile-header h3 {
