@@ -11,6 +11,8 @@
 <head>
 	<title>SHAID - New Campaign</title>
 	<?php
+		define('PAGE_NAME', "newCampaign");
+		
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
