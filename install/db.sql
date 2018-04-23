@@ -48,6 +48,12 @@ CREATE TABLE `companies` (
   `icon` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+---
+--- Data for `companies`
+---
+
+INSERT INTO `companies`(`name`, `url`, `icon`) VALUES ('SHAID', 'http://shaid.org.uk', '../images/logos/shaidlogo.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -190,6 +196,7 @@ INSERT INTO `users` (`user_id`, `first_name`, `last_name`, `email`, `role_id`, `
 (1, 'Matthew', 'Watson', 'email@mail.com', 1, 'qNx4FhzVak9AYyXHfX', '0fa74253d25754390cb2466805166b401229de8229f05dfeb7dd4320591b3ef6', 0, 1, 1, 'none', 'sample biography', 0),
 (2, 't', 't', 't', 1, 'NHY015DFkmgwISwIccWb', 'a58401405bc99709d9f973942585b1030f54e8d8f502ca515a8fe72c92c772b8', 0, 1, 1, 'none', 'none', 0),
 (3, 'New', 'User', 'new@mail.com', 1, 'epah3th5pBRy0Sfs4SXL', '88613d08d7da044aaefade8b2472c1e9ac01aa00a31c3c1ba16e50c373c8aeee', 0, 1, 0, '', '', 0);
+
 
 --
 -- Indexes for dumped tables
