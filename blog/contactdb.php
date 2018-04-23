@@ -15,39 +15,7 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
 	<link href="style/blog.css" rel="stylesheet">
-
-	<style>
-		/* spacing */
-
-		table {
-		  	width: 100%;
-		  	text-align: center;
-		}
-
-		table td:first-child {
-    		width: 1px !important;
-		}
-
-		thead th:nth-child(1) {
-		  	width: 50%;
-		}
-
-		thead th:nth-child(2) {
-		  	width: 20%;
-		}
-
-		thead th:nth-child(3) {
-		  	width: 15%;
-		}
-
-		thead th:nth-child(4) {
-		  	width: 35%;
-		}
-
-		th, td {
-		  	padding: 20px;
-		}
-	</style>
+	<link href="style/contactdb.css" rel="stylesheet">
 </head>
 <body>
 	<?php
