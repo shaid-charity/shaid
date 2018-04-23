@@ -30,6 +30,7 @@
 	        $query->execute();
 					$query->close();
 					echo "<script>window.location.replace('login.php')</script>";
+					die();
 	        //header("Location: login.php");
 	      }
 			
