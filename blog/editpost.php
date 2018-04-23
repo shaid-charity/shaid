@@ -18,7 +18,7 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 
 		if($user == null || !grantAccess($user->getRoleID(), PAGE_NAME)){
-			echo grantAccess($user->getRoleID(), PAGE_NAME);
+			echo "<script>alert('".grantAccess($user->getRoleID(), PAGE_NAME)."'</script>";
 			die("You dont have permission to access this page");
 		}
 	?>
