@@ -73,7 +73,7 @@
 								</div>
 								<div id="article-author-text">
 									<span id="article-author-text-name"><a href=""><?php echo $postsUser->getFullName(); ?></a></span>
-									<span id="article-author-text-about"><?php echo $postsUser->getCompany(); ?></span>
+									<span id="article-author-text-about"><?php echo $postsUser->getCompany()->getName(); ?></span>
 								</div>
 						</section>
 						<section id="articles-list">
