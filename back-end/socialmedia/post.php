@@ -59,7 +59,7 @@
           elseif (strpos($sm, 'Facebook') !== false){
             echo("Message is longer than 280 characters, will be shortened and a link to the Facebook post will be provided");
             $text = substr($text, 0,250);
-            $link = "https://fb.me/SHAIDTest";
+            $link = "https://fb.me/SHAIDTest/posts";
             $text = $text."...". $link;
             $tweet->post('statuses/update', array('status' => "$text"));
             echo nl2br("\nPosted to Twitter \n");
