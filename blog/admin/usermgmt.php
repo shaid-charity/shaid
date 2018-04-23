@@ -29,6 +29,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $query->bind_param("ssssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($imagePath), getValidData($_POST["biography"]), $disabled = "0");
       $query->execute();
       $query->close();
+
+      // Send email for password reset
+      $id = mysqli_insert_id($con);
+      $addedUser = new User($db, $id);
+      $addedUser->generatePasswordResetHash();
+
+      $resetHash = $addedUser->getPasswordResetHash();
+
+      // Now we have the password reset hash, send an email to the user
+      $transport = new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, 'tls');
+      $transport->setUsername(EMAIL_ADDRESS);
+      $transport->setPassword(EMAIL_PASSWORD);
+
+      // Create a mailer
+      $mailer = new Swift_Mailer($transport);
+
+      $siteLink = $_SERVER['HTTP_HOST'] . '/' . INSTALLED_DIR . '/change-password.php?token=' . $resetHash;
+
+      $content = "<h1>SHAID Admin Password Reset</h1><br /><br />" .
+            "Please go to <a href='$siteLink'>this link</a> to reset your password.<br /><br />" .
+            "If that link does not work, copy/paste the following into your browser:<br /><br />" .
+            $siteLink;
+
+      // Get a version of the message without any HTML tags
+      // We can then send the plain text version as a backup, in case the HTML version won't load
+      $messageNoHTML = strip_tags($content);
+
+      // Create the message - recipient will be set later
+      $message = new Swift_Message("SHAID Admin Password Reset");
+      $message->setFrom(array(EMAIL_ADDRESS => EMAIL_NAME));
+      $message->setBody($messageNoHTML);
+      $message->addPart($content, 'text/html');
+
+      // Send
+      $message->setTo($addedUser->getEmail());
+
+      $numSent = $mailer->send($message, $failed); 
+
       header("Location: usermgmt.php");
     } else {
       if($emailExists){
