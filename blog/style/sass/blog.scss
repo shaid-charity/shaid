@@ -827,6 +827,7 @@ $rule-line-thickness: 4px;
 	background-color: $color-white;
 	border: 2px solid $color-darkgrey;
 	overflow: hidden;
+	border-radius: 45px;
 }
 
 .campaign-donation-meter-progress {
@@ -839,7 +840,6 @@ $rule-line-thickness: 4px;
 
 .campaign-donation-meter,
 .campaign-donation-meter-progress {
-	border-radius: 45px;
 }
 
 
