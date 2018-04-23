@@ -101,7 +101,7 @@
 									<img src="<?php echo $campaign->getAuthor()->getAvatarPath(); ?>" alt="<?php echo $campaign->getAuthor()->getFullName(); ?>">
 								</div>
 								<div id="article-author-text">
-									<span id="article-author-text-name"><a href=""><?php echo $campaign->getAuthor()->getFullName(); ?></a></span>
+									<span id="article-author-text-name"><a href="<?php echo $campaign->getAuthor()->getProfileLink(); ?>"><?php echo $campaign->getAuthor()->getFullName(); ?></a></span>
 									<span id="article-author-text-about"><?php echo $campaign->getAuthor()->getBiography(); ?></span>
 								</div>
 							</section>

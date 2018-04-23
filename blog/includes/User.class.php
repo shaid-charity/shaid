@@ -65,6 +65,10 @@ class User {
 		return $this->roleID;
 	}
 
+	public function getProfileLink() {
+		return '/' . INSTALLED_DIR . '/viewprofile.php?id=' . $this->id;
+	}
+
 	public function isDisabled() {
 		return $this->disabled;
 	}

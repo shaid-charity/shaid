@@ -92,7 +92,7 @@
 									<img src="<?php echo $post->getAuthor()->getAvatarPath(); ?>" alt="<?php echo $post->getAuthor()->getFullName(); ?>">
 								</div>
 								<div id="article-author-text">
-									<span id="article-author-text-name"><a href=""><?php echo $post->getAuthor()->getFullName(); ?></a></span>
+									<span id="article-author-text-name"><a href="<?php echo $post->getAuthor()->getProfileLink(); ?>"><?php echo $post->getAuthor()->getFullName(); ?></a></span>
 									<span id="article-author-text-about"><?php echo $post->getAuthor()->getBiography(); ?></span>
 								</div>
 							</section>
