@@ -13,6 +13,9 @@ $permissionArray = array(
 
 //decide whether or not the user is allowed to access $pageName
 function grantAccess($roleID, $pageName){
+  echo $roleID;
+  echo $pageName;
+  echo $permissionArray[$pageName];
   if($roleID > $permissionArray[$pageName]){
     //access denied
     echo "false";
