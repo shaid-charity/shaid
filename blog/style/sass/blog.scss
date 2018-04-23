@@ -490,12 +490,23 @@ $rule-line-thickness: 4px;
 }
 
 // TinyMCE:
+
+// Border like input
+#mceu_17 {
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	outline: none;
+	border: 2px solid $color-mediumgrey;
+}
+
 // Flex toolbar to stop page breaking when small
 #mceu_27-body {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 }
+
 
 .section-label {
 	padding: 0.5rem 0 !important;
