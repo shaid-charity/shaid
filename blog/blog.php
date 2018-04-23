@@ -33,7 +33,7 @@
 							<?php
 								// If we are not logged in, only get published posts
 								if ($user == null) {
-									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `approved` = 1";
+									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `approved` = 0";
 								} else {
 									$query = "SELECT `id` FROM `posts` ";
 								}
