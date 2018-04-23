@@ -1,0 +1,13 @@
+// Import master
+@import "_master.scss";
+
+// Begin styles
+
+.profile-photo {
+	text-align: center;
+}
+
+.profile-photo-image {
+	border-radius: 50%;
+	height: 8rem;
+}
