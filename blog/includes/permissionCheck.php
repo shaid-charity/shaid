@@ -15,17 +15,12 @@ function getPermissionsArray(){
 
 //decide whether or not the user is allowed to access $pageName
 function grantAccess($roleID, $pageName){
-  echo $roleID;
-  echo $pageName;
-  echo $permissionArray[$pageName];
   $permissionArray = getPermissionsArray();
   if($roleID > $permissionArray[$pageName]){
     //access denied
-    echo "false";
     return false;
   } else {
     //access granted
-    echo "true";
     return true;
   }
 }
