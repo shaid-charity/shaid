@@ -108,7 +108,7 @@
 						</section>
 						<section class="campaign-donation-section">
 							<?php
-								$donationPercent = ($campaign->getAmountRaised() + 4 / $campaign->getGoalAmount()) * 100;
+								$donationPercent = ($campaign->getAmountRaised() / $campaign->getGoalAmount()) * 100;
 							?>
 							<div class="campaign-donation-meter">
 								<div class="campaign-donation-meter-progress" style="width: <?php echo $donationPercent; ?>%;">
