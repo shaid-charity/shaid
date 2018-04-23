@@ -28,7 +28,8 @@
 	        $query = $con->prepare("DELETE FROM sessions WHERE session_id=?");
 	        $query->bind_param("s", session_id());
 	        $query->execute();
-	        $query->close();
+					$query->close();
+					echo "<script>window.location.replace('login.php')</script>";
 	        //header("Location: login.php");
 	      }
 			
