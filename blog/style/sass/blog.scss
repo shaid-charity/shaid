@@ -498,6 +498,7 @@ $rule-line-thickness: 4px;
 	box-shadow: none;
 	outline: none;
 	border: 2px solid $color-mediumgrey;
+	border-width: 2px !important;
 }
 
 // Flex toolbar to stop page breaking when small
