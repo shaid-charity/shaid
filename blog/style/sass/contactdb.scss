@@ -15,6 +15,10 @@ table th {
 	text-align: left;
 }
 
+table tr:first-child {
+	border-bottom: 2px solid $color-mediumgrey;
+}
+
 table td:first-child {
 	width: 1px !important;
 }
