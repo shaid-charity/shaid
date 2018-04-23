@@ -1048,6 +1048,14 @@ footer {
 	.footer-social-button i {
 		font-size: 2.5rem;
 	}
+
+	.home-newsletter-subscription input[type="email"] {
+		width: 100%;
+	}
+
+	.home-newsletter-subscription button[type="submit"] {
+		margin-top: 0.25rem;
+	}
 }
 
 @media only screen and (max-width: 480px) {

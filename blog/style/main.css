@@ -916,7 +916,13 @@ footer {
     display: none; } }
 @media only screen and (max-width: 576px) {
   .footer-social-button i {
-    font-size: 2.5rem; } }
+    font-size: 2.5rem; }
+
+  .home-newsletter-subscription input[type="email"] {
+    width: 100%; }
+
+  .home-newsletter-subscription button[type="submit"] {
+    margin-top: 0.25rem; } }
 @media only screen and (max-width: 480px) {
   .cookie-warning-content {
     flex-wrap: wrap; }
