@@ -38,7 +38,7 @@
               ];
 
               try {
-                  $response = $fb->post('/2066571940241754/feed', $message, $accessToken);
+                  $response = $fb->post('/$page_id/feed', $message, $accessToken);
                   echo nl2br("\nPosted to Facebook \n");
               } catch(Facebook\Exceptions\FacebookResponseException $e) {
                   echo 'Graph returned an error: '.$e->getMessage();
