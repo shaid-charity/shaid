@@ -11,6 +11,10 @@ table {
   	width: 100%;
 }
 
+table th {
+	text-align: left;
+}
+
 table td:first-child {
 	width: 1px !important;
 }
