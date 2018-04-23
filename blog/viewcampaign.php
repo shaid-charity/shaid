@@ -111,9 +111,9 @@
 								<div class="campaign-donation-meter-progress" style="width: 50%;">
 								</div>
 							</div>
-							<p>
+							<h2>
 								£<?php echo $campaign->getAmountRaised(); ?> raised of £<?php echo $campaign->getGoalAmount(); ?>
-							</p>
+							</h2>
 							<a href="javascript:void(0)" class="button-green">Donate to this Campaign</a>
 						</section>
 						<figure id="article-image">
