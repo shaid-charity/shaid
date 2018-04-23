@@ -5,9 +5,13 @@
     */
 ?>
 					<section id="campaign-info">
-						<h1>Info</h1>
+						<h1>Dates</h1>
 						<ul>
-							<li><strong>Start date:</strong> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></li>
-							<li><strong>End date: <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></strong></li>
+							<li>
+								<span><strong>Start date:</strong> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+							</li>
+							<li>
+								<span><strong>End date:</strong> <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+							</li>
 						</ul>
 					</section>

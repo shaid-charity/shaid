@@ -107,6 +107,10 @@
 							</section>
 						</section>
 						<section class="campaign-donation-section">
+							<div class="campaign-donation-meter">
+								<div class="campaign-donation-meter-progress" style="width: 50%;">
+								</div>
+							</div>
 							<p>
 								Amount raised:
 								<?php

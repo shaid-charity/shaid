@@ -820,6 +820,21 @@ $rule-line-thickness: 4px;
 	background-color: $color-lightgrey;
 }
 
+.campaign-donation-meter {
+	display: block;
+	height: 2rem;
+	width: 100%;
+	background-color: $color-white;
+	border: 2px solid $color-lightblack;
+}
+
+.campaign-donation-meter-progress {
+	display: block;
+	height: 100%;
+	width: 0%;
+	background-color: $color-brandgreen;
+}
+
 
 // Media queries
 
