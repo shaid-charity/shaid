@@ -5,8 +5,11 @@ input[type="checkbox"] {
 .center-text {
   text-align: center; }
 
-.search-db {
-  margin-left: auto; }
+.search-db-form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end; }
 
 table {
   width: 100%; }
