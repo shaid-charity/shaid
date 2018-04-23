@@ -32,8 +32,10 @@
 								if(isset($_POST['email'])) {
 							?>
 							<p>Thank you for subscribing to the SHAID newsletter.</p>
-							<p><a href="index.php" class="button-green">Return to home page</a></p>
-							<p><a href="javascript:void(0)" class="button-dark">Unsubscribe</a></p>
+							<p>
+								<a href="index.php" class="button-green">Return to home page</a>
+								<a href="javascript:void(0)" class="button-dark">Unsubscribe</a>
+							</p>
 							<?php
 								} else {
 							?>
