@@ -1,6 +1,6 @@
 <?php
 //permissions for every page that needs them
-function getPermissionArray(){
+function getPermissionsArray(){
   return array(
     "newPost" => 5,
     "editPost" => 5,
@@ -18,7 +18,7 @@ function grantAccess($roleID, $pageName){
   echo $roleID;
   echo $pageName;
   echo $permissionArray[$pageName];
-  $permissionArray = getPermissionArray();
+  $permissionArray = getPermissionsArray();
   if($roleID > $permissionArray[$pageName]){
     //access denied
     echo "false";
