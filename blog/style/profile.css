@@ -1,8 +1,7 @@
 .profile-header {
   padding-bottom: 1rem;
   display: flex;
-  flex-direction: row;
-  justify-content: center; }
+  flex-direction: row; }
 
 .profile-header-photo {
   border-radius: 50%;
@@ -11,7 +10,8 @@
 .profile-header-info {
   padding-left: 1.5rem;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  justify-content: center; }
 
 .profile-header-info h2 {
   padding: 0.25rem 0; }
