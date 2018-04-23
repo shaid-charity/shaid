@@ -58,3 +58,9 @@
 			$(".cookie-warning").hide();
 		});
 	</script>
+
+	<!-- Flexibility polyfill for IE -->
+	<script src="/<?php echo INSTALLED_DIR; ?>/scripts/flexibility.js" type="text/javascript"></script>
+	<script>
+		flexibility(document.documentElement);
+	</script>
