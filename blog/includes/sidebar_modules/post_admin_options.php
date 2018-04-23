@@ -12,7 +12,13 @@
 							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Edit</a>
 							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=makeDraft&id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Make draft</a>
 							<!-- Dmytro asked for this -->
+							<?php 
+							if($user->getRoleID() > 1){
+							?>
 							<a href="/<?php echo INSTALLED_DIR; ?>/afile.php" type="button" class="button-dark">Approve</a>
+							<?php
+							}
+							?>
 						</div>
 					</section>
 
