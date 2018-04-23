@@ -2,9 +2,11 @@ input[type="checkbox"] {
   height: 1.5rem;
   width: 1.5rem; }
 
-table {
-  width: 100%;
+.center-text {
   text-align: center; }
+
+table {
+  width: 100%; }
 
 table td:first-child {
   width: 1px !important; }

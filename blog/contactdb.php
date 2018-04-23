@@ -89,14 +89,14 @@
 									<th>Forename</th>
 									<th>Surname</th>
 									<th>Type</th>
-									<th>Delete Email</th>
-									<th>Select</th> <!-- TODO: Not happy with name of column -->
+									<th class="center-text">Delete Email</th>
+									<th class="center-text">Select</th> <!-- TODO: Not happy with name of column -->
 								</tr>
 
 								<?php
 
 									foreach ($friends as $f) {
-										echo '<tr><td>' . $f->getEmail() . '</td><td>' . $f->getForename() . '</td><td>' . $f->getSurname() . '</td><td>' . $f->getType() . '<td><a class="delete" href="contactDB.php?action=delete&id=' . $f->getID() . '">Delete</a></td><td><input class="checkbox" type="checkbox" name="' . $f->getEmail() . '" value="' . $f->getEmail() . '"></tr>';
+										echo '<tr><td>' . $f->getEmail() . '</td><td>' . $f->getForename() . '</td><td>' . $f->getSurname() . '</td><td>' . $f->getType() . '<td class="center-text"><a class="delete" href="contactDB.php?action=delete&id=' . $f->getID() . '">Delete</a></td><td class="center-text"><input class="checkbox" type="checkbox" name="' . $f->getEmail() . '" value="' . $f->getEmail() . '"></tr>';
 									}
 
 								?>
