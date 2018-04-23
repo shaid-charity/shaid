@@ -28,35 +28,42 @@
 					<?php
 						// Get the post data we want to preview
 						// Create the blog post
-						$name = $_POST['title'];
-						$categoryID = $_POST['category'];
-						$content = $_POST['content'];
-						$campaign = $_POST['campaign'];
-						$file = $_FILES['image'];
+						if ($_POST['id'] == 0) {
+							// We came from newpost.php
+							$action = 'newpost.php';
+							$title = $_POST['title'];
+							$category = new Category($db, $_POST['category']);
+							$campaign = $_POST['campaign'];
+							$content = $_POST['content'];
+							$file = $_FILES['featured-image'];
+							$imageCaption = $_POST['featured-image-caption'];
 
-						if (file_exists($file['tmp_name'])) {
-							$uploadManager = new UploadManager();
-							$uploadManager->setFilename($file['name']);
-							$imagePath = $uploadManager->getPath();
+							if (file_exists($file['tmp_name'])) {
+								$uploadManager = new UploadManager();
+								$uploadManager->setFilename($file['name']);
+								$imagePath = $uploadManager->getPath();
+							} else {
+								$imagePath = 'assets/img/placeholder/460x230.png';
+							}
+
+							$author = $user;
+							$date = date("d/m/Y");
+							$id = 0;
 						} else {
-							$imagePath = '';
-						}
+							// Came from editpost.php
+							//$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
+							$post = new Post($db, $_POST['id']);
 
-						$userID = 1;
-
-						$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
-
-
-						$post->setPublished(0);
-
-						if (file_exists($file['tmp_name'])) {
-							$uploadManager->upload($file);
-						}
-
-						if (file_exists($file['tmp_name'])) {
-							$imagePath = $uploadManager->getPath();
-						} else {
-							$imagePath = '../assets/img/placeholder/blog_image.jpg';
+							$title = $post->getTitle();
+							$category = $post->getCategory();
+							$content = $post->getContent();
+							$campaign = (!is_null($post->getCampaign()) ? $post->getCampaign()->getID() : 0);
+							$author = $post->getAuthor();
+							$date = $post->getLastModifiedDate();
+							$imagePath = $post->getImagePath();
+							$imageCaption = $post->getImageCaption();
+							$id = $post->getID();
+							$action = 'editpost.php?action=fromPreview&id=' . $id;
 						}
 					?>
 					<article id="article">
@@ -64,37 +71,41 @@
 							<span><a href="./index.php">Blog</a> <i class="zmdi zmdi-chevron-right"></i></span>
 						</section>
 						<section id="article-title" class="page-title article-title">
-							<h1><?php echo $post->getTitle(); ?></h1>
+							<h1><?php echo $title; ?></h1>
 						</section>
 						<section id="article-info">
 							<section id="article-author">
 								<div id="article-author-photo">
-									<img src="../assets/img/placeholder/profile_photo.jpg" alt="Jenny Smith">
+									<img src="<?php echo $author->getAvatarPath(); ?>" alt="<?php echo $author->getFullName(); ?>">
 								</div>
 								<div id="article-author-text">
-									<span id="article-author-text-name"><a href=""><?php echo $post->getAuthor()->getFullName(); ?></a></span>
-									<span id="article-author-text-about">Guest blogger (SomeCharity)</span>
+									<span id="article-author-text-name"><a href="<?php echo $author->getProfileLink(); ?>"><?php echo $author->getFullName(); ?></a></span>
+									<span id="article-author-text-about"><?php echo $author->getCompany()->getName(); ?></span>
 								</div>
 							</section>
 							<section id="article-date">
-								<span><i class="zmdi zmdi-calendar"></i> <time id="date" datetime=""></time></span>
+								<span><i class="zmdi zmdi-calendar"></i> <time id="date" datetime="<?php echo $date ?>"><?php echo $date; ?></time></span>
 							</section>
 						</section>
 						<figure id="article-image">
 							<img src="<?php echo $imagePath; ?>" alt="Above: Official figures show that 1 in 2 people are homeless.">
-							<figcaption>Above: Official figures show that 1 in 2 people are homeless.</figcaption>
+							<figcaption><?php echo $imageCaption; ?></figcaption>
 						</figure>
 						<section id="article-content">
-							<?php echo $post->getContent(); ?>
+							<?php echo $content; ?>
 						</section>
 					</article>
 				</section>
 				<aside id="sidebar">
 					<section>
 						<h1>Post preview</h1>
-						<form action="editpost.php?action=fromPreview&id=<?php echo $post->getID(); ?>" method="post" class="sidebar-actions">
-							<button type="submit" class="button-dark" name="saveType" value="Save Draft">Save Draft</button>
-							<button type="submit" class="button-green" name="saveType" value="Publish">Publish</button>
+						<form action="<?php echo $action; ?>" method="post" class="sidebar-actions">
+							<input type="hidden" name="fromPreview" value="true">
+							<input type="hidden" name="title" id="post-title" value="<?php echo $title; ?>">
+							<input type="hidden" name="category" value="<?php echo $category->getID(); ?>">	
+							<input type="hidden" name="featured-image" id="post-featured-image" value="<?php echo $imagePath; ?>">
+							<input type="hidden" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $imageCaption; ?>">
+							<input type="hidden" name="content" id="content" value="<?php echo $content; ?>">
 							<button type="submit" class="button-dark" name="saveType" value="Edit">Edit</button>
 						</form>
 					</section>
@@ -104,13 +115,8 @@
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
-require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 </body>
-<script>
-	// Get the date, stick it where it needs to go
-	var date = new Date(Date.now()).toLocaleString();
-	$('#date').text(date);
-</script>
 </html>
