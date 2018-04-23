@@ -12,7 +12,7 @@
 				<ul class="info-banner-nav">
 					<li>Logged in as <a href="#"><?php echo $user->getFullName(); ?></a></li>
 					<li>&bull;</li>
-					<li><a href="#">Admin panel</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/admin/companies.php">Admin panel</a></li>
 				</ul>
 			</div>
 			<div class="info-banner-button">
