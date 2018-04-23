@@ -31,39 +31,43 @@
 					<div class="articles-list-container">
 						<section id="articles-list">
 							<?php
-								// If we are not logged in, only get published posts
+								// If we are not logged in, only get published and approved posts
 								if ($user == null) {
 									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 ";
+									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `approved` = 1 ";
+									
 								} else {
 									$query = "SELECT `id` FROM `posts` ";
 								}
+								try{
 
-								// Get some pages, iterate through them
-								// Set up the pagination
-								$pagination = new Pagination($db, $query, array());
-								$pagination->totalRecords();
-								$pagination->setLimitPerPage(5);
-								$currentPage = $pagination->getPage();
-
-								// Select the correct number of records from the DB
-								if (isset($_GET['page'])) {
-									$startFrom = ($_GET['page'] - 1) * 5;
-								} else {
-									$startFrom = 0;
-								}
-
-								// Get all posts, order by descending date
-								$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
-									
-								foreach ($stmt as $row) {
-									$post = new Post($db, $row['id']);
-
-									// Decide which image we will show (do this here so there is less inline PHP below)
-									if ($post->getImagePath() == null) {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
+									// Get some pages, iterate through them
+									// Set up the pagination
+									$pagination = new Pagination($db, $query, array());
+									$pagination->totalRecords();
+									$pagination->setLimitPerPage(5);
+									$currentPage = $pagination->getPage();
+	
+									// Select the correct number of records from the DB
+									if (isset($_GET['page'])) {
+										$startFrom = ($_GET['page'] - 1) * 5;
 									} else {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath()) . '\');';
+										$startFrom = 0;
 									}
+	
+									// Get all posts, order by descending date
+									$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+										
+									foreach ($stmt as $row) {
+										$post = new Post($db, $row['id']);
+	
+										// Decide which image we will show (do this here so there is less inline PHP below)
+										if ($post->getImagePath() == null) {
+											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
+										} else {
+											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath()) . '\');';
+										}
+								
 							?>
 
 							<div class="articles-list-entry">
@@ -84,7 +88,9 @@
 								</div>
 							</div>
 
-							<?php } ?>
+							<?php }} catch(Exception $e){
+								//no blog posts
+							}?>
 						</section>
 					</div>
 					<nav>
