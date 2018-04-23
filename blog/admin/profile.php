@@ -4,6 +4,7 @@ define('CURRENT_PAGE', 'profile');
 require_once '../includes/settings.php';
 require_once '../includes/config.php';
 require_once '../includes/db.php';
+require_once '../includes/functions.php';
 require_once 'header.php';
 
 $query = $con->prepare("SELECT email, first_name, last_name, avatar, biography FROM users WHERE user_id=?");
@@ -16,19 +17,19 @@ $query->close();
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
     case 'RESET':
-      $query = $con->prepare("UPDATE users SET pass_salt=?, pass_hash=? WHERE user_id=?");
-      $query->bind_param("sss", $salt = "undefined", $hash = "undefined", $USER_ID);
-      $query->execute();
-      $query->close();
+      if ($_POST['pass'] == $_POST['passRetype']) {
+        $salt = generateSalt();
+        $hash = hash("sha256", getValidData($_POST["pass"]) . $salt);
+        $query = $con->prepare("UPDATE users SET pass_salt=?, pass_hash=? WHERE user_id=?");
+        $query->bind_param("sss", $salt, $hash, $USER_ID);
+        $query->execute();
+        $query->close();
 
-      $query = $con->prepare("DELETE FROM sessions WHERE session_id=?");
-      $query->bind_param("s", session_id());
-      $query->execute();
-      $query->close();
+        echo '<script>var success = true;</script>';
+      } else {
+        echo '<script>alert("Passwords did not match, so your password was not changed!);</script>';
+      }
 
-      echo "<script>window.location.replace('passreset.php?user_email=$email')</script>";
-      //header("Location: passreset.php?user_email=$email");
-      die();
       break;
     
     case 'UPDATE':
@@ -69,12 +70,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ?>
 
-
+  
     <div class="container">
+      <div class="modal fade" id="resetPasswordModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Reset password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="profile.php" method="post" id="passResetForm">
+                <input type="hidden" name="action" value="RESET">
+                <div class="form-group">
+                  <label for="pass" class="form-control-label">Password:</label>
+                  <input type="password" class="form-control" id="pass" name="pass" required>
+               </div>
+               <div class="form-group">
+                  <label for="passRetype" class="form-control-label">Retype password:</label>
+                  <input type="password" class="form-control" id="passRetype" name="passRetype" required>
+               </div>
+               <div class="modal-footer">
+                  <input type="submit" class="btn btn-primary mr-auto" id="submit" value="Change password">
+                </div>
+             </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="page-header">
         <h1>Profile</h1>
       </div>
       </br>
+      <div class="alert alert-success" role="alert" id="passResetAlert">
+        Your password was successfully changed!
+      </div>
       <div id="userInfo">
         <form method="POST" enctype="multipart/form-data" id="user_info_form">
           <input type="hidden" name="action" value="UPDATE"/>
@@ -121,7 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
       </div>
       <div id="controls">
-        <button type="button" id="reset">Reset Password</button>
+        <button type="button" id="reset" data-toggle="modal" data-target="#resetPasswordModal">Change Password</button>
         <button type="button" id="edit" class="infoDisplay">Edit</button>
         <button type="button" id="cancel" class="infoEdit hidden">Cancel</button>
         <button type="button" id="save" class="infoEdit hidden">Save</button>
@@ -136,11 +169,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $(document).ready(function(){
       var editMode = false;
 
-      $("#reset").on("click", function(){
+      if (typeof success == 'undefined') {
+        $('#passResetAlert').hide();
+      } else {
+        $('#passResetAlert').show();
+      }
+
+      /*$("#reset").on("click", function(){
         if(confirm("Are you sure want to reset your password? You will be logged out immediately.")){
           $("#pass_reset_form").submit();
         }
-      });
+      });*/
 
       $("#edit").on("click", function(){
         toggleView();
@@ -180,6 +219,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $(".infoDisplay").addClass("hidden");
         }
         editMode = !editMode;
+      }
+    });
+
+    $(document).ready(function(){
+      var password = "";
+      
+      $("#submit").click(function(){
+        if($("#pass").val() != $("#passRetype").val() || !validatePassword(password)){
+          $("#passRetype").addClass("has-error");
+
+        } else {
+          $("#passResetForm").submit();
+        }
+      });
+
+      $("#pass").on("keyup", function(){
+        $("pass").removeClass("is-valid");
+        $("#pass").removeClass("is-invalid");
+        password = $("#pass").val();
+
+        if(validatePassword(password)){
+          $("#pass").addClass("is-valid");    
+        } else {
+          $("#pass").addClass("is-invalid");
+        }
+      });
+
+      $("#passRetype").on("keyup", function(){
+        $("#passRetype").removeClass("is-valid");
+        $("#passRetype").removeClass("is-invalid");
+        
+        if((password == $("#passRetype").val()) && validatePassword(password)){
+          $("#passRetype").addClass("is-valid");
+        } else {
+          $("#passRetype").addClass("is-invalid");
+        }
+      });
+
+      function validatePassword(pass){
+        if((password.length >= 8) && (password != password.toLowerCase()) && (/([0-9])+/.test(password))){
+          return true;          
+        } else {
+          return false;
+        }
       }
     });
   </script>
