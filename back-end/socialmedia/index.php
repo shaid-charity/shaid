@@ -74,7 +74,9 @@
     <div class="col-sm-6 text-left" style="background-color: #f1f1f1">
       <h4><center>Twitter trends</center></h4>
       <br>
-      <button type="button"> Email Current Top Trends</button>
+      <form id=forme method = "post" >
+      <button type="email_button" id="email_button" name ="email_button"> Email Current Top Trends</button>
+    </form>
       <br>
       <br>
       <form id=form2 method = "post" >
