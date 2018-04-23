@@ -37,7 +37,7 @@ class User {
 		$this->resetRequestTime = strtotime($result['password_reset_request_datetime']);
 
 		if (is_null($this->avatarPath) || $this->avatarPath == 'none') {
-			$this->avatarPath = 'assets/img/placeholder/profile_photo.jpg';
+			$this->avatarPath = 'assets/img/placeholder/profile_photo.png';
 		}
 	}
 
