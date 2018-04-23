@@ -75,7 +75,7 @@
 								}
 							?>
 							<form class="search-db-form" action="contactdb.php" method="get">
-								<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php echo $searchText; ?>">
+								<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php if ($searchText == null) { echo "Search contacts"; } else { echo $searchText; } ?>">
 								<button type="submit" class="button-green">Search</button>
 							</form>
 						</div>
