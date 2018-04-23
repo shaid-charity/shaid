@@ -72,9 +72,7 @@
 		</div>
 		<div class="home-newsletter-subscription">
 			<div class="inner-container">
-				<div class="newspreview-header">
-					<h1>Keep up to date with our newsletter</h1>
-				</div>
+				<h2>Keep up to date with our newsletter</h2>
 			</div>
 		</div>
 		<?php 
