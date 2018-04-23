@@ -3,7 +3,7 @@
         View post admin options (sidebar module) - shows admin options for a viewed post.
         * Only CMS pages should show this.
     */
-	echo $user->getRoleID();
+
     if ($user != null && ($user->getID() == $post->getAuthor()->getID() || $user->getRoleID() == 1)) {
 ?>
 					<section>
@@ -13,9 +13,9 @@
 							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=makeDraft&id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Make draft</a>
 							<!-- Dmytro asked for this -->
 							<?php 
-							if($user->getRoleID() <= 1){
+							if(($user->getRoleID()) <= 1 && ($post->getApproved() == 0)){
 							?>
-							<a href="/<?php echo INSTALLED_DIR; ?>/afile.php" type="button" class="button-dark">Approve</a>
+							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=approve&id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Approve</a>
 							<?php
 							}
 							?>

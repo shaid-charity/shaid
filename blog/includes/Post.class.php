@@ -144,6 +144,17 @@ class Post extends Content {
 		}
 	}
 
+	//approve post
+	public function approvePost(){
+		try {
+			$stmt = $this->db->prepare("UPDATE `$this->table` SET `approved` = 1 WHERE `id` = ?");
+			$stmt->execute([$this->getID()]);
+		} catch (PDOException $e) {
+			echo 'Post.class.php approve() error: <br />';
+			throw new Exception($e->getMessage());
+		}
+	}
+
 	// For now, we don't need the user to manually set the published datetime. This might change if we want to include that ability
 	private function setPublishedDateTime() {
 		try {
