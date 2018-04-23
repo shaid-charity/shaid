@@ -67,6 +67,11 @@
 						} else {
 					?>
 					<div class="articles-list-container">
+						<section class="profile-photo">
+								<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>">
+						</section>
+						<?php
+						/*
 						<section id="article-author">
 								<div id="article-author-photo">
 									<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>">
@@ -76,6 +81,8 @@
 									<span id="article-author-text-about"><?php echo $postsUser->getCompany()->getName(); ?></span>
 								</div>
 						</section>
+						*/
+						?>
 						<section>
 							<h2>About</h2>
 							<p>
