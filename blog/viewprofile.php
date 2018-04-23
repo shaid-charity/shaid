@@ -77,7 +77,7 @@
 								</div>
 						</section>
 						<section>
-							<h2>About me</h2>
+							<h2>About</h2>
 							<p>
 								<?php
 									echo $postsUser->getBiography();
@@ -85,6 +85,7 @@
 							</p>
 						</section>
 						<section class="articles-list-container">
+							<h2>Articles</h2>
 							<section id="articles-list">
 								<?php
 									// If we are not logged in, only get published posts
