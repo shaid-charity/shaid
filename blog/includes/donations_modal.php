@@ -9,7 +9,7 @@
 			<div class="donation-header-split">
 				<h1>Donate</h1>
 				<div>
-					<img src="/assets/social/paypal/paypal_xxsmall.png">
+					<img src="/assets/logos/external/paypal/paypal_xxsmall.png">
 				</div>
 			</div>
 
