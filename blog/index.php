@@ -70,15 +70,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="home-newsletter-subscription">
-			<div class="inner-container">
-				<h2>Keep up to date with our newsletter</h2>
-				<form action="newsletter.php" method="post">
-					<input type="email" id="email" name="email">
-					<button type="submit" class="button-light">Subscribe</button>
-				</form>
-			</div>
-		</div>
 		<?php 
 			// Get latest article in category 1 (news category)
 			$news = true;
@@ -124,6 +115,15 @@
 		<?php
 			}
 		?>
+		<div class="home-newsletter-subscription">
+			<div class="inner-container">
+				<h2>Keep up to date with our newsletter</h2>
+				<form action="newsletter.php" method="post">
+					<input type="email" id="email" name="email">
+					<button type="submit" class="button-light">Subscribe</button>
+				</form>
+			</div>
+		</div>
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
