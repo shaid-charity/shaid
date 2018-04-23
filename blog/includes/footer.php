@@ -34,19 +34,19 @@
 						</a>
 					</span>
 					<span class="footer-social-button">
-						<a href="#" data-platform="facebook">
+						<a href="https://facebook.com" target="_blank" data-platform="facebook">
 							<i class="zmdi zmdi-facebook-box"></i>
 							<span class="footer-social-button-label">Facebook</span>
 						</a>
 					</span>
 					<span class="footer-social-button">
-						<a href="#" data-platform="twitter">
+						<a href="https://twitter.com" target="_blank" data-platform="twitter">
 							<i class="zmdi zmdi-twitter"></i>
 							<span class="footer-social-button-label">Twitter</span>
 						</a>
 					</span>
 					<span class="footer-social-button">
-						<a href="#" data-platform="youtube">
+						<a href="https://youtube.com" target="_blank" data-platform="youtube">
 							<i class="zmdi zmdi-youtube-play"></i>
 							<span class="footer-social-button-label">YouTube</span>
 						</a>
