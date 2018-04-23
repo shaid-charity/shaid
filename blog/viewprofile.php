@@ -35,6 +35,7 @@
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
 	<link href="style/blog.css" rel="stylesheet">
+	<link href="style/profile.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -68,7 +69,7 @@
 					?>
 					<div class="articles-list-container">
 						<section class="profile-photo">
-								<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>">
+								<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>" class="profile-photo-image">
 						</section>
 						<?php
 						/*
