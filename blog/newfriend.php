@@ -35,7 +35,14 @@
 						// Check to see if a user has been added
 						// If the user is not logged in, show an error message
 						if ($user == null) {
-							require_once(SITE_ROOT . '/includes/admin/admin_not_logged_in_notice.php');
+							?>
+								<article id="article">
+									<?php
+										require_once(SITE_ROOT . '/includes/admin/admin_not_logged_in_notice.php');
+									?>
+								</article>
+							</section>
+							<?php
 						} else {
 							if ($_GET['action'] == 'submit') {
 								// Create a new instantce of the Friend class, adding it to the DB in the process
