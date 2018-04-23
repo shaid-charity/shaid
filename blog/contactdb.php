@@ -83,7 +83,7 @@
 						</div>
 
 						<form id="emailForm" action="sendemail.php" method="post">
-							<table class="table table-hover table-striped" id="contactDB">
+							<table class="table table-hover table-striped" id="contactDB" cellspacing="0">
 								<tr>
 									<th>Email</th>
 									<th>Forename</th>
