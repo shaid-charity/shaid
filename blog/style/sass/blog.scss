@@ -811,6 +811,42 @@ $rule-line-thickness: 4px;
 	margin: 0 0.5rem;
 }
 
+// Campaigns
+
+.campaign-donation-section {
+	display: block;
+	width: 100%;
+	padding: 1.5rem;
+	background-color: $color-lightgrey;
+}
+
+.campaign-donation-meter {
+	display: block;
+	height: 2rem;
+	width: 100%;
+	background-color: $color-white;
+	border: 2px solid $color-brandgreen;
+	overflow: hidden;
+	border-radius: 45px;
+	margin-top: 0.8rem;
+}
+
+.campaign-donation-meter-progress {
+	display: block;
+	height: 100%;
+	width: 0%;
+	background-color: $color-brandgreen;
+}
+
+.campaign-donation-meter,
+.campaign-donation-meter-progress {
+}
+
+.campaign-donation-section h2 {
+	padding-top: 1.5rem;
+	padding-bottom: 1rem;
+}
+
 
 // Media queries
 

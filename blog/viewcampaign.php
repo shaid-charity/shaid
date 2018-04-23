@@ -10,39 +10,50 @@
 <html>
 <head>
 	<?php
-		if (isset($_GET['id'])) {
-			// Get the campaign's details
-			$campaign = new Campaign($db, $_GET['id']);
-
-			// Decide which image we will show (do this here so there is less inline PHP below)
-			if ($campaign != null && $campaign->getImagePath() == null) {
-				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
-			} else {
-				$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+		$campaignLoaded = true;
+		try {
+			if (isset($_GET['id'])) {
+				// Get the campaign's details
+				$campaign = new Campaign($db, $_GET['id']);
+				// Decide which image we will show (do this here so there is less inline PHP below)
+				if ($campaign != null && $campaign->getImagePath() == null) {
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
+				} else {
+					$image = '/' . INSTALLED_DIR . '/admin/' . htmlentities($campaign->getImagePath());
+				}
 			}
-		}
-
-		if (isset($_GET['slug'])) {
-			// Split it up by - and get the id
-			$parts = explode('-', $_GET['slug']);
-			$id = $parts[0];
-
-			$campaign = new Campaign($db, $id);
-
-			// Decide which image we will show (do this here so there is less inline PHP below)
-			if ($campaign != null && $campaign->getImagePath() == null) {
-				$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
-			} else {
-				$image = '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath());
+			if (isset($_GET['slug'])) {
+				// Split it up by - and get the id
+				$parts = explode('-', $_GET['slug']);
+				$id = $parts[0];
+				$campaign = new Campaign($db, $id);
+				// Decide which image we will show (do this here so there is less inline PHP below)
+				if ($campaign != null && $campaign->getImagePath() == null) {
+					$image = '/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg';
+				} else {
+					$image = '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath());
+				}
 			}
+		} catch (Exception $e) {
+			$campaignLoaded = false;
 		}
 	?>
-	<title>SHAID - <?php echo $campaign->getTitle(); ?></title>
+	<?php
+		if ($campaignLoaded) {
+			?>
+			<title>SHAID - <?php echo $campaign->getTitle(); ?></title>
+		<?php
+		} else {
+			?>
+			<title>SHAID - Campaign Not Found</title>
+			<?php
+		}
+	?>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
 	?>
-	<link href="../../../style/blog.css" rel="stylesheet">
+	<link href="../../style/blog.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -57,8 +68,18 @@
 						// If the article is a draft and we are not logged in, show an error message
 						// Show the same message if the campaign does not exist
 
-						if (false) {
-							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+						if (!$campaignLoaded) {
+							?>
+								<article id="article">
+									<section class="page-path" style="padding-bottom: 1.5rem;">
+										<span><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></span>
+									</section>
+									<?php
+										require_once(SITE_ROOT . '/includes/blog_modules/campaign_does_not_exist_message.php');
+									?>
+								</article>
+							</section>
+							<?php
 						} else {
 							// Generate link to share
 							if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
@@ -69,15 +90,34 @@
 					?>
 					<article id="article">
 						<section class="page-path">
-							<span><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Campaigns</a></span>
+							<span><a href="/<?php echo INSTALLED_DIR; ?>/campaigns.php">Campaigns</a></span>
 						</section>
 						<section id="article-title" class="page-title article-title">
 							<h1><?php echo $campaign->getTitle(); ?></h1>
 						</section>
 						<section id="article-info">
-							<section id="article-date">
-								<span><i class="zmdi zmdi-calendar"></i> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+							<section id="article-author">
+								<div id="article-author-photo">
+									<img src="<?php echo $campaign->getAuthor()->getAvatarPath(); ?>" alt="<?php echo $campaign->getAuthor()->getFullName(); ?>">
+								</div>
+								<div id="article-author-text">
+									<span id="article-author-text-name"><a href=""><?php echo $campaign->getAuthor()->getFullName(); ?></a></span>
+									<span id="article-author-text-about"><?php echo $campaign->getAuthor()->getBiography(); ?></span>
+								</div>
 							</section>
+						</section>
+						<section class="campaign-donation-section">
+							<?php
+								$donationPercent = ($campaign->getAmountRaised() / $campaign->getGoalAmount()) * 100;
+							?>
+							<div class="campaign-donation-meter">
+								<div class="campaign-donation-meter-progress" style="width: <?php echo $donationPercent; ?>%;">
+								</div>
+							</div>
+							<h2>
+								<?php echo $donationPercent; ?>%&mdash;£<?php echo $campaign->getAmountRaised(); ?> raised of £<?php echo $campaign->getGoalAmount(); ?> goal
+							</h2>
+							<a href="javascript:void(0)" class="button-green">Donate to this Campaign</a>
 						</section>
 						<figure id="article-image">
 							<img src="<?php echo $image; ?>" alt="<?php echo $campaign->getImageCaption(); ?>">
@@ -95,32 +135,33 @@
 						<h2>Share this campaign</h2>
 						<section id="social-icons">
 							<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $link; ?>" target="_blank">
-								<img src="../../../assets/social/svg/facebook (3).svg" alt="Share on Facebook">
+								<img src="../../assets/social/svg/facebook (3).svg" alt="Share on Facebook">
 							</a>
 							<a href="http://www.twitter.com/share?url=<?php echo $link; ?>&hashtags=shaid" target="_blank">
-								<img src="../../../assets/social/svg/twitter (3).svg" alt="Share on Twitter">
+								<img src="../../assets/social/svg/twitter (3).svg" alt="Share on Twitter">
 							</a>
 							<a href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo $link; ?>&source=SHAID" target="_blank">
-								<img src="../../../assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
+								<img src="../../assets/social/svg/linkedin (3).svg" alt="Share on LinkedIn">
 							</a>
 							<a href="http://www.reddit.com/submit?url=<?php echo $link; ?>&title=<?php echo $campaign->getTitle(); ?>" target="_blank">
-								<img src="../../../assets/social/svg/reddit (3).svg" alt="Share on Reddit">
+								<img src="../../assets/social/svg/reddit (3).svg" alt="Share on Reddit">
 							</a>
 							<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=<?php echo $link; ?>&title=<?php echo $campaign->getTitle(); ?>&caption=<?php echo $campaign->getContent(); ?>&tags=shaid" target="_blank">
-								<img src="../../../assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
+								<img src="../../assets/social/svg/tumblr (3).svg" alt="Share on Tumblr">
 							</a>
 						</section>
 					</section>
 				</section>
+				<aside id="sidebar">
+					<?php
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_admin_options.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_info.php');
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_associated_posts.php');
+					?>
+				</aside>
 				<?php
 					}
 				?>
-				<aside id="sidebar">
-					<?php
-						// require_once(SITE_ROOT . '/includes/sidebar_modules/post_admin_options.php');
-						require_once(SITE_ROOT . '/includes/sidebar_modules/recent_posts.php');
-					?>
-				</aside>
 			</div>
 		</div>
 	</main>

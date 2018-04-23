@@ -36,8 +36,10 @@
 				$image = '/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath());
 			}
 		}
+
+		$pageTitle = $post->getTitle() != null ? $post->getTitle() : 'Post Not Found';
 	?>
-	<title>SHAID - <?php echo $post->getTitle(); ?></title>
+	<title>SHAID - <?php echo $pageTitle; ?></title>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
@@ -58,7 +60,17 @@
 						// Show the same message if the post does not exist
 
 						if ($post->getCategory() == null || (!$post->isPublished() && $user == null)) {
-							require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+							?>
+								<article id="article">
+									<section class="page-path" style="padding-bottom: 1.5rem;">
+										<span><a href="/<?php echo INSTALLED_DIR; ?>/blog.php">Blog</a></span>
+									</section>
+									<?php
+										require_once(SITE_ROOT . '/includes/blog_modules/post_does_not_exist_message.php');
+									?>
+								</article>
+							</section>
+							<?php
 						} else {
 							// Generate link to share
 							if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
@@ -137,7 +149,9 @@
 						?>
 						<h2><?php echo $campaign->getTitle(); ?></h2>
 						<img src="<?php echo $campaign->getImagePath(); ?>" class="sidebar-large-image">
+
 						<p><?php echo strip_tags($campaign->getShortDescription()); ?></p>
+
 						<div class="sidebar-actions">
 							<a href="<?php echo $campaign->getLink(); ?>" class="button-dark">More info</a>
 							<a href="#" class="button-dark">Donate</a>

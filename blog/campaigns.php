@@ -101,7 +101,7 @@
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
-require_once(SITE_ROOT . '/includes/footer.php');
+		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
 </body>

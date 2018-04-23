@@ -122,7 +122,7 @@
 								<a class="articles-list-entry-thumb" href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/" style="<?php echo $imageCSS; ?>"></a>
 								<div class="articles-list-entry-info">
 									<a href="<?php echo $p->getID() . '-' . $p->getTitle(); ?>/"><h2><?php echo $p->getTitle(); ?></h2></a>
-									<p>A description of the most recent blog post.</p>
+									<p><?php echo $p->getShortDescription(); ?></p>
 									<div class="articles-list-entry-actions">
 										<ul>
 											<li>
@@ -149,6 +149,7 @@
 				</section>
 				<aside id="sidebar">
 					<?php
+						require_once(SITE_ROOT . '/includes/sidebar_modules/post_list_admin_options.php');
 						require_once(SITE_ROOT . '/includes/sidebar_modules/categories_list.php');
 						require_once(SITE_ROOT . '/includes/sidebar_modules/recent_posts.php');
 					?>

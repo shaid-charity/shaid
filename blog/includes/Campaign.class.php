@@ -38,7 +38,7 @@ class Campaign extends Content {
 		$result = $stmt->fetch();
 
 		if (!$stmt->rowCount()) {
-			throw new Exception("No category with ID $id");
+			throw new Exception("No campaign with ID $id");
 		}
 
 		$this->startDatetime = $result['start_datetime'];
@@ -56,7 +56,7 @@ class Campaign extends Content {
 		$result = $stmt->fetch();
 
 		if (!$stmt->rowCount()) {
-			throw new Exception("No category with slug $slug");
+			throw new Exception("No campaign with slug $slug");
 		}
 
 		$this->startDatetime = $result['start_datetime'];
@@ -92,7 +92,8 @@ class Campaign extends Content {
 	}
 
 	public function getLink() {
-		return '#';
+		$title = str_replace(" ", "-", $this->getTitle());
+		return '/' . INSTALLED_DIR . '/campaigns/' . $this->getID() . '-' . $title;
 	}
 
 	public function getShortDescription() {
