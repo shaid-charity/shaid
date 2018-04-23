@@ -42,8 +42,9 @@
 		    $query->fetch();
 		    $query->close();
 
+				//if the access to the account has been disabled
 				if($disabled == 1){
-					die("Your account has been disabled. Please contact system administrtor");
+					echo "<script>window.location.replace('login.php')</script>";	
 				}	
 
 		    if(!empty($hash)){
