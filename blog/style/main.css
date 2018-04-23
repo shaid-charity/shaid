@@ -499,7 +499,9 @@ main {
   align-items: center; }
 
 .home-newsletter-subscription h2 {
-  color: #FFFFFF; }
+  color: #FFFFFF;
+  padding-top: 0;
+  padding-bottom: 0.5rem; }
 
 .home-newsletter-subscription input[type="email"] {
   border-color: #FFFFFF;
