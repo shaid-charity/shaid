@@ -11,6 +11,8 @@
 						<div class="sidebar-actions">
 							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Edit</a>
 							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=makeDraft&id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Make draft</a>
+							<!-- Dmytro asked for this -->
+							<a href="/<?php echo INSTALLED_DIR; ?>/afile.php" type="button" class="button-dark">Approve</a>
 						</div>
 					</section>
 
