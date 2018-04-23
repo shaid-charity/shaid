@@ -86,7 +86,7 @@ class User {
 	}
 
 	public function getAvatarPath() {
-		return '/' . INSTALLED_DIR . '/' . $this->avatarPath;
+		return '/' . INSTALLED_DIR . '/' . substr($this->avatarPath, 2);
 	}
 
 	public function getPasswordResetHash() {

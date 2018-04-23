@@ -17,3 +17,4 @@ blog/includes/db.php
 blog/includes/ebay.config.php
 blog/includes/settings.php
 blog/images/*
+blog/images/avatars/*

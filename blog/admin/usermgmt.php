@@ -13,9 +13,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){
       //echo "validation successful";
+      // If a new avatar was uploaded, change it
+      // Upload image if one exists
+      $file = $_FILES['avatar'];
+
+      if (file_exists($file['tmp_name'])) {
+        $uploadManager = new UploadManager();
+        $uploadManager->setUploadLocation('../images/avatars/');
+        $uploadManager->setFilename($file['name']);
+        $imagePath = $uploadManager->getPath();
+      }
+
       $representing = getRepresenting($_POST["representative"]);
       $query = $con->prepare("INSERT INTO users (first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, company_id, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);");
-      $query->bind_param("ssssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($_POST["avatar"]), getValidData($_POST["biography"]), $disabled = "0");
+      $query->bind_param("ssssssssssss", getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["user_email"]), getValidData($_POST["userperm"]), $salt = "undefined", $hash = "undefined", $guest = "0", getValidData($_POST["company"]), getValidData($representing), getValidData($imagePath), getValidData($_POST["biography"]), $disabled = "0");
       $query->execute();
       $query->close();
       header("Location: usermgmt.php");
@@ -34,16 +45,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){
       $representing = getRepresenting($_POST["representative"]);
       $query = null;
-      if(trim($_POST['avatar']) == ""){      
+      $file = $_FILES['avatar'];
+      print_r($file);
+
+      if(!file_exists($file['tmp_name'])){      
         $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");
         $query->bind_param("ssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["user_id"]));
       } else {
+        $uploadManager = new UploadManager();
+        $uploadManager->setUploadLocation('../images/avatars/');
+        $uploadManager->setFilename($file['name']);
+        $imagePath = $uploadManager->getPath();
+        $uploadManager->upload($file);
+        
+
         $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=?, avatar=? WHERE user_id=?;");
-        $query->bind_param("sssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($_POST["avatar"]), getValidData($_POST["user_id"]));
+        $query->bind_param("sssssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST["userperm"]), getValidData($_POST["company"]), getValidData($representing), getValidData($_POST['biography']), getValidData($imagePath), getValidData($_POST["user_id"]));
       }
       $query->execute();
       $query->close();
-      header("Location: usermgmt.php");      
+      //header("Location: usermgmt.php");      
     } else {
       if($emailExists){
         echo "<script>alert('This email is already in use');</script>";
@@ -121,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <input type="hidden" name="action" value="RESET"/>
               <input type="hidden" name="user_id" id="pass_reset_id" value=""/>
             </form>
-            <form method="POST" id="user_details_form">
+            <form method="POST" id="user_details_form" enctype="multipart/form-data">
               <input type="hidden" name="action" id="user_details_form_action" value="UPDATE" />
               <input type="hidden" name="user_id" id="user_id" value=""/>
               <div class="form-group">
