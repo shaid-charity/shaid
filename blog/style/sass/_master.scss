@@ -31,7 +31,7 @@ $color-social-youtube: #FF0000;
 $max-container-width: 1200px;
 $side-padding: 1.2rem;
 $component-inner-padding: 1.8rem;
-$navigation-item-padding: 1.6rem 1.2rem;
+$navigation-item-padding: 1.6rem 1.1rem;
 $navigation-item-padding-smaller: 1.4rem 1.0rem;
 $navigation-item-padding-smaller-squashed: 1.4rem 0.75rem;
 $navigation-item-padding-smallest: 1.1rem 0.8rem;
@@ -52,6 +52,7 @@ $transition-ease-text: all 0.05 ease 0s;
 }
 
 @mixin button {
+	-webkit-appearance: none;
 	display: inline-block;
 	padding: 0.8rem 1rem;
 	margin: 0.6rem 0;

@@ -115,6 +115,15 @@
 		<?php
 			}
 		?>
+		<div class="home-newsletter-subscription">
+			<div class="inner-container home-newsletter-subscription-inner">
+				<h2>Keep up to date with our newsletter</h2>
+				<form action="newsletter.php" method="post">
+					<input type="email" id="email" name="email" placeholder="email@example.com">
+					<button type="submit" class="button-light">Subscribe</button>
+				</form>
+			</div>
+		</div>
 	</main>
 	<?php
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');

@@ -21,31 +21,32 @@
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/referrals.php">Referrals</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/downloads.php">Downloads</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/contact.php">Contact</a></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/links.php">Useful Links</a></li>
 				</ul>
 			</div>
 			<div class="footer-section">
 				<h2>Keep updated</h2>
 				<div class="footer-social-container">
 					<span class="footer-social-button">
-						<a href="#" data-platform="email">
+						<a href="/<?php echo INSTALLED_DIR; ?>/newsletter.php" data-platform="email">
 							<i class="zmdi zmdi-email"></i>
 							<span class="footer-social-button-label">Email</span>
 						</a>
 					</span>
 					<span class="footer-social-button">
-						<a href="#" data-platform="facebook">
+						<a href="https://facebook.com" target="_blank" data-platform="facebook">
 							<i class="zmdi zmdi-facebook-box"></i>
 							<span class="footer-social-button-label">Facebook</span>
 						</a>
 					</span>
 					<span class="footer-social-button">
-						<a href="#" data-platform="twitter">
+						<a href="https://twitter.com" target="_blank" data-platform="twitter">
 							<i class="zmdi zmdi-twitter"></i>
 							<span class="footer-social-button-label">Twitter</span>
 						</a>
 					</span>
 					<span class="footer-social-button">
-						<a href="#" data-platform="youtube">
+						<a href="https://youtube.com" target="_blank" data-platform="youtube">
 							<i class="zmdi zmdi-youtube-play"></i>
 							<span class="footer-social-button-label">YouTube</span>
 						</a>
@@ -76,7 +77,7 @@
 				?>
 				<li><a href="#">Admin Panel</a></li>
 				<li>&bull;</li>
-				<li><a onclick="$('#logoutForm').submit();">Log out</a></li>
+				<li><a href="javascript:void(0)" onclick="$('#logoutForm').submit();">Log out</a></li>
 				<?php
 					}
 				?>

@@ -88,6 +88,7 @@ textarea {
 
 /* Classes */
 .button-smaller {
+  -webkit-appearance: none;
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -105,6 +106,7 @@ textarea {
   margin: 0.5rem 0 !important; }
 
 .button-light {
+  -webkit-appearance: none;
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -128,6 +130,7 @@ textarea {
   text-shadow: none; }
 
 .button-dark {
+  -webkit-appearance: none;
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -151,6 +154,7 @@ textarea {
   text-shadow: none; }
 
 .button-dark-filled {
+  -webkit-appearance: none;
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -170,6 +174,7 @@ textarea {
   text-shadow: none; }
 
 .button-green {
+  -webkit-appearance: none;
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -193,6 +198,7 @@ textarea {
   color: #008194 !important; }
 
 .button-red {
+  -webkit-appearance: none;
   display: inline-block;
   padding: 0.8rem 1rem;
   margin: 0.6rem 0;
@@ -333,7 +339,7 @@ main {
   display: inline-block;
   width: 100%;
   height: 100%;
-  padding: 1.6rem 1.2rem;
+  padding: 1.6rem 1.1rem;
   color: #1C0B19;
   text-decoration: none; }
 
@@ -346,7 +352,7 @@ main {
 
 .navigation-menu-button {
   display: none;
-  padding: 1.6rem 1.2rem;
+  padding: 1.6rem 1.1rem;
   padding-left: 0;
   font-size: 1.2rem;
   color: #1C0B19;
@@ -482,6 +488,26 @@ main {
 
 .newspreview-footer {
   padding-top: 1.5rem; }
+
+.home-newsletter-subscription {
+  background-color: #555555;
+  padding: 2.25rem 0 2.5rem 0; }
+
+.home-newsletter-subscription-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; }
+
+.home-newsletter-subscription h2 {
+  color: #FFFFFF;
+  padding-top: 0;
+  padding-bottom: 1rem; }
+
+.home-newsletter-subscription input[type="email"] {
+  border-color: #FFFFFF;
+  width: 22rem;
+  margin-right: 0.25rem; }
 
 footer {
   width: 100%;
@@ -647,104 +673,6 @@ footer {
 
 .search-result-title {
   font-size: 1.8rem; }
-
-.modal-container {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transition: opacity 0.1s ease-in;
-  visibility: hidden;
-  opacity: 0.0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  z-index: 2; }
-
-.modal-message {
-  max-width: 700px;
-  padding: 2rem;
-  margin: 2rem;
-  background-color: #FFFFFF;
-  display: block;
-  box-shadow: 0px 0px 67px -8px rgba(0, 0, 0, 0.5); }
-
-.modal-message h1 {
-  font-size: 1.4rem;
-  padding-top: 0; }
-
-.modal-message p {
-  padding: 0.5rem 0; }
-
-.modal-message-button-container {
-  margin: auto;
-  padding: 1rem 2rem 0 2rem;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; }
-
-.modal-message-button-container-full-width {
-  margin: auto;
-  padding: 1rem 0 0 0;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap; }
-
-.modal-message-button {
-  flex-grow: 1;
-  margin: 0 0.5rem; }
-
-.modal-message-button-full-width {
-  width: 100%;
-  margin: 0.3rem 0; }
-
-#global-donate-modal-message {
-  max-width: 450px; }
-
-.donation-header-split {
-  display: flex;
-  flex-direction: row;
-  wrap: nowrap;
-  align-items: top; }
-
-.donation-header-split h1 {
-  flex-grow: 1; }
-
-.donation-input {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: baseline;
-  justify-content: center;
-  padding-bottom: 1rem; }
-
-.donation-currency-symbol {
-  font-size: 3rem !important;
-  color: #4E3D42;
-  padding-right: 0.25rem; }
-
-.donation-input-amount {
-  border: 0 !important;
-  outline: 0 !important;
-  font-size: 5rem !important;
-  box-shadow: none;
-  color: #4E3D42 !important;
-  width: 60%;
-  padding: 0.2rem 0 !important;
-  border-bottom: 3px solid #999999 !important;
-  text-align: center; }
-
-.donation-input-amount:focus {
-  color: #1C0B19 !important;
-  border-color: #1C0B19 !important; }
 
 @media only screen and (max-width: 1199px) {
   body {
@@ -1003,11 +931,7 @@ footer {
     text-align: right; }
 
   .cookie-warning-button a {
-    width: 100%; }
-
-  .donation-input-amount {
-    width: 65%;
-    font-size: 4rem !important; } }
+    width: 100%; } }
 @media only screen and (max-width: 370px) {
   .footer-social-container {
     display: flex;
@@ -1022,11 +946,4 @@ footer {
     display: inline-block; }
 
   .footer-social-button a {
-    justify-content: center; }
-
-  .donation-currency-symbol {
-    font-size: 2.5rem !important; }
-
-  .donation-input-amount {
-    width: 80%;
-    font-size: 3rem !important; } }
+    justify-content: center; } }
