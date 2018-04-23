@@ -922,7 +922,7 @@ footer {
     width: 100%; }
 
   .home-newsletter-subscription button[type="submit"] {
-    margin-top: 0.25rem; } }
+    margin-top: 0.75rem; } }
 @media only screen and (max-width: 480px) {
   .cookie-warning-content {
     flex-wrap: wrap; }
