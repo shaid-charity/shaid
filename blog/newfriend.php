@@ -63,11 +63,11 @@
 							</div>
 							<div class="post-input">
 								<div class="post-input-row">
-									<div class="post-input-grow">
-										<label for="forename">Forename</label>
+									<div class="post-input-grow post-input-padding-right">
+										<label for="forename">First Name</label>
 										<input type="text" name="forename" id="friend-forename">
 									</div>
-									<div class="post-input-grow">
+									<div class="post-input-grow post-input-padding-left">
 										<label for="surname">Surname</label>
 										<input type="text" name="surname" id="friend-surname">
 									</div>
