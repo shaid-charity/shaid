@@ -15,7 +15,7 @@
 							<?php 
 							if(($user != null) && ($user->getRoleID()) <= 1 && ($post->isApproved() == 0)){
 							?>
-							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=approve&postID=<?php echo $post->getID(); ?>" type="button" class="button-dark">Approve</a>
+							<a href="/<?php echo INSTALLED_DIR; ?>/editpost.php?action=approve&id=<?php echo $post->getID(); ?>" type="button" class="button-dark">Approve</a>
 							<?php
 							}
 							?>
