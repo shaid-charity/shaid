@@ -70,6 +70,9 @@
 				</div>
 			</div>
 		</div>
+		<div class="section inner-container">
+			Subscribe to our newsletter
+		</div>
 		<?php 
 			// Get latest article in category 1 (news category)
 			$news = true;
