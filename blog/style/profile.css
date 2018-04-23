@@ -1,12 +1,22 @@
 .profile-header {
-  text-align: center;
-  padding-bottom: 1rem; }
+  padding-bottom: 1rem;
+  display: flex;
+  flex-direction: row; }
 
 .profile-header-photo {
   border-radius: 50%;
   height: 8rem; }
 
-.profile-header h3 {
-  padding-top: 0.25rem;
+.profile-header-info {
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
+.profile-header-info h2 {
+  padding: 0.25rem 0; }
+
+.profile-header-info h3 {
+  padding: 0.25rem 0;
   font-weight: normal;
   color: #4E3D42; }

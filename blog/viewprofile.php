@@ -70,22 +70,11 @@
 					<div class="articles-list-container">
 						<section class="profile-header">
 								<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>" class="profile-header-photo">
-								<h2><?php echo $postsUser->getFullName(); ?></h2>
-								<h3><?php echo $postsUser->getCompany()->getName(); ?></h3>
-						</section>
-						<?php
-						/*
-						<section id="article-author">
-								<div id="article-author-photo">
-									<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>">
-								</div>
-								<div id="article-author-text">
-									<span id="article-author-text-name"><a href=""><?php echo $postsUser->getFullName(); ?></a></span>
-									<span id="article-author-text-about"><?php echo $postsUser->getCompany()->getName(); ?></span>
+								<div class="profile-header-info">
+									<h2><?php echo $postsUser->getFullName(); ?></h2>
+									<h3><?php echo $postsUser->getCompany()->getName(); ?></h3>
 								</div>
 						</section>
-						*/
-						?>
 						<section>
 							<h2>About</h2>
 							<p>
