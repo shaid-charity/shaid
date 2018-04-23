@@ -1,5 +1,7 @@
 // donate.js
 
+// THIS IS UNUSED AS PAYPAL DOES NOT SUPPORT PASSING CUSTOM AMOUNTS FOR DONATIONS
+
 
 var globalDonateModal = {
 	element: document.getElementById('global-donate-modal'),

@@ -51,7 +51,10 @@
 				</div>
 			</div>
 			<div class="navigation-right">
-				<a href="javascript:void(0)" id="global-donate-button" class="button-green">Make a donation</a>
+				<?php
+					//<a href="javascript:void(0)" id="global-donate-button" class="button-green">Make a donation</a>
+				?>
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=AJGAJ53CYYKGS" target="_blank" id="global-donate-button" class="button-green">Make a donation</a>
 			</div>
 		</div>
 	</nav>
