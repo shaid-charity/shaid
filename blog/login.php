@@ -31,17 +31,20 @@
 	        $query->close();
 	        //header("Location: login.php");
 	      }
-		
-
+			
 		  if(!empty($_POST['username'])) {
 		    $user_email = $_POST['username'];
 		    $pass = $_POST['password'];
-		    $query = $con->prepare("SELECT user_id, first_name, last_name, pass_salt, pass_hash FROM users WHERE email=?");
+		    $query = $con->prepare("SELECT user_id, first_name, last_name, pass_salt, pass_hash, disabled FROM users WHERE email=?");
 		    $query->bind_param("s", $user_email);
 		    $query->execute();
-		    $query->bind_result($user_id, $first_name, $last_name, $salt, $hash);
+		    $query->bind_result($user_id, $first_name, $last_name, $salt, $hash, $disabled);
 		    $query->fetch();
 		    $query->close();
+
+				if($disabled == 1){
+					header("Location: login.php");
+				}	
 
 		    if(!empty($hash)){
 		      if($hash == "undefined") {
