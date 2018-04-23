@@ -70,8 +70,12 @@
 				</div>
 			</div>
 		</div>
-		<div class="section inner-container">
-			Subscribe to our newsletter
+		<div class="home-newsletter-subscription">
+			<div class="inner-container">
+				<div class="newspreview-header">
+					<h1>Keep up to date with our newsletter</h1>
+				</div>
+			</div>
 		</div>
 		<?php 
 			// Get latest article in category 1 (news category)
