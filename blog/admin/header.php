@@ -86,7 +86,19 @@ if(empty($session_number)){
     .hidden {
       display:none;
     }
+    input:invalid {
+      border-color: #ffdddd;
+    }
+
+    input:valid {
+      border-color: #ddffdd;
+    }
+
+    input:required {
+      border-color: #ff0000;
+  }
   </style>
+
 </head>
 
 <body>
