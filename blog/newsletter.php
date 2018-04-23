@@ -43,7 +43,7 @@
 							<form method="post" class="login-form">
 								<div class="post-input">
 									<label for="email" class="section-label">Email address</label>
-									<input type="text" id="email" name="email">
+									<input type="email" id="email" name="email">
 								</div>
 								<button type="submit" class="button-green">Subscribe</button>
 							</form>
