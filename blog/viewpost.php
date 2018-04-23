@@ -93,7 +93,7 @@
 								</div>
 								<div id="article-author-text">
 									<span id="article-author-text-name"><a href="<?php echo $post->getAuthor()->getProfileLink(); ?>"><?php echo $post->getAuthor()->getFullName(); ?></a></span>
-									<span id="article-author-text-about"><?php echo $post->getAuthor()->getBiography(); ?></span>
+									<span id="article-author-text-about"><?php echo $post->getAuthor()->getCompany()->getName(); ?></span>
 								</div>
 							</section>
 							<section id="article-date">
