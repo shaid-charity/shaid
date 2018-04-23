@@ -9,17 +9,34 @@ require_once 'header.php';
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
     case 'ADD':
+      // Upload image if one exists
+      $file = $_FILES['logo'];
+      $uploadManager = new UploadManager();
+      $uploadManager->setUploadLocation('../images/logos/');
+      $uploadManager->setFilename($file['name']);
+      $imagePath = $uploadManager->getPath();
+      $uploadManager->upload($file);
+
       $query = $con->prepare("INSERT INTO companies (name, url, icon) VALUES (?,?,?);");
-      $query->bind_param("sss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($_POST["logo"]));
+      $query->bind_param("sss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($imagePath));
       $query->execute();
       $query->close();
       break;
     
     case 'UPDATE':
       $query = null;
-      if($_POST['logo'].trim() != ""){
+      // Upload image if one exists
+      $file = $_FILES['logo'];
+
+      if(file_exists($file['tmp_name'])){
+        $uploadManager = new UploadManager();
+        $uploadManager->setUploadLocation('../images/logos/');
+        $uploadManager->setFilename($file['name']);
+        $imagePath = $uploadManager->getPath();
+        $uploadManager->upload($file);
+
         $query = $con->prepare("UPDATE companies SET name=?, url=?, icon=? WHERE id=?");
-        $query->bind_param("ssss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($_POST["logo"]), getValidData($_POST["company_id"]));
+        $query->bind_param("ssss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($imagePath), getValidData($_POST["company_id"]));
       } else {
         $query = $con->prepare("UPDATE companies SET name=?, url=? WHERE id=?");
         $query->bind_param("ssss", getValidData($_POST["name"]), getValidData($_POST["url"]), getValidData($_POST["company_id"]));
@@ -58,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <input type="hidden" name="action" value="DELETE"/>
               <input type="hidden" name="company_id" id="delete_id" value=""/>
             </form>
-            <form method="POST" id="company_details_form">
+            <form method="POST" id="company_details_form" enctype="multipart/form-data">
               <input type="hidden" name="action" id="company_details_form_action" value="UPDATE" />
               <input type="hidden" name="company_id" id="company_id" value=""/>
               
@@ -124,7 +141,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         while($query->fetch()){
           echo "<tr>";
-          echo "<td>$icon</td>";
+          echo "<td><img src='$icon'</td>";
           echo "<td>$name</td>";
           echo "<td>$url</td>";
           echo "<td><button type='button' class='btn btn-primary' data-toggle='modal' data-target='#companyEditModal' data-action='update' data-id='$id' data-name='$name' data-url='$url' data-icon='$icon'>Edit</button></td>";
