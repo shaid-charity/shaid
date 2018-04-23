@@ -10,7 +10,7 @@ table {
 
 table th {
   text-align: left;
-  border-bottom: 2px solid #999999; }
+  border-bottom: 2px solid #DDDDDD; }
 
 table td:first-child {
   width: 1px !important; }
