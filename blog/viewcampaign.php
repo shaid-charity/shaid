@@ -112,16 +112,7 @@
 								</div>
 							</div>
 							<p>
-								Amount raised:
-								<?php
-									echo $campaign->getAmountRaised();
-								?>
-							</p>
-							<p>
-								Goal amount:
-								<?php
-									echo $campaign->getGoalAmount();
-								?>
+								<?php echo $campaign->getAmountRaised(); ?> raised of <?php echo $campaign->getGoalAmount(); ?>
 							</p>
 							<a href="javascript:void(0)" class="button-green">Donate to this Campaign</a>
 						</section>
