@@ -11,10 +11,13 @@ $permissionArray = array(
   "editEvent" <= 2,
 );
 
-function checkPermission($roleID, $pageName){
+//decide whether or not the user is allowed to access $pageName
+function grantAccess($roleID, $pageName){
   if($roleID > $permissionArray[$pageName]){
+    //access denied if role id is greater than what is required by the page
     return false;
   } else {
+    //access granted
     return true;
   }
 }
