@@ -34,9 +34,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     case 'UPDATE':
       $emailExists = checkIfEmailExists($con, $_POST['user_email'], $USER_ID);
 
-      if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){    
+      if(validateUser($_POST['user_email'], $_POST['first_name'], $_POST['last_name'], $_POST['biography']) && !$emailExists){   
+        // Upload image if one exists
+        $file = $_FILES['avatar'];
+
+        // If a new avatar was uploaded, change it
+        if (file_exists($file['tmp_name'])) {
+          $uploadManager = new UploadManager();
+          $uploadManager->setUploadLocation('../images/avatars/');
+          $uploadManager->setFilename($file['name']);
+          $imagePath = $uploadManager->getPath();
+          $uploadManager->upload($file);
+        }
+
         $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, biography=?, avatar=? WHERE user_id=?;");
-        $query->bind_param("ssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST['biography']), getValidData($_POST["avatar"]), $USER_ID);
+        $query->bind_param("ssssss", getValidData($_POST["user_email"]), getValidData($_POST["first_name"]), getValidData($_POST["last_name"]), getValidData($_POST['biography']), getValidData($imagePath), $USER_ID);
         $query->execute();
         $query->close();
         header("Location: profile.php");
@@ -93,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </tr>
             <tr>
               <td>Profile Picture:</td>
-              <td class="infoDisplay"><?php echo $avatar;?></td>
+              <td class="infoDisplay"><img src="<?php echo $avatar; ?>"><?php echo $avatar;?></td>
               <td class="infoEdit hidden">
   		          <input type="file" class="custom-file-input" id="avatar" name="avatar" value="<?php echo $avatar;?>">                
               </td>
