@@ -9,7 +9,7 @@
 						<ul>
 							<?php
 								// Get the last 4 posts by published date
-								$stmt = $db->query("SELECT `id` FROM `posts` ORDER BY `datetime-published` DESC LIMIT 5");
+								$stmt = $db->query("SELECT `id` FROM `posts` WHERE `published` = 1 ORDER BY `datetime-published` DESC LIMIT 5");
 
 								foreach ($stmt as $row) {
 									$post = new Post($db, $row['id']);
