@@ -489,6 +489,14 @@ $rule-line-thickness: 4px;
 	font-size: 1rem;
 }
 
+// TinyMCE:
+// Flex toolbar to stop page breaking when small
+#mceu_27-body {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
 .section-label {
 	padding: 0.5rem 0 !important;
 	font-size: 1.1rem !important;
