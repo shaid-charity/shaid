@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SHAID - Links</title>
+	<title>SHAID - Useful Links</title>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
@@ -35,7 +35,7 @@
 							Information on over 8,000 services, including hostels, day centres and other advice and support services for homeless people.
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.homelessuk.org">http://www.homelessuk.org</a>
+							<a href="http://www.homelessuk.org" target="_blank">http://www.homelessuk.org</a>
 						</span>
 
 						<h2 class="links-page-heading">Stonham</h2>
@@ -43,7 +43,7 @@
 							Stonham is England’s largest provider of housing and support for vulnerable people.
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.homegroup.org.uk/stonham">http://www.homegroup.org.uk/stonham</a>
+							<a href="http://www.homegroup.org.uk/stonham" target="_blank">http://www.homegroup.org.uk/stonham</a>
 						</span>
 
 						<h2 class="links-page-heading">DASH</h2>
@@ -51,7 +51,7 @@
 							Provide Supported Accommodation, Floating Support and Emergency Access Accommodation.
 						</span>
 						<span class="links-page-text">
-							<a href="https://www.dashorg.co.uk">https://www.dashorg.co.uk</a>
+							<a href="https://www.dashorg.co.uk" target="_blank">https://www.dashorg.co.uk</a>
 						</span>
 
 						<h2 class="links-page-heading">Homeless Link</h2>
@@ -59,7 +59,7 @@
 							Homeless Link is the national membership organisation for frontline homelessness agencies in England. Our mission is to be a catalyst that will help to bring an end to homelessness.
 						</span>
 						<span class="links-page-text">
-							<a href="https://www.homeless.org.uk">https://www.homeless.org.uk</a>
+							<a href="https://www.homeless.org.uk" target="_blank">https://www.homeless.org.uk</a>
 						</span>
 
 						<h2 class="links-page-heading">Centrepoint</h2>
@@ -67,7 +67,7 @@
 							Centrepoint is the national charity working to improve the lives of socially excluded, homeless young people. It provides a range of accommodation based services, including emergency nightshelters and short stay hostels, specialist projects for care etc.
 						</span>
 						<span class="links-page-text">
-							<a href="https://centrepoint.org.uk">https://centrepoint.org.uk</a>
+							<a href="https://centrepoint.org.uk" target="_blank">https://centrepoint.org.uk</a>
 						</span>
 
 						<h2 class="links-page-heading">Moving on</h2>
@@ -75,7 +75,7 @@
 							Moving On is a housing advice and support project for 16-25 year olds in Durham.  We offer advice and assistance to young people who are homeless or experiencing housing difficulties and offer support to young people in their own accommodation.
 						</span>
 						<span class="links-page-text">
-							<a href="https://www.movingondurham.org.uk">https://www.movingondurham.org.uk</a>
+							<a href="https://www.movingondurham.org.uk" target="_blank">https://www.movingondurham.org.uk</a>
 						</span>
 
 						<h2 class="links-page-heading">MonKey</h2>
@@ -88,7 +88,7 @@
 							Our network of partners including housing providers and voluntary sector organisations will help you.
 						</span>
 						<span class="links-page-text">
-							<a href="http://monkey.uk.net">http://monkey.uk.net</a>
+							<a href="http://monkey.uk.net" target="_blank">http://monkey.uk.net</a>
 						</span>
 
 						<h2 class="links-page-heading">Stanley Area Action Partnership</h2>
@@ -96,7 +96,7 @@
 							Find information about Stanley Area Action Partnership (AAP) including activities, events and projects and details about the partnership forum, board and task groups.
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.durham.gov.uk/stanleyaap">http://www.durham.gov.uk/stanleyaap</a>
+							<a href="http://www.durham.gov.uk/stanleyaap" target="_blank">http://www.durham.gov.uk/stanleyaap</a>
 						</span>
 
 						<h2 class="links-page-heading">Derwent Valley Area Action Partnership</h2>
@@ -104,7 +104,7 @@
 							Find an overview of the work of Derwent Valley Area Action Partnership (AAP).
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.durham.gov.uk/derwentaap">http://www.durham.gov.uk/derwentaap</a>
+							<a href="http://www.durham.gov.uk/derwentaap" target="_blank">http://www.durham.gov.uk/derwentaap</a>
 						</span>
 
 						<h2 class="links-page-heading">Wellbeing for Life</h2>
@@ -112,7 +112,7 @@
 							Wellbeing for Life can help you find out what’s around you and how to make the most of it. Wellbeing is about your health, happiness, opportunities and your overall quality of life. The service has a team of experienced staff and volunteers who will work with you and your community group to give you the support and advice you need.
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.wellbeingforlife.net">http://www.wellbeingforlife.net</a>
+							<a href="http://www.wellbeingforlife.net" target="_blank">http://www.wellbeingforlife.net</a>
 						</span>
 
 						<h2 class="links-page-heading">Stanley Town Council</h2>
@@ -120,7 +120,7 @@
 							Stanley Town Council is about the whole area in and around what might be termed 'wider' Stanley and not just the town or town-centre itself. With a population of more than 31,000, the Town Council is the largest local council in the county.
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.stanley-tc.gov.uk">http://www.stanley-tc.gov.uk</a>
+							<a href="http://www.stanley-tc.gov.uk" target="_blank">http://www.stanley-tc.gov.uk</a>
 						</span>
 
 						<h2 class="links-page-heading">Durham Key Options</h2>
@@ -131,7 +131,7 @@
 							We aim to give you more choice in deciding where you want to live. Properties that are available for rent will be advertised each week, both social rents and private. We also advertise shared ownership and affordable homeownership properties.
 						</span>
 						<span class="links-page-text">
-							<a href="https://www.durhamkeyoptions.co.uk">https://www.durhamkeyoptions.co.uk</a>
+							<a href="https://www.durhamkeyoptions.co.uk" target="_blank">https://www.durhamkeyoptions.co.uk</a>
 						</span>
 
 						<h2 class="links-page-heading">Durham County Council</h2>
@@ -139,7 +139,7 @@
 							The one stop shop for information on all services provided by Durham County Council.
 						</span>
 						<span class="links-page-text">
-							<a href="http://www.durham.gov.uk/article/1843/Home">http://www.durham.gov.uk/article/1843/Home</a>
+							<a href="http://www.durham.gov.uk/article/1843/Home" target="_blank">http://www.durham.gov.uk/article/1843/Home</a>
 						</span>
 					</section>
 				</section>
