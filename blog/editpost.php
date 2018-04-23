@@ -162,7 +162,7 @@
 										<label for="post-featured-image">Image file</label>
 										<input type="file" name="featured-image" id="post-featured-image">
 									</div>
-									<div class="post-input">
+									<div class="post-input-grow">
 										<label for="post-featured-image-caption">Featured image caption</label>
 										<input type="text" name="featured-image-caption" id="post-featured-image-caption" value="<?php echo $post->getImageCaption(); ?>">
 									</div>
