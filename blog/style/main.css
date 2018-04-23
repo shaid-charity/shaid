@@ -503,7 +503,8 @@ main {
 
 .home-newsletter-subscription input[type="email"] {
   border-color: #FFFFFF;
-  width: 10rem; }
+  width: 20rem;
+  margin-right: 0.25rem; }
 
 footer {
   width: 100%;
