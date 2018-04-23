@@ -5,6 +5,9 @@ input[type="checkbox"] {
 .center-text {
   text-align: center; }
 
+.search-db {
+  margin-left: auto; }
+
 table {
   width: 100%; }
 

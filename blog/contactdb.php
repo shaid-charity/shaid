@@ -74,10 +74,10 @@
 									require_once(SITE_ROOT . '/includes/admin/admin_contact_deleted.php');
 								}
 							?>
-							<form class="" action="contactdb.php" method="get">
+							<form class="search-db" action="contactdb.php" method="get">
 								<div class="">
 									<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php echo $searchText; ?>">
-									<button type="submit" class="button-green">Submit</button>
+									<button type="submit" class="button-green">Search</button>
 								</div>
 							</form>
 						</div>
