@@ -21,6 +21,8 @@
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/referrals.php">Referrals</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/downloads.php">Downloads</a></li>
 					<li><a href="/<?php echo INSTALLED_DIR; ?>/contact.php">Contact</a></li>
+					<li><hr></li>
+					<li><a href="/<?php echo INSTALLED_DIR; ?>/links.php">Useful Links</a></li>
 				</ul>
 			</div>
 			<div class="footer-section">
