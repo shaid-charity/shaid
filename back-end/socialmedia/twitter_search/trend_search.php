@@ -13,15 +13,15 @@
 
 
 <?php
-
+  require_once 'config.php';
   require_once('./wrapper/TwitterAPIExchange.php');
 
   /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
   $settings = array(
-      'oauth_access_token' => "703944336950558720-utt80LMNGr2d7XHfUTArdgE2NmJr0ME",
-      'oauth_access_token_secret' => "fuM6RTVqH16VVBBpUpQzWtzUefyQNeb1oDI5Rq5DYRInA",
-      'consumer_key' => "lvW8nadoeKijsBF6zFrGKjHVr",
-      'consumer_secret' => "NmEOvOHkLOhHsDyk00smEirmTZ72lmTgvGgsAYNxuRMxoW16qL"
+    'oauth_access_token' => $oAuthToken,
+    'oauth_access_token_secret' => $oAuthSecret,
+    'consumer_key' => $consumerKey,
+    'consumer_secret' => $consumerSecret
   );
 
   $url = "https://api.twitter.com/1.1/trends/place.json";

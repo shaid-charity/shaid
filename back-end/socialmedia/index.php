@@ -1,7 +1,3 @@
-<!--
-This document does not run on all versions of php. It works with PHP 7.1.7
-I ran it from terminal using php -S localhost:8000
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,9 +38,7 @@ I ran it from terminal using php -S localhost:8000
         <h4><center>Posting to social medias</center></h4>
         Enter text below:
         <br>
-        <div class="form-group">
-        <textarea  id= "input" name = "input" class= "form-control" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
-        </div>
+        <textarea  id= "input" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
         <br>
         <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
         <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
@@ -53,84 +47,6 @@ I ran it from terminal using php -S localhost:8000
 
     <?php
     require_once 'post.php';
-/*
-    //TWITTER
-    $consumerKey    = 'PErpyYJif6jXHajdni3PNDfh3';
-    $consumerSecret = 'heNVbOL8FcezVjz0ztMvwPGSs7UspkwBe9wZUsf0e5dTi2D969';
-    $oAuthToken     = '953755545407836161-A94KWSNbqkPne4yXwsRbHFeLk88s42a';
-    $oAuthSecret    = 'HQHcLCJD6zE5Z32t9jIBzQuhqmm0OsYUx86EsN7vYu7dL';
-
-    require_once('index.php');
-    require "twitteroauth/autoload.php";
-    use Abraham\TwitterOAuth\TwitterOAuth;
-    // create a new instance
-    $tweet = new TwitterOAuth($consumerKey, $consumerSecret, $oAuthToken, $oAuthSecret);
-
-    //FACEBOOK    - app not live yet so only admin can see posts
-
-    define('FACEBOOK_SDK_V4_SRC_DIR', __DIR__ . '/src/Facebook/');
-    require_once(__DIR__ . '/src/Facebook/autoload.php');
-
-    $fb = new Facebook\Facebook([
-        'app_id' => '2016556085255853',
-        'app_secret' => '4e8540e164419ca7ac4309f3898318b2',
-        'default_graph_version' => 'v2.2',
-        $accessToken = "EAAcqDA0hnq0BAPhGZCwDqX6siOVDVLGzQZCPK9ZAksZCr92wGDAfFVk8dRvmWvTYgl0ZCQ1FNveTyW4lgEHptLiCl5Ek6Kr5ngTGqpaE90NBPJ5rwYEZCuwPzHd1DS5xUvBtpcZAj7onsjTaYZB6cZAVnTCLhkTqd0sFb1EcrYIPvcgZDZD",
-    ]);
-
-    //POST
-    if(isset($_POST['submit']))
-    {
-      $box = $_POST["test"];
-      if(!empty($box)){
-        $sm = implode('', $box);
-        if(strpos($sm, 'Facebook') !== false){
-
-          $text = htmlspecialchars($_POST['input']);
-          if(isset($accessToken)) {
-              $message = [
-                  'message' => "$text",
-              ];
-
-              try {
-                  $response = $fb->post('/2066571940241754/feed', $message, $accessToken);
-                  echo nl2br("\nPosted to Facebook \n");
-              } catch(Facebook\Exceptions\FacebookResponseException $e) {
-                  echo 'Graph returned an error: '.$e->getMessage();
-                  exit;
-              } catch(Facebook\Exceptions\FacebookSDKException $e) {
-                  echo 'Facebook SDK returned an error: '.$e->getMessage();
-                  exit;
-              }
-            }
-          }
-
-        if(strpos($sm, 'Twitter') !== false){
-          $text = htmlspecialchars($_POST['input']);
-          if(strlen($text)<=280){
-            $tweet->post('statuses/update', array('status' => "$text"));
-            echo nl2br("\nPosted to Twitter \n");
-          }
-          elseif (strpos($sm, 'Facebook') !== false){
-            echo("Message is longer than 280 characters, will be shortened and a link to the Facebook post will be provided");
-            $text = substr($text, 0,250);
-            $link = "https://fb.me/SHAIDTest";
-            $text = $text."...". $link;
-            $tweet->post('statuses/update', array('status' => "$text"));
-            echo nl2br("\nPosted to Twitter \n");
-
-          }
-
-          else {
-            echo("Message is ".(strlen($text)-280) ." characters too long, unable to post to Twitter");
-          }
-        }
-    }
-    }
-*/
-    //Future things to add: Add other social medias?
-    //                      Option to add pictures etc.
-    //                      Could add login buttons to make more transferrable
     ?>
 
     <div class="container-fluid text-center">
@@ -160,92 +76,15 @@ I ran it from terminal using php -S localhost:8000
       <br>
       <br>
       <form id=form2 method = "post" >
-        <input type="text" id="keyword" name="keyword">
+        <input type="text" id="add_keyword" name="add_keyword">
         <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
+        <br>
+        <input type="text" id="del_keyword" name="del_keyword">
+        <button type = "del_key" name="del_key" id="del_key">Delete Keyword </button>
       </form>
 
       <?php
         require_once 'trends.php';
-          //require_once('./wrapper/TwitterAPIExchange.php');
-
-          /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
-          /*
-          $settings = array(
-              'oauth_access_token' => "703944336950558720-utt80LMNGr2d7XHfUTArdgE2NmJr0ME",
-              'oauth_access_token_secret' => "fuM6RTVqH16VVBBpUpQzWtzUefyQNeb1oDI5Rq5DYRInA",
-              'consumer_key' => "lvW8nadoeKijsBF6zFrGKjHVr",
-              'consumer_secret' => "NmEOvOHkLOhHsDyk00smEirmTZ72lmTgvGgsAYNxuRMxoW16qL"
-          );
-
-          $url = "https://api.twitter.com/1.1/trends/place.json";
-
-          $requestMethod = "GET";
-
-          $getfield = '?id=30079'; //Newcastle: 30079
-
-          $twitter = new TwitterAPIExchange($settings);
-          $string = json_decode($twitter->setGetfield($getfield)
-                       ->buildOauth($url, $requestMethod)
-                       ->performRequest(), $assoc=TRUE);
-
-          if($string["errors"][0]["message"] != "") {
-            echo "<h3>Sorry, there was a problem.</h3><p>Twitter returned the following error message:</p><p><em>".$string[errors][0]["message"]."</em></p>";
-            exit();
-          }
-
-          $keywords = array("homelessness","tragedy","sleeping rough", "fire");
-
-          if(isset($_POST['add_key'])){
-            $new_word = htmlspecialchars($_POST['keyword']);
-            if(!empty($new_word)){
-              array_push($keywords,$new_word);
-              echo "<br>".$new_word." has been added to your list of keywords.<br>";
-            }
-          }
-
-          $key_trending = array();
-
-          /** $keywords_timer = gettimeofday();**/
-          /** if($keywords_timer == "0.0"){**/
-          /**   $key_trending = array();**/
-          /** }**/
-
-          /*
-          echo "<br><h3>Your current keywords are:</h3>";
-          foreach($keywords as $word){
-            echo $word."<br>";
-          }
-
-          echo "<h3>Current trends:</h1>";
-          $counter = 0; /** Twitter always gives 50 (cannot change), only display 20 **/
-          /*
-          $overrideLimit = False;
-          foreach($string[0]["trends"] as $items)
-            {
-              foreach($keywords as $key){
-                if(strpos(strtolower($items['name']),strtolower($key))!==false){
-                  //echo "KEY FOUND: ".$key."\n";
-                  array_push($key_trending,$items['name']);
-                  $overrideLimit = True;
-                }
-              }
-              $counter +=1;
-              if(($counter <= 20) || $overrideLimit){
-                echo $items['name']."<br>";
-                $overrideLimit = False;
-              }
-            }
-
-
-          if(count($key_trending)==0){
-            echo "<br>None of your key words are currently trending in the top 50.<br>";
-          }else{
-            echo "<br>\nThe following are trends of interest: \n";
-            foreach($key_trending as $trend){
-              echo "<strong>".$trend."\n"."</strong>";
-            }
-          }
-          */
       ?>
 
     </div>

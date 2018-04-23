@@ -31,6 +31,14 @@
 			padding-bottom: 10px;
 		}
 
+		.is-valid {
+			border: 2px solid green !important;
+		}
+
+		.is-invalid {
+			border: 2px solid red !important;
+		}
+
 		#logo {
 			padding-bottom: 50px;
 			display: block;
@@ -185,13 +193,13 @@ try {
 		} else if ($_GET['step'] == '3') {
 	?>
 	<div class="instructions">Please enter your email details. This email address will be used when sending newsletters and system notifications.</div>
-	<form action="index.php?step=4" method="post">
+	<form action="index.php?step=4" method="post" id="accountForm">
 		<div class="field post-input"><label for="address">Email address</label><input type="email" name="address"></div>
 		<div class="field post-input"><label for="name">Email name</label><input type="text" name="name"></div>
 		<div class="field post-input"><label for="pass">Email password</label><input type="password" name="pass"></div>
 		<div class="field post-input"><label for="server">Email server</label><input type="text" name="host"></div>
 		<div class="field post-input"><label for="port">Email server port</label><input type="number" name="port"></div>
-		<div class="field post-input"><input class="button-green" type="submit"></div>
+		<div class="field post-input"><input class="button-green" type="submit" id="submit"></div>
 	</form>
 	<?php
 		} else if ($_GET['step'] == '4') {
@@ -214,27 +222,56 @@ define("MAIL_PORT", ' . $port . ');
 			file_put_contents('../config.php', $text, FILE_APPEND);
 	?>
 	<script>
-		$(':input').focus(function() {
-			var pass = $('input[name=pass]').val();
-			var passRetype = $('input[name=passRetype]').val();
+		$(document).ready(function(){
+	      var password = "";
+	      $("#submit").click(function(e){
+	        if($("#pass").val() != $("#passRetype").val() || !validatePassword(password)){
+	          e.preventDefault();
+	          $("#passRetype").addClass("has-error");
+	        } else {
+	          $("#accountForm").submit();
+	        }
+	      });
 
+	      $("#pass").on("keyup", function(){
+	        $("pass").removeClass("is-valid");
+	        $("#pass").removeClass("is-invalid");
+	        password = $("#pass").val();
 
-			if (pass.length == 0 || passRetype.length == 0) {
-				$('form').submit(false);
-			} else if (pass != passRetype) {
-				$('form').submit(false);
-			} else {
-				$('form').submit(true);
-			}
-		});
+	        if(validatePassword(password)){
+	          $("#pass").addClass("is-valid");   
+	        } else {
+	          $("#pass").addClass("is-invalid");
+	        }
+	      });
+
+	      $("#passRetype").on("keyup", function(){
+	        $("#passRetype").removeClass("is-valid");
+	        $("#passRetype").removeClass("is-invalid");
+	        
+	        if((password == $("#passRetype").val()) && validatePassword(password)){
+	          $("#passRetype").addClass("is-valid");
+	        } else {
+	          $("#passRetype").addClass("is-invalid");
+	        }
+	      });
+
+	      function validatePassword(pass){
+	        if((password.length >= 8) && (password != password.toLowerCase()) && (/([0-9])+/.test(password))){
+	          return true;          
+	        } else {
+	          return false;
+	        }
+	      }
+	    });
 	</script>
 	<div class="instructions">Please create your website administrator account.</div>
 	<form action="index.php?step=5" method="post">
 		<div class="field post-input"><label for="address">Email address: </label><input type="email" name="address"></div>
 		<div class="field post-input"><label for="fname">First name: </label><input type="text" name="fname"></div>
 		<div class="field post-input"><label for="sname">Second name: </label><input type="text" name="sname"></div>
-		<div class="field post-input"><label for="pass">Password: </label><input type="password" name="pass"></div>
-		<div class="field post-input"><label for="passRetype">Retype password: </label><input type="password" name="passRetype"></div>
+		<div class="field post-input"><label for="pass">Password: </label><input type="password" name="pass" id="pass"></div>
+		<div class="field post-input"><label for="passRetype">Retype password: </label><input type="password" name="passRetype" id="passRetype"></div>
 		<div class="field post-input"><input class="button-green" type="submit"></div>
 	</form>
 	<?php
@@ -249,7 +286,7 @@ define("MAIL_PORT", ' . $port . ');
 			$sname = $_POST['sname'];
 			$pass = $_POST['pass'];
 
-			if ($pass = $_POST['passRetype']) {
+			if ($pass == $_POST['passRetype']) {
 				$salt = generateSalt();
 				$hash = hash("sha256", getValidData($pass) . $salt);
 
