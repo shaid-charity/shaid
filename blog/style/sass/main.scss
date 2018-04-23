@@ -82,6 +82,15 @@ select {
 	outline: none;
 }
 
+input[type="checkbox"] {
+	color: $color-lightblack;
+	background-color: $color-white;
+	border: 2px solid $color-mediumgrey;
+	outline: none;
+	height: 2rem;
+	width: 2rem;
+}
+
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus,
