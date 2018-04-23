@@ -39,6 +39,7 @@
 							<?php
 								} else {
 							?>
+							<p>Enter your email address below to subscribe to the SHAID newsletter and keep up to date with our mission.</p>
 							<form method="post" class="login-form">
 								<div class="post-input">
 									<label for="email" class="section-label">Email address</label>
