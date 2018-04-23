@@ -23,7 +23,7 @@
 	?>
 	<main id="main-content">
 		<div class="inner-container">
-			<div class="content-grid no-sidebar"> <!-- Remove no-sidebar if relevant permissions -->
+			<div class="content-grid <?php echo (is_null($user) ? 'no-sidebar' : '') ?>"> <!-- Remove no-sidebar if relevant permissions -->
 				<section id="main">
 					<div class="content-grid-title">
 						<h1>Campaigns</h1>
@@ -31,12 +31,7 @@
 					<div class="articles-list-container">
 						<section id="articles-list">
 							<?php
-								// Get all campaigns
-								if ($user == null) {
-									$query = "SELECT `id` FROM `campaigns` WHERE `end_datetime` >= now()";
-								} else {
-									$query = "SELECT `id` FROM `campaigns`";
-								}
+								$query = "SELECT `id` FROM `campaigns` WHERE `end_datetime` >= now()";
 
 								// Get some pages, iterate through them
 								// Set up the pagination
@@ -96,15 +91,17 @@
 						</ul>
 					</nav>
 				</section>
-				<!-- Add sidebar if relevant permissions:
+				<?php
+					if (!is_null($user)) {
+				?>
 				<aside id="sidebar">
 					<?php
-						/*
-						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_admin_options.php');
-						*/
+						require_once(SITE_ROOT . '/includes/sidebar_modules/campaigns_list_admin_options.php');
 					?>
 				</aside>
-				 -->
+				<?php
+					}
+				?>
 			</div>
 		</div>
 	</main>
