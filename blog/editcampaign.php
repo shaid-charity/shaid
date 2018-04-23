@@ -7,6 +7,7 @@
 
     require_once 'includes/settings.php';
 	require_once 'includes/config.php';
+	require_once 'includes/permissionCheck.php'
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,10 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
+
+		if($user == null || !grantAccess($user->getRoleID(), PAGE_NAME)){
+			die("You dont have permission to access this page");
+		}
 	?>
 	<link href="style/blog.css" rel="stylesheet">
 
