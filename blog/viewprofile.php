@@ -68,8 +68,10 @@
 						} else {
 					?>
 					<div class="articles-list-container">
-						<section class="profile-photo">
-								<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>" class="profile-photo-image">
+						<section class="profile-header">
+								<img src="<?php echo $postsUser->getAvatarPath(); ?>" alt="<?php echo $postsUser->getFullName(); ?>" class="profile-photo">
+								<h2><?php echo $postsUser->getFullName(); ?></h2>
+								<h3><?php echo $postsUser->getCompany()->getName(); ?></h3>
 						</section>
 						<?php
 						/*
