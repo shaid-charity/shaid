@@ -15,10 +15,11 @@ input[type="checkbox"] {
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-end;
+	padding: 0.5rem 0 1rem 0;
 }
 
 .search-db-form button {
-	margin: 0 0 0 0.25rem;
+	margin: 0 0 0 0.5rem;
 }
 
 table {
