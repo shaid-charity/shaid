@@ -6,5 +6,11 @@
 ?>
 					<section id="categories-list">
 						<h1>Newsletter</h1>
-						<p>Test</p>
+						<form action="newsletter.php" method="post" class="login-form">
+							<div class="post-input">
+								<label for="email" class="section-label">Email address</label>
+								<input type="email" id="email" name="email">
+							</div>
+							<button type="submit" class="button-green">Subscribe</button>
+						</form>
 					</section>
