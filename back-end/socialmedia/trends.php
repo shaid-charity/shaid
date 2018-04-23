@@ -26,12 +26,37 @@
             exit();
           }
 
-          $keywords = array("homelessness","tragedy","sleeping rough", "fire");
+          //get keywords from text file
+          $key_file = fopen("keywords.txt", "r") or die("Unable to access keywords!");
+          $key_string = fread($key_file,filesize("keywords.txt"));
+          fclose($key_file);
 
+          $current_word = "";
+          $keywords = array();
+          for($i=0; $i<strlen($key_string); $i++){
+            if($key_string[$i]== " "){
+              array_push($keywords, $current_word);
+              $current_word="";
+            }else{
+              if($i == strlen($key_string)-1){
+                array_push($keywords, $current_word);
+                $current_word="";
+              }else{
+                $current_word.=$key_string[$i];
+              }
+            }
+          }
+          $new_keywords = "";
           if(isset($_POST['add_key'])){
             $new_word = htmlspecialchars($_POST['add_keyword']);
             if(!empty($new_word)){
               array_push($keywords,$new_word);
+
+              foreach($keywords as $key){
+                $new_keywords.=$key;
+                $new_keywords.=" ";
+              }
+              file_put_contents("keywords.txt", $new_keywords);
               echo "<br>".$new_word." has been added to your list of keywords.<br>";
             }
           }
@@ -42,6 +67,11 @@
               if (($del_this = array_search($old_word, $keywords)) !== false) {
                 unset($keywords[$del_this]);
               }
+              foreach($keywords as $key){
+                $new_keywords.=$key;
+                $new_keywords.=" ";
+              }
+              file_put_contents("keywords.txt", $new_keywords);
               echo "<br>".$old_word." has been deleted from your list of keywords.<br>";
             }
           }
