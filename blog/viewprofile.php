@@ -84,8 +84,8 @@
 								?>
 							</p>
 						</section>
+						<h2>Articles</h2>
 						<section class="articles-list-container">
-							<h2>Articles</h2>
 							<section id="articles-list">
 								<?php
 									// If we are not logged in, only get published posts
