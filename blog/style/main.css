@@ -496,7 +496,7 @@ main {
 .home-newsletter-subscription-inner {
   display: flex;
   flex-direction: column;
-  justify-content: center; }
+  align-items: center; }
 
 .home-newsletter-subscription h2 {
   color: #FFFFFF; }
