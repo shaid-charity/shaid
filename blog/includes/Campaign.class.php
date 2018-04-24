@@ -109,10 +109,6 @@ class Campaign extends Content {
 	}
 
 	public function setStartDatetime($startDatetime) {
-		echo 'start first: ' . $startDatetime;
-		echo '<br />to time: ' . strtotime($startDatetime);
-		//$startDatetime = date("Y-m-d H:i:s", strtotime($startDatetime));
-		echo '<br />after: ' . $startDatetime;
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = ? WHERE `id` = ?");
 			$stmt->execute([$startDatetime, $this->getID()]);
