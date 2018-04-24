@@ -99,7 +99,10 @@ if(empty($session_number)){
     }
 
     .back-to-shaid {
-      display: fixed;
+      display: block;
+      position: fixed;
+      margin; 0;
+      padding: 1.5rem;
       bottom: 0;
       left: 0;
       width: 100%;
