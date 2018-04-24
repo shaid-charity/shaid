@@ -23,7 +23,9 @@
         <input type="text" id="del_keyword" name="del_keyword">
         <button type = "del_key" name="del_key" id="del_key">Delete Keyword </button>
       </form>
-    <?php require_once '../socialmedia/trends.php';?>
+    <?php 
+      require_once '../socialmedia/trends.php';
+    ?>
 
 </div>
 </body>
