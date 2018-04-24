@@ -75,7 +75,7 @@
 				<?php
 					} else {
 				?>
-				<li><a href="#">Admin Panel</a></li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/admin/">Admin Panel</a></li>
 				<li>&bull;</li>
 				<li><a href="javascript:void(0)" onclick="$('#logoutForm').submit();">Log out</a></li>
 				<?php

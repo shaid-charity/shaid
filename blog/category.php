@@ -84,7 +84,7 @@
 							<?php
 								// If we are not logged in, only get published posts
 								if ($user == null) {
-									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `category_id` = ? ";
+									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `category_id` = ? AND `approved` = 1 ";
 								} else {
 									$query = "SELECT `id` FROM `posts` WHERE `category_id` = ? ";
 								}
@@ -107,15 +107,24 @@
 								$stmt = $db->prepare($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 								$stmt->execute([$category->getID()]);
 									
-								foreach ($stmt as $row) {
-									$p = new Post($db, $row['id']);
+								$countQuery = $query;
+								$countQuery = str_replace('`id`', 'COUNT(*)', $countQuery);
+								
+								$count = $db->prepare($countQuery);
+								$count->execute([$category->getID()]);
 
-									// Decide which image we will show (do this here so there is less inline PHP below)
-									if ($p->getImagePath() == null) {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
-									} else {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($p->getImagePath()) . '\');';
-									}
+								if ($count->fetchColumn() <= 0) {
+									require_once(SITE_ROOT . '/includes/blog_modules/no_posts.php');
+								} else {
+									foreach ($stmt as $row) {
+										$p = new Post($db, $row['id']);
+
+										// Decide which image we will show (do this here so there is less inline PHP below)
+										if ($p->getImagePath() == null) {
+											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
+										} else {
+											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($p->getImagePath()) . '\');';
+										}
 							?>
 							
 							<div class="articles-list-entry">
@@ -137,7 +146,6 @@
 							</div>
 
 							<?php } ?>
-						</section>
 					</div>
 					<nav>
 						<ul class="pagination">
@@ -146,6 +154,10 @@
 							?>
 						</ul>
 					</nav>
+					<?php
+						}
+					?>
+					</section>
 				</section>
 				<aside id="sidebar">
 					<?php
