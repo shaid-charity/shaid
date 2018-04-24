@@ -123,36 +123,9 @@
     //email
 
     if(isset($_POST['email_button'])){
-      $to      = 'matthew.accounts@gmx.com';
+      $to      = 'testhannah1996@gmail.com';
       $subject = 'Your current trends!';
       $message = '<h2>The following of your keywords are trending:</h2>'."\n";
-
-      // Test using SwiftMailer
-      // Create the Transport
-      $transport = new Swift_SmtpTransport(EMAIL_SERVER, EMAIL_PORT, 'tls');
-      $transport->setUsername(EMAIL_ADDRESS);
-      $transport->setPassword(EMAIL_PASSWORD);
-
-      // Create a mailer
-      $mailer = new Swift_Mailer($transport);
-
-      // Get a version of the message without any HTML tags
-      // We can then send the plain text version as a backup, in case the HTML version won't load
-      $messageNoHTML = strip_tags($message);
-
-      // Create the message - recipient will be set later
-      $message = new Swift_Message($subject);
-      $message->setFrom(array(EMAIL_ADDRESS => EMAIL_NAME));
-      $message->setBody($messageNoHTML);
-      $message->addPart($message, 'text/html');
-
-      // Send
-
-      $message->setTo($to);
-
-      $sent = $mailer->send($message, $failed);
-
-      
       if(empty($key_trending)){
         $message.="Sorry, none of your keywords are trending."."\n";
       }else{
