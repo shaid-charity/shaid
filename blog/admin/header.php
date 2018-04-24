@@ -91,10 +91,6 @@ if(empty($session_number)){
       border-color: #ffdddd;
     }
 
-    input:valid {
-      border-color: #ddffdd;
-    }
-    
     .back-to-shaid {
       display: block;
       position: fixed;
