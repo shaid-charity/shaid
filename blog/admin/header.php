@@ -103,7 +103,7 @@ if(empty($session_number)){
       display: block;
       position: fixed;
       margin; 0;
-      padding: 1.5rem;
+      padding: 1.2rem;
       bottom: 0;
       left: 0;
       width: 100%;
