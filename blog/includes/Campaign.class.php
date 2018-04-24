@@ -65,18 +65,26 @@ class Campaign extends Content {
 		$this->amountRaised = $result['amount_raised'];
 	}
 
-	public function getStartDatetime() {
+	public function getNiceStartDatetime() {
 		// Format the date first
 		return date("d/m/Y \a\\t H A", strtotime($this->startDatetime));
+	}
+
+	public function getStartDatetime() {
+		return date("Y-m-d H:i:s", strtotime($this->startDatetime));
 	}
 
 	public function getStartDate() {
 		return date("d/m/Y", strtotime($this->startDatetime));
 	}
 
-	public function getEndDatetime() {
+	public function getNiceEndDatetime() {
 		// Format the date first
 		return date("d/m/Y \a\\t H A", strtotime($this->endDatetime));
+	}
+
+	public function getEndDatetime() {
+		return date("Y-m-d H:i:s", strtotime($this->endDatetime));
 	}
 
 	public function getEndDate() {
@@ -101,6 +109,10 @@ class Campaign extends Content {
 	}
 
 	public function setStartDatetime($startDatetime) {
+		echo 'start first: ' . $startDatetime;
+		echo '<br />to time: ' . strtotime($startDatetime);
+		//$startDatetime = date("Y-m-d H:i:s", strtotime($startDatetime));
+		echo '<br />after: ' . $startDatetime;
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `start_datetime` = ? WHERE `id` = ?");
 			$stmt->execute([$startDatetime, $this->getID()]);
@@ -113,6 +125,7 @@ class Campaign extends Content {
 	}
 
 	public function setEndDatetime($endDatetime) {
+		$endDatetime = date("Y-m-d H:i:s", strtotime($endDatetime));
 		try {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `end_datetime` = ? WHERE `id` = ?");
 			$stmt->execute([$endDatetime, $this->getID()]);

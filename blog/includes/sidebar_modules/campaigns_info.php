@@ -8,10 +8,10 @@
 						<h1>Dates</h1>
 						<ul>
 							<li>
-								<span><strong>Start date:</strong> <time datetime="<?php echo $campaign->getStartDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+								<span><strong>Start date:</strong> <time datetime="<?php echo $campaign->getNiceStartDatetime(); ?>"><?php echo $campaign->getNiceStartDatetime(); ?></time></span>
 							</li>
 							<li>
-								<span><strong>End date:</strong> <time datetime="<?php echo $campaign->getEndDatetime(); ?>"><?php echo $campaign->getStartDatetime(); ?></time></span>
+								<span><strong>End date:</strong> <time datetime="<?php echo $campaign->getNiceEndDatetime(); ?>"><?php echo $campaign->getNiceStartDatetime(); ?></time></span>
 							</li>
 						</ul>
 					</section>

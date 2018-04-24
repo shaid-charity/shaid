@@ -148,7 +148,7 @@
 							$campaign = $post->getCampaign();
 						?>
 						<h2><?php echo $campaign->getTitle(); ?></h2>
-						<img src="<?php echo $campaign->getImagePath(); ?>" class="sidebar-large-image">
+						<img src="<?php echo '/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath()); ?>" class="sidebar-large-image">
 
 						<p><?php echo strip_tags($campaign->getShortDescription()); ?></p>
 

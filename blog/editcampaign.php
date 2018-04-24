@@ -55,6 +55,7 @@
 						$imagePath = $uploadManager->getPath();
 
 						$campaign->setImage($imagePath);
+						$uploadManager->upload($file);
 					}
 				}
 			} else if ($_GET['action'] == 'createNew') {
