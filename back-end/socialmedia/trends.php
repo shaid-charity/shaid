@@ -1,8 +1,6 @@
 <?php
     require_once('wrapper/TwitterAPIExchange.php');
     require_once 'config.php';
-    require_once '../includes/settings.php';
-    require_once '../includes/config.php';
 
     /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
     $settings = array(
@@ -125,7 +123,6 @@
     //email
 
     if(isset($_POST['email_button'])){
-      echo 'testing';
       $to      = 'matthew.accounts@gmx.com';
       $subject = 'Your current trends!';
       $message = '<h2>The following of your keywords are trending:</h2>'."\n";
