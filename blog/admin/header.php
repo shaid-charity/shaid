@@ -165,6 +165,6 @@ if(empty($session_number)){
     </div>
   </nav>
   <!-- Return to home page button -->
-  <button class="back-to-shaid">
+  <a href="../index.php" class="back-to-shaid">
     Back to SHAID home
-  </button>
+  </a>
