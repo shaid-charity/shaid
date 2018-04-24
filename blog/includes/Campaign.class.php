@@ -105,7 +105,7 @@ class Campaign extends Content {
 	}
 
 	public function getShortDescription() {
-		return strip_tags(substr($this->getContent(), 100)) . '...';
+		return strip_tags(substr($this->getContent(), 0, 100)) . '...';
 	}
 
 	public function setStartDatetime($startDatetime) {
