@@ -84,7 +84,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $representing = getRepresenting($_POST["representative"]);
       $query = null;
       $file = $_FILES['avatar'];
-      print_r($file);
 
       if(!file_exists($file['tmp_name'])){      
         $query = $con->prepare("UPDATE users SET email=?, first_name=?, last_name=?, role_id=?, company_id=?, can_represent_company=?, biography=? WHERE user_id=?;");

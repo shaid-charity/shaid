@@ -24,7 +24,6 @@
 		if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		
 	      if($_POST["logout"] == "LOGOUT") {
-	      	echo 'session id: ' . session_id();
 	        $query = $con->prepare("DELETE FROM sessions WHERE session_id=?");
 	        $query->bind_param("s", session_id());
 	        $query->execute();
