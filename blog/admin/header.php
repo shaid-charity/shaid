@@ -106,6 +106,18 @@ if(empty($session_number)){
       bottom: 0;
       left: 0;
       width: 100%;
+      -webkit-appearance: none;
+      border: 2px solid #008194;
+      background-color: #008194;
+      color: #FFFFFF;
+      font-size: 1.1rem;
+      font-family: 'PT Sans', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      line-height: 1;
+      transition: $transition-ease;
+      cursor: pointer;
     }
   </style>
 
