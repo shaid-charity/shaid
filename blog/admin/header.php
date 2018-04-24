@@ -120,6 +120,12 @@ if(empty($session_number)){
       transition: $transition-ease;
       cursor: pointer;
     }
+
+    .back-to-shaid:hover,
+    .back-to-shaid:active {
+      background-color: #FFFFFF;
+      color: #008194;
+    }
   </style>
 
 </head>
