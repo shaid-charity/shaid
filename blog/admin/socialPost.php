@@ -22,7 +22,10 @@
     <input type = "submit" name="submit" id="search" value = "Send">
   </form>
 
-    <?php require_once '../socialmedia/post.php';?>
+    <?php
+    require_once '../socialmedia/config.php';
+    require_once '../socialmedia/post.php';
+    ?>
 
     <div class="container-fluid text-center">
       <div class="row content">
