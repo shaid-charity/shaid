@@ -96,7 +96,14 @@ if(empty($session_number)){
 
     input:required {
       border-color: #ff0000;
-  }
+    }
+
+    .back-to-shaid {
+      display: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
   </style>
 
 </head>
@@ -136,3 +143,7 @@ if(empty($session_number)){
       </form>
     </div>
   </nav>
+  <!-- Return to home page button -->
+  <button class="back-to-shaid">
+    Back to SHAID home
+  </button>
