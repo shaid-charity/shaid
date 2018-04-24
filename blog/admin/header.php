@@ -117,7 +117,7 @@ if(empty($session_number)){
       text-decoration: none;
       text-transform: uppercase;
       line-height: 1;
-      transition: $transition-ease;
+      transition: all 0.15s ease 0s;
       cursor: pointer;
     }
 
