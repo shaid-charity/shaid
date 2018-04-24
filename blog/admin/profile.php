@@ -1,4 +1,5 @@
 <?php
+$title = "Profile";
 define('CURRENT_PAGE', 'profile');
 
 require_once '../includes/settings.php';

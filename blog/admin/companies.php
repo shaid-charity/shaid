@@ -1,4 +1,5 @@
 <?php
+$title = "Companies";
 define('CURRENT_PAGE', 'companies');
 
 require_once '../includes/settings.php';
