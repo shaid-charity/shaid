@@ -533,6 +533,18 @@ footer {
 	color: $color-white;
 }
 
+.footer-contact-link {
+	text-decoration: none;
+	color: $color-white;
+	border-bottom: 1px solid transparent;
+	font-weight: normal;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:active {
+	border-bottom: 1px dotted $color-white;
+}
+
 .footer-contents {
 	padding: $component-inner-padding;
 	padding-top: 0;
