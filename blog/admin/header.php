@@ -108,7 +108,7 @@ if(empty($session_number)){
       left: 0;
       width: 100%;
       -webkit-appearance: none;
-      border: 2px solid #008194;
+      border: none;
       background-color: #008194;
       color: #FFFFFF;
       font-size: 1.1rem;
@@ -123,8 +123,7 @@ if(empty($session_number)){
 
     .back-to-shaid:hover,
     .back-to-shaid:active {
-      background-color: #FFFFFF;
-      color: #008194;
+      background-color: #00a4bc;
     }
   </style>
 
