@@ -27,7 +27,7 @@
     }
 
     //get keywords from text file
-    $key_file = fopen("keywords.txt", "r") or die("Unable to access keywords!");
+    $key_file = fopen("../keywords.txt", "r") or die("Unable to access keywords!");
     $key_string = fread($key_file,filesize("keywords.txt"));
     fclose($key_file);
 
