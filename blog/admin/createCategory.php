@@ -1,5 +1,5 @@
 <?php
-
+$title = "Create Category";
 // Define a constant to be used in header.php
 define('CURRENT_PAGE', 'contentCreateCategory');
 

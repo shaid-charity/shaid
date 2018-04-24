@@ -405,7 +405,7 @@ main {
 
 .section-item-header-image {
 	display: block;
-	height: 9rem;
+	height: 10rem;
 	background-size: cover;
 	background-position: 0% 25%;
 	background-color: $color-brandgreen;
@@ -531,6 +531,18 @@ footer {
 	padding: $component-inner-padding 0 0.8rem 0;
 	background-color: $color-lightblack;
 	color: $color-white;
+}
+
+.footer-contact-link {
+	text-decoration: none;
+	color: $color-white;
+	border-bottom: 1px solid transparent;
+	font-weight: normal;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:active {
+	border-bottom: 1px dotted $color-white;
 }
 
 .footer-contents {

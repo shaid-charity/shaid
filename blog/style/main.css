@@ -417,7 +417,7 @@ main {
 
 .section-item-header-image {
   display: block;
-  height: 9rem;
+  height: 10rem;
   background-size: cover;
   background-position: 0% 25%;
   background-color: #008194; }
@@ -515,6 +515,16 @@ footer {
   padding: 1.8rem 0 0.8rem 0;
   background-color: #1C0B19;
   color: #FFFFFF; }
+
+.footer-contact-link {
+  text-decoration: none;
+  color: #FFFFFF;
+  border-bottom: 1px solid transparent;
+  font-weight: normal; }
+
+.footer-contact-link:hover,
+.footer-contact-link:active {
+  border-bottom: 1px dotted #FFFFFF; }
 
 .footer-contents {
   padding: 1.8rem;

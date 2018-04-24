@@ -39,25 +39,31 @@
 								} else {
 									$query = "SELECT `id` FROM `posts` ";
 								}
-								try{
 
-									// Get some pages, iterate through them
-									// Set up the pagination
-									$pagination = new Pagination($db, $query, array());
-									$pagination->totalRecords();
-									$pagination->setLimitPerPage(5);
-									$currentPage = $pagination->getPage();
-	
-									// Select the correct number of records from the DB
-									if (isset($_GET['page'])) {
-										$startFrom = ($_GET['page'] - 1) * 5;
-									} else {
-										$startFrom = 0;
-									}
-	
-									// Get all posts, order by descending date
-									$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
-										
+								// Get some pages, iterate through them
+								// Set up the pagination
+								$pagination = new Pagination($db, $query, array());
+								$pagination->totalRecords();
+								$pagination->setLimitPerPage(5);
+								$currentPage = $pagination->getPage();
+
+								// Select the correct number of records from the DB
+								if (isset($_GET['page'])) {
+									$startFrom = ($_GET['page'] - 1) * 5;
+								} else {
+									$startFrom = 0;
+								}
+
+								// Get all posts, order by descending date
+								$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+								$countQuery = $query;
+								$countQuery = str_replace('`id`', 'COUNT(*)', $countQuery);
+								
+								$count = $db->query($countQuery);
+
+								if ($count->fetchColumn() <= 0) {
+									require_once(SITE_ROOT . '/includes/blog_modules/no_posts.php');
+								} else {
 									foreach ($stmt as $row) {
 										$post = new Post($db, $row['id']);
 	
@@ -67,7 +73,6 @@
 										} else {
 											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($post->getImagePath()) . '\');';
 										}
-								
 							?>
 
 							<div class="articles-list-entry">
@@ -87,11 +92,9 @@
 									</div>
 								</div>
 							</div>
-
-							<?php }} catch(Exception $e){
-								//no blog posts
-							}?>
-						</section>
+							<?php
+								}
+							?>
 					</div>
 					<nav>
 						<ul class="pagination">
@@ -100,7 +103,12 @@
 							?>
 						</ul>
 					</nav>
+					<?php
+						}
+					?>
+					</section>
 				</section>
+
 				<aside id="sidebar">
 					<?php
 						require_once(SITE_ROOT . '/includes/sidebar_modules/post_list_admin_options.php');

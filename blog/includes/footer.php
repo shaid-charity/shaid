@@ -55,8 +55,8 @@
 			</div>
 			<div class="footer-section">
 				<h2>Get in touch</h2>
-				<p><b>Tel:</b> 01207 238241</p>
-				<p><b>Email:</b> info@shaid.org.uk</p>
+				<p><b>Tel:</b> <a href="tel:01207238241" class="footer-contact-link">01207 238241</a></p>
+				<p><b>Email:</b> <a href="mailto:info@shaid.org.uk" class="footer-contact-link">info@shaid.org.uk</a></p>
 				<div class="footer-address-container">
 					<p><b>Main office:</b></p>
 					<p><span class="footer-address">94A Front St<br>Stanley Co. Durham<br>DH9 0HU</span></p>
@@ -75,7 +75,7 @@
 				<?php
 					} else {
 				?>
-				<li><a href="#">Admin Panel</a></li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/admin/">Admin Panel</a></li>
 				<li>&bull;</li>
 				<li><a href="javascript:void(0)" onclick="$('#logoutForm').submit();">Log out</a></li>
 				<?php

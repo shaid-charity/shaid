@@ -69,6 +69,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <!-- Latest compiled and minified JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.js" crossorigin="anonymous"></script>
+  <title>SHAID Admin Panel - Login</title>
 
 </head>
 <body>

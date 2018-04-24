@@ -82,23 +82,50 @@ if(empty($session_number)){
   <link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css" rel="stylesheet">
   -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans:700" rel="stylesheet">
   <style>
     .hidden {
-      display:none;
+      display:none !important;
     }
+
+    body {
+      padding-bottom: 100px;
+    }
+
     input:invalid {
       border-color: #ffdddd;
     }
 
-    input:valid {
-      border-color: #ddffdd;
+    .back-to-shaid {
+      display: block;
+      position: fixed;
+      margin; 0;
+      padding: 1.4rem;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      -webkit-appearance: none;
+      border: none;
+      background-color: #008194;
+      color: #FFFFFF;
+      font-size: 1.1rem;
+      font-family: 'PT Sans', sans-serif;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      line-height: 1;
+      transition: all 0.15s ease 0s;
+      cursor: pointer;
     }
 
-    input:required {
-      border-color: #ff0000;
-  }
+    .back-to-shaid:hover,
+    .back-to-shaid:active {
+      background-color: #018ea3;
+      text-decoration: none;
+      color: #FFFFFF;
+    }
   </style>
-
+  <title>SHAID Admin Panel - <?php echo $title ?></title>
 </head>
 
 <body>
@@ -136,3 +163,7 @@ if(empty($session_number)){
       </form>
     </div>
   </nav>
+  <!-- Return to home page button -->
+  <a href="../index.php" class="back-to-shaid">
+    Back to SHAID home
+  </a>
