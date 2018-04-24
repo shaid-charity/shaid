@@ -392,7 +392,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         modal.find("#first_name").val("");
         modal.find("#last_name").val("");
         modal.find("#userperm").val(5);
-        modal.find("#company").selectedIndex(0);
+        modal.find("#company").prop("selectedIndex", 0);
         modal.find("#biography").val("");
         $("#representative").prop("checked", false);
         modal.find("#user_details_form_action").val("ADD");
