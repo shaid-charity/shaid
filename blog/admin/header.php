@@ -85,7 +85,7 @@ if(empty($session_number)){
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|PT+Sans:700" rel="stylesheet">
   <style>
     .hidden {
-      display:none;
+      display:none !important;
     }
 
     body {

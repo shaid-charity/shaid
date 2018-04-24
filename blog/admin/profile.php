@@ -154,10 +154,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         </form>
       </div>
       <div id="controls">
-        <button type="button" id="reset" data-toggle="modal" data-target="#resetPasswordModal">Change Password</button>
-        <button type="button" id="edit" class="infoDisplay">Edit</button>
-        <button type="button" id="cancel" class="infoEdit hidden">Cancel</button>
-        <button type="button" id="save" class="infoEdit hidden">Save</button>
+        <button type="button" id="reset" class="btn btn-primary" data-toggle="modal" data-target="#resetPasswordModal">Change Password</button>
+        <button type="button" id="edit" class="infoDisplay btn btn-primary">Edit</button>
+        <button type="button" id="cancel" class="infoEdit btn btn-primary hidden">Cancel</button>
+        <button type="button" id="save" class="infoEdit btn btn-primary hidden">Save</button>
       </div>
       <form method="POST" id="pass_reset_form">
         <form method="POST" id="pass_reset_form">
