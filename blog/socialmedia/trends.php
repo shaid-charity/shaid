@@ -28,7 +28,7 @@
 
     //get keywords from text file
     $key_file = fopen(__DIR__."/keywords.txt", "r") or die("Unable to access keywords!");
-    $key_string = fread($key_file,filesize("keywords.txt"));
+    $key_string = fread($key_file,filesize(__DIR__."/keywords.txt"));
     fclose($key_file);
 
     $current_word = "";
@@ -56,7 +56,7 @@
           $new_keywords.=$key;
           $new_keywords.=" ";
         }
-        file_put_contents("keywords.txt", $new_keywords);
+        file_put_contents(__DIR__."/keywords.txt", $new_keywords);
         echo "<br>".$new_word." has been added to your list of keywords.<br>";
       }
     }
@@ -71,7 +71,7 @@
           $new_keywords.=$key;
           $new_keywords.=" ";
         }
-        file_put_contents("keywords.txt", $new_keywords);
+        file_put_contents(__DIR__."/keywords.txt", $new_keywords);
         echo "<br>".$old_word." has been deleted from your list of keywords.<br>";
       }
     }
