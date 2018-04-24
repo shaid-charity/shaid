@@ -87,7 +87,7 @@
 			} else if ($_GET['action'] == 'createNew') {
 				// Create a new post
 				// Create the blog post
-				echo 'saveType: ' . $_POST['saveType'];
+
 				$name = $_POST['title'];
 				$categoryID = $_POST['category'];
 				$content = $_POST['content'];
@@ -106,8 +106,6 @@
 				$userID = $user->getID();
 
 				if ($_POST['saveType'] == "Publish") {
-					echo 'publishing';
-
 					$post = new Post($db, null, $name, str_replace(' ', '-', strtolower($name)), $content, $imagePath, $userID, '', $categoryID);
 
 					$post->setImageCaption($imageCaption);
