@@ -47,18 +47,22 @@
 									$startFrom = 0;
 								}
 
-								// Get all categories, order by descending date
+								// Get all campaigns, order by descending date
 								$stmt = $db->query($query . "ORDER BY `start_datetime` DESC LIMIT $startFrom, 5");
-									
-								foreach ($stmt as $row) {
-									$campaign = new Campaign($db, $row['id']);
+								$count = $db->query("SELECT COUNT(*) FROM `campaigns` WHERE `end_datetime` >= now()");
 
-									// Decide which image we will show (do this here so there is less inline PHP below)
-									if ($campaign->getImagePath() == null) {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
-									} else {
-										$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath()) . '\');';
-									}
+								if ($count->fetchColumn() <= 0) {
+									require_once(SITE_ROOT . '/includes/blog_modules/no_active_campaigns.php');
+								} else {		
+									foreach ($stmt as $row) {
+										$campaign = new Campaign($db, $row['id']);
+
+										// Decide which image we will show (do this here so there is less inline PHP below)
+										if ($campaign->getImagePath() == null) {
+											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/assets/img/placeholder/blog_image.jpg\');';
+										} else {
+											$imageCSS = 'background-image: url(\'/' . INSTALLED_DIR . '/' . htmlentities($campaign->getImagePath()) . '\');';
+										}
 							?>
 
 							<div class="articles-list-entry">
@@ -81,7 +85,7 @@
 							</div>
 
 							<?php } ?>
-						</section>
+						
 					</div>
 					<nav>
 						<ul class="pagination">
@@ -90,7 +94,12 @@
 							?>
 						</ul>
 					</nav>
+					<?php
+							}
+						?>
+						</section>
 				</section>
+
 				<?php
 					if (!is_null($user)) {
 				?>

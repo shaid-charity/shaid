@@ -43,7 +43,7 @@ class Pagination {
 
 		$this->totalNumRecords = $stmt->rowCount();
 
-		if (!$this->totalNumRecords) {
+		if (!$this->totalNumRecords && substr($this->query, 0, 6) != 'SELECT') {
 			throw new Exception('No records were found!');
 		}
 	}
