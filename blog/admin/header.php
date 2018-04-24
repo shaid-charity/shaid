@@ -124,6 +124,8 @@ if(empty($session_number)){
     .back-to-shaid:hover,
     .back-to-shaid:active {
       background-color: #018ea3;
+      text-decoration: none;
+      color: #FFFFFF;
     }
   </style>
 
