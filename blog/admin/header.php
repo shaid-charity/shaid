@@ -123,7 +123,7 @@ if(empty($session_number)){
 
     .back-to-shaid:hover,
     .back-to-shaid:active {
-      background-color: #00a4bc;
+      background-color: #0898ad;
     }
   </style>
 
