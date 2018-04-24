@@ -18,7 +18,7 @@
 			$stmt = $db->prepare("DELETE FROM `friends` WHERE `email` = ?");
 			$stmt->execute([$_POST['email']]);
 		}
-		if (isset($_POST['email']) && !isset($_GET['action'])) {
+		if (isset($_POST['email']) && $_POST['email'] != '' && !isset($_GET['action'])) {
 			$email = $_POST['email'];
 			$added = false;
 
@@ -56,6 +56,17 @@
 									<input type="submit" class="button-dark" value="Unsubscribe">
 								</form>
 							</p>
+							<?php
+								} else if (isset($_POST['email']) && $_POST['email'] == '') {
+							?>
+							<p>You mus provide an email address!</p>
+							<form method="post" class="login-form">
+								<div class="post-input">
+									<label for="email" class="section-label">Email address</label>
+									<input type="email" id="email" name="email" placeholder="email@example.com">
+								</div>
+								<button type="submit" class="button-green">Subscribe</button>
+							</form>
 							<?php
 								} else if (isset($_POST['email']) && !$added  && !isset($_GET['action'])) {
 							?>
