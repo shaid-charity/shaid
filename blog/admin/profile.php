@@ -88,6 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="form-group">
                   <label for="pass" class="form-control-label">Password:</label>
                   <input type="password" class="form-control" id="pass" name="pass" required>
+                  <small class="form-text text-muted">Must contain at least one digit, capital letter, and be at least 8 characters long</small>
                </div>
                <div class="form-group">
                   <label for="passRetype" class="form-control-label">Retype password:</label>

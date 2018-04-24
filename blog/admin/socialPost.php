@@ -22,19 +22,23 @@
     <input type = "submit" name="submit" id="search" value = "Send">
   </form>
 
-    <?php require_once '../socialmedia/post.php';?>
+    <?php
+    require_once '../socialmedia/config.php';
+    require_once '../socialmedia/post.php';
+    ?>
 
     <div class="container-fluid text-center">
       <div class="row content">
         <div class="col-sm-6 text-left">
 
-        <a class="twitter-timeline" data-width="220" data-height="300" href="https://twitter.com/test19022018?ref_src=twsrc%5Etfw">Tweets by test19022018</a>
+        <a class="twitter-timeline" data-width="220" data-height="500" href="https://twitter.com/<?php echo $twitter_name; ?>?ref_src=twsrc%5Etfw">Tweets by <?php echo $twitter_name; ?></a>
         <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="col-sm-6 text-left">
-        <div class="fb-page" data-href="https://www.facebook.com/SHAIDTest" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
-          <blockquote cite="https://www.facebook.com/SHAIDTest" class="fb-xfbml-parse-ignore">
-          <a href="https://www.facebook.com/SHAIDTest">Test2</a>
+
+        <div class="fb-page" data-href="https://www.facebook.com/<?php echo $page_name; ?>" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="false">
+          <blockquote cite="https://www.facebook.com/<?php echo $page_name; ?>" class="fb-xfbml-parse-ignore">
+          <a href="https://www.facebook.com/<?php echo $page_name; ?>"><?php echo $page_name; ?></a>
           </blockquote>
         </div>
         </div>
@@ -42,5 +46,14 @@
     </div>
   </div>
   </body>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12&appId=<?php echo $app_id; ?>&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+  }
+  (document, 'script', 'facebook-jssdk'));
+</script>
 </html>
 
