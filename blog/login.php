@@ -28,7 +28,7 @@
 	        $query->bind_param("s", session_id());
 	        $query->execute();
 					$query->close();
-					echo "<script>window.location.replace('login.php')</script>";
+					echo "<script>$('.admin-header');</script>";
 					die();
 	        //header("Location: login.php");
 	      }

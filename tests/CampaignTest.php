@@ -72,6 +72,13 @@ final class CampaignTest extends TestCase {
 		$this->assertEquals('A new name', $cam->getName());
 	}
 
+	public function testSetStartDatetime() {
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setStartDatetime(date("Y-m-d H:i:s"));
+
+		
+	}
+
 	public function testDelete() {
 		$cam = new Campaign($this->db, self::$newID);
 		$cam->delete();
