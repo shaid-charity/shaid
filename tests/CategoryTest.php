@@ -79,6 +79,26 @@ final class CategoryTest extends TestCase {
 		$this->assertEquals('A new name', $cat->getName());
 	}
 
+	public function testSetNameEmpty() {
+		$cat = new Campaign($this->db, self::$newID);
+		$cat->setName('');
+
+		$this->assertEquals('', $cat->getTitle());
+	}
+
+	public function testSetNameLong() {
+		$cat = new Campaign($this->db, self::$newID);
+		$cat->setName(str_repeat('i', 999999));
+
+		$this->assertEquals(str_repeat('i', 999999), $cat->getTitle());
+	}
+
+	public function testSetNameTooLong() {
+		$this->expectException(Exception::class);
+		$cat = new Campaign($this->db, self::$newID);
+		$cat->setName(str_repeat('i', 9999999));
+	}
+
 	public function testDelete() {
 		$cat = new Category($this->db, self::$newID);
 		$cat->delete();

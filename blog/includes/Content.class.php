@@ -148,7 +148,7 @@ abstract class Content extends DBRecord {
 			$stmt = $this->db->prepare("UPDATE `$this->table` SET `title` = ? WHERE `id` = ?");
 			$stmt->execute([$name, $this->id]);
 		} catch (PDOException $e) {
-			echo 'Content.class.php setName() error: <br />';
+			//echo 'Content.class.php setName() error: <br />';
 			throw new Exception($e->getMessage());
 		}
 

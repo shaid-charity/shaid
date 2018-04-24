@@ -17,7 +17,7 @@ final class CampaignTest extends TestCase {
 		$db->setAttribute( PDO::ATTR_EMULATE_PREPARES, false);
 
 		// Create a test category
-		$db->query("INSERT INTO `campaigns`(name) VALUES ('Manual Campaign')");
+		$db->query("INSERT INTO `campaigns`(title) VALUES ('Manual Campaign')");
 		self::$newID = $db->lastInsertId();
 	}
 
@@ -36,7 +36,7 @@ final class CampaignTest extends TestCase {
 	}
 
 	public function testCreate() {
-		$cam = new Campaign($db, null, "Test Campaign", str_replace(' ', '-', strtolower("Test Campaign")), "content", "imagePath", 1, "", """", 500, 0, "imageCaption");
+		$cam = new Campaign($this->db, null, "Test Campaign", str_replace(' ', '-', strtolower("Test Campaign")), "content", "imagePath", 1, "", "", 500, 0, "imageCaption");
 
 		$this->assertInstanceOf(
 			Campaign::class,
@@ -59,27 +59,70 @@ final class CampaignTest extends TestCase {
 		$this->assertEquals(self::$newID, $cam->getID());
 	}
 
+	public function testGetIDNotExist() {
+		$this->expectException(Exception::class);
+		$cam = new Campaign($this->db, 1111111);
+	}
+
 	public function testGetName() {
 		$cam = new Campaign($this->db, self::$newID);
 
-		$this->assertEquals('Manual Campaign', $cam->getName());
+		$this->assertEquals('Manual Campaign', $cam->getTitle());
 	}
 
 	public function testSetName() {
 		$cam = new Campaign($this->db, self::$newID);
 		$cam->setName('A new name');
 
-		$this->assertEquals('A new name', $cam->getName());
+		$this->assertEquals('A new name', $cam->getTitle());
 	}
 
-	public function testDelete() {
+	public function testSetNameEmpty() {
 		$cam = new Campaign($this->db, self::$newID);
-		$cam->delete();
+		$cam->setName('');
 
+		$this->assertEquals('', $cam->getTitle());
+	}
+
+	public function testSetNameLong() {
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setName(str_repeat('i', 999999));
+
+		$this->assertEquals(str_repeat('i', 999999), $cam->getTitle());
+	}
+
+	public function testSetNameTooLong() {
 		$this->expectException(Exception::class);
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setName(str_repeat('i', 9999999));
+	}
 
-		// Try to get the campaign with the ID of the one we just deleted. Should raise an exception
-		$c = new Campaign($this->db, self::$newID);
+	public function testSetContent() {
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setContent('Some content.');
+
+		$this->assertEquals('Some content.', $cam->getContent());
+	}
+
+	public function testSetContentEmpty() {
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setContent('');
+
+		$this->assertEquals('', $cam->getContent());
+	}
+
+	public function testSetContentLong() {
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setContent(str_repeat('i', 999999));
+
+		$this->assertEquals(str_repeat('i', 999999), $cam->getContent());
+	}
+
+	public function testSetContentUnicode() {
+		$cam = new Campaign($this->db, self::$newID);
+		$cam->setContent('©µÝ');
+
+		$this->assertEquals('©µÝ', $cam->getContent());
 	}
 }
 

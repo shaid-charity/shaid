@@ -141,7 +141,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <td>Profile Picture:</td>
               <td class="infoDisplay"><img src="<?php echo $avatar; ?>"><?php echo $avatar;?></td>
               <td class="infoEdit hidden">
-  		          <input type="file" class="custom-file-input" id="avatar" name="avatar" value="<?php echo $avatar;?>">                
+  		          <input type="file" class="form-control-file" id="avatar" name="avatar" value="<?php echo $avatar;?>">                
               </td>
             </tr>
             <tr>

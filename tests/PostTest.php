@@ -129,6 +129,16 @@ final class PostTest extends TestCase {
 			false
 		);
 	}
+
+	public function testSetPblishedIncorrect() {
+		$post = new Post($this->db, null, 'Create Test Post', 'create', 'Creation worked!', 'test.jpg', 1, '', self::$categoryID);
+		$post->setPublished("boop");
+
+		$this->assertEquals(
+			$post->isPublished(),
+			true
+		);
+	}
 }
 
 ?>
