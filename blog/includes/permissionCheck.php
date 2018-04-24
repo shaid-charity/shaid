@@ -10,6 +10,7 @@ function getPermissionsArray(){
     "editCategory" => 2,
     "newEvent" => 2,
     "editEvent" => 2,
+    "contactDB" => 2,
   );
 }
 

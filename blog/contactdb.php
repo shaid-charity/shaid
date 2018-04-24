@@ -1,10 +1,13 @@
 <?php
+	define('PAGE_NAME', 'contactDB');
+
     $root=pathinfo($_SERVER['SCRIPT_FILENAME']);
     define('BASE_FOLDER',  basename($root['dirname']));
     define('SITE_ROOT',    realpath(dirname(__FILE__)));
 
     require_once 'includes/settings.php';
 	require_once 'includes/config.php';
+	require_once 'includes/permissionCheck.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,6 +16,10 @@
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
 		require_once(SITE_ROOT . '/includes/admin/admin_head.php');
+
+		if($user == null || !grantAccess($user->getRoleID(), PAGE_NAME)){
+			header('Location: permissionserror.php');
+		}
 	?>
 	<link href="style/blog.css" rel="stylesheet">
 
