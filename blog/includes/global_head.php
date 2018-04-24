@@ -91,3 +91,5 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
 	<!-- Internal stylesheets -->
 	<link rel="stylesheet" href="/<?php echo INSTALLED_DIR; ?>/style/main.css">
+  <link rel="icon" type="image/png" href="/<?php echo INSTALLED_DIR; ?>/assets/favicon/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/<?php echo INSTALLED_DIR; ?>/assets/favicon/favicon-16x16.png" sizes="16x16" />
