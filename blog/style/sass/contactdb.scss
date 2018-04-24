@@ -1,0 +1,61 @@
+// Import master
+@import "_master.scss";
+
+input[type="checkbox"] {
+	height: 1.5rem;
+	width: 1.5rem;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.search-db-form {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	padding: 0.5rem 0 1rem 0;
+}
+
+.search-db-form button {
+	margin: 0 0 0 0.5rem;
+}
+
+table {
+  	width: 100%;
+}
+
+table th {
+	text-align: left;
+	border-bottom: 2px solid #DDDDDD;
+	font-family: $heading-fonts;
+	font-size: 1.4rem;
+}
+
+table tr:first-child {
+}
+
+table td:first-child {
+	width: 1px !important;
+}
+
+thead th:nth-child(1) {
+  	width: 50%;
+}
+
+thead th:nth-child(2) {
+  	width: 20%;
+}
+
+thead th:nth-child(3) {
+  	width: 15%;
+}
+
+thead th:nth-child(4) {
+  	width: 35%;
+}
+
+th, td {
+  	padding: 20px;
+}

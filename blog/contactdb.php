@@ -22,39 +22,7 @@
 		}
 	?>
 	<link href="style/blog.css" rel="stylesheet">
-
-	<style>
-		/* spacing */
-
-		table {
-		  	width: 100%;
-		  	text-align: center;
-		}
-
-		table td:first-child {
-    		width: 1px !important;
-		}
-
-		thead th:nth-child(1) {
-		  	width: 50%;
-		}
-
-		thead th:nth-child(2) {
-		  	width: 20%;
-		}
-
-		thead th:nth-child(3) {
-		  	width: 15%;
-		}
-
-		thead th:nth-child(4) {
-		  	width: 35%;
-		}
-
-		th, td {
-		  	padding: 20px;
-		}
-	</style>
+	<link href="style/contactdb.css" rel="stylesheet">
 </head>
 <body>
 	<?php
@@ -73,7 +41,7 @@
 		// If no search term is entered, just match anything
 		if (!isset($_GET['term'])) {
 			$searchTerm = '%';
-			$searchText = 'Search...';
+			$searchText = 'Search contacts';
 		} else {
 			$searchTerm = '%' . $_GET['term'] . '%';
 			$searchText = $_GET['term'];
@@ -113,29 +81,27 @@
 									require_once(SITE_ROOT . '/includes/admin/admin_contact_deleted.php');
 								}
 							?>
-							<form class="" action="contactdb.php" method="get">
-								<div class="">
-									<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php echo $searchText; ?>">
-									<button type="submit" class="button-green">Submit</button>
-								</div>
+							<form class="search-db-form" action="contactdb.php" method="get">
+								<input class="form-control" type="text" id="contactSearch" name="term" placeholder="<?php if ($searchText == null) { echo "Search contacts"; } else { echo $searchText; } ?>">
+								<button type="submit" class="button-green">Search</button>
 							</form>
 						</div>
 
 						<form id="emailForm" action="sendemail.php" method="post">
-							<table class="table table-hover table-striped" id="contactDB">
+							<table class="table table-hover table-striped" id="contactDB" cellspacing="0">
 								<tr>
 									<th>Email</th>
 									<th>Forename</th>
 									<th>Surname</th>
 									<th>Type</th>
-									<th>Delete Email</th>
-									<th>Select</th> <!-- TODO: Not happy with name of column -->
+									<th class="center-text">Delete Email</th>
+									<th class="center-text">Select</th> <!-- TODO: Not happy with name of column -->
 								</tr>
 
 								<?php
 
 									foreach ($friends as $f) {
-										echo '<tr><td>' . $f->getEmail() . '</td><td>' . $f->getForename() . '</td><td>' . $f->getSurname() . '</td><td>' . $f->getType() . '<td><a class="delete" href="contactDB.php?action=delete&id=' . $f->getID() . '">Delete</a></td><td><input class="checkbox" type="checkbox" name="' . $f->getEmail() . '" value="' . $f->getEmail() . '"></tr>';
+										echo '<tr><td>' . $f->getEmail() . '</td><td>' . $f->getForename() . '</td><td>' . $f->getSurname() . '</td><td>' . $f->getType() . '<td class="center-text"><a class="delete" href="contactDB.php?action=delete&id=' . $f->getID() . '">Delete</a></td><td class="center-text"><input class="checkbox" type="checkbox" name="' . $f->getEmail() . '" value="' . $f->getEmail() . '"></tr>';
 									}
 
 								?>
@@ -152,12 +118,12 @@
 
 								</ul>
 							</nav>
-							<button class="button-green" type="submit" name="sendEmail">Send email to selected</button> <label for="sendEmail" id="numChecked">0</label> <label>currently selected emails</label>
+							<button class="button-dark" type="submit" name="sendEmail">Send email to selected</button> <label for="sendEmail" id="numChecked" style="padding-left: 0.5rem;">0</label> <label>currently selected emails</label>
 						</form>
 
 						<form action="sendemail.php" method="post">
 							<input type="hidden" name="type" value="all">
-							<button class="button-dark" type="submit" value="Send email to all contacts">Send email to all contacts</button>
+							<button class="button-green" type="submit" value="Send email to all contacts">Send email to all contacts</button>
 						</form>
 					</section>
 				</section>
