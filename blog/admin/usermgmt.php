@@ -1,4 +1,5 @@
 <?php
+$title = "User Management";
 define('CURRENT_PAGE', 'usermgmt');
 
 require_once '../includes/settings.php';

@@ -125,7 +125,7 @@ if(empty($session_number)){
       color: #FFFFFF;
     }
   </style>
-
+  <title>SHAID Admin Panel - <?php echo $title ?></title>
 </head>
 
 <body>
