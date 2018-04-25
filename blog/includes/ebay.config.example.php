@@ -5,10 +5,10 @@ return [
     'ebayUsername' => 'USERNAME_HERE',
     'production' => [
         'credentials' => [
-            'devId' => '',
-            'appId' => '',
-            'certId' => '',
+            'devId' => 'DEV_ID_HERE',
+            'appId' => 'APP_ID_HERE',
+            'certId' => 'CERT_ID_HERE',
         ],
-        'userAuthToken' => ''
+        'userAuthToken' => 'USER_AUTH_TOKEN_HERE'
     ]
 ];
