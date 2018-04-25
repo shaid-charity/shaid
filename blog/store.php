@@ -26,7 +26,7 @@
 		$config = require 'includes/ebay.config.php';
 
 		// Set user to view items of
-		$USER = 'sofas4less';
+		$USER = $config['ebayUsername'];
 
 		// The namespaces provided by the SDK.
 		use \DTS\eBaySDK\Constants;
@@ -48,7 +48,7 @@
 
 		// An user token is required when using the Trading service.
 		$request->RequesterCredentials = new Types\CustomSecurityHeaderType();
-		$request->RequesterCredentials->eBayAuthToken = $config[$MODE]['userAuthToken'];
+		$request->RequesterCredentials->eBayAuthToken = $config['production']['userAuthToken'];
 
 		// Set pagination info
 		$request->Pagination = new Types\PaginationType();
