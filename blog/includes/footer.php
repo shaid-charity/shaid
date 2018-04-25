@@ -68,6 +68,8 @@
 			<ul>
 				<li><a href="/<?php echo INSTALLED_DIR; ?>/terms-conditions.php">Terms and Conditions</a></li>
 				<li>&bull;</li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/privacy-policy.php">Privacy Policy</a></li>
+				<li>&bull;</li>
 				<?php
 					if ($user == null) {
 				?>
