@@ -26,7 +26,7 @@
 		$config = require 'includes/ebay.config.php';
 
 		// Set user to view items of
-		$USER = $config['ebayUsername'];
+		$USER = 'sofas4less';
 
 		// The namespaces provided by the SDK.
 		use \DTS\eBaySDK\Constants;
