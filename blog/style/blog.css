@@ -390,7 +390,7 @@
   border: 2px solid #999999 !important;
   box-sizing: border-box !important; }
 
-.mce-btn-group {
+.mce-btn-group div {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: wrap !important; }

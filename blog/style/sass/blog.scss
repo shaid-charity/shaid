@@ -503,7 +503,7 @@ $rule-line-thickness: 4px;
 }
 
 // Flex toolbar to stop page breaking when small
-.mce-btn-group {
+.mce-btn-group div {
 	display: flex !important;
 	flex-direction: row !important;
 	flex-wrap: wrap !important;
