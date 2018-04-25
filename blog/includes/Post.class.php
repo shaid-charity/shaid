@@ -221,8 +221,8 @@ class Post extends Content {
 	public function setPublished($published) {
 		if ($published) {
 			try {
-				$stmt = $this->db->prepare("UPDATE `$this->table` SET `published` = ? WHERE `id` = ?");
-				$stmt->execute([1, $this->getID()]);
+				$stmt = $this->db->prepare("UPDATE `$this->table` SET `published` = ? , `approved` = ? WHERE `id` = ?");
+				$stmt->execute([1, 0, $this->getID()]);
 			} catch (PDOException $e) {
 				echo 'Post.class.php setPublished() error: <br />';
 				echo $e->getMessage();
