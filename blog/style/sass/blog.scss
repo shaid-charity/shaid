@@ -503,10 +503,10 @@ $rule-line-thickness: 4px;
 }
 
 // Flex toolbar to stop page breaking when small
-#mceu_27-body {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+.mce-btn-group {
+	display: flex !important;
+	flex-direction: row !important;
+	flex-wrap: wrap !important;
 }
 
 
