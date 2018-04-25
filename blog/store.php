@@ -25,11 +25,8 @@
 		// Load config
 		$config = require 'includes/ebay.config.php';
 
-		// Set mode to use with ebay-sdk
-		$MODE = 'production';
-
 		// Set user to view items of
-		$USER = 'sofas4less';
+		$USER = $config['ebayUsername'];
 
 		// The namespaces provided by the SDK.
 		use \DTS\eBaySDK\Constants;
@@ -39,7 +36,7 @@
 		
 		// Create the service object.
 		$service = new Services\TradingService([
-		    'credentials' => $config[$MODE]['credentials'],
+		    'credentials' => $config['production']['credentials'],
 		    'siteId'      => Constants\SiteIds::GB
 		]);
 

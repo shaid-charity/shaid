@@ -2,14 +2,7 @@
 
 // eBay settings for store.php
 return [
-    'sandbox' => [
-        'credentials' => [
-            'devId' => '',
-            'appId' => '',
-            'certId' => '',
-        ],
-        'userAuthToken' => ''
-    ],
+    'ebayUsername' => 'USERNAME_HERE';
     'production' => [
         'credentials' => [
             'devId' => '',
