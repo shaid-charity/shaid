@@ -383,13 +383,12 @@
   font-size: 1rem; }
 
 .mce-tinymce {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  outline: none;
-  border: 2px solid #999999;
-  border-width: 2px !important;
-  box-sizing: border-box; }
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border: 2px solid #999999 !important;
+  box-sizing: border-box !important; }
 
 #mceu_27-body {
   display: flex;
