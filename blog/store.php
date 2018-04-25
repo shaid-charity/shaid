@@ -9,6 +9,7 @@
 	<title>SHAID - Store</title>
 	<?php
 		require_once(SITE_ROOT . '/includes/global_head.php');
+		require_once(SITE_ROOT . '/includes/admin/admin_head.php');		
 	?>
 	<link href="./style/blog.css" rel="stylesheet">
 	<link href="./style/store.css" rel="stylesheet">
@@ -16,6 +17,7 @@
 <body>
 	<?php
 		require_once(SITE_ROOT . '/includes/header.php');
+		require_once(SITE_ROOT . '/includes/admin/admin_header.php');				
 
 		/* ----- EBAY SETUP ----- */
 
