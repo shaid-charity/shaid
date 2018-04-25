@@ -446,7 +446,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $(".view_posts_button").on("click", function(event){
       var userID = $(this).data("userid");
       //alert("display posts for user id: " + userID);
-      window.location.replace("viewPosts.php?user_id=" + userID);
+      window.location.replace("../viewPosts.php?user_id=" + userID);
     });
     $("#userperm").on("change", function(){
       var current_role = $("option:selected", this).val();
