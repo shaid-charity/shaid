@@ -3,7 +3,7 @@
   define('CURRENT_PAGE', 'socialTrends');
 
   require_once '../includes/settings.php';
-  require_once '../includes/social.config.php';
+  require_once '../includes/config.php';
   require_once 'header.php';
 ?>
 <div class="text-left container">
