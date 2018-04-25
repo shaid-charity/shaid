@@ -2,7 +2,7 @@
 
 // eBay settings for store.php
 return [
-    'ebayUsername' => 'USERNAME_HERE';
+    'ebayUsername' => 'USERNAME_HERE',
     'production' => [
         'credentials' => [
             'devId' => '',
