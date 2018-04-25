@@ -1,6 +1,6 @@
 <?php
     require_once('wrapper/TwitterAPIExchange.php');
-    require_once 'config.php';
+    require_once 'social.config.php';
 
     /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
     $settings = array(
