@@ -38,7 +38,7 @@
 									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `approved` = 1 ";
 									
 								} else {
-									$query = "SELECT `id` FROM `posts` WHERE user_id= ? ";
+									$query = "SELECT `id` FROM `posts` WHERE `user_id`= ? ";
 									if(isset($_GET['user_id'])){
 										$params = array($_GET['user_id']);
 									} else {
@@ -61,11 +61,14 @@
 								}
 
 								// Get all posts, order by descending date
-								$stmt = $db->query($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+								$stmt = $db->prepare($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
+								$stmt->execute($params);
 								$countQuery = $query;
-								$countQuery = str_replace('`id`', 'COUNT(*)', $countQuery);
-								
-								$count = $db->query($countQuery);
+								//$countQuery = str_replace('`id`', 'COUNT(*)', $countQuery);
+								$countQuery = preg_replace('`id`', 'COUNT(*)', $countQuery, $limit=1);
+
+								$count = $db->prepare($countQuery);
+								$count->execute($params);
 
 								if ($count->fetchColumn() <= 0) {
 									require_once(SITE_ROOT . '/includes/blog_modules/no_posts.php');
