@@ -64,8 +64,7 @@
 								$stmt = $db->prepare($query . "ORDER BY `datetime-last-modified` DESC LIMIT $startFrom, 5");
 								$stmt->execute($params);
 								$countQuery = $query;
-								//$countQuery = str_replace('`id`', 'COUNT(*)', $countQuery);
-								$countQuery = preg_replace('`id`', 'COUNT(*)', $countQuery, $limit=1);
+								$countQuery = str_replace('`id`', 'COUNT(*)', $countQuery);
 
 								$count = $db->prepare($countQuery);
 								$count->execute($params);
