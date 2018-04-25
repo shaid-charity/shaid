@@ -32,17 +32,23 @@
 						<section id="articles-list">
 							<?php
 								// If we are not logged in, only get published and approved posts
+								$params = array();
 								if ($user == null) {
 									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 ";
 									$query = "SELECT `id` FROM `posts` WHERE `published` = 1 AND `approved` = 1 ";
 									
 								} else {
-									$query = "SELECT `id` FROM `posts` ";
+									$query = "SELECT `id` FROM `posts` WHERE user_id= ? ";
+									if(isset($_GET['user_id'])){
+										$params = array($_GET['user_id']);
+									} else {
+										$params = array($user->getID());
+									}
 								}
 
 								// Get some pages, iterate through them
 								// Set up the pagination
-								$pagination = new Pagination($db, $query, array());
+								$pagination = new Pagination($db, $query, $params);
 								$pagination->totalRecords();
 								$pagination->setLimitPerPage(5);
 								$currentPage = $pagination->getPage();
