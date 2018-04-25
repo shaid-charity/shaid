@@ -23,7 +23,7 @@
   </form>
 
     <?php
-    require_once '../socialmedia/config.php';
+    require_once '../socialmedia/social.config.php';
     require_once '../socialmedia/post.php';
     ?>
 
@@ -56,4 +56,3 @@
   (document, 'script', 'facebook-jssdk'));
 </script>
 </html>
-

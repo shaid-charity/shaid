@@ -3,8 +3,8 @@
   define('CURRENT_PAGE', 'socialTrends');
 
   require_once '../includes/settings.php';
-  require_once '../includes/config.php';
-  require_once 'header.php'; 
+  require_once '../includes/social.config.php';
+  require_once 'header.php';
 ?>
 <div class="text-left container">
     <div class="page-header">
@@ -23,7 +23,7 @@
         <input type="text" id="del_keyword" name="del_keyword">
         <button type = "del_key" name="del_key" id="del_key">Delete Keyword </button>
       </form>
-    <?php 
+    <?php
       require_once '../socialmedia/trends.php';
     ?>
 
