@@ -16,12 +16,24 @@
     </form>
       <br>
       <br>
-      <form id=form2 method = "post" >
-        <input type="text" id="add_keyword" class="form-control" name="add_keyword">
-        <button type = "add_key" name="add_key" id="add_key" class="btn btn-primary">Add Keyword </button>
-        <br>
-        <input type="text" id="del_keyword" class="form-control" name="del_keyword">
-        <button type = "del_key" name="del_key" id="del_key" class="btn btn-danger">Delete Keyword </button>
+      <form id=form2 class="form-inline" method = "post" >
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" id="add_keyword" class="form-control" name="add_keyword">
+            <span class="input-group-append">
+              <button type = "add_key" name="add_key" id="add_key" class="btn btn-primary">Add Keyword </button>
+            </span>
+          </div>
+        </div>
+        <br/>
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" id="del_keyword" class="form-control" name="del_keyword">
+            <span class="input-group-append">
+              <button type = "del_key" name="del_key" id="del_key" class="btn btn-danger">Delete Keyword </button>
+            </span>
+          </div>
+        </div>
       </form>
     <?php
       require_once '../socialmedia/trends.php';
