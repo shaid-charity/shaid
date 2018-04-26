@@ -16,7 +16,7 @@
     </form>
       <br>
       <br>
-      <form id=form2 class="form-inline" method = "post" >
+      <form id=form2 method = "post" >
         <div class="form-group">
           <div class="input-group">
             <input type="text" id="add_keyword" class="form-control" name="add_keyword">
