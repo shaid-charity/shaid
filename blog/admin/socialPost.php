@@ -20,8 +20,7 @@
     <div class="form-group">
       <input id="facebookCheckbox" name="test[]" class="form-check-input" value='Facebook' type="checkbox">
       <label for="facebookCheckbox" class="form-check-label">Facebook</label>
-    </div>
-    <div class="form-group">
+      
       <input id="twitterCheckbox" name="test[]" class="form-check-input" value='Twitter' type="checkbox">
       <label for="twitterCheckbox" class="form-check-label">Twitter</label>
     </div>
