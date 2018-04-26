@@ -16,6 +16,7 @@ function getPermissionArray(){
     "/socialTrends.php" => 2,
     "/profile.php" => 5,
     "/sendEmail.php" => 2,
+    "/index.php" => 5
   );
 }
 

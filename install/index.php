@@ -293,7 +293,7 @@ define("MAIL_PORT", ' . $port . ');
 				$stmt = $db->prepare("INSERT INTO users(first_name, last_name, email, role_id, pass_salt, pass_hash, guest_blogger, can_represent_company, avatar, biography, disabled) VALUES(?,?,?,1,?,?,0,0,'','',0)");
 				$stmt->execute([$fname, $sname, $email, $salt, $hash]);
 	?>
-	<div class="instructions">Installation has now finished. Remove the /install/ folder from the server.</div>
+	<div class="instructions">Installation has now finished. <strong>We recommend removing the /install/ folder from the server and reading section 7 of the User Manual to setup Facebook, Twitter, eBay and PayPal integration.</strong></div>
 	<form action="<?php echo $_SERVER['HTTP_HOST']; ?>" method="post">
 		<div class="post-input"><input class="button-green" type="submit" value="Finish"></div>
 	</form>
