@@ -15,7 +15,7 @@
     <br />
     Enter text below:
     <br>
-    <textarea  id= "input" class="form-control" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
+    <textarea  id= "input" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
     <br>
     <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
     <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
