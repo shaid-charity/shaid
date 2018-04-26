@@ -12,16 +12,16 @@
     </div>
     <br />
     <form id=forme method = "post" >
-      <button type="email_button" id="email_button" name ="email_button"> Email Current Top Trends</button>
+      <button type="email_button" id="email_button" class="btn btn-primary" name ="email_button"> Email Current Top Trends</button>
     </form>
       <br>
       <br>
       <form id=form2 method = "post" >
-        <input type="text" id="add_keyword" name="add_keyword">
-        <button type = "add_key" name="add_key" id="add_key">Add Keyword </button>
+        <input type="text" id="add_keyword" class="form-control" name="add_keyword">
+        <button type = "add_key" name="add_key" id="add_key" class="btn btn-primary">Add Keyword </button>
         <br>
-        <input type="text" id="del_keyword" name="del_keyword">
-        <button type = "del_key" name="del_key" id="del_key">Delete Keyword </button>
+        <input type="text" id="del_keyword" class="form-control" name="del_keyword">
+        <button type = "del_key" name="del_key" id="del_key" class="btn btn-danger">Delete Keyword </button>
       </form>
     <?php
       require_once '../socialmedia/trends.php';
