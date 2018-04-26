@@ -8,18 +8,24 @@
 
 ?>
 <div class="text-left container">
-  <form id=form1 method = "post" >
+  <form id="form1" method = "post" >
     <div class="page-header">
       <h1>Posting to social media</h1>
     </div>
     <br />
     Enter text below:
     <br>
-    <textarea  id= "input" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
+    <textarea  id= "input" class="form-control" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
     <br>
-    <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
-    <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
-    <input type = "submit" name="submit" id="search" value = "Send">
+    <div class="form-group">
+      <input id="facebookCheckbox" name="test[]" class="form-check-input" value='Facebook' type="checkbox">
+      <label for="facebookCheckbox" class="form-check-label">Facebook</label>
+    </div>
+    <div class="form-group">
+      <input id="twitterCheckbox" name="test[]" class="form-check-input" value='Twitter' type="checkbox">
+      <label for="twitterCheckbox" class="form-check-label">Twitter</label>
+    </div>
+    <input type = "submit" name="submit" id="search" class="btn btn-primary" value = "Send">
   </form>
 
     <?php
