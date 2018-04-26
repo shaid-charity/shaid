@@ -17,14 +17,9 @@
     <br>
     <textarea  id= "input" class="form-control" name = "input" form = "form1" spellcheck="true" value = "h" rows="8" cols="75"></textarea>
     <br>
-    <div class="form-group">
-      <input id="facebookCheckbox" name="test[]" class="form-check-input" value='Facebook' type="checkbox">
-      <label for="facebookCheckbox" class="form-check-label">Facebook</label>
-      
-      <input id="twitterCheckbox" name="test[]" class="form-check-input" value='Twitter' type="checkbox">
-      <label for="twitterCheckbox" class="form-check-label">Twitter</label>
-    </div>
-    <input type = "submit" name="submit" id="search" class="btn btn-primary" value = "Send">
+    <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
+    <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
+    <input type = "submit" name="submit" class="btn btn-primary" id="search" value = "Send">
   </form>
 
     <?php
