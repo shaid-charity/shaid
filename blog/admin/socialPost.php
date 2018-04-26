@@ -8,7 +8,7 @@
 
 ?>
 <div class="text-left container">
-  <form id="form1" method = "post" >
+  <form id=form1 method = "post" >
     <div class="page-header">
       <h1>Posting to social media</h1>
     </div>
@@ -19,7 +19,7 @@
     <br>
     <label><input name="test[]" value='Facebook' type="checkbox">Facebook</label>
     <label><input name="test[]" value='Twitter' type="checkbox">Twitter</label>
-    <input type = "submit" name="submit" class="btn btn-primary" id="search" value = "Send">
+    <input type = "submit" name="submit" id="search" value = "Send">
   </form>
 
     <?php
