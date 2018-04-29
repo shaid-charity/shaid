@@ -73,7 +73,7 @@
 				<?php
 					if ($user == null) {
 				?>
-				<li><a href="/<?php echo INSTALLED_DIR; ?>/login.php">Log in</a></li>
+				<li><a href="/<?php echo INSTALLED_DIR; ?>/login.php?back=<?php echo $_SERVER['REQUEST_URI']; ?>">Log in</a></li>
 				<?php
 					} else {
 				?>

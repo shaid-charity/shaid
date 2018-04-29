@@ -27,10 +27,21 @@
 	        $query = $con->prepare("DELETE FROM sessions WHERE session_id=?");
 	        $query->bind_param("s", session_id());
 	        $query->execute();
-					$query->close();
+			$query->close();
+
+			if (isset($_GET['back'])) {
+				// Get the filename from the back string
+				$filename = '/' . end(explode('/', $_GET['back']));
+
+				// Check the page the user logged out from was not an admin page
+				if (!in_array($filename, getPermissionArray())) {
+					// If it isn't we can redirect back to that page
+					//header("Location: " . $_GET['back']);
+				} else {
+					// If it is, redirect to the login page
 					echo "<script>window.location.replace('login.php')</script>";
-					die();
-	        //header("Location: login.php");
+				}
+			}
 	      }
 			
 		  if(!empty($_POST['username'])) {
