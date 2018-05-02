@@ -5,6 +5,7 @@
 
     require_once 'includes/settings.php';
 	require_once 'includes/config.php';
+	require_once 'includes/donations_modal.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,17 +118,7 @@
 							<h2>
 								<?php echo $donationPercent; ?>%&mdash;£<?php echo $campaign->getAmountRaised(); ?> raised of £<?php echo $campaign->getGoalAmount(); ?> goal
 							</h2>
-							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-							    <input type="hidden" name="cmd" value="_donations" />
-							    <input type="hidden" name="business" value="<?php echo DONATE_MERCHANT_ID; ?>" />
-							    <input type="hidden" name="item_name" value="SHAID Campaign: <?php echo $campaign->getTitle(); ?>">
-							    <input type="hidden" name="currency_code" value="GBP">
-							    <input type="hidden" name="tax" value="0">
-							    <input type="hidden" name="lc" value="UK">
-							    <input type="hidden" name="amount" value="10">
-								<input type="submit" class="button-green" value="Donate to this Campaign">
-							    </span><img width="1" height="1" alt="" src="plugins/system/tmlazyload/blank.gif" class="lazy" data-src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" border="0" /></span>
-							</form>
+							<a href="javascript:void(0)" id="campaign-donate-button" class="button-green">Donate to this Campaign</a>
 						</section>
 						<figure id="article-image">
 							<img src="<?php echo $image; ?>" alt="<?php echo $campaign->getImageCaption(); ?>">
@@ -180,5 +171,6 @@
 		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
 	?>
+	<script src="/<?php echo INSTALLED_DIR; ?>/scripts/donate.js" type="text/javascript"></script>
 </body>
 </html>

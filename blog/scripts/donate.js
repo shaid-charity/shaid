@@ -1,10 +1,8 @@
 // donate.js
 
-// THIS IS UNUSED AS PAYPAL DOES NOT SUPPORT PASSING CUSTOM AMOUNTS FOR DONATIONS
-
 
 var globalDonateModal = {
-	element: document.getElementById('global-donate-modal'),
+	element: document.getElementById('campaign-donate-modal'),
 	isVisible: false
 }
 
@@ -34,7 +32,7 @@ window.onkeyup = function(e) {
 }
 
 
-$('#global-donate-button').click(function() {
+$('#campaign-donate-button').click(function() {
 	if (!globalDonateModal.isVisible) {
 		showDonateModal();
 	} else {
@@ -43,22 +41,22 @@ $('#global-donate-button').click(function() {
 });
 
 
-$('#close-global-donate-modal-button').click(function() {
+$('#close-campaign-donate-modal-button').click(function() {
 	if (globalDonateModal.isVisible) {
 		hideDonateModal();
 	}
 });
 
 
-$('#global-donate-modal').click(function() {
+$('#campaign-donate-modal').click(function() {
 	if (globalDonateModal.isVisible) {
 		hideDonateModal();
 	}
 });
 
 
-$('#global-donate-modal-message').click(function (e) {
-    // Stop propagation to global-donate-modal element
+$('#campaign-donate-modal-message').click(function (e) {
+    // Stop propagation to campaign-donate-modal element
     // i.e. foreground click will not close modal
     e.stopPropagation();
 })

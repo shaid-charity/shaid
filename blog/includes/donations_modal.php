@@ -4,8 +4,8 @@
         * All pages should contain this.
     */
 ?>	
-	<div id="global-donate-modal" class="modal-container">
-		<div id="global-donate-modal-message" class="modal-message">
+	<div id="campaign-donate-modal" class="modal-container">
+		<div id="campaign-donate-modal-message" class="modal-message">
 			<div class="donation-header-split">
 				<h1>Donate</h1>
 				<div>
@@ -20,8 +20,16 @@
 				<input class="donation-input-amount" id="donationAmount" autocomplete="off" placeholder="0.00" pattern="[0-9]*" value="" type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')">
 			</div>
 
-			<div class="modal-message-button-container-full-width">
-				<a href="" type="button" id="" class="button-green modal-message-button-full-width">Donate via PayPal</a>
-			</div>
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="modal-message-button-container-full-width">
+			    <input type="hidden" name="cmd" value="_donations" />
+			    <input type="hidden" name="business" value="<?php echo DONATE_MERCHANT_ID; ?>" />
+			    <input type="hidden" name="item_name" value="SHAID Campaign: <?php echo $campaign->getTitle(); ?>">
+			    <input type="hidden" name="currency_code" value="GBP">
+			    <input type="hidden" name="tax" value="0">
+			    <input type="hidden" name="lc" value="UK">
+			    <input type="hidden" name="amount" value="10">
+				<input type="submit" class="button-green modal-message-button-full-width" value="Donate via PayPal">
+			    </span><img width="1" height="1" alt="" src="plugins/system/tmlazyload/blank.gif" class="lazy" data-src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" border="0" /></span>
+			</form>
 		</div>
 	</div>
