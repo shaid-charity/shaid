@@ -17,7 +17,7 @@
 
 			<div class="donation-input">
 				<span class="donation-currency-symbol">&pound;</span>
-				<input class="donation-input-amount" id="donationAmount" autocomplete="off" placeholder="0.00" pattern="[0-9]*" value="10" type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,''); document.getElementById('campaign-donation-amount-value').value = this.value;">
+				<input class="donation-input-amount" id="donationAmount" autocomplete="off" placeholder="0.00" pattern="[0-9]*" value="" type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,''); document.getElementById('campaign-donation-amount-value').value = this.value;">
 			</div>
 
 			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="modal-message-button-container-full-width">
