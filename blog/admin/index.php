@@ -15,7 +15,7 @@ require_once 'header.php';
     </div>
     <br/>
 
-    <p>Use the above navigation to access the website's administrative utilities.</p>
+    <p>Use the above navigation menu to access the website's administrative utilities.</p>
     <p><a href="../index.php">Click here to return to the SHAID website</a></p>
   </div>
 </body>
