@@ -4,6 +4,7 @@
         * All pages should contain this.
     */
     require_once 'includes/settings.php';
+    require_once 'includes/donations.config.php';
 ?>
 	<header id="header">
 		<div class="header-content">
@@ -54,7 +55,7 @@
 				<?php
 					//<a href="javascript:void(0)" id="global-donate-button" class="button-green">Make a donation</a>
 				?>
-				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=AJGAJ53CYYKGS" target="_blank" id="global-donate-button" class="button-green">Make a donation</a>
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=<?php echo DONATE_BUTTON_ID; ?>" target="_blank" id="global-donate-button" class="button-green">Make a donation</a>
 			</div>
 		</div>
 	</nav>
