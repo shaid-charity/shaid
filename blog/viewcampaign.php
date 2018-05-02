@@ -124,6 +124,7 @@
 							    <input type="hidden" name="currency_code" value="GBP">
 							    <input type="hidden" name="tax" value="0">
 							    <input type="hidden" name="lc" value="UK">
+							    <input type="hidden" name="amount" value="10">
 								<input type="submit" class="button-green" value="Donate to this Campaign">
 							    </span><img width="1" height="1" alt="" src="plugins/system/tmlazyload/blank.gif" class="lazy" data-src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" border="0" /></span>
 							</form>
