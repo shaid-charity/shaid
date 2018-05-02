@@ -7,7 +7,7 @@
 	<div id="campaign-donate-modal" class="modal-container">
 		<div id="campaign-donate-modal-message" class="modal-message">
 			<div class="donation-header-split">
-				<h1>Donate</h1>
+				<h1>Campaign donation</h1>
 				<div>
 					<img src="/assets/logos/external/paypal/paypal_xxsmall.png">
 				</div>

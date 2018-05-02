@@ -818,7 +818,7 @@ $rule-line-thickness: 4px;
 	padding: 0.5rem 0;
 }
 
-.modal-message-buttons {
+.modal-message-button-container {
 	margin: auto;
 	padding: 1rem 2rem 0 2rem;
 	text-align: center;
@@ -827,10 +827,25 @@ $rule-line-thickness: 4px;
 	flex-wrap: wrap;
 }
 
-.modal-message-buttons button {
+.modal-message-button-container-full-width {
+	margin: auto;
+	padding: 1rem 0 0 0;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.modal-message-button {
 	flex-grow: 1;
 	margin: 0 0.5rem;
 }
+
+.modal-message-button-full-width {
+	width: 100%;
+	margin: 0.3rem 0;
+}
+
 
 #campaign-donate-modal-message {
 	max-width: 450px;
@@ -844,7 +859,8 @@ $rule-line-thickness: 4px;
 }
 
 .donation-header-split h1 {
-  flex-grow: 1; }
+	flex-grow: 1;
+}
 
 .donation-input {
 	width: 100%;
