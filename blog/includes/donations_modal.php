@@ -23,7 +23,7 @@
 			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="modal-message-button-container-full-width">
 			    <input type="hidden" name="cmd" value="_donations" />
 			    <input type="hidden" name="business" value="<?php echo DONATE_MERCHANT_ID; ?>" />
-			    <input type="hidden" name="item_name" value="SHAID Campaign: <?php echo $campaign->getTitle(); ?>">
+			    <input type="hidden" name="item_name" value="SHAID Campaign - <?php echo $campaign->getTitle(); ?>">
 			    <input type="hidden" name="currency_code" value="GBP">
 			    <input type="hidden" name="tax" value="0">
 			    <input type="hidden" name="lc" value="UK">
