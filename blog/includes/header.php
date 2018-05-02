@@ -4,7 +4,7 @@
         * All pages should contain this.
     */
     require_once 'includes/settings.php';
-    require_once 'includes/donations.config.php';
+    require_once 'includes/donations.configg.php';
 ?>
 	<header id="header">
 		<div class="header-content">
