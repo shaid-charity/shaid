@@ -832,6 +832,53 @@ $rule-line-thickness: 4px;
 	margin: 0 0.5rem;
 }
 
+#campaign-donate-modal-message {
+	max-width: 450px;
+}
+
+.donation-header-split {
+	display: flex;
+	flex-direction: row;
+	wrap: nowrap;
+	align-items: top;
+}
+
+.donation-header-split h1 {
+  flex-grow: 1; }
+
+.donation-input {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: baseline;
+	justify-content: center;
+	padding-bottom: 1rem;
+}
+
+.donation-currency-symbol {
+	font-size: 3rem !important;
+	color: #4E3D42;
+	padding-right: 0.25rem;
+}
+
+.donation-input-amount {
+	border: 0 !important;
+	outline: 0 !important;
+	font-size: 5rem !important;
+	box-shadow: none;
+	color: #4E3D42 !important;
+	width: 60%;
+	padding: 0.2rem 0 !important;
+	border-bottom: 3px solid #999999 !important;
+	text-align: center;
+}
+
+.donation-input-amount:focus {
+	color: #1C0B19 !important;
+	border-color: #1C0B19 !important;
+}
+
 // Campaigns
 
 .campaign-donation-section {
