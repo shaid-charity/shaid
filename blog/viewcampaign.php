@@ -120,11 +120,11 @@
 							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 							    <input type="hidden" name="cmd" value="_donations" />
 							    <input type="hidden" name="business" value="<?php echo DONATE_MERCHANT_ID; ?>" />
-							    <input type="hidden" name="item_name" value="SHAID - <?php echo $campaign->getTitle(); ?>">
+							    <input type="hidden" name="item_name" value="SHAID Campaign: <?php echo $campaign->getTitle(); ?>">
 							    <input type="hidden" name="currency_code" value="GBP">
 							    <input type="hidden" name="tax" value="0">
 							    <input type="hidden" name="lc" value="UK">
-								<input type="submit" class="button-green">Donate to this Campaign</a>
+								<input type="submit" class="button-green" value="Donate to this Campaign">
 							    </span><img width="1" height="1" alt="" src="plugins/system/tmlazyload/blank.gif" class="lazy" data-src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" border="0" /></span>
 							</form>
 						</section>
