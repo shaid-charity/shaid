@@ -17,7 +17,7 @@
 
 			<div class="donation-input">
 				<span class="donation-currency-symbol">&pound;</span>
-				<input class="donation-input-amount" id="donationAmount" autocomplete="off" placeholder="0.00" pattern="[0-9]*" value="" type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,''); document.getElementById('campaign-donation-amount-value').value = this.value;">
+				<input class="donation-input-amount" id="donationAmount" autocomplete="off" placeholder="0.00" pattern="[0-9]*" value="10" type="text" onkeyup="this.value=this.value.replace(/[^0-9.]/g,''); document.getElementById('campaign-donation-amount-value').value = this.value;">
 			</div>
 
 			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="modal-message-button-container-full-width">
@@ -27,7 +27,7 @@
 			    <input type="hidden" name="currency_code" value="GBP">
 			    <input type="hidden" name="tax" value="0">
 			    <input type="hidden" name="lc" value="UK">
-			    <input type="hidden" name="amount" value="0" id="campaign-donation-amount-value">
+			    <input type="hidden" name="amount" value="10" id="campaign-donation-amount-value">
 				<input type="submit" class="button-green modal-message-button-full-width" value="Donate via PayPal">
 			    </span><img width="1" height="1" alt="" src="plugins/system/tmlazyload/blank.gif" class="lazy" data-src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" border="0" /></span>
 			</form>
