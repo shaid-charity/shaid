@@ -5,7 +5,6 @@
 
     require_once 'includes/settings.php';
 	require_once 'includes/config.php';
-	require_once 'includes/donations_modal.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -170,6 +169,7 @@
 		require_once(SITE_ROOT . '/includes/cookie_warning.php');
 		require_once(SITE_ROOT . '/includes/footer.php');
 		require_once(SITE_ROOT . '/includes/global_scripts.php');
+		require_once(SITE_ROOT . '/includes/donations_modal.php');
 	?>
 	<script src="/<?php echo INSTALLED_DIR; ?>/scripts/donate.js" type="text/javascript"></script>
 </body>
