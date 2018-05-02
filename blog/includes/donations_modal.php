@@ -27,7 +27,7 @@
 			    <input type="hidden" name="currency_code" value="GBP">
 			    <input type="hidden" name="tax" value="0">
 			    <input type="hidden" name="lc" value="UK">
-			    <input type="hidden" name="amount" value="10" id="campaign-donation-amount-value">
+			    <input type="hidden" name="amount" value="0" id="campaign-donation-amount-value">
 				<input type="submit" class="button-green modal-message-button-full-width" value="Donate via PayPal">
 			    </span><img width="1" height="1" alt="" src="plugins/system/tmlazyload/blank.gif" class="lazy" data-src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" border="0" /></span>
 			</form>
