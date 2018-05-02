@@ -117,7 +117,7 @@
 							<h2>
 								<?php echo $donationPercent; ?>%&mdash;£<?php echo $campaign->getAmountRaised(); ?> raised of £<?php echo $campaign->getGoalAmount(); ?> goal
 							</h2>
-							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
 							    <input type="hidden" name="cmd" value="_donations" />
 							    <input type="hidden" name="business" value="<?php echo DONATE_MERCHANT_ID; ?>" />
 							    <input type="hidden" name="item_name" value="SHAID Campaign: <?php echo $campaign->getTitle(); ?>">
