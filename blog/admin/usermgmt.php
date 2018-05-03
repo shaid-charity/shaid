@@ -7,6 +7,8 @@ require_once '../includes/config.php';
 require_once '../includes/db.php';
 require_once 'header.php';
 
+echo EMAIL_SERVER;
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   switch ($_POST["action"]) {
     case 'ADD':
